@@ -1,7 +1,7 @@
 Admin Interface:
 
 
-- Kunden�bersicht
+- Kundenübersicht
 	- Kundenauflistung
 	- Einnahmen
 	- Guthabenverwaltung (Hinzufügen/Beschreibung)
