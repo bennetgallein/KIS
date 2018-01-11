@@ -53,7 +53,7 @@ $method = $_GET['method'];
             <input type="submit" value="Login" placeholder="Login" class="btn btn-primar"/>
         </form>
     <?php elseif ($method == 'register'): ?>
-        <form action="index.php?method=register&continue_registration=true" method="post">
+        <form action="index.php?method=register&continue_registrationc=true" method="post">
             <div class="col-sm-4">
                 <div class="form-group">
                     <input type="text" value="" placeholder="First Name" class="form-control" required/>
