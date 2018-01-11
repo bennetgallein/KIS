@@ -1,0 +1,13 @@
+{
+    "name": "bennetgallein/hostinginterface",
+    "type": "project",
+    "require": {
+        "zzantares/proxmoxve": "~3.0"
+    },
+    "authors": [
+        {
+            "name": "Bennet Gallein",
+            "email": "bennet@intranetproject.net"
+        }
+    ]
+}
