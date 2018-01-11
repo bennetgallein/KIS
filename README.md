@@ -48,4 +48,4 @@
 ## - Anderes:
     -E-Mail Template muss auch erstellt werden für Rechnungen etc.
 
-APIs to use: Proxmox, TeamSpeak, Domain (AutoDNS)
+APIs to use: [Proxmox](https://pve.proxmox.com/wiki/Proxmox_VE_API), TeamSpeak, Domain (AutoDNS)
