@@ -2,7 +2,9 @@
     "name": "bennetgallein/hostinginterface",
     "type": "project",
     "require": {
-        "zzantares/proxmoxve": "~3.0"
+        "zzantares/proxmoxve": "~3.0",
+        "paypal/rest-api-sdk-php": "*",
+        "planetteamspeak/ts3-php-framework": "^1.1"
     },
     "authors": [
         {
