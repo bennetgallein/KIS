@@ -4,11 +4,12 @@
 }
 
 .form-signin {
-    max-width: 420px;
     padding: 30px 38px 66px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     background-color: #eee;
     border: 3px dotted rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
 }
 
 .form-signin-heading {
@@ -20,10 +21,11 @@
     position: relative;
     font-size: 16px;
     height: auto;
-    padding: 10px;
+    padding: 20px;
 }
 .navbar-form {
     text-align: center;
+    width: 100%;
 }
 input[type="text"] {
     margin-bottom: 0px;

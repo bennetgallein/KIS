@@ -11,6 +11,8 @@ $method = $_GET['method'];
 
 // $_GET['continue_registration] == true ==> registrierung
 // $_GET['continue_login] == true ==> login
+
+$cfg = json_decode(file_get_contents("config.json"));
 ?>
 <!doctype html>
 <html lang="en">
@@ -20,7 +22,7 @@ $method = $_GET['method'];
     <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon.png"/>
     <link rel="icon" type="image/png" href="assets/favicon.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>KIS Fee-Hosting.com</title>
+    <title><?php echo $cfg->site_name; ?></title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta name="viewport" content="width=device-width"/>
     <!-- Bootstrap core CSS     -->
@@ -37,13 +39,13 @@ $method = $_GET['method'];
 </head>
 
 <body>
-<div class="wrapper">
-    <?php if ($method == 'login'): ?>
+<?php if ($method == 'login'): ?>
 
     <div class="row-fluid">
         <div class="col-md-4 col-md-offset-4">
-            <form action="index.php?method=login&continue_login=true" method="post" class="navbar-form navbar-left">
-                <h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
+            <form action="index.php?method=login&continue_login=true" method="post"
+                  class="navbar-form navbar-left form-signin">
+                <h3 class="form-signin-heading">Sign In</h3>
                 <hr class="colorgraph">
                 <br>
                 <input type="text" value="" name="Email" placeholder="Email" class="form-control" autofocus=""
@@ -51,37 +53,34 @@ $method = $_GET['method'];
                 <input type="text" value="" name="Password" placeholder="Password" class="form-control" required/>
                 <button type="submit" value="Login" name="Submit" class="btn btn-lg btn-primary btn-block"/>
                 Login</button>
+                <a href="index.php?method=register">Register here</a>
             </form>
         </div>
     </div>
-</div>
+
 <?php elseif ($method == 'register'): ?>
-    <form action="index.php?method=register&continue_registrationc=true" method="post">
-        <div class="col-sm-4">
-            <div class="form-group">
-                <input type="text" value="" placeholder="First Name" class="form-control" required/>
-            </div>
+    <div class="row-fluid">
+        <div class="col-md-4 col-md-offset-4">
+            <form action="index.php?method=register&continue_registrationc=true" method="post"
+                  class="navbar-form navbar-left form-signin">
+                <h3 class="form-signin-heading">Register</h3>
+                <hr class="colorgraph">
+                <br>
+                <input type="text" value="" name="firstname" placeholder="First Name" class="form-control" required/>
+                <input type="text" value="" name="lastname" placeholder="Last Name" class="form-control" required/>
+                <br>
+                <input type="text" value="" name="email" placeholder="E-mail" align="left" class="form-control" required/>
+                <br>
+                <input type="text" value="" name="pw1" placeholder="Password" class="form-control" required/>
+                <input type="text" value="" name="pw2" placeholder="Repeat Password" class="form-control" required/>
+                <br>
+                <input type="submit" value="Register" placeholder="Register" class="btn btn-primary"/>
+                <br>
+                <a href="index.php?method=login">Login</a>
+            </form>
         </div>
-        <div class="col-sm-4">
-            <div class="form-group">
-                <input type="text" value="" placeholder="Last Name" class="form-control" required/>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="form-group">
-                <input type="text" value="" placeholder="Email" class="form-control" required/>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="form-group">
-                <input type="text" value="" placeholder="Password" class="form-control" required/>
-            </div>
-        </div>
-        <a href="index.php?method=login">Login</a>
-        <input type="submit" value="Register" placeholder="Register" class="btn btn-primary"/>
-    </form>
+    </div>
 <?php endif; ?>
-</div>
 </body>
 <!--   Core JS Files   -->
 <script src="assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
