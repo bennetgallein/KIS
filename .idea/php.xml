@@ -6,6 +6,9 @@
       <path value="$PROJECT_DIR$/vendor/zzantares/proxmoxve" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/streams" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/paypal/rest-api-sdk-php" />
+      <path value="$PROJECT_DIR$/vendor/planetteamspeak/ts3-php-framework" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
     </include_path>
   </component>
 </project>
