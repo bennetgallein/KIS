@@ -42,16 +42,35 @@ class DB {
     public function prepareQuery($query, $params) {
         $this->connect();
         $prep = $this->connection->prepare($query);
-        foreach ($params as $type => $item) {
-            $prep->bind_param($type, $item);
-        }
-        return $prep->execute();
+        $types = str_repeat('s', count($params));
+        $prep->bind_param($types, ...$params);
+        $res = $prep->execute();
+        $this->disconnect();
+        return $res;
+    }
+    public function simpleQuery($query) {
+        $this->connect();
+        $res = $this->connection->query($query);
+        echo $this->connection->error;
+        return $res;
+    }
+
+    public function escape($toEscape) {
+        $this->connect();
+        return $this->connection->real_escape_string($toEscape);
         $this->disconnect();
     }
-    function getConfig() {
+
+    public function getConfig() {
         return $this->cfg;
     }
-    function gM($code) {
+
+    public function m($code) {
         return $this->lang[$code];
     }
+
+    public function e($code) {
+        return $this->lang['errors'][$code];
+    }
+
 }
