@@ -12,5 +12,27 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="PHP" type="php">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/composer" />
+          <root url="file://$MODULE_DIR$/vendor/guzzlehttp/guzzle" />
+          <root url="file://$MODULE_DIR$/vendor/guzzlehttp/streams" />
+          <root url="file://$MODULE_DIR$/vendor/paypal/rest-api-sdk-php" />
+          <root url="file://$MODULE_DIR$/vendor/planetteamspeak/ts3-php-framework" />
+          <root url="file://$MODULE_DIR$/vendor/psr/log" />
+          <root url="file://$MODULE_DIR$/vendor/zzantares/proxmoxve" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/composer" />
+          <root url="file://$MODULE_DIR$/vendor/guzzlehttp/guzzle" />
+          <root url="file://$MODULE_DIR$/vendor/guzzlehttp/streams" />
+          <root url="file://$MODULE_DIR$/vendor/paypal/rest-api-sdk-php" />
+          <root url="file://$MODULE_DIR$/vendor/planetteamspeak/ts3-php-framework" />
+          <root url="file://$MODULE_DIR$/vendor/psr/log" />
+          <root url="file://$MODULE_DIR$/vendor/zzantares/proxmoxve" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
