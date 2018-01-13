@@ -12,6 +12,7 @@ $method = $_GET['method'];
 // $_GET['continue_registration] == true ==> registrierung
 // $_GET['continue_login] == true ==> login
 require 'php/database.php';
+$db = new DB();
 if (isset($_GET['continue_login']) && isset($_GET['method'])) {
 
 }
@@ -24,7 +25,7 @@ if (isset($_GET['continue_login']) && isset($_GET['method'])) {
     <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon.png"/>
     <link rel="icon" type="image/png" href="assets/favicon.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title><?php echo $cfg['site_name']; ?></title>
+    <title><?php echo $db->getConfig()['site_name']; ?></title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta name="viewport" content="width=device-width"/>
     <!-- Bootstrap core CSS     -->
@@ -46,15 +47,15 @@ if (isset($_GET['continue_login']) && isset($_GET['method'])) {
         <div class="col-md-4 col-md-offset-4">
             <form action="index.php?method=login&continue_login=true" method="post"
                   class="navbar-form navbar-left form-signin">
-                <h3 class="form-signin-heading">Sign In</h3>
+                <h3 class="form-signin-heading"><?= $db->gM(0)?></h3>
                 <hr class="colorgraph">
                 <br>
-                <input type="text" value="" name="Email" placeholder="Email" class="form-control" autofocus=""
+                <input type="text" value="" name="Email" placeholder="<?= $db->gM(1)?>" class="form-control" autofocus=""
                        required/>
-                <input type="text" value="" name="Password" placeholder="Password" class="form-control" required/>
-                <button type="submit" value="Login" name="Submit" class="btn btn-lg btn-primary btn-block"/>
+                <input type="text" value="" name="Password" placeholder="<?= $db->gM(2) ?>>" class="form-control" required/>
+                <button type="submit" value="<?= $db->gM(3)?>" name="Submit" class="btn btn-lg btn-primary btn-block"/>
                 Login</button>
-                <a href="index.php?method=register">Register here</a>
+                <a href="index.php?method=register"><?= $db->gM(4)?></a>
             </form>
         </div>
     </div>
@@ -63,20 +64,20 @@ if (isset($_GET['continue_login']) && isset($_GET['method'])) {
         <div class="col-md-4 col-md-offset-4">
             <form action="index.php?method=register&continue_registrationc=true" method="post"
                   class="navbar-form navbar-left form-signin">
-                <h3 class="form-signin-heading">Register</h3>
+                <h3 class="form-signin-heading"><?= $db->gM(5)?></h3>
                 <hr class="colorgraph">
                 <br>
-                <input type="text" value="" name="firstname" placeholder="First Name" class="form-control" required/>
-                <input type="text" value="" name="lastname" placeholder="Last Name" class="form-control" required/>
+                <input type="text" value="" name="firstname" placeholder="<?= $db->gM(6)?>" class="form-control" required/>
+                <input type="text" value="" name="lastname" placeholder="<?= $db->gM(7)?>" class="form-control" required/>
                 <br>
-                <input type="text" value="" name="email" placeholder="E-mail" align="left" class="form-control" required/>
+                <input type="text" value="" name="email" placeholder="<?= $db->gM(8)?>" align="left" class="form-control" required/>
                 <br>
-                <input type="text" value="" name="pw1" placeholder="Password" class="form-control" required/>
-                <input type="text" value="" name="pw2" placeholder="Repeat Password" class="form-control" required/>
+                <input type="text" value="" name="pw1" placeholder="<?= $db->gM(9)?>" class="form-control" required/>
+                <input type="text" value="" name="pw2" placeholder="<?= $db->gM(10)?>" class="form-control" required/>
                 <br>
-                <input type="submit" value="Register" placeholder="Register" class="btn btn-primary"/>
+                <input type="submit" value="Register" placeholder="<?= $db->gM(11)?>" class="btn btn-primary"/>
                 <br>
-                <a href="index.php?method=login">Login</a>
+                <a href="index.php?method=login"><?= $db->gM(12)?></a>
             </form>
         </div>
     </div>
@@ -102,12 +103,9 @@ if (isset($_GET['continue_login']) && isset($_GET['method'])) {
 <script src="assets/js/demo.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-
         // Javascript method's body can be found in assets/js/demos.js
         demo.initDashboardPageCharts();
-
     });
-
 </script>
 
 </html>
