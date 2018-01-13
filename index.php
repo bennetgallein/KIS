@@ -14,7 +14,74 @@ $method = $_GET['method'];
 require 'php/database.php';
 $db = new DB();
 if (isset($_GET['continue_login']) && isset($_GET['method'])) {
+    if (!(isset($_POST['email']) && isset($_POST['pw']))) {
+        header("Location: index.php?method=login&error=fill");
+        die();
+    }
+    if (!($_GET['method'] == "login")) {
+        header("Location: index.php");
+        die();
+    }
+    $email = $_POST['email'];
+    $pw = $_POST['pw'];
 
+    $res = $db->simpleQuery("SELECT * FROM users WHERE email='" . $db->escape($email) . "' LIMIT 1");
+    if (!$res) {
+        header("Location: index.php?method=login&error=internal");
+        die();
+    }
+    if ($res->num_rows < 1) {
+        header("Location: index.php?method=login&error=wrong");
+    }
+    $data = $res->fetch_object();
+    $arr = array(
+        "realid" => $data->_id,
+        "id" => $data->id,
+        "email" => $data->email,
+        "firstname" => $data->firstname,
+        "lastname" => $data->lastname,
+        "password" => $data->password
+    );
+    include("php/User.php");
+    $user = new User($arr);
+    //set cookies & proceed login
+    $_SESSION['user'] = $user;
+    if (isset($_POST['stay'])) {
+
+    }
+}
+if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
+    if (!(isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['pw1']) && isset($_POST['pw2']))) {
+        header("Location: index.php?method=register&error=fill");
+        die();
+    }
+    if (!($_GET['method'] == "register")) {
+        header("Location: index.php");
+        die();
+    }
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $pw1 = $_POST['pw1'];
+    $pw2 = $_POST['pw2'];
+    if ($pw1 != $pw2) {
+        header("Location: index.php?method=register&error=pwm");
+        die();
+    }
+    $res = $db->simpleQuery("SELECT * FROM users WHERE email='" . $db->escape($email) . "' LIMIT 1");
+    if (!$res) {
+        header("Location: index.php?method=register&error=internal");
+        die();
+    }
+    if ($res->num_rows >= 1) {
+        header("Location: index.php?method=register&error=regi");
+        die();
+    }
+    echo $db->getConfig()['user'][0]['id_lenght'];
+    $id = bin2hex((openssl_random_pseudo_bytes(23)));
+    $db->prepareQuery("INSERT INTO users (id, email, firstname, lastname, password) VALUES (?, ?, ?, ?, ?)", array(
+        $db->escape($id), $db->escape($email), $db->escape($firstname), $db->escape($lastname), $db->escape(md5($pw1))
+    ));
 }
 ?>
 <!doctype html>
@@ -25,9 +92,10 @@ if (isset($_GET['continue_login']) && isset($_GET['method'])) {
     <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon.png"/>
     <link rel="icon" type="image/png" href="assets/favicon.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title><?php echo $db->getConfig()['site_name']; ?></title>
+    <title><?= $db->getConfig()['site_name']; ?></title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta name="viewport" content="width=device-width"/>
+    <meta charset="utf-8" />
     <!-- Bootstrap core CSS     -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
     <!--  Material Dashboard CSS    -->
@@ -42,42 +110,95 @@ if (isset($_GET['continue_login']) && isset($_GET['method'])) {
 </head>
 
 <body>
-    <?php if ($method == 'login'): ?>
+<?php if ($method == 'login'): ?>
     <div class="row-fluid">
         <div class="col-md-4 col-md-offset-4">
             <form action="index.php?method=login&continue_login=true" method="post"
                   class="navbar-form navbar-left form-signin">
-                <h3 class="form-signin-heading"><?= $db->gM(0)?></h3>
+                <h3 class="form-signin-heading"><?= $db->m(0) ?></h3>
                 <hr class="colorgraph">
+                <?php
+                if (isset($_GET['error'])) {
+                    switch ($_GET['error']) {
+                        case 'fill':
+                            echo $db->e(1);
+                            break;
+                        case 'wrong':
+                            echo $db->e(2);
+                            break;
+                        case 'internal':
+                            echo $db->e(3);
+                            break;
+                        default:
+                            echo "Unknown Error";
+                            break;
+                    }
+                }
+                ?>
                 <br>
-                <input type="text" value="" name="Email" placeholder="<?= $db->gM(1)?>" class="form-control" autofocus=""
+                <input type="text" value="" name="email" placeholder="<?= $db->m(1) ?>" class="form-control"
+                       autofocus=""
                        required/>
-                <input type="text" value="" name="Password" placeholder="<?= $db->gM(2) ?>>" class="form-control" required/>
-                <button type="submit" value="<?= $db->gM(3)?>" name="Submit" class="btn btn-lg btn-primary btn-block"/>
+                <input type="password" value="" name="pw" placeholder="<?= $db->m(2) ?>>" class="form-control" required/>
+                <div class="form-check pull-left" style="padding-bottom: 15px; font-size: 1.6em;">
+                    <input class="form-check-input" name="stay" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        <?= $db->m(13)?>
+                    </label>
+                </div>
+                <button type="submit" value="<?= $db->m(3) ?>" name="Submit" class="btn btn-lg btn-primary btn-block"/>
                 Login</button>
-                <a href="index.php?method=register"><?= $db->gM(4)?></a>
+                <a href="index.php?method=register"><?= $db->m(4) ?></a>
             </form>
         </div>
     </div>
-    <?php elseif ($method == 'register'): ?>
+<?php elseif ($method == 'register'): ?>
     <div class="row-fluid">
         <div class="col-md-4 col-md-offset-4">
-            <form action="index.php?method=register&continue_registrationc=true" method="post"
+            <form action="index.php?method=register&continue_registration=true" method="post"
                   class="navbar-form navbar-left form-signin">
-                <h3 class="form-signin-heading"><?= $db->gM(5)?></h3>
+                <h3 class="form-signin-heading"><?= $db->m(5) ?></h3>
                 <hr class="colorgraph">
+                <?php
+                if (isset($_GET['error'])) {
+                    switch ($_GET['error']) {
+                        case 'fill':
+                            echo $db->e(1);
+                            break;
+                        case 'wrong':
+                            echo $db->e(2);
+                            break;
+                        case 'internal':
+                            echo $db->e(3);
+                            break;
+                        case 'pwm':
+                            echo $db->e(4);
+                            break;
+                        case 'regi':
+                            echo $db->e(5);
+                            break;
+                        default:
+                            echo "Unknown Error";
+                            break;
+                    }
+                }
+                ?>
                 <br>
-                <input type="text" value="" name="firstname" placeholder="<?= $db->gM(6)?>" class="form-control" required/>
-                <input type="text" value="" name="lastname" placeholder="<?= $db->gM(7)?>" class="form-control" required/>
+                <input type="text" value="" name="firstname" placeholder="<?= $db->m(6) ?>" class="form-control"
+                       required/>
+                <input type="text" value="" name="lastname" placeholder="<?= $db->m(7) ?>" class="form-control"
+                       required/>
                 <br>
-                <input type="text" value="" name="email" placeholder="<?= $db->gM(8)?>" align="left" class="form-control" required/>
+                <input type="text" value="" name="email" placeholder="<?= $db->m(8) ?>" align="left"
+                       class="form-control"
+                       required/>
                 <br>
-                <input type="text" value="" name="pw1" placeholder="<?= $db->gM(9)?>" class="form-control" required/>
-                <input type="text" value="" name="pw2" placeholder="<?= $db->gM(10)?>" class="form-control" required/>
+                <input type="password" value="" name="pw1" placeholder="<?= $db->m(9) ?>" class="form-control" required/>
+                <input type="password" value="" name="pw2" placeholder="<?= $db->m(10) ?>" class="form-control" required/>
                 <br>
-                <input type="submit" value="Register" placeholder="<?= $db->gM(11)?>" class="btn btn-primary"/>
+                <input type="submit" value="Register" placeholder="<?= $db->m(11) ?>" class="btn btn-primary"/>
                 <br>
-                <a href="index.php?method=login"><?= $db->gM(12)?></a>
+                <a href="index.php?method=login"><?= $db->m(12) ?></a>
             </form>
         </div>
     </div>
