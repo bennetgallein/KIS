@@ -77,7 +77,6 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
         header("Location: index.php?method=register&error=regi");
         die();
     }
-    echo $db->getConfig()['user'][0]['id_lenght'];
     $id = bin2hex((openssl_random_pseudo_bytes(23)));
     $db->prepareQuery("INSERT INTO users (id, email, firstname, lastname, password) VALUES (?, ?, ?, ?, ?)", array(
         $db->escape($id), $db->escape($email), $db->escape($firstname), $db->escape($lastname), $db->escape(md5($pw1))
