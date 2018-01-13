@@ -11,8 +11,10 @@ $method = $_GET['method'];
 
 // $_GET['continue_registration] == true ==> registrierung
 // $_GET['continue_login] == true ==> login
+require 'php/database.php';
+if (isset($_GET['continue_login']) && isset($_GET['method'])) {
 
-$cfg = json_decode(file_get_contents("config.json"));
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -22,7 +24,7 @@ $cfg = json_decode(file_get_contents("config.json"));
     <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon.png"/>
     <link rel="icon" type="image/png" href="assets/favicon.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title><?php echo $cfg->site_name; ?></title>
+    <title><?php echo $cfg['site_name']; ?></title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta name="viewport" content="width=device-width"/>
     <!-- Bootstrap core CSS     -->
@@ -39,8 +41,7 @@ $cfg = json_decode(file_get_contents("config.json"));
 </head>
 
 <body>
-<?php if ($method == 'login'): ?>
-
+    <?php if ($method == 'login'): ?>
     <div class="row-fluid">
         <div class="col-md-4 col-md-offset-4">
             <form action="index.php?method=login&continue_login=true" method="post"
@@ -57,8 +58,7 @@ $cfg = json_decode(file_get_contents("config.json"));
             </form>
         </div>
     </div>
-
-<?php elseif ($method == 'register'): ?>
+    <?php elseif ($method == 'register'): ?>
     <div class="row-fluid">
         <div class="col-md-4 col-md-offset-4">
             <form action="index.php?method=register&continue_registrationc=true" method="post"

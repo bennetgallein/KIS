@@ -1,4 +1,13 @@
 {
   "site_name": "KIS Fee-Hosting.com",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "user": [{
+    "id_lenght": 100
+  }],
+  "database": [{
+    "host": "localhost",
+    "user": "kis",
+    "password": "kis",
+    "database": "KIS"
+  }]
 }
