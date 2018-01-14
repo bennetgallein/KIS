@@ -12,9 +12,15 @@ Tip 2: you can also add an image using data-image tag
     <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="active">
-                <a href="dashboard.html">
+                <a href="index.php">
                     <i class="material-icons">dashboard</i>
                     <p>Dashboard</p>
+                </a>
+            </li>
+            <li>
+                <a href="user.php">
+                    <i class="material-icons">person</i>
+                    <p>Profil</p>
                 </a>
             </li>
             <?php
