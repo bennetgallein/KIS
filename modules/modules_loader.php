@@ -69,8 +69,3 @@ class Module {
     }
 
 }
-
-$mods = new ModuleLoader();
-foreach ($mods->getModules() as $module) {
-    var_dump($module);
-}
