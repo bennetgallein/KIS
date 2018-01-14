@@ -12,6 +12,7 @@ class DB {
     private $connection;
 
     private $lang;
+    private $modules;
 
     public function __construct() {
         $json_file = dirname(__FILE__) . "/../config.json";
@@ -21,6 +22,10 @@ class DB {
         $lang_file = dirname(__FILE__) . "/../messages_" . $this->cfg['lang'] . ".json";
         $json = file_get_contents($lang_file);
         $this->lang = json_decode($json, true);
+
+        include(dirname(__FILE__) . '/../modules/modules_loader.php');
+        $module_loader = new ModuleLoader();
+        $this->modules = $module_loader->getModules();
     }
 
     private function connect() {
@@ -30,6 +35,7 @@ class DB {
     private function disconnect() {
         $this->connection->close();
     }
+
     /*
      *
      * $params = array(
@@ -48,6 +54,7 @@ class DB {
         $this->disconnect();
         return $res;
     }
+
     public function simpleQuery($query) {
         $this->connect();
         $res = $this->connection->query($query);
@@ -73,4 +80,7 @@ class DB {
         return $this->lang['errors'][$code];
     }
 
+    public function getModules() {
+        return $this->modules;
+    }
 }
