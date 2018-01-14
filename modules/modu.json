@@ -1,0 +1,20 @@
+{
+  "name": "modu",
+  "version": "0.1",
+  "authors": [{
+    "name": "Bennet Gallein",
+    "email": "bennet@intranetproject.net"
+  }],
+  "navs": [
+    {
+      "name": "modu_modul",
+      "link": "modu/index.php"
+    },
+    {
+      "name": "modu_2",
+      "link": "modu/index2.php"
+    }
+  ],
+  "dashboard": {
+  }
+}
