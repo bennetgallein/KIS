@@ -24,6 +24,10 @@ class User {
         $this->password = $dataarr['password'];
     }
 
+    public function __sleep() {
+        return array('realid', 'id', 'email', 'firstname', 'lastname');
+    }
+
     public function getId() {
         return $this->id;
     }

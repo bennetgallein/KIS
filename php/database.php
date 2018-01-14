@@ -5,7 +5,7 @@
  * Date: 1/13/2018
  * Time: 4:09 PM
  */
-
+session_start();
 class DB {
 
     private $cfg;
