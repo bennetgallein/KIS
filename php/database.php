@@ -83,4 +83,7 @@ class DB {
     public function getModules() {
         return $this->modules;
     }
+    public function getFooter() {
+        return $this->cfg['footer'];
+    }
 }

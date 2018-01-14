@@ -10,5 +10,9 @@
     "user": "kis",
     "password": "kis",
     "database": "KIS"
+  }],
+  "footer": [{
+    "Fee-Hosting.com": "https://fee-hosting.com",
+    "Support Email": "mailto:support@fee-hosting.com"
   }]
 }

@@ -7,12 +7,16 @@
   }],
   "navs": [
     {
+      "icon": "dashboard",
       "name": "modu_modul",
-      "link": "modu/index.php"
+      "link": "modu/index.php",
+      "permission": "admin"
     },
     {
+      "icon": "dashboard",
       "name": "modu_2",
-      "link": "modu/index2.php"
+      "link": "modu/index2.php",
+      "permission": "user"
     }
   ],
   "dashboard": {
