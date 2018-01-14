@@ -1,6 +1,12 @@
 <?php
 include("../php/database.php");
+include("../php/User.php");
 $db = new DB();
+if (isset($_SESSION['user'])) {
+
+} else {
+    header("Location: ../index.php");
+}
 ?>
 <html lang="en">
 
@@ -66,9 +72,8 @@ $db = new DB();
                             </ul>
                         </li>
                         <li>
-                            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="user.php">
                                 <i class="material-icons">person</i>
-                                <p class="hidden-lg hidden-md">Profile</p>
                             </a>
                         </li>
                     </ul>

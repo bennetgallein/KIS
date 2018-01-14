@@ -1,6 +1,66 @@
 <?php
 include("../php/database.php");
+include("../php/User.php");
 $db = new DB();
+if (isset($_SESSION['user'])) {
+
+} else {
+    header("Location: ../index.php");
+}
+
+$user = $_SESSION['user'];
+$user = unserialize($user, array("allowed_classes" => true));
+
+$res = $db->simpleQuery("SELECT * FROM adresses WHERE userid='" . $user->getId() . "' LIMIT 1");
+var_dump($res);
+if ($res) {
+    if ($res->num_rows == 1) {
+        $data = $res->fetch_object();
+    } else {
+        $data = array();
+        header("Location ../index.php?method=login&error=internal");
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    if (isset($_GET['update'])) {
+        if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['repeatemail']) && isset($_POST['adress']) && isset($_POST['city']) && isset($_POST['country']) && isset($_POST['postalcode'])) {
+            $firstname = $_POST['firstname'];
+            $lastname = $_POST['lastname'];
+            $email = $_POST['email'];
+            $repemail = $_POST['repeatemail'];
+            $adress = $_POST['adress'];
+            $company = isset($_POST['company']) ? $_POST['company'] : "";
+            $city = $_POST['city'];
+            $country = $_POST['country'];
+            $postalcode = $_POST['postalcode'];
+
+            if (!($email == $repemail)) {
+                header("Location: user.php?error=Email%20do%20not%20match");
+            }
+            if (isset($data['adress'])) {
+                // update
+                $res = $db->prepareQuery("UPDATE adresses SET adress=?, company=?, city=?, country=?, postalcode=? WHERE userid='" . $user->getId() . "'");
+                header("Location: user.php?success=1");
+            } else {
+                $res = $db->prepareQuery("INSERT INTO adresses(userid, adress, company, city, country, postalcode) VALUES (?,?,?,?,?,?)", array($user->getId(), $adress, $company, $city, $country, $postalcode));
+                if (!$res) {
+                    header("Location: user.php?error=1");
+                    die();
+                }
+            }
+            $res = $db->prepareQuery("UPDATE users SET firstname=?, lastname=?, email=? WHERE id='" . $user->getId() . "'");
+            if ($res) {
+                header("Location: user.php?success=1");
+                die();
+            } else {
+                header("Location: user.php?error=1");
+                die();
+            }
+        }
+    }
+}
+
 ?>
 <html lang="en">
 
@@ -41,12 +101,6 @@ $db = new DB();
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="material-icons">dashboard</i>
-                                <p class="hidden-lg hidden-md">Dashboard</p>
-                            </a>
-                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="material-icons">notifications</i>
@@ -72,22 +126,11 @@ $db = new DB();
                             </ul>
                         </li>
                         <li>
-                            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="user.php">
                                 <i class="material-icons">person</i>
-                                <p class="hidden-lg hidden-md">Profile</p>
                             </a>
                         </li>
                     </ul>
-                    <form class="navbar-form navbar-right" role="search">
-                        <div class="form-group  is-empty">
-                            <input type="text" class="form-control" placeholder="Search">
-                            <span class="material-input"></span>
-                        </div>
-                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                            <i class="material-icons">search</i>
-                            <div class="ripple-container"></div>
-                        </button>
-                    </form>
                 </div>
             </div>
         </nav>
@@ -101,46 +144,54 @@ $db = new DB();
                                 <p class="category">Complete your profile</p>
                             </div>
                             <div class="card-content">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Company (disabled)</label>
-                                                <input type="text" class="form-control" disabled>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Username</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Email address</label>
-                                                <input type="email" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
+                                <form action="user.php?update=1" method="post">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Fist Name</label>
-                                                <input type="text" class="form-control">
+                                                <input name="firstname" value="<?= $user->getFirstname() ?>" type="text"
+                                                       class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Last Name</label>
-                                                <input type="text" class="form-control">
+                                                <input name="lastname" value="<?= $user->getLastname() ?>" type="text"
+                                                       class="form-control">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Email address</label>
+                                                <input name="email" value="<?= $user->getEmail() ?>" type="email"
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Confirm Email address</label>
+                                                <input name="repeatemail" value="<?= $user->getEmail() ?>" type="email"
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Adress</label>
-                                                <input type="text" class="form-control">
+                                                <input name="adress"
+                                                       value="<?= (isset($data->adress) ? $data->adress : "") ?>"
+                                                       type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Company</label>
+                                                <input name="company"
+                                                       value="<?= isset($data->company) ? $data->company : "" ?>"
+                                                       type="text" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -148,19 +199,25 @@ $db = new DB();
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">City</label>
-                                                <input type="text" class="form-control">
+                                                <input name="city"
+                                                       value="<?= isset($data->city) ? $data->city : "" ?>"
+                                                       type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Country</label>
-                                                <input type="text" class="form-control">
+                                                <input name="country"
+                                                       value="<?= isset($data->country) ? $data->country : "" ?>"
+                                                       type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Postal Code</label>
-                                                <input type="text" class="form-control">
+                                                <input name="postalcode"
+                                                       value="<?= isset($data->postalcode) ? $data->postalcode : "" ?>"
+                                                       type="text" class="form-control">
                                             </div>
                                         </div>
                                     </div>
