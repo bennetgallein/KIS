@@ -12,7 +12,6 @@ $user = $_SESSION['user'];
 $user = unserialize($user, array("allowed_classes" => true));
 
 $res = $db->simpleQuery("SELECT * FROM adresses WHERE userid='" . $user->getId() . "' LIMIT 1");
-var_dump($res);
 if ($res) {
     if ($res->num_rows == 1) {
         $data = $res->fetch_object();
@@ -38,9 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (!($email == $repemail)) {
                 header("Location: user.php?error=Email%20do%20not%20match");
             }
-            if (isset($data['adress'])) {
+            if (isset($data->adress)) {
                 // update
-                $res = $db->prepareQuery("UPDATE adresses SET adress=?, company=?, city=?, country=?, postalcode=? WHERE userid='" . $user->getId() . "'");
+                $res = $db->prepareQuery("UPDATE adresses SET adress=?, company=?, city=?, country=?, postalcode=? WHERE userid='" . $user->getId() . "'", array($adress, $company, $city, $country, $postalcode));
                 header("Location: user.php?success=1");
             } else {
                 $res = $db->prepareQuery("INSERT INTO adresses(userid, adress, company, city, country, postalcode) VALUES (?,?,?,?,?,?)", array($user->getId(), $adress, $company, $city, $country, $postalcode));
@@ -49,12 +48,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     die();
                 }
             }
-            $res = $db->prepareQuery("UPDATE users SET firstname=?, lastname=?, email=? WHERE id='" . $user->getId() . "'");
+            $res = $db->prepareQuery("UPDATE users SET firstname=?, lastname=?, email=? WHERE id='" . $user->getId() . "'", array($firstname, $lastname, $email));
             if ($res) {
+                $user->setFirstname($firstname);
+                $user->setLastname($lastname);
+                $user->setEmail($email);
+                $_SESSION['user'] = serialize($user);
                 header("Location: user.php?success=1");
                 die();
             } else {
-                header("Location: user.php?error=1");
+                header("Location: user.php?error=2");
                 die();
             }
         }

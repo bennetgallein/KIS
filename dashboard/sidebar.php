@@ -37,6 +37,12 @@ Tip 2: you can also add an image using data-image tag
             }
 
             ?>
+            <li>
+                <a href="../php/logout.php">
+                    <i class="material-icons">power_settings_new</i>
+                    <p>Logout</p>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
