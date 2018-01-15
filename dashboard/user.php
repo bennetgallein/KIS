@@ -231,6 +231,23 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="red">
+                                <h4 class="title">Danger Zone</h4>
+                                <p class="category">The stuff you have to confirm twice.</p>
+                            </div>
+                            <div class="card-content">
+                                <div class="col-md-4">
+                                    <button class="btn btn-primary pull-left col-md-12">Reset Password<br><small>This will send you a randomly generated password to your email.</small></button>
+                                    <button class="btn btn-primary pull-left col-md-12">Delete Account<br><small>This will permanently delete your account.</small></button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <footer class="footer">

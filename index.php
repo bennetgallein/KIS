@@ -139,7 +139,7 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
                 <input type="text" value="" name="email" placeholder="<?= $db->m(1) ?>" class="form-control"
                        autofocus=""
                        required/>
-                <input type="password" value="" name="pw" placeholder="<?= $db->m(2) ?>>" class="form-control" required/>
+                <input type="password" value="" name="pw" placeholder="<?= $db->m(2) ?>" class="form-control" required/>
                 <div class="form-check pull-left" style="padding-bottom: 15px; font-size: 1.6em;">
                     <input class="form-check-input" name="stay" type="checkbox" value="" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
