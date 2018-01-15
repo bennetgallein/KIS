@@ -10,6 +10,7 @@
       "icon": "dashboard",
       "name": "modu_modul",
       "link": "modu/index.php",
+      "_comment": "available permissions are: user, supporter, admin",
       "permission": "admin"
     },
     {

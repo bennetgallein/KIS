@@ -46,7 +46,7 @@ if (isset($_GET['continue_login']) && isset($_GET['method'])) {
     $user = new User($arr);
     //set cookies & proceed login
     $_SESSION['user'] = serialize($user);
-    header("Location: dashboard/user.php");
+    header("Location: dashboard/index.php");
     if (isset($_POST['stay'])) {
 
     }
