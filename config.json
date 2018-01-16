@@ -1,7 +1,8 @@
 {
   "lang": "EN",
-  "site_name": "KIS Fee-Hosting.com",
-  "version": "0.0.dinosaurier",
+  "site_name": "KIS ",
+  "version": "actinium",
+  "url": "http://server/KIS",
   "user": [{
     "id_lenght": 100
   }],
