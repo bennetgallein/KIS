@@ -1,35 +1,29 @@
 {
-  "name": "modu",
+  "name": "Customer Managment",
   "version": "0.1",
   "authors": [
     {
       "name": "Bennet Gallein",
       "email": "bennet@intranetproject.net"
+    },
+    {
+      "name": "Tobias Kalmbach",
+      "email": "tobias@intranetproject.net"
     }
   ],
   "navs": [
     {
-      "icon": "dashboard",
-      "name": "modu_modul",
-      "link": "modu/index.php",
+      "icon": "supervisor_account",
+      "name": "Customer listing",
+      "link": "customermanagment/list.php",
       "_comment": "available permissions are: user = 1, supporter = 2, admin = 3; incementing perms include lower onces!",
-      "permission": "1"
-    },
-    {
-      "icon": "dashboard",
-      "name": "modu_2",
-      "link": "modu/index2.php",
-      "permission": "1"
+      "permission": "2"
     }
   ],
   "dashboards": [
     {
-      "link": "modu/include.php",
+      "link": "customermanagment/include.php",
       "permission": "2"
-    },
-    {
-      "link": "modu/include2.php",
-      "permission": "1"
     }
   ]
 }
