@@ -39,6 +39,12 @@ Tip 2: you can also add an image using data-image tag
 
             ?>
             <li>
+                <a href="changelog.php">
+                    <i class="material-icons">add_circle</i>
+                    <p>Changelog</p>
+                </a>
+            </li>
+            <li>
                 <a href="../php/logout.php">
                     <i class="material-icons">power_settings_new</i>
                     <p>Logout</p>

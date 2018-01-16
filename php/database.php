@@ -13,6 +13,7 @@ class DB {
 
     private $lang;
     private $modules;
+    private $changelog;
 
     public function __construct() {
         $json_file = dirname(__FILE__) . "/../config.json";
@@ -26,6 +27,10 @@ class DB {
         include(dirname(__FILE__) . '/../modules/modules_loader.php');
         $module_loader = new ModuleLoader();
         $this->modules = $module_loader->getModules();
+
+        $changelog_file = dirname(__FILE__) . "/../changelog.json";
+        $changelog_json = file_get_contents($changelog_file);
+        $this->changelog = json_decode($changelog_json, true);
     }
 
     private function connect() {
@@ -70,6 +75,10 @@ class DB {
 
     public function getConfig() {
         return $this->cfg;
+    }
+
+    public function getChangelog() {
+        return $this->changelog['changelogs'];
     }
 
     public function m($code) {

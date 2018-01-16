@@ -6,5 +6,5 @@
  * Time: 9:33 PM
  */
 session_destroy();
-unset($_SESSION);
+$_SESSION = [];
 header("Location: ../index.php");

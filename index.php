@@ -30,8 +30,10 @@ if (isset($_GET['continue_login']) && isset($_GET['method'])) {
         header("Location: index.php?method=login&error=internal");
         die();
     }
-    if ($res->num_rows < 1) {
+    if ($res->num_rows == 0) {
         header("Location: index.php?method=login&error=wrong");
+        var_dump($res);
+        die();
     }
     $data = $res->fetch_object();
     $arr = array(
@@ -51,6 +53,7 @@ if (isset($_GET['continue_login']) && isset($_GET['method'])) {
     if (isset($_POST['stay'])) {
 
     }
+    die();
 }
 if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
     if (!(isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['pw1']) && isset($_POST['pw2']))) {
@@ -96,7 +99,7 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
     <title><?= $db->getConfig()['site_name']; ?></title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta name="viewport" content="width=device-width"/>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <!-- Bootstrap core CSS     -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
     <!--  Material Dashboard CSS    -->
@@ -144,7 +147,7 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
                 <div class="form-check pull-left" style="padding-bottom: 15px; font-size: 1.6em;">
                     <input class="form-check-input" name="stay" type="checkbox" value="" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
-                        <?= $db->m(13)?>
+                        <?= $db->m(13) ?>
                     </label>
                 </div>
                 <button type="submit" value="<?= $db->m(3) ?>" name="Submit" class="btn btn-lg btn-primary btn-block"/>
@@ -194,8 +197,10 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
                        class="form-control"
                        required/>
                 <br>
-                <input type="password" value="" name="pw1" placeholder="<?= $db->m(9) ?>" class="form-control" required/>
-                <input type="password" value="" name="pw2" placeholder="<?= $db->m(10) ?>" class="form-control" required/>
+                <input type="password" value="" name="pw1" placeholder="<?= $db->m(9) ?>" class="form-control"
+                       required/>
+                <input type="password" value="" name="pw2" placeholder="<?= $db->m(10) ?>" class="form-control"
+                       required/>
                 <br>
                 <input type="submit" value="Register" placeholder="<?= $db->m(11) ?>" class="btn btn-primary"/>
                 <br>

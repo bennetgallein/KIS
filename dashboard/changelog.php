@@ -46,7 +46,7 @@ $user = unserialize($user, array("allowed_classes" => true));
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard </a>
+                    <a class="navbar-brand" href="#">Changelog </a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -85,17 +85,21 @@ $user = unserialize($user, array("allowed_classes" => true));
         </nav>
         <div class="content">
             <div class="container-fluid">
-                <?php
-                foreach ($db->getModules() as $module) {
-                    echo "<div class='row'><p class='navbar-brand'>";
-                    echo $module->getName();
-                    echo "</p></div>";
-                    foreach ($module->getDashboards() as $board) {
-                        if ($board['permission'] <= $user->getPermissions())
-                            include("../modules/" . $board['link']);
-                    }
-                }
-                ?>
+                <?php foreach ($db->getChangelog() as $change): ?>
+
+                    <div class="card">
+                        <div class="card-header" data-background-color="purple">
+                            <h4 class="title"><?= $change['version'] ?></h4>
+                            <p class="category"><?= $change['description'] ?></p>
+                        </div>
+                        <div class="card-content">
+                            <div id="typography">
+                                <?= $change['message'] ?>
+
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
         <footer class="footer">
