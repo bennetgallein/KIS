@@ -46,7 +46,7 @@ $user = unserialize($user, array("allowed_classes" => true));
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"> Material Dashboard </a>
+                    <a class="navbar-brand" href="#">Dashboard </a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -87,6 +87,9 @@ $user = unserialize($user, array("allowed_classes" => true));
             <div class="container-fluid">
                 <?php
                 foreach ($db->getModules() as $module) {
+                    echo "<div class='row'><p class='navbar-brand'>";
+                    echo $module->getName();
+                    echo "</p></div>";
                     foreach ($module->getDashboards() as $board) {
                         if ($board['permission'] <= $user->getPermissions())
                             include("../modules/" . $board['link']);

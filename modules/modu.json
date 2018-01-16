@@ -25,7 +25,7 @@
   "dashboards": [
     {
       "link": "modu/include.php",
-      "permission": "1"
+      "permission": "2"
     },
     {
       "link": "modu/include2.php",
