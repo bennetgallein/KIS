@@ -7,6 +7,9 @@ if (isset($_SESSION['user'])) {
 } else {
     header("Location: ../index.php");
 }
+
+$user = $_SESSION['user'];
+$user = unserialize($user, array("allowed_classes" => true));
 ?>
 <html lang="en">
 
