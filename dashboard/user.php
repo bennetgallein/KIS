@@ -231,6 +231,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         </div>
                     </div>
                 </div>
+                <?php
+                if (isset($_GET['confirm'])):
+                    $toConfirm = $_GET['confirm'];
+                    if ($toConfirm == "delete"): ?>
+                        <a href="../php/userbtn.php?method=delete&confirmed=1">Confirm account deletion</a>
+                    <?php elseif ($toConfirm == "resetpw"): ?>
+                        <a href="../php/userbtn.php?method=resetpw&confirmed=1">Confirm account deletion</a>
+                    <?php endif; endif;?>
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -239,11 +248,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                 <p class="category">The stuff you have to confirm twice.</p>
                             </div>
                             <div class="card-content">
-                                <div class="col-md-4">
-                                    <button class="btn btn-primary pull-left col-md-12">Reset Password<br><small>This will send you a randomly generated password to your email.</small></button>
-                                    <button class="btn btn-primary pull-left col-md-12">Delete Account<br><small>This will permanently delete your account.</small></button>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a class="btn btn-primary pull-left col-md-5" href="../php/userbtn.php">
+                                            Reset Password<br>
+                                            <small>This will send you a randomly generated password to your email.</small>
+                                        </a>
+                                        <a class="btn btn-primary pull-right col-md-5" href="../php/userbtn.php?method=delete">
+                                            Delete Account<br>
+                                            <small>This will permanently delete your account!</small>
+                                        </a>
+                                    </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -263,7 +279,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 </nav>
                 <p class="copyright pull-right">
                     &copy;<?= "2017-" . date('Y') ?>
-                    <a href="https://www.intranetproject.net">IntranetProject</a>, made with love an passion
+                    <a href="https://www.intranetproject.net">IntranetProject</a>, made with love and passion
                 </p>
             </div>
         </footer>
