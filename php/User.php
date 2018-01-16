@@ -14,6 +14,7 @@ class User {
     private $firstname;
     private $lastname;
     private $password;
+    private $permissions;
 
     public function __construct($dataarr) {
         $this->realid = $dataarr['realid'];
@@ -22,6 +23,7 @@ class User {
         $this->firstname = $dataarr['firstname'];
         $this->lastname = $dataarr['lastname'];
         $this->password = $dataarr['password'];
+        $this->$permissions = $dataarr['permissions'];
     }
 
     public function __sleep() {
@@ -59,5 +61,8 @@ class User {
     }
     public function getName() {
         return $this->firstname . " " . $this->lastname;
+    }
+    public function getPermissions() {
+      return $this->permissions;
     }
 }

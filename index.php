@@ -40,7 +40,8 @@ if (isset($_GET['continue_login']) && isset($_GET['method'])) {
         "email" => $data->email,
         "firstname" => $data->firstname,
         "lastname" => $data->lastname,
-        "password" => $data->password
+        "password" => $data->password,
+        "permissions" => $data->permissions;
     );
     include("php/User.php");
     $user = new User($arr);
