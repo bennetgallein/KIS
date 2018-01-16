@@ -45,7 +45,7 @@ class Module {
         $this->version = $json['version'];
         $this->authors = $json['authors'];
         $this->navs = $json['navs'];
-        $this->dashboard = $json['dashboard'];
+        $this->dashboard = $json['dashboards'];
     }
 
     public function getNavs() {

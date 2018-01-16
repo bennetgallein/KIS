@@ -85,6 +85,14 @@ $user = unserialize($user, array("allowed_classes" => true));
         </nav>
         <div class="content">
             <div class="container-fluid">
+                <?php
+                foreach ($db->getModules() as $module) {
+                    foreach ($module->getDashboards() as $board) {
+                        if ($board['permission'] <= $user->getPermissions())
+                            include("../modules/" . $board['link']);
+                    }
+                }
+                ?>
             </div>
         </div>
         <footer class="footer">

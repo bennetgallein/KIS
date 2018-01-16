@@ -27,7 +27,7 @@ Tip 2: you can also add an image using data-image tag
 
             foreach ($db->getModules() as $module) {
                 foreach ($module->getNavs() as $navpoint) {
-                  if ($navpoint['permission'] == $user->getPermission())
+                  if ($navpoint['permission'] <= $user->getPermissions())
                     echo '<li>
                                   <a href="' . dirname(__FILE__) . "/../modules/" . $navpoint['link'] . '">
                                       <i class="material-icons">' . $navpoint['icon'] . '</i>

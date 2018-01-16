@@ -6,10 +6,10 @@
     "id_lenght": 100
   }],
   "database": [{
-    "host": "localhost",
-    "user": "kis",
-    "password": "kis",
-    "database": "KIS"
+    "host": "wp451.webpack.hosteurope.de",
+    "user": "db12836029-kis",
+    "password": "KUNDENIS",
+    "database": "db12836029-kis"
   }],
   "footer": [{
     "Fee-Hosting.com": "https://fee-hosting.com",

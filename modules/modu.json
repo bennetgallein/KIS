@@ -1,25 +1,35 @@
 {
   "name": "modu",
   "version": "0.1",
-  "authors": [{
-    "name": "Bennet Gallein",
-    "email": "bennet@intranetproject.net"
-  }],
+  "authors": [
+    {
+      "name": "Bennet Gallein",
+      "email": "bennet@intranetproject.net"
+    }
+  ],
   "navs": [
     {
       "icon": "dashboard",
       "name": "modu_modul",
       "link": "modu/index.php",
-      "_comment": "available permissions are: user, supporter, admin",
-      "permission": "admin"
+      "_comment": "available permissions are: user = 1, supporter = 2, admin = 3; incementing perms include lower onces!",
+      "permission": "1"
     },
     {
       "icon": "dashboard",
       "name": "modu_2",
       "link": "modu/index2.php",
-      "permission": "user"
+      "permission": "1"
     }
   ],
-  "dashboard": {
-  }
+  "dashboards": [
+    {
+      "link": "modu/include.php",
+      "permission": "1"
+    },
+    {
+      "link": "modu/include2.php",
+      "permission": "1"
+    }
+  ]
 }
