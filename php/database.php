@@ -33,11 +33,12 @@ class DB {
         $this->changelog = json_decode($changelog_json, true);
     }
 
-    private function connect() {
+    public function connect() {
         $this->connection = $db = new MySQLi($this->cfg["database"][0]["host"], $this->cfg['database'][0]['user'], $this->cfg['database'][0]['password'], $this->cfg['database'][0]['database']);
+        //$this->simpleQuery("SET names UTF-8");
     }
 
-    private function disconnect() {
+    public function disconnect() {
         $this->connection->close();
     }
 
@@ -64,6 +65,7 @@ class DB {
         $this->connect();
         $res = $this->connection->query($query);
         echo $this->connection->error;
+        $this->disconnect();
         return $res;
     }
 
@@ -94,5 +96,8 @@ class DB {
     }
     public function getFooter() {
         return $this->cfg['footer'];
+    }
+    public function getConnection() {
+        return $this->connection;
     }
 }

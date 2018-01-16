@@ -1,4 +1,8 @@
 <?php
+if (!isset($_GET['module'])) {
+    header("Location: index.php");
+    die();
+}
 include("../php/database.php");
 include("../php/User.php");
 $db = new DB();
@@ -10,6 +14,8 @@ if (isset($_SESSION['user'])) {
 
 $user = $_SESSION['user'];
 $user = unserialize($user, array("allowed_classes" => true));
+
+$amodule = $_GET['module'];
 ?>
 <html lang="en">
 
@@ -46,7 +52,6 @@ $user = unserialize($user, array("allowed_classes" => true));
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard </a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -86,16 +91,7 @@ $user = unserialize($user, array("allowed_classes" => true));
         <div class="content">
             <div class="container-fluid">
                 <?php
-                foreach ($db->getModules() as $module) {
-                    echo "<div class='row'><p class='navbar-brand'>";
-                    echo $module->getName();
-                    echo "</p></div>";
-                    foreach ($module->getDashboards() as $board) {
-                        if ($board['permission'] <= $user->getPermissions()) {
-                            include("../modules/" . $board['link']);
-                        }
-                    }
-                }
+                include(dirname(__FILE__) . "/../modules/" . $amodule);
                 ?>
             </div>
         </div>
