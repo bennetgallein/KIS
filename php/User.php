@@ -23,11 +23,11 @@ class User {
         $this->firstname = $dataarr['firstname'];
         $this->lastname = $dataarr['lastname'];
         $this->password = $dataarr['password'];
-        $this->$permissions = $dataarr['permissions'];
+        $this->permissions = $dataarr['permissions'];
     }
 
     public function __sleep() {
-        return array('realid', 'id', 'email', 'firstname', 'lastname');
+        return array('realid', 'id', 'email', 'firstname', 'lastname', 'permissions');
     }
 
     public function getId() {
