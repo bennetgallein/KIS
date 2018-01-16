@@ -16,7 +16,7 @@
       "icon": "supervisor_account",
       "name": "Customer listing",
       "link": "customermanagment/list.php",
-      "_comment": "available permissions are: user = 1, supporter = 2, admin = 3; incementing perms include lower onces!",
+      "_comment": "available permissions are: user = 1, supporter = 2, admin = 3; incrementing perms include lower ones!",
       "permission": "2"
     }
   ],
