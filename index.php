@@ -86,6 +86,10 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
     $db->prepareQuery("INSERT INTO users (id, email, firstname, lastname, password) VALUES (?, ?, ?, ?, ?)", array(
         $db->escape($id), $db->escape($email), $db->escape($firstname), $db->escape($lastname), $db->escape(md5($pw1))
     ));
+    $db->prepareQuery("INSERT INTO notifications (userid, message) VALUES (?, ?)", array(
+            $db->escape($id), $db->escape("Welcome!")
+    ));
+    header("Location: index.php?method=login");
 }
 ?>
 <!doctype html>
