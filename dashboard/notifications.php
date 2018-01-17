@@ -5,8 +5,14 @@ $res = $db->simpleQuery("SELECT * FROM notifications WHERE userid='" . $user->ge
 <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="material-icons">notifications</i>
-        <span class="notification"><?= $res->num_rows ?></span>
-        <p class="hidden-lg hidden-md">Notifications</p>
+        <?php
+        if ($res->num_rows > 0):
+            ?>
+            <span class="notification"><?= $res->num_rows ?></span>
+            <p class="hidden-lg hidden-md">Notifications</p>
+        <?php
+        endif;
+        ?>
     </a>
     <ul class="dropdown-menu">
         <?php
