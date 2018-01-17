@@ -48,7 +48,6 @@ if (!($_GET['method'] == 'login' || $_GET['method'] == 'register')) {
 }
 $method = $_GET['method'];
 
-$db = new DB();
 if (isset($_GET['continue_login']) && isset($_GET['method'])) {
     if (!(isset($_POST['email']) && isset($_POST['pw']))) {
         header("Location: index.php?method=login&error=fill");

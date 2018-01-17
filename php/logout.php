@@ -5,9 +5,22 @@
  * Date: 1/14/2018
  * Time: 9:33 PM
  */
-session_destroy();
+session_start();
 
-$_SESSION = [];
+$_SESSION = array();
+
+// If it's desired to kill the session, also delete the session cookie.
+// Note: This will destroy the session, and not just the session data!
+if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
+}
+
+// Finally, destroy the session.
+session_destroy();
 
 setcookie("identifier", null, -1, "/");
 setcookie("securitytoken", null, -1, "/");
