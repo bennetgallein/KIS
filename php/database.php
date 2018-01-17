@@ -5,7 +5,8 @@
  * Date: 1/13/2018
  * Time: 4:09 PM
  */
-session_start();
+
+
 class DB {
 
     private $cfg;
@@ -94,10 +95,32 @@ class DB {
     public function getModules() {
         return $this->modules;
     }
+
     public function getFooter() {
         return $this->cfg['footer'];
     }
+
     public function getConnection() {
         return $this->connection;
     }
+
+    public function random_string() {
+        if (function_exists('random_bytes')) {
+            $bytes = random_bytes(16);
+            $str = bin2hex($bytes);
+        } else
+            if (function_exists('openssl_random_pseudo_bytes')) {
+                $bytes = openssl_random_pseudo_bytes(16);
+                $str = bin2hex($bytes);
+            } else if (function_exists('mcrypt_create_iv')) {
+                $bytes = mcrypt_create_iv(16, MCRYPT_DEV_URANDOM);
+                $str = bin2hex($bytes);
+            } else {
+                $str = md5(uniqid('6A0vqpSfAkDq1Srbt82u', true));
+            }
+        return $str;
+    }
 }
+
+
+session_start();
