@@ -1,24 +1,20 @@
+<?php
+$res = $db->simpleQuery("SELECT * FROM notifications WHERE userid='" . $user->getId() . "' AND isread = 0");
+
+?>
 <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="material-icons">notifications</i>
-        <span class="notification">5</span>
+        <span class="notification"><?= $res->num_rows ?></span>
         <p class="hidden-lg hidden-md">Notifications</p>
     </a>
     <ul class="dropdown-menu">
-        <li>
-            <a href="#">Mike John responded to your email</a>
-        </li>
-        <li>
-            <a href="#">You have 5 new tasks</a>
-        </li>
-        <li>
-            <a href="#">You're now friend with Andrew</a>
-        </li>
-        <li>
-            <a href="#">Another Notification</a>
-        </li>
-        <li>
-            <a href="#">Another One</a>
-        </li>
+        <?php
+
+        while ($row = $res->fetch_object()) {
+            echo '<li><a>' . $row->message . '</a></li>';
+        }
+
+        ?>
     </ul>
 </li>
