@@ -1,0 +1,131 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header" data-background-color="purple">
+                <h4 class="title">Profile of user123</h4>
+            </div>
+            <div class="card-content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group label-floating">
+                                <label class="control-label">First Name</label>
+                                <p class="form-control"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group label-floating">
+                                <label class="control-label">Last Name</label>
+                                <p class="form-control"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group label-floating">
+                                <label class="control-label">Email address</label>
+                                <p class="form-control"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group label-floating">
+                                <label class="control-label">Confirm Email address</label>
+                                <p class="form-control"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group label-floating">
+                                <label class="control-label">Adress</label>
+                                <p class="form-control"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group label-floating">
+                                <label class="control-label">Company</label>
+                                <p class="form-control"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group label-floating">
+                                <label class="control-label">City</label>
+                                <p class="form-control"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group label-floating">
+                                <label class="control-label">Country</label>
+                                <p class="form-control"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group label-floating">
+                                <label class="control-label">Postal Code</label>
+                                <p class="form-control"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right" data-background-color="red">Delete Profile</button>
+                    <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header" data-background-color="purple">
+                <h4 class="title">Billing</h4>
+                <p class="category">These are all the billing information</p>
+            </div>
+            <div class="card-content table-responsive">
+                <table class="table">
+                    <thead class="text-primary">
+                    <tr>
+                        <th>well</th>
+                        <th>hmm</th>
+                        <th>yeah</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>das</td>
+                            <td>sad</td>
+                            <td>asd</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header" data-background-color="purple">
+                <h4 class="title">Products</h4>
+                <p class="category">These are all the products used by the user.</p>
+            </div>
+            <div class="card-content table-responsive">
+                <table class="table">
+                    <thead class="text-primary">
+                    <tr>
+                        <th>well</th>
+                        <th>hmm</th>
+                        <th>yeah</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>das</td>
+                        <td>sad</td>
+                        <td>asd</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

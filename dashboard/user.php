@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Fist Name</label>
+                                                <label class="control-label">First Name</label>
                                                 <input name="firstname" value="<?= $user->getFirstname() ?>" type="text"
                                                        class="form-control">
                                             </div>
