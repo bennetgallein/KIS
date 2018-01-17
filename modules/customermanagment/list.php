@@ -92,7 +92,7 @@ $limit = (isset($_GET['limit'])) ? $_GET['limit'] : 25;
 $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
 $links = (isset($_GET['links'])) ? $_GET['links'] : 7;
 
-$query = "SELECT id, email, permissions, firstname, lastname, registered_at FROM users";
+$query = "SELECT _id, id, email, permissions, firstname, lastname, registered_at FROM users";
 
 $db->connect();
 $Paginator = new Paginator($db->getConnection(), $query);
@@ -110,6 +110,7 @@ $db->disconnect();
                 <table class="table">
                     <thead class="text-primary">
                     <tr>
+                        <th>_id</th>
                         <th>id</th>
                         <th>email</th>
                         <th>permissions</th>
@@ -121,7 +122,8 @@ $db->disconnect();
                     <tbody>
                     <?php for ($i = 0; $i < count($results->data); $i++) : ?>
                         <tr>
-                            <td><?= $results->data[$i]['id'] ?></td>
+                            <td><?= $results->data[$i]['_id']?></td>
+                            <td><a href="module.php?module=customermanagment/profile.php&params=user|<?= $results->data[$i]['id']?>"><?= $results->data[$i]['id'] ?></a></td>
                             <td><?= $results->data[$i]['email'] ?></td>
                             <td><?= $results->data[$i]['permissions'] ?></td>
                             <td><?= $results->data[$i]['firstname'] ?></td>

@@ -11,6 +11,16 @@ if (isset($_SESSION['user'])) {
 } else {
     header("Location: ../index.php");
 }
+if (isset($_GET['params'])) {
+    $params = new stdClass();
+    $aparam = explode("_", $_GET['params']);
+    foreach ($aparam as $param) {
+        $keyvalue = explode("|", $param);
+        $key = $keyvalue[0];
+        $value = $keyvalue[1];
+        $params->$key = $value;
+    }
+}
 
 $user = $_SESSION['user'];
 $user = unserialize($user, array("allowed_classes" => true));
