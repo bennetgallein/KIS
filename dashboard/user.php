@@ -60,6 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 header("Location: user.php?error=2");
                 die();
             }
+            $db->prepareQuery("INSERT INTO notifications (userid, message) VALUES (?, ?)", array(
+                    $db->escape($id), $db->escape("You updated your profile!")
+            ));
         }
     }
 }
