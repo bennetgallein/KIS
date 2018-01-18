@@ -129,6 +129,7 @@ $db->disconnect();
                             <td><?= $results->data[$i]['firstname'] ?></td>
                             <td><?= $results->data[$i]['lastname'] ?></td>
                             <td><?= $results->data[$i]['registered_at'] ?></td>
+                            <td><a><i class="material-icons small">edit</i>Edit</a></td>
                         </tr>
                     <?php endfor; ?>
                     </tbody>
