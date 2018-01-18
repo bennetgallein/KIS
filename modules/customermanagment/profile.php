@@ -50,7 +50,7 @@ if (isset($params->delete)) {
                     <div class="col-md-8">
                         <div class="form-group label-floating">
                             <label class="control-label">Adress</label>
-                            <p class="form-control"><?= isset($address->adress) ? utf8_encode($address->adress) : "Not set" ?></p>
+                            <p class="form-control"><?= isset($address->adress) ? ($address->adress) : "Not set" ?></p>
                         </div>
                     </div>
                     <div class="col-md-4">
