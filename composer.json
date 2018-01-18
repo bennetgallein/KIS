@@ -1,5 +1,5 @@
 {
-    "name": "bennetgallein/hostinginterface",
+    "name": "bennetgallein/kis",
     "type": "project",
     "require": {
         "zzantares/proxmoxve": "~3.0",
