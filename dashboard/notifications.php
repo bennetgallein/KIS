@@ -16,6 +16,11 @@ $res = $db->simpleQuery("SELECT * FROM notifications WHERE userid='" . $user->ge
     </a>
     <ul class="dropdown-menu">
         <?php
+        if ($row == 0):
+            echo '<li><a>No new notifications!</a></li>';
+        endif;
+        ?>
+        <?php
 
         while ($row = $res->fetch_object()) {
             echo '<li><a>' . $row->message . '</a></li>';
