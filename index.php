@@ -29,7 +29,6 @@ if (!isset($_SESSION['user']) && isset($_COOKIE['identifier']) && isset($_COOKIE
         );
         include(dirname(__FILE__) . "/php/User.php");
         $user = new User($arr);
-        //set cookies & proceed login
         $_SESSION['user'] = serialize($user);
         header("Location: dashboard/index.php");
     }

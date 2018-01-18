@@ -1,13 +1,43 @@
 <?php
 include("../php/database.php");
-include("../php/User.php");
+include(dirname(__FILE__) . "/../php/User.php");
+
 $db = new DB();
-if (isset($_SESSION['user'])) {
 
-} else {
+if (!isset($_SESSION['user']) && isset($_COOKIE['identifier']) && isset($_COOKIE['securitytoken'])) {
+    $identifier = $_COOKIE['identifier'];
+    $securitytoken = $_COOKIE['securitytoken'];
+    $sql = "SELECT * FROM securitytokens WHERE identifier = '$identifier'";
+    $result = $db->simpleQuery($sql);
+    $row = $result->fetch_object();
+    if (md5($securitytoken) !== $row->securitytoken) {
+        die(' Ein vermutlich gestohlener Security Token wurde identifiziert');
+    } else {
+        $neuer_securitytoken = $db->random_string();
+        $sql = "UPDATE securitytokens SET securitytoken = '" . md5($neuer_securitytoken) . "', created_at=NOW() WHERE identifier ='" . $identifier . "'";
+        $result = $db->simpleQuery($sql);
+        setcookie("identifier", $identifier, time() + (3600 * 24 * 365), "/"); //1 Jahr Gültigkeit
+        setcookie("securitytoken", $neuer_securitytoken, time() + (3600 * 24 * 365), "/"); //1 Jahr Gültigkeit
+        $res = $db->simpleQuery("SELECT * FROM users WHERE id='$row->user_id'");
+        $data = $res->fetch_object();
+        $arr = array(
+            "realid" => $data->_id,
+            "id" => $data->id,
+            "email" => $data->email,
+            "firstname" => $data->firstname,
+            "lastname" => $data->lastname,
+            "password" => $data->password,
+            "permissions" => $data->permissions
+        );
+
+        $user = new User($arr);
+        //set cookies & proceed login
+        $_SESSION['user'] = serialize($user);
+    }
+} else if (!isset($_SESSION['user'])) {
     header("Location: ../index.php");
+    die();
 }
-
 $user = $_SESSION['user'];
 $user = unserialize($user, array("allowed_classes" => true));
 ?>
@@ -76,23 +106,7 @@ $user = unserialize($user, array("allowed_classes" => true));
                 ?>
             </div>
         </div>
-        <footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
-                        <?php
-                        foreach ($db->getFooter()[0] as $name => $link) {
-                            echo '<li><a href="' . $link . '">' . $name . '</a></li>';
-                        }
-                        ?>
-                    </ul>
-                </nav>
-                <p class="copyright pull-right">
-                    &copy;<?= "2017-" . date('Y') ?>
-                    <a href="https://www.intranetproject.net">IntranetProject</a>, made with love and passion
-                </p>
-            </div>
-        </footer>
+        <?php include("footer.php"); ?>
     </div>
 </div>
 </body>
