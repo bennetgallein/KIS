@@ -127,7 +127,7 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
         $db->escape($id), $db->escape($email), $db->escape($firstname), $db->escape($lastname), $db->escape(md5($pw1))
     ));
     $db->prepareQuery("INSERT INTO notifications (userid, message) VALUES (?, ?)", array(
-            $db->escape($id), $db->escape("Welcome!")
+            $db->escape($id), $db->escape("Welcome, " . $user->getName() . "!")
     ));
     header("Location: index.php?method=login");
 }
