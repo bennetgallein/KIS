@@ -86,7 +86,7 @@ if (isset($params->delete)) {
         </div>
     </div>
 </div>
-<?php if ($db->moduleExistts("Billing Manager")):?>
+<?php if ($db->moduleExists("Billing Manager")):?>
 <div class="row">
     <div class="col-md-12">
         <div class="card">
@@ -116,7 +116,12 @@ if (isset($params->delete)) {
     </div>
 </div>
 <?php endif; ?>
-<?php if ($db->moduleExistts("Product Manager")): ?>
+<?php if ($db->moduleExists("Product Manager")): ?>
+    <?php
+
+    // including files from another module is like.
+
+    ?>
 <div class="row">
     <div class="col-md-12">
         <div class="card">

@@ -97,10 +97,19 @@ class DB {
         return $this->modules;
     }
 
-    public function moduleExistts($name) {
+    public function moduleExists($name) {
         foreach ($this->getModules() as $module) {
             if ($name == $module->getName()) {
                 return true;
+            }
+            return false;
+        }
+    }
+
+    public function getModuleByName($name) {
+        foreach ($this->getModules() as $module) {
+            if ($name == $module->getName()) {
+                return $module;
             }
             return false;
         }
