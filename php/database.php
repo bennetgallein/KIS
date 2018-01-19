@@ -97,6 +97,15 @@ class DB {
         return $this->modules;
     }
 
+    public function moduleExistts($name) {
+        foreach ($this->getModules() as $module) {
+            if ($name == $module->getName()) {
+                return true;
+            }
+            return false;
+        }
+    }
+
     public function getFooter() {
         return $this->cfg['footer'];
     }
