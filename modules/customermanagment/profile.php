@@ -86,6 +86,7 @@ if (isset($params->delete)) {
         </div>
     </div>
 </div>
+<?php if ($db->moduleExistts("Billing Manager")):?>
 <div class="row">
     <div class="col-md-12">
         <div class="card">
@@ -114,6 +115,8 @@ if (isset($params->delete)) {
         </div>
     </div>
 </div>
+<?php endif; ?>
+<?php if ($db->moduleExistts("Product Manager")): ?>
 <div class="row">
     <div class="col-md-12">
         <div class="card">
@@ -142,3 +145,4 @@ if (isset($params->delete)) {
         </div>
     </div>
 </div>
+<?php endif;?>

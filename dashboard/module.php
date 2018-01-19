@@ -107,7 +107,11 @@ $amodule = $_GET['module'];
         <div class="content">
             <div class="container-fluid">
                 <?php
-                include(dirname(__FILE__) . "/../modules/" . $amodule);
+                
+                $r = @include(dirname(__FILE__) . "/../modules/" . $amodule);
+                if (!$r) {
+                    echo "404 not found!";
+                }
                 ?>
             </div>
         </div>
