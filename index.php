@@ -70,6 +70,11 @@ if (isset($_GET['continue_login']) && isset($_GET['method'])) {
         die();
     }
     $data = $res->fetch_object();
+    if (!password_verify($pw, $data->password)) {
+        header("Location: index.php?method=login&error=wrong");
+        var_dump($res);
+        die();
+    }
     $arr = array(
         "realid" => $data->_id,
         "id" => $data->id,
@@ -123,10 +128,10 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
     }
     $id = bin2hex((openssl_random_pseudo_bytes(23)));
     $db->prepareQuery("INSERT INTO users (id, email, firstname, lastname, password) VALUES (?, ?, ?, ?, ?)", array(
-        $db->escape($id), $db->escape($email), $db->escape($firstname), $db->escape($lastname), $db->escape(md5($pw1))
+        $db->escape($id), $db->escape($email), $db->escape($firstname), $db->escape($lastname), $db->escape(password_hash($pw1, PASSWORD_DEFAULT ))
     ));
     $db->prepareQuery("INSERT INTO notifications (userid, message) VALUES (?, ?)", array(
-            $db->escape($id), $db->escape("Welcome, " . $user->getName() . "!")
+            $db->escape($id), $db->escape("Welcome, " . $firstname . " " . $lastname . "!")
     ));
     header("Location: index.php?method=login");
 }
