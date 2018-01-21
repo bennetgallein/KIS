@@ -12,7 +12,7 @@
         </nav>
         <p class="copyright pull-right">
             &copy;<?= "2017-" . date('Y') ?>
-            <a href="https://www.intranetproject.net">Intranetroject</a>, made with <span style="color: red;"><i class="material-icons">favorite_border</i></span> and passion
+            <a href="https://www.intranetproject.net">Intranetroject</a>, made with <span style="color: red;"><i class="material-icons">favorite_border</i></span> and passion | Design by <a href="https://www.creative-tim.com/product/material-dashboard">CreativeTim</a>
         </p>
     </div>
 </footer>
