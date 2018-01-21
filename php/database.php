@@ -27,11 +27,14 @@ class DB {
 
         include(dirname(__FILE__) . '/../modules/modules_loader.php');
         $module_loader = new ModuleLoader();
-        $this->modules = $module_loader->getModules();
+        $this->modules = ($module_loader->getModules());
+        usort($this->modules, array("Module", "cmp"));
+
 
         $changelog_file = dirname(__FILE__) . "/../changelog.json";
         $changelog_json = file_get_contents($changelog_file);
         $this->changelog = json_decode($changelog_json, true);
+
     }
 
     public function connect() {
@@ -139,6 +142,8 @@ class DB {
             }
         return $str;
     }
+
+
 }
 
 
