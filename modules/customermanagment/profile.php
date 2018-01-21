@@ -81,24 +81,22 @@ if (isset($params->delete)) {
                         </div>
 
                     </div>
-                    <!-- THIS BUTTON IS NOT IN HTML. NOT EVEN IN THE DEVTOOLS!?!?!? WTF-->
-                    <a class="btn btn-primary pull-right" data-background-color="red"
-                       href="module.php?module=customermanagment/profile.php&params=user|<?= $user->id ?>_delete|1">Delete
-                        Profile </a>
-                    <!--<div class="clearfix"></div>-->
+                    <div class="row">
+                        <!-- THIS BUTTON IS NOT IN HTML. NOT EVEN IN THE DEVTOOLS!?!?!? WTF-->
+                        <a class="btn btn-primary pull-right" data-background-color="red"
+                           href="module.php?module=customermanagment/profile.php&params=user|<?= $user->getId() ?>_delete|1">Delete
+                            Profile </a>
+                        <!--<div class="clearfix"></div>-->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 <?php
-/*echo "HI";
 if ($db->moduleExists("Support Manager")) {
-    echo "HI";
     $module = $db->getModuleByName("Support Manager");
-    var_dump($module->getIncludeables());
     if ($module->getIncludeable("profile_overview")['permission'] <= $user->getPermissions()) {
-        var_dump($module->getIncludeable("profile_overview"));
-        echo(dirname(__FILE__) . "/../modules/" . $module->getIncludeable("profile_overview")['link']);
+        include(dirname(__FILE__) . "/../" . $module->getIncludeable("profile_overview")['link']);
     }
-}*/
+}
 ?>
