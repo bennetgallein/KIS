@@ -26,6 +26,7 @@ class ModuleLoader {
         $json = json_decode(file_get_contents($path . "/" . $filename), true);
         array_push($this->modules, new Module($json));
     }
+
     public function getModules() {
         return $this->modules;
     }
@@ -37,6 +38,7 @@ class Module {
     private $version;
     private $authors;
     private $baseperm;
+    var $priority;
 
     private $includeables;
     private $navs;
@@ -50,6 +52,7 @@ class Module {
         $this->dashboard = $json['dashboards'];
         $this->includeables = $json['includeables'];
         $this->baseperm = $json['baseperm'];
+        $this->priority = $json['priority'];
     }
 
     public function getIncludeable($name) {
@@ -60,6 +63,7 @@ class Module {
         }
         return false;
     }
+
     public function getNavs() {
         return $this->navs;
     }
@@ -75,6 +79,7 @@ class Module {
     public function getIncludeables() {
         return $this->includeables;
     }
+
     public function getName() {
         return $this->name;
     }
@@ -87,4 +92,12 @@ class Module {
         return $this->authors;
     }
 
+    static function cmp($a, $b) {
+        $al = ($a->priority);
+        $bl = ($b->priority);
+        if ($al == $bl) {
+            return 0;
+        }
+        return ($al > $bl) ? +1 : -1;
+    }
 }
