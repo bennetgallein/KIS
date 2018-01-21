@@ -45,10 +45,10 @@ $res = $db->simpleQuery("SELECT * FROM adresses WHERE userid='" . $user->getId()
 if ($res) {
     if ($res->num_rows == 1) {
         $data = $res->fetch_object();
-    } else {
-        $data = array();
-        header("Location: ../index.php?method=login&error=internal");
     }
+} else {
+    $data = array();
+    header("Location: ../index.php?method=login&error=internal");
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 die();
             }
             $db->prepareQuery("INSERT INTO notifications (userid, message) VALUES (?, ?)", array(
-                    $db->escape($id), $db->escape("You updated your profile!")
+                $db->escape($id), $db->escape("You updated your profile!")
             ));
         }
     }
@@ -152,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header" data-background-color="<?= $db->getConfig()['color']?>">
+                            <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                                 <h4 class="title">Edit Profile</h4>
                                 <p class="category">Complete your profile</p>
                             </div>
@@ -234,7 +234,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" data-background-color="<?= $db->getConfig()['color']?>" class="btn btn-primary pull-right">Update Profile</button>
+                                    <button type="submit" data-background-color="<?= $db->getConfig()['color'] ?>"
+                                            class="btn btn-primary pull-right">Update Profile
+                                    </button>
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
@@ -248,7 +250,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <a href="../php/userbtn.php?method=delete&confirmed=1">Confirm account deletion</a>
                     <?php elseif ($toConfirm == "resetpw"): ?>
                         <a href="../php/userbtn.php?method=resetpw&confirmed=1">Confirm account deletion</a>
-                    <?php endif; endif;?>
+                    <?php endif; endif; ?>
 
                 <div class="row">
                     <div class="col-md-12">
@@ -260,11 +262,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             <div class="card-content">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <a data-background-color="<?= $db->getConfig()['color']?>" class="btn btn-primary pull-left col-md-5" href="../php/userbtn.php">
+                                        <a data-background-color="<?= $db->getConfig()['color'] ?>"
+                                           class="btn btn-primary pull-left col-md-5" href="../php/userbtn.php">
                                             Reset Password<br>
-                                            <small>This will send you a randomly generated password to your email.</small>
+                                            <small>This will send you a randomly generated password to your email.
+                                            </small>
                                         </a>
-                                        <a data-background-color="<?= $db->getConfig()['color']?>" class="btn btn-primary pull-right col-md-5" href="../php/userbtn.php?method=delete">
+                                        <a data-background-color="<?= $db->getConfig()['color'] ?>"
+                                           class="btn btn-primary pull-right col-md-5"
+                                           href="../php/userbtn.php?method=delete">
                                             Delete Account<br>
                                             <small>This will permanently delete your account!</small>
                                         </a>
