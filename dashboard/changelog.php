@@ -95,7 +95,7 @@ $user = unserialize($user, array("allowed_classes" => true));
                 <?php foreach ($db->getChangelog() as $change): ?>
 
                     <div class="card">
-                        <div class="card-header" data-background-color="purple">
+                        <div class="card-header" data-background-color="<?= $db->getConfig()['color']?>">
                             <h4 class="title"><?= $change['version'] ?></h4>
                             <p class="category"><?= $change['description'] ?></p>
                         </div>

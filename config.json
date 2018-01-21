@@ -3,6 +3,7 @@
   "site_name": "KIS ",
   "version": "aluminum",
   "url": "http://server/KIS",
+  "color": "blue",
   "user": [{
     "id_lenght": 100
   }],

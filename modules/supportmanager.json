@@ -12,8 +12,21 @@
       "email": "tobias@intranetproject.net"
     }
   ],
-  "navs": [],
-  "dashboards": [],
+  "navs": [
+    {
+      "icon": "help_outline",
+      "name": "Support Ticket",
+      "link": "support/createticket.php",
+      "_comment": "available permissions are: user = 1, supporter = 2, admin = 3; incrementing perms include lower ones!",
+      "permission": "1"
+    }
+  ],
+  "dashboards": [
+    {
+      "link": "support/dashboard/include.php",
+      "permission": "2"
+    }
+  ],
   "includeables": [
     {
       "name": "profile_overview",

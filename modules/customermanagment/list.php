@@ -102,7 +102,7 @@ $db->disconnect();
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header" data-background-color="purple">
+            <div class="card-header" data-background-color="<?= $db->getConfig()['color']?>">
                 <h4 class="title">User Overwiew</h4>
                 <p class="category">These are all the users currently registered in the System</p>
             </div>
