@@ -76,6 +76,7 @@ $amodule = $_GET['module'];
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet'
           type='text/css'>
+    <link href="../assets/css/404.css" rel="stylesheet">
 </head>
 
 <body>
@@ -110,7 +111,7 @@ $amodule = $_GET['module'];
                 
                 $r = @include(dirname(__FILE__) . "/../modules/" . $amodule);
                 if (!$r) {
-                    echo "404 not found!";
+                    echo '<div class="notfound"><div class="notfoundtext">404 not found!</div></div>';
                 }
                 ?>
             </div>
