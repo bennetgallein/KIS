@@ -79,17 +79,19 @@ if (isset($params->delete)) {
                                 <p class="form-control"><?= isset($address->postalcode) ? $address->postalcode : "Not set" ?></p>
                             </div>
                         </div>
+
                     </div>
+                    <!-- THIS BUTTON IS NOT IN HTML. NOT EVEN IN THE DEVTOOLS!?!?!? WTF-->
                     <a class="btn btn-primary pull-right" data-background-color="red"
                        href="module.php?module=customermanagment/profile.php&params=user|<?= $user->id ?>_delete|1">Delete
                         Profile </a>
-                    <div class="clearfix"></div>
+                    <!--<div class="clearfix"></div>-->
                 </div>
             </div>
         </div>
     </div>
 <?php
-echo "HI";
+/*echo "HI";
 if ($db->moduleExists("Support Manager")) {
     echo "HI";
     $module = $db->getModuleByName("Support Manager");
@@ -98,5 +100,5 @@ if ($db->moduleExists("Support Manager")) {
         var_dump($module->getIncludeable("profile_overview"));
         echo(dirname(__FILE__) . "/../modules/" . $module->getIncludeable("profile_overview")['link']);
     }
-}
+}*/
 ?>
