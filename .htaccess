@@ -1,0 +1,29 @@
+<Files "config.json">
+Order Allow,Deny
+Deny from all
+</Files>
+<Files "composer.json">
+Order Allow,Deny
+Deny from all
+</Files>
+<Files "composer.lock">
+Order Allow,Deny
+Deny from all
+</Files>
+<Files "messages_DE.json">
+Order Allow,Deny
+Deny from all
+</Files>
+<Files "messages_EN.json">
+Order Allow,Deny
+Deny from all
+</Files>
+<Files "README.md">
+Order Allow,Deny
+Deny from all
+</Files>
+<Files ".gitignore">
+Order Allow,Deny
+Deny from all
+</Files>
+
