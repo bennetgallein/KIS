@@ -1,6 +1,7 @@
 {
   "name": "Support Manager",
   "version": "0.1",
+  "baseperm": "2",
   "authors": [
     {
       "name": "Bennet Gallein",
