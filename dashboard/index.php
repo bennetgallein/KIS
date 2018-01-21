@@ -94,12 +94,14 @@ $user = unserialize($user, array("allowed_classes" => true));
             <div class="container-fluid">
                 <?php
                 foreach ($db->getModules() as $module) {
-                    echo "<div class='row'><p class='navbar-brand'>";
-                    echo $module->getName();
-                    echo "</p></div>";
-                    foreach ($module->getDashboards() as $board) {
-                        if ($board['permission'] <= $user->getPermissions()) {
-                            include("../modules/" . $board['link']);
+                    if ($module->getBaseperm() <= $user->getPermissions()) {
+                        echo "<div class='row'><p class='navbar-brand'>";
+                        echo $module->getName();
+                        echo "</p></div>";
+                        foreach ($module->getDashboards() as $board) {
+                            if ($board['permission'] <= $user->getPermissions()) {
+                                include("../modules/" . $board['link']);
+                            }
                         }
                     }
                 }

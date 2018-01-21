@@ -36,6 +36,7 @@ class Module {
     private $name;
     private $version;
     private $authors;
+    private $baseperm;
 
     private $includeables;
     private $navs;
@@ -48,6 +49,7 @@ class Module {
         $this->navs = $json['navs'];
         $this->dashboard = $json['dashboards'];
         $this->includeables = $json['includeables'];
+        $this->baseperm = $json['baseperm'];
     }
 
     public function getIncludeable($name) {
@@ -60,6 +62,10 @@ class Module {
     }
     public function getNavs() {
         return $this->navs;
+    }
+
+    public function getBaseperm() {
+        return $this->baseperm;
     }
 
     public function getDashboards() {
