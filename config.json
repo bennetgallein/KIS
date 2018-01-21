@@ -4,6 +4,7 @@
   "version": "aluminum",
   "url": "http://server/KIS",
   "color": "blue",
+  "_comment": "#288feb",
   "user": [{
     "id_lenght": 100
   }],
