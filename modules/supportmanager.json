@@ -1,0 +1,23 @@
+{
+  "name": "Support Manager",
+  "version": "0.1",
+  "authors": [
+    {
+      "name": "Bennet Gallein",
+      "email": "bennet@intranetproject.net"
+    },
+    {
+      "name": "Tobias Kalmbach",
+      "email": "tobias@intranetproject.net"
+    }
+  ],
+  "navs": [],
+  "dashboards": [],
+  "includeables": [
+    {
+      "name": "profile_overview",
+      "link": "support/incl/ticketoverview.php",
+      "permission": "2"
+    }
+  ]
+}

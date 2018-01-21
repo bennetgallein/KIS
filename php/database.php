@@ -102,8 +102,8 @@ class DB {
             if ($name == $module->getName()) {
                 return true;
             }
-            return false;
         }
+        return false;
     }
 
     public function getModuleByName($name) {
@@ -111,8 +111,8 @@ class DB {
             if ($name == $module->getName()) {
                 return $module;
             }
-            return false;
         }
+        return false;
     }
 
     public function getFooter() {

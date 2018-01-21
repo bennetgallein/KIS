@@ -37,6 +37,7 @@ class Module {
     private $version;
     private $authors;
 
+    private $includeables;
     private $navs;
     private $dashboard;
 
@@ -46,8 +47,17 @@ class Module {
         $this->authors = $json['authors'];
         $this->navs = $json['navs'];
         $this->dashboard = $json['dashboards'];
+        $this->includeables = $json['includeables'];
     }
 
+    public function getIncludeable($name) {
+        foreach ($this->includeables as $include) {
+            if ($name == $include['name']) {
+                return $include;
+            }
+        }
+        return false;
+    }
     public function getNavs() {
         return $this->navs;
     }
@@ -56,6 +66,9 @@ class Module {
         return $this->dashboard;
     }
 
+    public function getIncludeables() {
+        return $this->includeables;
+    }
     public function getName() {
         return $this->name;
     }

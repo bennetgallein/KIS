@@ -25,5 +25,6 @@
       "link": "customermanagment/include.php",
       "permission": "2"
     }
-  ]
+  ],
+  "includeables": []
 }

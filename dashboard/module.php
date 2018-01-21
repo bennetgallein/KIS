@@ -53,7 +53,7 @@ if (isset($_GET['params'])) {
     }
 }
 $user = $_SESSION['user'];
-$user = unserialize($user, array("allowed_classes" => true));
+$user = unserialize($user);
 $amodule = $_GET['module'];
 ?>
 <html lang="en">
