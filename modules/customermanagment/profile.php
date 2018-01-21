@@ -20,7 +20,7 @@ if (isset($params->delete)) {
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header" data-background-color="purple">
+                <div class="card-header" data-background-color="<?= $db->getConfig()['color']?>">
                     <h4 class="title">Profile of <?= $user1->firstname . " " . $user1->lastname ?></h4>
                 </div>
                 <div class="card-content">
