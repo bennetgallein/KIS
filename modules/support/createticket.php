@@ -10,9 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $res = $db->getConnection()->query("SELECT LAST_INSERT_ID()");
         $res = $res->fetch_assoc();
         $db->prepareQuery("INSERT INTO tickets_messages (ticketid, message) VALUES (?, ?)", array(
-            $db->escape($res['LAST_INSERT_ID()']), $db->escape($_POST['message']))
+                $db->escape($res['LAST_INSERT_ID()']), $db->escape($_POST['message']))
         );
-
+        $db->simpleQuery("INSERT INTO notifications (userid, message) VALUES ('" . $userid . "', 'Thank you for submitting your ticket with id:" . $res['LAST_INSERT_ID()'] . "')");
         echo "Your Ticket was submitted!";
     } else {
         echo "Please fill every field!";
@@ -55,4 +55,42 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         </div>
     </div>
 </div>
+</div>
+<?php
+$query = $db->simpleQuery("SELECT * FROM tickets WHERE userid='" . $user->getId() . "' ORDER BY id DESC");
+?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
+                <h4 class="title">Support</h4>
+                <p class="category"><?= $view ?> Tickets</p>
+            </div>
+            <div class="card-content table-responsive">
+                <table class="table">
+                    <thead class="text-primary">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>userid</th>
+                        <th>status</th>
+                        <th>created on</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php while ($row = $query->fetch_object()): ?>
+                        <tr <?= $color ?>>
+                            <td><?= $row->id ?></td>
+                            <td><?= $row->title ?></td>
+                            <td><?= $row->userid ?></td>
+                            <td><?= $row->status ?></td>
+                            <td><?= $row->created_at ?></td>
+
+                        </tr>
+                    <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
