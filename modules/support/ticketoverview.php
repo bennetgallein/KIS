@@ -37,7 +37,7 @@ if ($view == '4') {
         <div class="card">
             <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                 <h4 class="title">Support</h4>
-                <p class="category"><?= $view ?> Tickets</p>
+                <p class="category"><?= $query->num_rows ?> Tickets</p>
             </div>
             <div class="card-content table-responsive">
                 <table class="table">
