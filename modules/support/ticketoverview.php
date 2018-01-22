@@ -55,7 +55,7 @@ if ($view == '4') {
                     <?php while ($row = $query->fetch_object()): ?>
                         <tr <?= $color ?>>
                             <td><?= $row->id ?></td>
-                            <td><?= $row->title ?></td>
+                            <td><a href="module.php?module=support/ticket.php&params=id|<?= $row->id ?>"><?= $row->title ?></a></td>
                             <td><?= $row->userid ?></td>
                             <td><?= $row->status ?></td>
                             <td><?= $row->created_at ?></td>
