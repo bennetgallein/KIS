@@ -1,5 +1,5 @@
 <?php
-$res = $db->simpleQuery("SELECT * FROM notifications WHERE userid='" . $user->getId() . "' AND isread = 0");
+$res = $db->simpleQuery("SELECT * FROM notifications WHERE userid='" . $user->getId() . "' AND isread = 0 ORDER BY inserted DESC");
 
 ?>
 <li class="dropdown">
