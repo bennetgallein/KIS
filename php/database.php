@@ -35,6 +35,7 @@ class DB {
         $changelog_json = file_get_contents($changelog_file);
         $this->changelog = json_decode($changelog_json, true);
 
+
     }
 
     public function connect() {
