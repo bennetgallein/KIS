@@ -42,8 +42,8 @@ if (!isset($_SESSION['user']) && isset($_COOKIE['identifier']) && isset($_COOKIE
     header("Location: ../index.php");
     die();
 }
+$params = new stdClass();
 if (isset($_GET['params'])) {
-    $params = new stdClass();
     $aparam = explode("_", $_GET['params']);
     foreach ($aparam as $param) {
         $keyvalue = explode("|", $param);
