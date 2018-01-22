@@ -88,7 +88,9 @@ $row = $res->fetch_object();
                                 </div>
                             </div>
                             -->
+                            <button class="btn btn-default pull-right" data-background-color="red"><i class="material-icons">close</i>Close ticket</button>
                         </div>
+
                     </div>
                 </div>
                 <div class="panel" style="background-color: #EDEDED">
