@@ -63,7 +63,6 @@ class DB {
         $types = str_repeat('s', count($params));
         $prep->bind_param($types, ...$params);
         $res = $prep->execute();
-        $this->disconnect();
         return $res;
     }
 
@@ -71,7 +70,6 @@ class DB {
         $this->connect();
         $res = $this->connection->query($query);
         echo $this->connection->error;
-        $this->disconnect();
         return $res;
     }
 
