@@ -39,15 +39,15 @@ $row = $res->fetch_object();
                                         </div>
                                     </div>
                                 <?php else: ?>
-                                    <div class="panel-group col-md-12">
+                                    <!--<div class="panel-group col-md-12">
                                         <div class="panel panel-default">
                                             <div class="panel-body" data-background-color="red"
                                                  style="text-align: center;">
                                                 <i class="material-icons">block</i><br>
-                                                <p><?= $row->message?></p>
+                                                <p><?= $row->message ?></p>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                 <?php endif;
                             }
                             ?>
@@ -88,9 +88,16 @@ $row = $res->fetch_object();
                                 </div>
                             </div>
                             -->
-                            <button class="btn btn-default pull-right" data-background-color="red"><i class="material-icons">close</i>Close ticket</button>
+                            <button class="btn btn-default pull-right col-md-3" data-background-color="red"><i
+                                        class="material-icons">close</i>Close ticket
+                            </button>
                         </div>
-
+                            <div class="panel panel-default" style="margin-top: 10px;">
+                                <div class="panel-body" data-background-color="red" style="text-align: center;">
+                                    <i class="material-icons">block</i><br>
+                                    <p><?= $row->message ?></p>
+                                </div>
+                            </div>
                     </div>
                 </div>
                 <div class="panel" style="background-color: #EDEDED">
