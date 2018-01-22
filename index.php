@@ -195,11 +195,11 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
                 <div class="form-check pull-left" style="padding-bottom: 15px; font-size: 1.6em;">
                     <input class="form-check-input" name="stay" type="checkbox" value="" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
-                        <?= $db->m(13) ?>
+                        <?= $db->m(3) ?>
                     </label>
                 </div>
-                <button type="submit" value="<?= $db->m(3) ?>" name="Submit" class="btn btn-lg btn-primary btn-block"/>
-                Login</button>
+                <button type="submit" value="login" name="Submit" class="btn btn-lg btn-primary btn-block"/>
+                <?= $db->m(0) ?></button>
                 <a href="index.php?method=register"><?= $db->m(4) ?></a>
             </form>
         </div>
@@ -209,7 +209,7 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
         <div class="col-md-4 col-md-offset-4">
             <form action="index.php?method=register&continue_registration=true" method="post"
                   class="navbar-form navbar-left form-signin">
-                <h3 class="form-signin-heading"><?= $db->m(5) ?></h3>
+                <h3 class="form-signin-heading"><?= $db->m(4) ?></h3>
                 <hr class="colorgraph">
                 <?php
                 if (isset($_GET['error'])) {
@@ -236,23 +236,23 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
                 }
                 ?>
                 <br>
-                <input type="text" value="" name="firstname" placeholder="<?= $db->m(6) ?>" class="form-control"
+                <input type="text" value="" name="firstname" placeholder="<?= $db->m(5) ?>" class="form-control"
                        required/>
-                <input type="text" value="" name="lastname" placeholder="<?= $db->m(7) ?>" class="form-control"
+                <input type="text" value="" name="lastname" placeholder="<?= $db->m(6) ?>" class="form-control"
                        required/>
                 <br>
-                <input type="text" value="" name="email" placeholder="<?= $db->m(8) ?>" align="left"
+                <input type="text" value="" name="email" placeholder="<?= $db->m(1) ?>" align="left"
                        class="form-control"
                        required/>
                 <br>
-                <input type="password" value="" name="pw1" placeholder="<?= $db->m(9) ?>" class="form-control"
+                <input type="password" value="" name="pw1" placeholder="<?= $db->m(2) ?>" class="form-control"
                        required/>
-                <input type="password" value="" name="pw2" placeholder="<?= $db->m(10) ?>" class="form-control"
+                <input type="password" value="" name="pw2" placeholder="<?= $db->m(7) ?>" class="form-control"
                        required/>
                 <br>
-                <input type="submit" value="Register" placeholder="<?= $db->m(11) ?>" class="btn btn-primary"/>
+                <input type="submit" value="<?= $db->m(4) ?>" class="btn btn-primary"/>
                 <br>
-                <a href="index.php?method=login"><?= $db->m(12) ?></a>
+                <a href="index.php?method=login"><?= $db->m(0) ?></a>
             </form>
         </div>
     </div>
@@ -268,10 +268,6 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
 <script src="assets/js/arrive.min.js"></script>
 <!--  PerfectScrollbar Library -->
 <script src="assets/js/perfect-scrollbar.jquery.min.js"></script>
-<!--  Notifications Plugin    -->
-<script src="assets/js/bootstrap-notify.js"></script>
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Material Dashboard javascript methods -->
 <script src="assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
