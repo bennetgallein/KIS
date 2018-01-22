@@ -1,20 +1,57 @@
 <?php
-var_dump($params);
-$exists = property_exists('stdClass', 'id');
+$exists = property_exists($params, 'id');
 if (!$exists) {
-    header("Location: index.php");
+    die("NO ID PROVIDED");
 }
+$id = $params->id;
+
+$res = $db->simpleQuery("SELECT * FROM tickets WHERE id=" . $db->getConnection()->escape_string($id) . " LIMIT 1");
+$row = $res->fetch_object();
 ?>
 <div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
-                <h4 class="title"><i class="material-icons">question_answer</i> Chat - Support - Ticket N° - Title</h4>
+                <h4 class="title"><i class="material-icons">question_answer</i> Chat - Support - Ticket
+                    N°<?= $row->id ?> - <?= $row->title ?></h4>
             </div>
             <div class="card-content">
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-body">
+                            <?php
+                            $res = $db->simpleQuery("SELECT * FROM tickets_messages WHERE ticketid=" . $db->getConnection()->escape_string($id));
+                            while ($row = $res->fetch_object()) {
+                                if ($row->awnser == '1'):?>
+                                    <div class="panel-group col-md-10 pull-right">
+                                        <div class="panel panel-default">
+                                            <div class="panel-body" data-background-color="blue">
+                                                <?= $row->message ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php elseif ($row->awnser == '2'): ?>
+                                    <div class="panel-group col-md-10">
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                <?= $row->message ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php else: ?>
+                                    <div class="panel-group col-md-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-body" data-background-color="red"
+                                                 style="text-align: center;">
+                                                <i class="material-icons">block</i><br>
+                                                <p><?= $row->message?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endif;
+                            }
+                            ?>
+                            <!-- Support message
                             <div class="panel-group col-md-10 pull-right">
                                 <div class="panel panel-default">
                                     <div class="panel-body" data-background-color="blue">
@@ -26,7 +63,8 @@ if (!$exists) {
                                         sodales pulvinar. Cras eget erat mi.
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
+                            <!-- awnser from customer
                             <div class="panel-group col-md-10">
                                 <div class="panel panel-default">
                                     <div class="panel-body">
@@ -39,7 +77,8 @@ if (!$exists) {
                                         placerat faucibus malesuada.
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
+                            <!-- Information
                             <div class="panel-group col-md-6 col-md-push-3" >
                                 <div class="panel panel-default" style="border-radius: 15px;">
                                     <div class="panel-body" data-background-color="red" style="text-align: center; border-radius: 15px;">
@@ -48,6 +87,7 @@ if (!$exists) {
                                     </div>
                                 </div>
                             </div>
+                            -->
                         </div>
                     </div>
                 </div>

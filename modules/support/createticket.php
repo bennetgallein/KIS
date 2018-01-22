@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $db->simpleQuery("INSERT INTO tickets (title, userid, product) VALUES ('" . $db->getConnection()->escape_string($_POST['title']) . "', '" . $db->getConnection()->escape_string($userid) . "', '" . $db->getConnection()->escape_string($_POST['product']) . "')");
         $res = $db->getConnection()->query("SELECT LAST_INSERT_ID()");
         $res = $res->fetch_assoc();
-        $db->prepareQuery("INSERT INTO tickets_messages (ticketid, message) VALUES (?, ?)", array(
+        $db->prepareQuery("INSERT INTO tickets_messages (ticketid, message, awnser) VALUES (?, ?, 2)", array(
                 $db->escape($res['LAST_INSERT_ID()']), $db->escape($_POST['message']))
         );
         $db->simpleQuery("INSERT INTO notifications (userid, message) VALUES ('" . $userid . "', 'Thank you for submitting your ticket with id:" . $res['LAST_INSERT_ID()'] . "')");
@@ -81,7 +81,7 @@ $query = $db->simpleQuery("SELECT * FROM tickets WHERE userid='" . $user->getId(
                     <?php while ($row = $query->fetch_object()): ?>
                         <tr <?= $color ?>>
                             <td><?= $row->id ?></td>
-                            <td><?= $row->title ?></td>
+                            <td><a href="module.php?module=support/ticket.php&params=id|<?= $row->id ?>"><?= $row->title ?></a></td>
                             <td><?= $row->userid ?></td>
                             <td><?= $row->status ?></td>
                             <td><?= $row->created_at ?></td>
