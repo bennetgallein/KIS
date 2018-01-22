@@ -21,7 +21,7 @@ $query = $db->simpleQuery("SELECT * FROM tickets WHERE userid='$params->user'");
                     </thead>
                     <tbody>
                     <?php while ($row = $query->fetch_object()): ?>
-                    <tr data-background-color="<?= $row->open ? "green" : "red" ?>">
+                    <tr data-background-color="<?= $row->status ? "green" : "red" ?>">
                         <td><?= $row->id ?></td>
                         <td><?= $row->title ?></td>
                         <td><?= $row->userid ?></td>

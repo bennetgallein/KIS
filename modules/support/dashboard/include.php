@@ -7,7 +7,7 @@
             <div class="card-content">
                 <p class="category">Open Tickets</p>
                 <?php
-                $res = $db->simpleQuery("SELECT id FROM tickets WHERE open=1");
+                $res = $db->simpleQuery("SELECT id FROM tickets WHERE status=1");
                 $opentickets = $res->num_rows;
                 ?>
                 <h3 class="title"><?= $opentickets ?></h3>
