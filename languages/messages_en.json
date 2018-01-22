@@ -2,14 +2,9 @@
   "0": "Login",
   "1": "email",
   "2": "password",
-  "3": "login",
+  "3": "stay logged in",
   "4": "register here",
-  "5": "register",
-  "6": "first name",
-  "7": "last name",
-  "8": "email",
-  "9": "password",
-  "10": "repeat password",
-  "11": "register",
-  "12": "login"
+  "5": "first name",
+  "6": "last name",
+  "7": "repeat password"
 }
