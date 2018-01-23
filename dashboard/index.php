@@ -107,8 +107,8 @@ $user = unserialize($user, array("allowed_classes" => true));
                 }
                 ?>
             </div>
+            <?php include("footer.php"); ?>
         </div>
-        <?php include("footer.php"); ?>
     </div>
 </div>
 </body>

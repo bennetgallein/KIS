@@ -95,7 +95,7 @@ $user = unserialize($user, array("allowed_classes" => true));
                 <?php foreach ($db->getChangelog() as $change): ?>
 
                     <div class="card">
-                        <div class="card-header" data-background-color="<?= $db->getConfig()['color']?>">
+                        <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                             <h4 class="title"><?= $change['version'] ?></h4>
                             <p class="category"><?= $change['description'] ?></p>
                         </div>
@@ -108,8 +108,8 @@ $user = unserialize($user, array("allowed_classes" => true));
                     </div>
                 <?php endforeach; ?>
             </div>
+            <?php include("footer.php"); ?>
         </div>
-        <?php include("footer.php"); ?>
     </div>
 </div>
 </body>

@@ -108,15 +108,15 @@ $amodule = $_GET['module'];
         <div class="content">
             <div class="container-fluid">
                 <?php
-                
+
                 $r = @include(dirname(__FILE__) . "/../modules/" . $amodule);
                 if (!$r) {
                     echo '<div class="notfound"><div class="notfoundtext">404 not found!</div></div>';
                 }
                 ?>
             </div>
+            <?php include("footer.php"); ?>
         </div>
-        <?php include("footer.php"); ?>
     </div>
 </div>
 </body>
