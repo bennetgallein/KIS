@@ -1,5 +1,5 @@
 {
-  "name": "Support Manager",
+  "name": "Balance Manager",
   "version": "0.1",
   "priority": "1",
   "baseperm": "1",
@@ -15,7 +15,7 @@
   ],
   "navs": [
     {
-      "icon": "help_outline",
+      "icon": "attach_money",
       "name": "Balance",
       "link": "balance/manager.php",
       "permission": "1"
