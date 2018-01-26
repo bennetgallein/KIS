@@ -1,7 +1,7 @@
 {
   "name": "Customer Managment",
   "version": "0.1",
-  "priority": "1",
+  "priority": "2",
   "baseperm": "2",
   "authors": [
     {
