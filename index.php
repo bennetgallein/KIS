@@ -133,6 +133,9 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
     $db->prepareQuery("INSERT INTO notifications (userid, message) VALUES (?, ?)", array(
             $db->escape($id), $db->escape("Welcome, " . $firstname . " " . $lastname . "!")
     ));
+    $db->prepareQuery("INSERT INTO balance (userid, balance) VALUES (?, ?)", array(
+            $db->escape($id), $db->escape("0.00")
+    ));
     header("Location: index.php?method=login");
 }
 ?>

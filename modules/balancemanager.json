@@ -1,9 +1,8 @@
 {
   "name": "Support Manager",
   "version": "0.1",
-  "priority": "3",
-  "priority": "3",
-  "baseperm": "2",
+  "priority": "1",
+  "baseperm": "1",
   "authors": [
     {
       "name": "Bennet Gallein",
@@ -17,20 +16,14 @@
   "navs": [
     {
       "icon": "help_outline",
-      "name": "Support Ticket",
-      "link": "support/createticket.php",
+      "name": "Balance",
+      "link": "balance/manager.php",
       "permission": "1"
-    },
-    {
-      "icon": "help",
-      "name": "Support Ticket Overview",
-      "link": "support/ticketoverview.php",
-      "permission": "2"
     }
   ],
   "dashboards": [
     {
-      "link": "support/dashboard/include.php",
+      "link": "balance/dashboard/include.php",
       "permission": "2"
     }
   ],
