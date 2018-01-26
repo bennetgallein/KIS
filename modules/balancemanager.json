@@ -24,7 +24,7 @@
   "dashboards": [
     {
       "link": "balance/dashboard/include.php",
-      "permission": "2"
+      "permission": "1"
     }
   ],
   "includeables": [
