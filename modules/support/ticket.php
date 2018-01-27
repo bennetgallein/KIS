@@ -10,7 +10,8 @@ $row = $res->fetch_object();
 if (!($res->num_rows == 1)) {
     die("NO TICKET WITH THAT ID FOUND");
 }
-
+$use = $db->simpleQuery("SELECT * FROM users WHERE id='" . $db->getConnection()->escape_string($row->userid) . "'");
+$aaa = $use->fetch_object();
 if (property_exists($params, 'awnser')) {
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if (isset($_POST['message'])) {
@@ -27,6 +28,7 @@ if (property_exists($params, 'close')) {
     if ($row->userid == $user->getId()) {
         $db->simpleQuery("UPDATE tickets SET status = 2 WHERE id='" . $id . "'");
         $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, awnser) VALUES ('" . $row->id . "', 'Ticket closed by customer', 3)");
+        header("Location: module.php?module=support/ticket.php&params=id|" . $id);
     } else {
         die("YOU DON'T HAVE PERMISSION!");
     }
@@ -36,8 +38,8 @@ if (property_exists($params, 'close')) {
     <div class="col-md-12">
         <div class="card">
             <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
-                <h4 class="title"><i class="material-icons">question_answer</i> Chat - Support - Ticket
-                    ID:<?= $row->id ?> - <?= $row->title ?></h4>
+                <h4 class="title"><i class="material-icons">question_answer</i>Ticket
+                    ID: <?= $row->id ?> - <?= $aaa->firstname . " " . $aaa->lastname . ": " . $row->title?></h4>
             </div>
             <div class="card-content">
                 <div class="panel-group">
