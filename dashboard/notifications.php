@@ -1,6 +1,6 @@
 <?php
-$res = $db->simpleQuery("SELECT * FROM notifications WHERE userid='" . $user->getId() . "' AND isread = 0 ORDER BY inserted DESC");
 
+$res = $db->simpleQuery("SELECT * FROM notifications WHERE userid='" . $user->getId() . "' AND isread = 0 ORDER BY inserted DESC");
 ?>
 <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -20,7 +20,7 @@ $res = $db->simpleQuery("SELECT * FROM notifications WHERE userid='" . $user->ge
             echo '<li><a>No new notifications!</a></li>';
 
         while ($row = $res->fetch_object()) {
-            echo '<li><a>' . $row->message . ' <i class="material-icons" style="cursor: pointer">highlight_off</i></a></li>';
+            echo '<li><a href="index.php?removenotification=1&id=' . $row->id . '">' . $row->message . ' <i class="material-icons" style="cursor: pointer">highlight_off</i></a></li>';
         }
 
         ?>
