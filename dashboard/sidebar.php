@@ -1,12 +1,12 @@
-<div class="sidebar" data-color="<?= $db->getConfig()['color']?>" data-image="../assets/img/sidebar-1.jpg">
+<div class="sidebar" data-color="<?= $db->getConfig()['color'] ?>" data-image="../assets/img/sidebar-1.jpg">
     <!--
 Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
 Tip 2: you can also add an image using data-image tag
 -->
     <div class="logo">
-        <a href="<?= $db->getConfig()['url']?>" class="simple-text">
-            <?= $db->getConfig()['site_name']?>
+        <a href="<?= $db->getConfig()['url'] ?>" class="simple-text">
+            <?= $db->getConfig()['site_name'] ?>
         </a>
     </div>
     <div class="sidebar-wrapper">
@@ -27,15 +27,17 @@ Tip 2: you can also add an image using data-image tag
 
             foreach ($db->getModules() as $module) {
                 foreach ($module->getNavs() as $navpoint) {
-                  if ($navpoint['permission'] <= $user->getPermissions())
-                    echo '<li>
+                    if ($navpoint['permission'] <= $user->getPermissions()) {
+                        echo '<li>
                                   <a href="module.php?module=' . $navpoint['link'] . '">
                                       <i class="material-icons">' . $navpoint['icon'] . '</i>
                                       <p>' . $navpoint['name'] . '</p>
                                   </a>
                               </li>';
+                        echo "<hr>";
+                    }
                 }
-                echo "<hr>";
+
             }
 
             ?>
