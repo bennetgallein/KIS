@@ -3,7 +3,6 @@ include("../php/database.php");
 include(dirname(__FILE__) . "/../php/User.php");
 
 $db = new DB();
-
 if (!isset($_SESSION['user']) && isset($_COOKIE['identifier']) && isset($_COOKIE['securitytoken'])) {
     $identifier = $_COOKIE['identifier'];
     $securitytoken = $_COOKIE['securitytoken'];
@@ -31,7 +30,6 @@ if (!isset($_SESSION['user']) && isset($_COOKIE['identifier']) && isset($_COOKIE
         );
 
         $user = new User($arr);
-        //set cookies & proceed login
         $_SESSION['user'] = serialize($user);
     }
 } else if (!isset($_SESSION['user'])) {
@@ -40,6 +38,19 @@ if (!isset($_SESSION['user']) && isset($_COOKIE['identifier']) && isset($_COOKIE
 }
 $user = $_SESSION['user'];
 $user = unserialize($user, array("allowed_classes" => true));
+
+if (isset($_GET['removenotification']) && isset($_GET['id'])) {
+    $idi = $_GET['id'];
+    $sql = "SELECT * FROM notifications WHERE userid='" . $db->getConnection()->escape_string($user->getId()) . "' AND id =" . $idi . " LIMIT 1";
+    $res = $db->simpleQuery($sql);
+    if ($res->num_rows >= 1) {
+        $sql = "UPDATE notifications SET isread=1 WHERE userid='" . $db->getConnection()->escape_string($user->getId()) . "' AND id =" . $idi;
+        $res = $db->simpleQuery($sql);
+        header("Location: index.php");
+        die();
+    }
+}
+
 ?>
 <html lang="en">
 

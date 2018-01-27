@@ -34,7 +34,7 @@ class DB {
         $changelog_file = dirname(__FILE__) . "/../changelog.json";
         $changelog_json = file_get_contents($changelog_file);
         $this->changelog = json_decode($changelog_json, true);
-
+        $this->connect();
 
     }
 
