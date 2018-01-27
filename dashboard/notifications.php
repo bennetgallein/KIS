@@ -20,7 +20,7 @@ $res = $db->simpleQuery("SELECT * FROM notifications WHERE userid='" . $user->ge
             echo '<li><a>No new notifications!</a></li>';
 
         while ($row = $res->fetch_object()) {
-            echo '<li><a>' . $row->message . '</a></li>';
+            echo '<li><a>' . $row->message . ' <i class="material-icons" style="cursor: pointer">highlight_off</i></a></li>';
         }
 
         ?>
