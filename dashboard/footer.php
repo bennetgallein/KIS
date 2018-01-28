@@ -7,6 +7,10 @@
                     echo '<li><a href="' . $link . '">' . $name . '</a></li>';
                 }
                 echo '<li><p>version: ' . $db->getConfig()['version'] . '</p></li>';
+
+                if (isset($params)) {
+                    echo "<li><a href='info.php?module=$amodule'>Module Information</a>";
+                }
                 ?>
             </ul>
         </nav>

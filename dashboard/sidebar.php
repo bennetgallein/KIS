@@ -41,7 +41,7 @@ Tip 2: you can also add an image using data-image tag
                 }
 
             }
-
+            unset($module);
             ?>
             <li>
                 <a href="changelog.php">
