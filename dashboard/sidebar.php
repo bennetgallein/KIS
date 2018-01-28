@@ -26,16 +26,19 @@ Tip 2: you can also add an image using data-image tag
             <?php
 
             foreach ($db->getModules() as $module) {
+                $hrset = false;
                 foreach ($module->getNavs() as $navpoint) {
                     if ($navpoint['type'] == 'nav') {
                         if ($navpoint['permission'] <= $user->getPermissions()) {
+                            if ($hrset == false) { echo "<hr>"; }
+                            $hrset = true;
                             echo '<li>
                                   <a href="module.php?module=' . $navpoint['link'] . '">
                                       <i class="material-icons">' . $navpoint['icon'] . '</i>
                                       <p>' . $navpoint['name'] . '</p>
                                   </a>
                               </li>';
-                            echo "<hr>";
+
                         }
                     }
                 }

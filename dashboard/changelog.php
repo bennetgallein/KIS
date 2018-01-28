@@ -40,6 +40,17 @@ if (!isset($_SESSION['user']) && isset($_COOKIE['identifier']) && isset($_COOKIE
 }
 $user = $_SESSION['user'];
 $user = unserialize($user, array("allowed_classes" => true));
+
+if (isset($_GET['a'])) {
+    if (isset($_POST['bug'])) {
+        $empfaenger = "bennet@intranetproject.net";
+        $betreff = "Bug Report";
+        $from = "From: KIS <test@intranetproject.net>";
+        $text = $_POST['bug'];
+
+        mail($empfaenger, $betreff, $text, $from);
+    }
+}
 ?>
 <html lang="en">
 
@@ -93,7 +104,6 @@ $user = unserialize($user, array("allowed_classes" => true));
         <div class="content">
             <div class="container-fluid">
                 <?php foreach ($db->getChangelog() as $change): ?>
-
                     <div class="card">
                         <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                             <h4 class="title"><?= $change['version'] ?></h4>
@@ -107,6 +117,25 @@ $user = unserialize($user, array("allowed_classes" => true));
                         </div>
                     </div>
                 <?php endforeach; ?>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
+                                <h4 class="title">Report Bug</h4>
+                                <p class="category">If you found a bug, be sure to report it!</p>
+                            </div>
+                            <div class="card-content">
+                                <form action="changelog.php?a=report" method="post">
+                                    <textarea type="text" name="bug" class="form-control" placeholder="Response" id="comment" rows="5"></textarea>
+                                    <button type="submit" data-background-color="<?= $db->getConfig()['color'] ?>"
+                                            class="btn btn-primary pull-right">Report Bug
+                                    </button>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <?php include("footer.php"); ?>
         </div>
