@@ -58,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </div>
 <?php
 $query = $db->simpleQuery("SELECT * FROM tickets WHERE userid='" . $user->getId() . "' ORDER BY id DESC");
+$view = $query->num_rows;
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -79,11 +80,13 @@ $query = $db->simpleQuery("SELECT * FROM tickets WHERE userid='" . $user->getId(
                     </thead>
                     <tbody>
                     <?php while ($row = $query->fetch_object()): ?>
-                        <tr <?= $color ?>>
+                        <tr>
                             <td><?= $row->id ?></td>
-                            <td><a href="module.php?module=support/ticket.php&params=id|<?= $row->id ?>"><?= $row->title ?></a></td>
+                            <td>
+                                <a href="module.php?module=support/ticket.php&params=id|<?= $row->id ?>"><?= $row->title ?></a>
+                            </td>
                             <td><?= $row->userid ?></td>
-                            <td><?= $row->status ?></td>
+                            <td><?= $row->status == 2 ? "closed" : "open" ?></td>
                             <td><?= $row->created_at ?></td>
 
                         </tr>
