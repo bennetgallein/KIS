@@ -111,6 +111,7 @@ $amodule = $_GET['module'];
                 foreach ($db->getModules() as $module) {
                     foreach ($module->getNavs() as $dashboard) {
                         if ($dashboard['link'] == $amodule) {
+                            $aamod = $module->getName();
                             if ($user->getPermissions() >= $dashboard['permission']) {
                                 $r = include(dirname(__FILE__) . "/../modules/" . $amodule);
                                 if (!$r) {
