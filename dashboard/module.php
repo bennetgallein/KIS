@@ -108,11 +108,21 @@ $amodule = $_GET['module'];
         <div class="content">
             <div class="container-fluid">
                 <?php
-
-                $r = @include(dirname(__FILE__) . "/../modules/" . $amodule);
-                if (!$r) {
-                    echo '<div class="notfound"><div class="notfoundtext">404 not found!</div></div>';
+                foreach ($db->getModules() as $module) {
+                    foreach ($module->getNavs() as $dashboard) {
+                        if ($dashboard['link'] == $amodule) {
+                            if ($user->getPermissions() >= $dashboard['permission']) {
+                                $r = include(dirname(__FILE__) . "/../modules/" . $amodule);
+                                if (!$r) {
+                                    echo '<div class="notfound"><div class="notfoundtext">404 not found!</div></div>';
+                                }
+                            } else {
+                                echo '<div class="notfound"><div class="notfoundtext">401 not authenticated!</div></div>';
+                            }
+                        }
+                    }
                 }
+
                 ?>
             </div>
             <?php include("footer.php"); ?>
