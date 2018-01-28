@@ -2,7 +2,6 @@
   "name": "Support Manager",
   "version": "0.1",
   "priority": "3",
-  "priority": "3",
   "baseperm": "2",
   "authors": [
     {
