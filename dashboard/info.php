@@ -94,7 +94,12 @@ $user = unserialize($user, array("allowed_classes" => true));
             <div class="container-fluid">
                 <?php
                 if (isset($_GET['module'])) {
-                    $module = $_GET['module'];
+                    $modulea = $_GET['module'];
+                    foreach ($db->getModules() as $mod) {
+                        if (($mod->getName() == $modulea)) {
+                            $modd = $mod;
+                        }
+                    }
                 } else {
                     header("Location: index.php");
                 }
@@ -103,18 +108,18 @@ $user = unserialize($user, array("allowed_classes" => true));
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="<?= $db->getConfig()['color']?>">
-                                <h4 class="title">Info about .....</h4>
+                                <h4 class="title">Info about <?= $modd->getName() ?></h4>
                             </div>
                             <div class="card-content">
                                 <ul class="list-group">
-                                    <li class="list-group-item">Name:</li>
-                                    <li class="list-group-item">Version:</li>
-                                    <li class="list-group-item">Priority:</li>
-                                    <li class="list-group-item">Baseperm:</li>
-                                    <li class="list-group-item">Authors:</li>
-                                    <li class="list-group-item" style="margin-left: 15px;">Name:</li>
-                                    <li class="list-group-item" style="margin-left: 15px;">Email:</li>
-                                    <li class="list-group-item">Navs:</li>
+                                    <li class="list-group-item"><b>Name: </b><?= $modd->getName() ?></li>
+                                    <li class="list-group-item"><b>Version: </b><?= $modd->getVersion() ?></li>
+                                    <li class="list-group-item"><b>Baseperm: </b><?= $modd->getBaseperm() ?></li>
+                                    <li class="list-group-item"><b>Authors: </b></li>
+                                    <?php foreach ($modd->getAuthors() as $author): ?>
+                                        <li class="list-group-item" style="margin-left: 15px;"><b><?= $author['name'] . "</b> &lt;" . $author['email'] . "&gt;"?></li>
+                                    <?php endforeach; ?>
+                                    <!--<li class="list-group-item">Navs:</li>
                                     <li class="list-group-item" style="margin-left: 15px;">Icon:</li>
                                     <li class="list-group-item" style="margin-left: 15px;">Name:</li>
                                     <li class="list-group-item" style="margin-left: 15px;">Link:</li>
@@ -126,7 +131,7 @@ $user = unserialize($user, array("allowed_classes" => true));
                                     <li class="list-group-item">Includeables:</li>
                                     <li class="list-group-item" style="margin-left: 15px;">Name:</li>
                                     <li class="list-group-item" style="margin-left: 15px;">Link:</li>
-                                    <li class="list-group-item" style="margin-left: 15px;">Permission:</li>
+                                    <li class="list-group-item" style="margin-left: 15px;">Permission:</li>-->
                                 </ul>
                             </div>
                         </div>
