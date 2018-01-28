@@ -19,13 +19,20 @@
       "icon": "help_outline",
       "name": "Support Ticket",
       "link": "support/createticket.php",
-      "permission": "1"
+      "permission": "1",
+      "type": "nav"
     },
     {
       "icon": "help",
       "name": "Support Ticket Overview",
       "link": "support/ticketoverview.php",
-      "permission": "2"
+      "permission": "2",
+      "type": "nav"
+    },
+    {
+      "link": "support/ticket.php",
+      "permission": "2",
+      "type": "page"
     }
   ],
   "dashboards": [

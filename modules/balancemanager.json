@@ -18,7 +18,8 @@
       "icon": "attach_money",
       "name": "Balance",
       "link": "balance/manager.php",
-      "permission": "1"
+      "permission": "1",
+      "type": "nav"
     }
   ],
   "dashboards": [
