@@ -21,6 +21,11 @@
       "_comment": "available permissions are: user = 1, supporter = 2, admin = 3; incrementing perms include lower ones!",
       "permission": "2",
       "type": "nav"
+    },
+    {
+      "link": "customermanagment/profile.php",
+      "permission": "2",
+      "type": "page"
     }
   ],
   "dashboards": [
