@@ -99,8 +99,39 @@ $user = unserialize($user, array("allowed_classes" => true));
                     header("Location: index.php");
                 }
                 ?>
-                <?= $module ?>
-                <h1>Include Detail Bot here @Tobi</h1>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="<?= $db->getConfig()['color']?>">
+                                <h4 class="title">Info about .....</h4>
+                            </div>
+                            <div class="card-content">
+                                <ul class="list-group">
+                                    <li class="list-group-item">Name:</li>
+                                    <li class="list-group-item">Version:</li>
+                                    <li class="list-group-item">Priority:</li>
+                                    <li class="list-group-item">Baseperm:</li>
+                                    <li class="list-group-item">Authors:</li>
+                                    <li class="list-group-item" style="margin-left: 15px;">Name:</li>
+                                    <li class="list-group-item" style="margin-left: 15px;">Email:</li>
+                                    <li class="list-group-item">Navs:</li>
+                                    <li class="list-group-item" style="margin-left: 15px;">Icon:</li>
+                                    <li class="list-group-item" style="margin-left: 15px;">Name:</li>
+                                    <li class="list-group-item" style="margin-left: 15px;">Link:</li>
+                                    <li class="list-group-item" style="margin-left: 15px;">Permission:</li>
+                                    <li class="list-group-item" style="margin-left: 15px;">Type:</li>
+                                    <li class="list-group-item">Dashboards:</li>
+                                    <li class="list-group-item" style="margin-left: 15px;">Link:</li>
+                                    <li class="list-group-item" style="margin-left: 15px;">Permission:</li>
+                                    <li class="list-group-item">Includeables:</li>
+                                    <li class="list-group-item" style="margin-left: 15px;">Name:</li>
+                                    <li class="list-group-item" style="margin-left: 15px;">Link:</li>
+                                    <li class="list-group-item" style="margin-left: 15px;">Permission:</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <?php include("footer.php"); ?>
         </div>
