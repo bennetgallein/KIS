@@ -1,4 +1,5 @@
 <?php
+include("../vendor/autoload.php");
 include("../php/database.php");
 include(dirname(__FILE__) . "/../php/User.php");
 
@@ -42,14 +43,25 @@ $user = $_SESSION['user'];
 $user = unserialize($user, array("allowed_classes" => true));
 
 if (isset($_GET['a'])) {
-    if (isset($_POST['bug'])) {
-        $empfaenger = "bennet@intranetproject.net";
-        $betreff = "Bug Report";
-        $from = "From: KIS <test@intranetproject.net>";
-        $text = $_POST['bug'];
+    if (isset($_POST['bug']) && isset($_POST['title'])) {
+        //$client->authenticate('fa84a9d1f4a184d02577164ef2bea5a8', 'a866af24236b9097268619365e8e55db13b0e7f2f81b0d5a0eb5eb9ee8cd16c4', Client::AUTH_URL_CLIENT_ID);
+        // board id: 5a5a88bd0682dea8ba33dde6
+        // list id: 5a6e3737021462be3b0f1fd0
+        $client = new \Trello\Client("fa84a9d1f4a184d02577164ef2bea5a8");
+        $client->setAccessToken("a866af24236b9097268619365e8e55db13b0e7f2f81b0d5a0eb5eb9ee8cd16c4");
+        $board = $client->getBoard("5a5a88bd0682dea8ba33dde6");
 
-        mail($empfaenger, $betreff, $text, $from);
+        $card = new \Trello\Model\Card($client);
+        $card->name = $_POST['title'];
+        $card->desc = $_POST['bug'];
+        $card->idList = "5a6e3737021462be3b0f1fd0";
+        $card->idLabels = "5a5a88bd9ae3d60b0cc3362d,5a5a88bd9ae3d60b0cc3362b";
+        $card->pos = "top";
+        $card->idMembers = "5966a84bc25aa22b76401617";
+        $card->save();
+        $_SESSION['bug_reported'] = "ee";
     }
+
 }
 ?>
 <html lang="en">
@@ -103,6 +115,19 @@ if (isset($_GET['a'])) {
         </nav>
         <div class="content">
             <div class="container-fluid">
+                <?php
+
+                if (isset($_SESSION['bug_reported'])) {
+                    echo '<div class="card">
+                        <div class="card-header" data-background-color="' . $db->getConfig()['color'] . '">
+                            <h4 class="title">Thank you!</h4>
+                            <p class="category">Thanks for helping making this a better place!</p>
+                        </div>
+                    </div>';
+                    unset($_SESSION['bug_reported']);
+                }
+
+                ?>
                 <?php foreach ($db->getChangelog() as $change): ?>
                     <div class="card">
                         <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
@@ -126,7 +151,12 @@ if (isset($_GET['a'])) {
                             </div>
                             <div class="card-content">
                                 <form action="changelog.php?a=report" method="post">
-                                    <textarea type="text" name="bug" class="form-control" placeholder="Response" id="comment" rows="5"></textarea>
+                                    <label class="control-label">Title</label>
+                                    <input name="title"
+                                           value=""
+                                           type="text" class="form-control">
+                                    <textarea type="text" name="bug" class="form-control" placeholder="Descripe the Bug and how we can reproduce it!"
+                                              id="comment" rows="5"></textarea>
                                     <button type="submit" data-background-color="<?= $db->getConfig()['color'] ?>"
                                             class="btn btn-primary pull-right">Report Bug
                                     </button>
