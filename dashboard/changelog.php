@@ -50,9 +50,9 @@ foreach ($board->getCards() as $card) {
     $idList = $card->__get("idList");
     if ($idList == "5a6e3737021462be3b0f1fd0") {
         $url = $card->__get("shortUrl");
-        $cardtag .= '<blockquote class="trello-card">
+        $cardtag .= '<div style="margin: 1%; float: left; min-height: 210px;" ><blockquote class="trello-card">
                     <a href="' . $url . '">Trello Card</a>
-                </blockquote>';
+                </blockquote></div>';
     }
 }
 
@@ -72,6 +72,7 @@ if (isset($_GET['a'])) {
         }
         $card->save();
         $_SESSION['bug_reported'] = "ee";
+        header("Location: changelog.php");
     }
 
 }
@@ -159,19 +160,21 @@ if (isset($_GET['a'])) {
                         <div class="card">
                             <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                                 <h4 class="title">Report Bug</h4>
-                                <p class="category">If you found a bug and it's not in this List, be sure to report it in the form below!</p>
+                                <p class="category">If you found a bug and it's not in this List, be sure to report it
+                                    in the form below!</p>
                             </div>
                             <div class="card-content">
-                                <?= $cardtag ?>
+                                <div style="overflow: auto; width: 100%; display: inline-block">
+                                    <?= $cardtag ?>
+                                </div>
                                 <form action="changelog.php?a=report" method="post">
-                                    <label class="control-label">Title</label>
-                                    <input name="title"
-                                           value=""
-                                           type="text" class="form-control">
-                                    <textarea type="text" name="bug" class="form-control" placeholder="Descripe the Bug and how we can reproduce it!"
+                                    <input placeholder="Title" name="title" value="" type="text" class="form-control">
+                                    <textarea type="text" name="bug" class="form-control"
+                                              placeholder="Please describe the bug and how we can reproduce it!"
                                               id="comment" rows="5"></textarea>
                                     <div class="form-check pull-left" style="padding-bottom: 15px; font-size: 1.6em;">
-                                        <input class="form-check-input" name="important" type="checkbox" value="" id="defaultCheck1">
+                                        <input class="form-check-input" name="important" type="checkbox" value=""
+                                               id="defaultCheck1">
                                         <label class="form-check-label" for="defaultCheck1">
                                             Is this important (security, not spelling mistakes)?
                                         </label>
