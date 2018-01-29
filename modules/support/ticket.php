@@ -39,7 +39,7 @@ if (property_exists($params, 'close')) {
         <div class="card">
             <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                 <h4 class="title"><i class="material-icons">question_answer</i>Ticket
-                    ID: <?= $row->id ?> - <?= $aaa->firstname . " " . $aaa->lastname . ": " . $row->title?></h4>
+                    ID: <?= $row->id ?> - <?= $aaa->firstname . " " . $aaa->lastname . ": " . $row->title ?></h4>
             </div>
             <div class="card-content">
                 <div class="panel-group">
@@ -86,16 +86,16 @@ if (property_exists($params, 'close')) {
                         <textarea type="text" name="message" class="form-control" placeholder="Response" id="comment"
                                   rows="5"></textarea>
                     </div>
-                    <?php if ($row->status != 2): ?>
-                    <button class="btn btn-default col-md-3" data-background-color="red"><i
-                                class="material-icons">close</i><a
-                                href="module.php?module=support/ticket.php&params=id|<?= $id ?>_close|1">Close
-                            ticket</a>
-                    </button>
-                    <?php endif; ?>
-                    <div class="dropdown">
-                        <button class="btn btn-default pull-right" type="submit" data-background-color="blue">Submit<i
-                                    class="material-icons">send</i></button>
+                    <div class="col-md-12" style="background-color: #FFF;">
+                        <?php if ($row->status != 2): ?>
+                            <button class="btn btn-default" data-background-color="red"><i
+                                        class="material-icons">close</i><a
+                                        href="module.php?module=support/ticket.php&params=id|<?= $id ?>_close|1">Close
+                                    ticket</a>
+                            </button>
+                        <?php endif; ?>
+                            <button class="btn btn-default pull-right" type="submit" data-background-color="blue">Submit<i
+                                        class="material-icons">send</i></button>
                     </div>
                 </form>
             </div>
