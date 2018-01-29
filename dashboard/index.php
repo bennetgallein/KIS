@@ -111,7 +111,7 @@ if (isset($_GET['removenotification']) && isset($_GET['id'])) {
                         echo "</p></div>";
                         foreach ($module->getDashboards() as $board) {
                             if ($board['permission'] <= $user->getPermissions()) {
-                                include("../modules/" . $board['link']);
+                                include(dirname(__FILE__) . "/../modules/" . $module->getBasepath() . $board['link']);
                             }
                         }
                     }

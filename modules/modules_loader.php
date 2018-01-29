@@ -43,16 +43,18 @@ class Module {
     private $includeables;
     private $navs;
     private $dashboard;
+    private $basepath;
 
     public function __construct($json) {
         $this->name = $json['name'];
         $this->version = $json['version'];
         $this->authors = $json['authors'];
-        $this->navs = $json['navs'];
-        $this->dashboard = $json['dashboards'];
-        $this->includeables = $json['includeables'];
+        $this->navs = isset($json['navs']) ? $json['navs'] : null;
+        $this->dashboard = isset($json['dashboards']) ? $json['dashboards'] : null;
+        $this->includeables = isset($json['includeables']) ? $json['includeables'] : null;
         $this->baseperm = $json['baseperm'];
         $this->priority = $json['priority'];
+        $this->basepath = $json['basepath'];
     }
 
     public function getIncludeable($name) {
@@ -63,7 +65,9 @@ class Module {
         }
         return false;
     }
-
+    public function getBasepath() {
+        return $this->basepath;
+    }
     public function getNavs() {
         return $this->navs;
     }

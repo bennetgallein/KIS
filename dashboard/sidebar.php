@@ -33,7 +33,7 @@ Tip 2: you can also add an image using data-image tag
                             if ($hrset == false) { echo "<hr>"; }
                             $hrset = true;
                             echo '<li>
-                                  <a href="module.php?module=' . $navpoint['link'] . '">
+                                  <a href="module.php?module=' . $module->getBasepath() . $navpoint['link'] . '">
                                       <i class="material-icons">' . $navpoint['icon'] . '</i>
                                       <p>' . $navpoint['name'] . '</p>
                                   </a>

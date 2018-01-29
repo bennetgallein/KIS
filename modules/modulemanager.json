@@ -1,9 +1,9 @@
 {
-  "name": "Balance Manager",
+  "name": "Module Manager",
   "version": "0.1",
-  "priority": "1",
-  "baseperm": "1",
-  "basepath": "balance/",
+  "priority": "4",
+  "baseperm": "3",
+  "basepath": "modulemanager/",
   "authors": [
     {
       "name": "Bennet Gallein",
@@ -16,24 +16,17 @@
   ],
   "navs": [
     {
-      "icon": "attach_money",
-      "name": "Balance",
+      "icon": "settings",
+      "name": "Module Manager",
       "link": "manager.php",
-      "permission": "1",
+      "permission": "3",
       "type": "nav"
     }
   ],
   "dashboards": [
     {
       "link": "dashboard/include.php",
-      "permission": "1"
-    }
-  ],
-  "includeables": [
-    {
-      "name": "profile_overview",
-      "link": "support/incl/ticketoverview.php",
-      "permission": "2"
+      "permission": "3"
     }
   ]
 }
