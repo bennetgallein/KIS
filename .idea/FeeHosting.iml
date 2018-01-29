@@ -2,6 +2,7 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bennetgallein/trello" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cdaguerre/php-trello-api" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/guzzle/guzzle" />
@@ -18,27 +19,23 @@
     <orderEntry type="module-library">
       <library name="PHP" type="php">
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/cdaguerre/php-trello-api" />
+          <root url="file://$MODULE_DIR$/vendor/bennetgallein/trello" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
-          <root url="file://$MODULE_DIR$/vendor/guzzle/guzzle" />
           <root url="file://$MODULE_DIR$/vendor/guzzlehttp/guzzle" />
           <root url="file://$MODULE_DIR$/vendor/guzzlehttp/streams" />
           <root url="file://$MODULE_DIR$/vendor/paypal/rest-api-sdk-php" />
           <root url="file://$MODULE_DIR$/vendor/planetteamspeak/ts3-php-framework" />
           <root url="file://$MODULE_DIR$/vendor/psr/log" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/event-dispatcher" />
           <root url="file://$MODULE_DIR$/vendor/zzantares/proxmoxve" />
         </CLASSES>
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/cdaguerre/php-trello-api" />
+          <root url="file://$MODULE_DIR$/vendor/bennetgallein/trello" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
-          <root url="file://$MODULE_DIR$/vendor/guzzle/guzzle" />
           <root url="file://$MODULE_DIR$/vendor/guzzlehttp/guzzle" />
           <root url="file://$MODULE_DIR$/vendor/guzzlehttp/streams" />
           <root url="file://$MODULE_DIR$/vendor/paypal/rest-api-sdk-php" />
           <root url="file://$MODULE_DIR$/vendor/planetteamspeak/ts3-php-framework" />
           <root url="file://$MODULE_DIR$/vendor/psr/log" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/event-dispatcher" />
           <root url="file://$MODULE_DIR$/vendor/zzantares/proxmoxve" />
         </SOURCES>
       </library>
