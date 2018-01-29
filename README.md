@@ -1,11 +1,3 @@
-TODO: https://trello.com/b/ibiJJ44r/kis
-
-PayPal devs: 
-````
-clientID: AYqL3LlsQuoOAj14xojHy-rlcYExCkO9oUUOWZu8TpjTjiD75aiGaBvS6R154qrvISPN3jTpOpb7WoSJ
-secret: EIIlvkfgiROn3kYslXOT-VcuBmn_qk33ZF8VaSQNzEgKkGzmReQIKM0Hr0qzmffN35vglZC51-C4Ju7Q
-````
-
 # Documentation:
 
 ## Overview:
@@ -24,6 +16,7 @@ This is our File: "supportmanager.json", which is the config-file for our suppor
   "version": "0.1",
   "priority": "3",
   "baseperm": "2",
+  "basepath": "support/",
   "authors": [
     {
       "name": "Bennet Gallein",
@@ -38,33 +31,33 @@ This is our File: "supportmanager.json", which is the config-file for our suppor
     {
       "icon": "help_outline",
       "name": "Support Ticket",
-      "link": "support/createticket.php",
+      "link": "createticket.php",
       "permission": "1",
       "type": "nav"
     },
     {
       "icon": "help",
       "name": "Support Ticket Overview",
-      "link": "support/ticketoverview.php",
+      "link": "ticketoverview.php",
       "permission": "2",
       "type": "nav"
     },
     {
-      "link": "support/ticket.php",
+      "link": "ticket.php",
       "permission": "2",
       "type": "page"
     }
   ],
   "dashboards": [
     {
-      "link": "support/dashboard/include.php",
+      "link": "dashboard/include.php",
       "permission": "2"
     }
   ],
   "includeables": [
     {
       "name": "profile_overview",
-      "link": "support/incl/ticketoverview.php",
+      "link": "incl/ticketoverview.php",
       "permission": "2"
     }
   ]
@@ -77,6 +70,7 @@ Let's break this down a little bit:
   "version": "0.1",
   "priority": "3",
   "baseperm": "2",
+  "basepath": "support",
 ````
 This is the part where the general information about the module is stored. 
 
@@ -86,6 +80,7 @@ This is the part where the general information about the module is stored.
 | version | The Version of the module |
 | priority | priority in the sidebar. lower means further up |
 | baseperm | the baseperm to see anything of that module on the dashboard.|
+| basepath | the basepath for the files from the module. |
   
 
 Furthermore:
@@ -112,23 +107,23 @@ This feature will come in handy if we are planning to realease a module managmen
 
 Let's continue with the important part:
 ````json
-"navs": [
+  "navs": [
     {
       "icon": "help_outline",
       "name": "Support Ticket",
-      "link": "support/createticket.php",
+      "link": "createticket.php",
       "permission": "1",
       "type": "nav"
     },
     {
       "icon": "help",
       "name": "Support Ticket Overview",
-      "link": "support/ticketoverview.php",
+      "link": "ticketoverview.php",
       "permission": "2",
       "type": "nav"
     },
     {
-      "link": "support/ticket.php",
+      "link": "ticket.php",
       "permission": "2",
       "type": "page"
     }
@@ -151,7 +146,7 @@ Next part:
 ````json
 "dashboards": [
     {
-      "link": "support/dashboard/include.php",
+      "link": "dashboard/include.php",
       "permission": "2"
     }
   ],
@@ -168,7 +163,7 @@ The last part we have are 'includeables':
 "includeables": [
     {
       "name": "profile_overview",
-      "link": "support/incl/ticketoverview.php",
+      "link": "incl/ticketoverview.php",
       "permission": "2"
     }
   ]

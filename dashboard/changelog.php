@@ -45,11 +45,11 @@ $user = unserialize($user, array("allowed_classes" => true));
 // Trello
 $client = new \Trello\Client("fa84a9d1f4a184d02577164ef2bea5a8");
 $client->setAccessToken("a866af24236b9097268619365e8e55db13b0e7f2f81b0d5a0eb5eb9ee8cd16c4");
-$board = $client->getBoard("5a5a88bd0682dea8ba33dde6");
+$board = $client->getBoard("5a6f8dbaad2a46b8f2231793");
 $cardtag = "";
 foreach ($board->getCards() as $card) {
     $idList = $card->__get("idList");
-    if ($idList == "5a6e3737021462be3b0f1fd0") {
+    if ($idList == "5a6f8dbfe41f1d8c9156b56e") {
         $url = $card->__get("shortUrl");
         $cardtag .= '<div style="margin: 1%; float: left; min-height: 210px;" ><blockquote class="trello-card">
                     <a href="' . $url . '">Trello Card</a>
@@ -65,14 +65,15 @@ if (isset($_GET['a'])) {
         $card = new \Trello\Model\Card($client);
         $card->name = $_POST['title'];
         $card->desc = $_POST['bug'];
-        $card->idList = "5a6e3737021462be3b0f1fd0";
-        $card->idLabels = "5a5a88bd9ae3d60b0cc3362d,5a5a88bd9ae3d60b0cc3362b";
+        $card->idList = "5a6f8dbfe41f1d8c9156b56e";
+        $card->idLabels = "5a6f8dba9ae3d60b0c1a9319,5a6f8dba9ae3d60b0c1a931a";
         $card->pos = "top";
         if (isset($_POST['important'])) {
             $card->idMembers = "5966a84bc25aa22b76401617,57dadec7c9c6672938c9f085";
         }
         $card->save();
         $_SESSION['bug_reported'] = "ee";
+        unset($_POST);
         header("Location: changelog.php");
     }
 
