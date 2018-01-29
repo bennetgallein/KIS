@@ -14,7 +14,8 @@ $use = $db->simpleQuery("SELECT * FROM users WHERE id='" . $db->getConnection()-
 $aaa = $use->fetch_object();
 if (property_exists($params, 'awnser')) {
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
-        if (isset($_POST['message'])) {
+        if (isset($_POST['message']) && (trim($_POST['message']) != "")) {
+            echo "message: " . var_dump($_POST['message']);
             if ($row->userid == $user->getId()) {
                 $awns = 2;
             } else {
