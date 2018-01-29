@@ -42,15 +42,25 @@ if (!isset($_SESSION['user']) && isset($_COOKIE['identifier']) && isset($_COOKIE
 $user = $_SESSION['user'];
 $user = unserialize($user, array("allowed_classes" => true));
 
+// Trello
+$client = new \Trello\Client("fa84a9d1f4a184d02577164ef2bea5a8");
+$client->setAccessToken("a866af24236b9097268619365e8e55db13b0e7f2f81b0d5a0eb5eb9ee8cd16c4");
+$board = $client->getBoard("5a5a88bd0682dea8ba33dde6");
+foreach ($board->getCards() as $card) {
+    $idList = $card->__get("idList");
+    if ($idList == "5a6e3737021462be3b0f1fd0") {
+        $url = $card->__get("shortUrl");
+        $cardtag .= '<blockquote class="trello-card">
+                    <a href="' . $url . '">Trello Card</a>
+                </blockquote>';
+    }
+}
+
 if (isset($_GET['a'])) {
     if (isset($_POST['bug']) && isset($_POST['title'])) {
         //$client->authenticate('fa84a9d1f4a184d02577164ef2bea5a8', 'a866af24236b9097268619365e8e55db13b0e7f2f81b0d5a0eb5eb9ee8cd16c4', Client::AUTH_URL_CLIENT_ID);
         // board id: 5a5a88bd0682dea8ba33dde6
         // list id: 5a6e3737021462be3b0f1fd0
-        $client = new \Trello\Client("fa84a9d1f4a184d02577164ef2bea5a8");
-        $client->setAccessToken("a866af24236b9097268619365e8e55db13b0e7f2f81b0d5a0eb5eb9ee8cd16c4");
-        $board = $client->getBoard("5a5a88bd0682dea8ba33dde6");
-
         $card = new \Trello\Model\Card($client);
         $card->name = $_POST['title'];
         $card->desc = $_POST['bug'];
@@ -149,9 +159,10 @@ if (isset($_GET['a'])) {
                         <div class="card">
                             <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                                 <h4 class="title">Report Bug</h4>
-                                <p class="category">If you found a bug, be sure to report it!</p>
+                                <p class="category">If you found a bug and it's not in this List, be sure to report it in the form below!</p>
                             </div>
                             <div class="card-content">
+                                <?= $cardtag ?>
                                 <form action="changelog.php?a=report" method="post">
                                     <label class="control-label">Title</label>
                                     <input name="title"
@@ -174,6 +185,8 @@ if (isset($_GET['a'])) {
                         </div>
                     </div>
                 </div>
+
+                <script src="https://p.trellocdn.com/embed.min.js"></script>
             </div>
             <?php include("footer.php"); ?>
         </div>
