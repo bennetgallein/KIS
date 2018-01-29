@@ -12,6 +12,7 @@
       <path value="$PROJECT_DIR$/vendor/cdaguerre/php-trello-api" />
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
       <path value="$PROJECT_DIR$/vendor/guzzle/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/bennetgallein/trello" />
     </include_path>
   </component>
 </project>
