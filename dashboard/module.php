@@ -110,10 +110,10 @@ $amodule = $_GET['module'];
                 <?php
                 foreach ($db->getModules() as $module) {
                     foreach ($module->getNavs() as $dashboard) {
-                        if ($dashboard['link'] == $amodule) {
+                        if ($module->getBasepath() . $dashboard['link'] == $amodule) {
                             $aamod = $module->getName();
                             if ($user->getPermissions() >= $dashboard['permission']) {
-                                $r = include(dirname(__FILE__) . "/../modules/" . $amodule);
+                                $r = @include(dirname(__FILE__) . "/../modules/" . $amodule);
                                 if (!$r) {
                                     echo '<div class="notfound"><div class="notfoundtext">404 not found!</div></div>';
                                 }

@@ -3,6 +3,7 @@
   "version": "0.1",
   "priority": "2",
   "baseperm": "2",
+  "basepath": "customermanagment/",
   "authors": [
     {
       "name": "Bennet Gallein",
@@ -17,20 +18,20 @@
     {
       "icon": "supervisor_account",
       "name": "Customer listing",
-      "link": "customermanagment/list.php",
+      "link": "list.php",
       "_comment": "available permissions are: user = 1, supporter = 2, admin = 3; incrementing perms include lower ones!",
       "permission": "2",
       "type": "nav"
     },
     {
-      "link": "customermanagment/profile.php",
+      "link": "profile.php",
       "permission": "2",
       "type": "page"
     }
   ],
   "dashboards": [
     {
-      "link": "customermanagment/include.php",
+      "link": "include.php",
       "permission": "2"
     }
   ],

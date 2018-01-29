@@ -3,6 +3,7 @@
   "version": "0.1",
   "priority": "3",
   "baseperm": "2",
+  "basepath": "support/",
   "authors": [
     {
       "name": "Bennet Gallein",
@@ -17,33 +18,33 @@
     {
       "icon": "help_outline",
       "name": "Support Ticket",
-      "link": "support/createticket.php",
+      "link": "createticket.php",
       "permission": "1",
       "type": "nav"
     },
     {
       "icon": "help",
       "name": "Support Ticket Overview",
-      "link": "support/ticketoverview.php",
+      "link": "ticketoverview.php",
       "permission": "2",
       "type": "nav"
     },
     {
-      "link": "support/ticket.php",
+      "link": "ticket.php",
       "permission": "2",
       "type": "page"
     }
   ],
   "dashboards": [
     {
-      "link": "support/dashboard/include.php",
+      "link": "dashboard/include.php",
       "permission": "2"
     }
   ],
   "includeables": [
     {
       "name": "profile_overview",
-      "link": "support/incl/ticketoverview.php",
+      "link": "incl/ticketoverview.php",
       "permission": "2"
     }
   ]
