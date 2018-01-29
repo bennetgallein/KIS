@@ -57,7 +57,9 @@ if (isset($_GET['a'])) {
         $card->idList = "5a6e3737021462be3b0f1fd0";
         $card->idLabels = "5a5a88bd9ae3d60b0cc3362d,5a5a88bd9ae3d60b0cc3362b";
         $card->pos = "top";
-        $card->idMembers = "5966a84bc25aa22b76401617";
+        if (isset($_POST['important'])) {
+            $card->idMembers = "5966a84bc25aa22b76401617,57dadec7c9c6672938c9f085";
+        }
         $card->save();
         $_SESSION['bug_reported'] = "ee";
     }
@@ -157,6 +159,12 @@ if (isset($_GET['a'])) {
                                            type="text" class="form-control">
                                     <textarea type="text" name="bug" class="form-control" placeholder="Descripe the Bug and how we can reproduce it!"
                                               id="comment" rows="5"></textarea>
+                                    <div class="form-check pull-left" style="padding-bottom: 15px; font-size: 1.6em;">
+                                        <input class="form-check-input" name="important" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            Is this important (security, not spelling mistakes)?
+                                        </label>
+                                    </div>
                                     <button type="submit" data-background-color="<?= $db->getConfig()['color'] ?>"
                                             class="btn btn-primary pull-right">Report Bug
                                     </button>
