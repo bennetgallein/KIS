@@ -46,6 +46,7 @@ $user = unserialize($user, array("allowed_classes" => true));
 $client = new \Trello\Client("fa84a9d1f4a184d02577164ef2bea5a8");
 $client->setAccessToken("a866af24236b9097268619365e8e55db13b0e7f2f81b0d5a0eb5eb9ee8cd16c4");
 $board = $client->getBoard("5a5a88bd0682dea8ba33dde6");
+$cardtag = "";
 foreach ($board->getCards() as $card) {
     $idList = $card->__get("idList");
     if ($idList == "5a6e3737021462be3b0f1fd0") {
