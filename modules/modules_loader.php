@@ -14,7 +14,7 @@ class ModuleLoader {
 
         $this->modules = array();
 
-        $dir = dirname(__FILE__) . "/module_*/*.json";
+        $dir = dirname(__FILE__) . "/modules/module_*/*.json";
 
         foreach (glob($dir) as $file) {
             //echo "filename: $file : filetype: " . filetype($file) . "<br />";
@@ -46,6 +46,7 @@ class Module {
     private $navs;
     private $dashboard;
     private $basepath;
+    private $repository;
 
     public function __construct($json, $path) {
         $this->path = $path;
@@ -67,6 +68,10 @@ class Module {
             }
         }
         return false;
+    }
+
+    public function getRepository() {
+        return $this->repository;
     }
 
     public function getPath() {
