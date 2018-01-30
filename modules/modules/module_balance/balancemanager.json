@@ -1,0 +1,39 @@
+{
+  "name": "Balance Manager",
+  "version": "0.1",
+  "priority": "1",
+  "baseperm": "1",
+  "basepath": "balance/",
+  "authors": [
+    {
+      "name": "Bennet Gallein",
+      "email": "bennet@intranetproject.net"
+    },
+    {
+      "name": "Tobias Kalmbach",
+      "email": "tobias@intranetproject.net"
+    }
+  ],
+  "navs": [
+    {
+      "icon": "attach_money",
+      "name": "Balance",
+      "link": "manager.php",
+      "permission": "1",
+      "type": "nav"
+    }
+  ],
+  "dashboards": [
+    {
+      "link": "dashboard/include.php",
+      "permission": "1"
+    }
+  ],
+  "includeables": [
+    {
+      "name": "profile_overview",
+      "link": "support/incl/ticketoverview.php",
+      "permission": "2"
+    }
+  ]
+}
