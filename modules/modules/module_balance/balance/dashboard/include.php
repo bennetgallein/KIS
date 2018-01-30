@@ -7,7 +7,7 @@
             <div class="card-content">
                 <p class="category">Account Balance</p>
                 <?php
-                $res = $db->simpleQuery("SELECT balance FROM balance WHERE userid='" . $user->getId() . "'");
+                $res = $db->simpleQuery("SELECT balance FROM balances WHERE userid='" . $user->getId() . "'");
                 $balance = $res->fetch_object();
                 $balance = $balance->balance;
                 ?>
