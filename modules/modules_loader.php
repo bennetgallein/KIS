@@ -75,7 +75,7 @@ class Module {
     }
 
     public function getPath() {
-        return $this->path;
+        return dirname($this->path);
     }
 
     public function getBasepath() {

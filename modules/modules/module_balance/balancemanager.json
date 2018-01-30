@@ -31,9 +31,9 @@
   ],
   "includeables": [
     {
-      "name": "profile_overview",
-      "link": "support/incl/ticketoverview.php",
-      "permission": "2"
+      "name": "display_money",
+      "link": "incl/displaymoney.php",
+      "permission": "1"
     }
   ]
 }
