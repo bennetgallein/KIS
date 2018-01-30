@@ -11,20 +11,21 @@ class ModuleLoader {
     private $modules;
 
     public function __construct() {
+
         $this->modules = array();
-        $dir = new DirectoryIterator(dirname(__FILE__));
-        foreach ($dir as $fileinfo) {
-            if (!$fileinfo->isDir()) {
-                if (pathinfo($fileinfo->getPathname())['extension'] == "json") {
-                    $this->createModuleByJSON($fileinfo->getPath(), $fileinfo->getFilename());
-                }
-            }
+
+        $dir = dirname(__FILE__) . "/module_*/*.json";
+
+        foreach (glob($dir) as $file) {
+            //echo "filename: $file : filetype: " . filetype($file) . "<br />";
+            $this->createModuleByJSON($file);
+
         }
     }
 
-    public function createModuleByJSON($path, $filename) {
-        $json = json_decode(file_get_contents($path . "/" . $filename), true);
-        array_push($this->modules, new Module($json));
+    public function createModuleByJSON($path) {
+        $json = json_decode(file_get_contents($path), true);
+        array_push($this->modules, new Module($json, $path));
     }
 
     public function getModules() {
@@ -40,12 +41,14 @@ class Module {
     private $baseperm;
     var $priority;
 
+    private $path;
     private $includeables;
     private $navs;
     private $dashboard;
     private $basepath;
 
-    public function __construct($json) {
+    public function __construct($json, $path) {
+        $this->path = $path;
         $this->name = $json['name'];
         $this->version = $json['version'];
         $this->authors = $json['authors'];
@@ -65,9 +68,15 @@ class Module {
         }
         return false;
     }
+
+    public function getPath() {
+        return $this->path;
+    }
+
     public function getBasepath() {
         return $this->basepath;
     }
+
     public function getNavs() {
         return $this->navs;
     }
