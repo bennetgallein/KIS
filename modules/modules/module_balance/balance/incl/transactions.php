@@ -7,7 +7,7 @@ if (!$query) {
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header" data-background-color="<?= $db->getConfig()['color']?>">
+            <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                 <h4 class="title">Monthly transactions</h4>
                 <p class="category">These are your transactions in the last month.</p>
             </div>
@@ -17,6 +17,7 @@ if (!$query) {
                     <tr>
                         <th>Order ID</th>
                         <th>Price</th>
+                        <th>Message</th>
                         <th>Date</th>
                     </tr>
                     </thead>
@@ -25,13 +26,15 @@ if (!$query) {
                     if ($query->num_rows == 0) {
                         echo "No Results found!";
                     } else {
-                    while ($row = $query->fetch_object()): ?>
-                    <tr>
-                        <td><?= $row->id ?></td>
-                        <td><?= $row->price ?>€</td>
-                        <td><?= $row->createdate ?></td>
-                    </tr>
-                    <?php endwhile; } ?>
+                        while ($row = $query->fetch_object()): ?>
+                            <tr>
+                                <td><?= $row->id ?></td>
+                                <td><?= (($row->positive) ? "+" : "-") . $row->price ?>€</td>
+                                <td><?= $row->text ?></td>
+                                <td><?= $row->createdate ?></td>
+                            </tr>
+                        <?php endwhile;
+                    } ?>
                     </tbody>
                 </table>
             </div>
