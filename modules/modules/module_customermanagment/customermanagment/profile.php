@@ -96,7 +96,13 @@ if (isset($params->delete)) {
 if ($db->moduleExists("Support Manager")) {
     $module = $db->getModuleByName("Support Manager");
     if ($module->getIncludeable("profile_overview")['permission'] <= $user->getPermissions()) {
-        include(dirname(__FILE__) . "/../" . $module->getIncludeable("profile_overview")['link']);
+        $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("profile_overview")['link']);
+    }
+}
+if ($db->moduleExists("Balance Manager")) {
+    $module = $db->getModuleByName("Balance Manager");
+    if ($module->getIncludeable("profile_transactions")['permission'] <= $user->getPermissions()) {
+        $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("profile_transactions")['link']);
     }
 }
 ?>
