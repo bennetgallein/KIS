@@ -4,9 +4,16 @@
             <div class="card-header" data-background-color="green">
                 <i class="material-icons">attach_money</i>
             </div>
+            <?php
+            $total = 0;
+            $res = $db->simpleQuery("SELECT * FROM balance_transactions WHERE plusforcompany=1 AND createdate >= now() - INTERVAL 1 DAY");
+            while ($row = $res->fetch_object()) {
+                $total += $row->price;
+            }
+            ?>
             <div class="card-content">
                 <p class="category">Earned:</p>
-                <h3 class="title">308976</h3>
+                <h3 class="title"><?= $total ?>€</h3>
             </div>
             <div class="card-footer">
                 <div class="stats">
@@ -20,9 +27,16 @@
             <div class="card-header" data-background-color="orange">
                 <i class="material-icons">attach_money</i>
             </div>
+            <?php
+            $total = 0;
+            $res = $db->simpleQuery("SELECT * FROM balance_transactions WHERE plusforcompany=1 AND createdate >= now() - INTERVAL 7 DAY");
+            while ($row = $res->fetch_object()) {
+                $total += $row->price;
+            }
+            ?>
             <div class="card-content">
                 <p class="category">Earned:</p>
-                <h3 class="title">308976</h3>
+                <h3 class="title"><?= $total ?>€</h3>
             </div>
             <div class="card-footer">
                 <div class="stats">
@@ -36,9 +50,16 @@
             <div class="card-header" data-background-color="red">
                 <i class="material-icons">attach_money</i>
             </div>
+            <?php
+            $total = 0;
+            $res = $db->simpleQuery("SELECT * FROM balance_transactions WHERE plusforcompany=1 AND createdate >= now() - INTERVAL 30 DAY");
+            while ($row = $res->fetch_object()) {
+                $total += $row->price;
+            }
+            ?>
             <div class="card-content">
                 <p class="category">Earned:</p>
-                <h3 class="title">308976</h3>
+                <h3 class="title"><?= $total ?>€</h3>
             </div>
             <div class="card-footer">
                 <div class="stats">
@@ -52,9 +73,16 @@
             <div class="card-header" data-background-color="grey">
                 <i class="material-icons">attach_money</i>
             </div>
+            <?php
+            $total = 0;
+            $res = $db->simpleQuery("SELECT * FROM balance_transactions WHERE plusforcompany=1 AND createdate >= now() - INTERVAL 365 DAY");
+            while ($row = $res->fetch_object()) {
+                $total += $row->price;
+            }
+            ?>
             <div class="card-content">
                 <p class="category">Earned:</p>
-                <h3 class="title">308976</h3>
+                <h3 class="title"><?= $total ?>€</h3>
             </div>
             <div class="card-footer">
                 <div class="stats">
