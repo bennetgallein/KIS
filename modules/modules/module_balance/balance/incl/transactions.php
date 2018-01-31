@@ -1,9 +1,15 @@
+<?php
+$query = $db->simpleQuery("SELECT * FROM balance_transactions WHERE userid='" . $params->user . "'");
+if (!$query) {
+    die("MySQL ERROR! <a href='changelog.php'>Submit Error here!</a>");
+}
+?>
 <div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header" data-background-color="<?= $db->getConfig()['color']?>">
                 <h4 class="title">Monthly transactions</h4>
-                <p class="category">These are your transactions this month.</p>
+                <p class="category">These are your transactions in the last month.</p>
             </div>
             <div class="card-content table-responsive">
                 <table class="table">
@@ -15,11 +21,17 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <?php
+                    if ($query->num_rows == 0) {
+                        echo "No Results found!";
+                    } else {
+                    while ($row = $query->fetch_object()): ?>
                     <tr>
-                        <td>325C36E5345A</td>
-                        <td>23$</td>
-                        <td>28-01-2018</td>
+                        <td><?= $row->id ?></td>
+                        <td><?= $row->price ?></td>
+                        <td><?= $row->createdate ?></td>
                     </tr>
+                    <?php endwhile; } ?>
                     </tbody>
                 </table>
             </div>

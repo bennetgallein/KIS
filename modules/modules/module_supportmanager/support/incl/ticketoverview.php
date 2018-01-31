@@ -20,7 +20,11 @@ $query = $db->simpleQuery("SELECT * FROM tickets WHERE userid='$params->user'");
                     </tr>
                     </thead>
                     <tbody>
-                    <?php while ($row = $query->fetch_object()): ?>
+                    <?php
+                    if ($query->num_rows == 0) {
+                        echo "No Results found!";
+                    } else {
+                    while ($row = $query->fetch_object()): ?>
                     <tr data-background-color="<?= $row->status ? "green" : "red" ?>">
                         <td><?= $row->id ?></td>
                         <td><?= $row->title ?></td>
@@ -28,7 +32,7 @@ $query = $db->simpleQuery("SELECT * FROM tickets WHERE userid='$params->user'");
                         <td><?= $row->created_at ?></td>
                         <td><?= $row->updated_at ?></td>
                     </tr>
-                    <?php endwhile; ?>
+                    <?php endwhile; }?>
                     </tbody>
                 </table>
             </div>
