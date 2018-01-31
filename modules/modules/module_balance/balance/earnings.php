@@ -6,9 +6,13 @@
             </div>
             <?php
             $total = 0;
-            $res = $db->simpleQuery("SELECT * FROM balance_transactions WHERE plusforcompany=1 AND createdate >= now() - INTERVAL 1 DAY");
+            $res = $db->simpleQuery("SELECT * FROM balance_transactions WHERE NOT plusforcompany=0 AND createdate >= now() - INTERVAL 1 DAY");
             while ($row = $res->fetch_object()) {
-                $total += $row->price;
+                if ($row->plusforcompany == "1") {
+                    $total += $row->price;
+                } else {
+                    $total -= $row->price;
+                }
             }
             ?>
             <div class="card-content">
@@ -29,9 +33,13 @@
             </div>
             <?php
             $total = 0;
-            $res = $db->simpleQuery("SELECT * FROM balance_transactions WHERE plusforcompany=1 AND createdate >= now() - INTERVAL 7 DAY");
+            $res = $db->simpleQuery("SELECT * FROM balance_transactions WHERE (plusforcompany=1 OR plusforcompany=2) AND createdate >= now() - INTERVAL 7 DAY");
             while ($row = $res->fetch_object()) {
-                $total += $row->price;
+                if ($row->plusforcompany == "1") {
+                    $total += $row->price;
+                } else {
+                    $total -= $row->price;
+                }
             }
             ?>
             <div class="card-content">
@@ -52,9 +60,13 @@
             </div>
             <?php
             $total = 0;
-            $res = $db->simpleQuery("SELECT * FROM balance_transactions WHERE plusforcompany=1 AND createdate >= now() - INTERVAL 30 DAY");
+            $res = $db->simpleQuery("SELECT * FROM balance_transactions WHERE NOT plusforcompany=0 AND createdate >= now() - INTERVAL 30 DAY");
             while ($row = $res->fetch_object()) {
-                $total += $row->price;
+                if ($row->plusforcompany == "1") {
+                    $total += $row->price;
+                } else {
+                    $total -= $row->price;
+                }
             }
             ?>
             <div class="card-content">
@@ -75,9 +87,13 @@
             </div>
             <?php
             $total = 0;
-            $res = $db->simpleQuery("SELECT * FROM balance_transactions WHERE plusforcompany=1 AND createdate >= now() - INTERVAL 365 DAY");
+            $res = $db->simpleQuery("SELECT * FROM balance_transactions WHERE NOT plusforcompany=0 AND createdate >= now() - INTERVAL 365 DAY");
             while ($row = $res->fetch_object()) {
-                $total += $row->price;
+                if ($row->plusforcompany == "1") {
+                    $total += $row->price;
+                } else {
+                    $total -= $row->price;
+                }
             }
             ?>
             <div class="card-content">
