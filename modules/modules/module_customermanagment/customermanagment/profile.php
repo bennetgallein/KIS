@@ -20,7 +20,7 @@ if (isset($params->delete)) {
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header" data-background-color="<?= $db->getConfig()['color']?>">
+                <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                     <h4 class="title">Profile of <?= $user1->firstname . " " . $user1->lastname ?></h4>
                 </div>
                 <div class="card-content">
@@ -82,25 +82,26 @@ if (isset($params->delete)) {
 
                     </div>
                     <div class="row">
-                        <!-- THIS BUTTON IS NOT IN HTML. NOT EVEN IN THE DEVTOOLS!?!?!? WTF-->
                         <a class="btn btn-primary pull-right" data-background-color="red"
                            href="module.php?module=customermanagment/profile.php&params=user|<?= $user->getId() ?>_delete|1">Delete
                             Profile </a>
-                        <!--<div class="clearfix"></div>-->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 <?php
-if ($db->moduleExists("Support Manager")) {
-    $module = $db->getModuleByName("Support Manager");
+
+$module = $db->getModuleByName("Support Manager");
+if (isset($module)) {
     if ($module->getIncludeable("profile_overview")['permission'] <= $user->getPermissions()) {
         $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("profile_overview")['link']);
     }
 }
-if ($db->moduleExists("Balance Manager")) {
-    $module = $db->getModuleByName("Balance Manager");
+
+
+$module = $db->getModuleByName("Balance Manager");
+if (isset($module)) {
     if ($module->getIncludeable("profile_transactions")['permission'] <= $user->getPermissions()) {
         $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("profile_transactions")['link']);
     }

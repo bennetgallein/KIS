@@ -19,14 +19,14 @@ Tip 2: you can also add an image using data-image tag
             </li>
             <li>
                 <?php
-                if ($db->moduleExists("Balance Manager")) {
                     $module = $db->getModuleByName("Balance Manager");
-                    if ($module->getIncludeable("display_money")['permission'] <= $user->getPermissions()) {
-                        include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("display_money")['link']);
-                        $money = getMoney($db, $user);
-                        $money = "<span class=\"badge\">" . $money . "€</span>";
+                    if (isset($module)) {
+                        if ($module->getIncludeable("display_money")['permission'] <= $user->getPermissions()) {
+                            include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("display_money")['link']);
+                            $money = getMoney($db, $user);
+                            $money = "<span class=\"badge\">" . $money . "€</span>";
+                        }
                     }
-                }
                 ?>
                 <a href="user.php">
                     <i class="material-icons">person</i>
