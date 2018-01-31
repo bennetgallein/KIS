@@ -8,7 +8,7 @@ This is the Documentation of the Framework we are using in our self-developed KI
 
 ## Module System:
 The Heart of our System is the Module System which enables you to install and develop modules that perfectly fit your needs.
-We offer basic documentation for ourselves, and for potential developers. Installing modules is pretty easy. Drop the Folder and the .json File in the 
+We offer basic documentation for ourselves, and for potential developers. Installing modules is pretty easy. Drop the Folder in the 
 Modules Folder and you are good to go. The Structure of a module is pretty simple. In the following we'll break up one of our modules and explain the 
 structure and the way the System handles the data.
 
@@ -180,7 +180,8 @@ These are files that can be included into other modules.
 
 Here is an example on how this can be used:
 ````php
-if ($db->moduleExists("Support Manager")) {
+$module = $db->moduleExists("Support Manager")
+if (isset($module)) {
     $module = $db->getModuleByName("Support Manager");
     if ($module->getIncludeable("profile_overview")['permission'] <= $user->getPermissions()) {
         include(dirname(__FILE__) . "/../" . $module->getIncludeable("profile_overview")['link']);
