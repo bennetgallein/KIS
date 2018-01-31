@@ -160,6 +160,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                 <form action="user.php?update=1" method="post">
                                     <div class="row">
                                         <div class="col-md-6">
+                                            <p>Kundennummer: <?= $user->getId() ?></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">First Name</label>
                                                 <input name="firstname" value="<?= $user->getFirstname() ?>" type="text"
