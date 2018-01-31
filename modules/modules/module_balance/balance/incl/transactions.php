@@ -1,5 +1,5 @@
 <?php
-$query = $db->simpleQuery("SELECT * FROM balance_transactions WHERE userid='" . $params->user . "'");
+$query = $db->simpleQuery("SELECT * FROM balance_transactions WHERE userid='" . $params->user . "' AND createdate >= now() - INTERVAL 30 DAY");
 if (!$query) {
     die("MySQL ERROR! <a href='changelog.php'>Submit Error here!</a>");
 }
