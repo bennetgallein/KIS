@@ -21,6 +21,11 @@
       "link": "manager.php",
       "permission": "1",
       "type": "nav"
+    },
+    {
+      "link": "balancemanager.php",
+      "permission": "3",
+      "type": "page"
     }
   ],
   "dashboards": [
