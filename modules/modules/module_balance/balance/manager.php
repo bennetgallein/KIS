@@ -17,6 +17,7 @@ if (!$query) {
                     <tr>
                         <th>Order ID</th>
                         <th>Price</th>
+                        <th>Message</th>
                         <th>Date</th>
                     </tr>
                     </thead>
@@ -28,7 +29,8 @@ if (!$query) {
                         while ($row = $query->fetch_object()): ?>
                             <tr>
                                 <td><?= $row->id ?></td>
-                                <td><?= $row->price ?>€</td>
+                                <td><?= (($row->positive) ? "+" : "-") . $row->price ?>€</td>
+                                <td><?= $row->text ?></td>
                                 <td><?= $row->createdate ?></td>
                             </tr>
                         <?php endwhile; } ?>

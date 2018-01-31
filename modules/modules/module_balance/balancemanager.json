@@ -23,9 +23,11 @@
       "type": "nav"
     },
     {
+      "icon": "money_off",
+      "name": "Send Money",
       "link": "balancemanager.php",
       "permission": "3",
-      "type": "page"
+      "type": "nav"
     }
   ],
   "dashboards": [
