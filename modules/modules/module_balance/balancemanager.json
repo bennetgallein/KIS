@@ -28,6 +28,13 @@
       "link": "balancemanager.php",
       "permission": "3",
       "type": "nav"
+    },
+    {
+      "icon": "account_balance",
+      "name": "Earnings",
+      "link": "earnings.php",
+      "permission": "3",
+      "type": "nav"
     }
   ],
   "dashboards": [
