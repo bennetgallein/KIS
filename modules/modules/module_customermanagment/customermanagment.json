@@ -1,0 +1,39 @@
+{
+  "name": "Customer Managment",
+  "version": "0.1",
+  "priority": "2",
+  "baseperm": "2",
+  "basepath": "customermanagment/",
+  "authors": [
+    {
+      "name": "Bennet Gallein",
+      "email": "bennet@intranetproject.net"
+    },
+    {
+      "name": "Tobias Kalmbach",
+      "email": "tobias@intranetproject.net"
+    }
+  ],
+  "navs": [
+    {
+      "icon": "supervisor_account",
+      "name": "Customer listing",
+      "link": "list.php",
+      "_comment": "available permissions are: user = 1, supporter = 2, admin = 3; incrementing perms include lower ones!",
+      "permission": "2",
+      "type": "nav"
+    },
+    {
+      "link": "profile.php",
+      "permission": "2",
+      "type": "page"
+    }
+  ],
+  "dashboards": [
+    {
+      "link": "include.php",
+      "permission": "2"
+    }
+  ],
+  "includeables": []
+}
