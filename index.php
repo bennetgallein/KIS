@@ -168,7 +168,7 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
 
     mail($to, $subject, $message, $headers);
 
-    $db->prepareQuery("INSERT INTO vertification_tokens (useremail, token) VALUES (?, ?)", array(
+    $db->prepareQuery("INSERT INTO vertification_tokens (usermail, token) VALUES (?, ?)", array(
         $db->escape($email), $db->escape($token)
     ));
 
