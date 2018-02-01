@@ -1,3 +1,6 @@
+
+ErrorDocument 500 error.php
+
 <Files "config.json">
 Order Allow,Deny
 Deny from all
