@@ -7,6 +7,7 @@ include("../php/database.php");
 include(dirname(__FILE__) . "/../php/User.php");
 
 $db = new DB();
+
 if (!isset($_SESSION['user']) && isset($_COOKIE['identifier']) && isset($_COOKIE['securitytoken'])) {
     $identifier = $_COOKIE['identifier'];
     $securitytoken = $_COOKIE['securitytoken'];

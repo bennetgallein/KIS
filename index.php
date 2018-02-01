@@ -2,6 +2,8 @@
 
 require 'php/database.php';
 $db = new DB();
+
+
 if (!isset($_SESSION['user']) && isset($_COOKIE['identifier']) && isset($_COOKIE['securitytoken'])) {
     $identifier = $_COOKIE['identifier'];
     $securitytoken = $_COOKIE['securitytoken'];

@@ -141,8 +141,13 @@ class DB {
         }
         return $randomString;
     }
+    function triggerFatalError() {
+        trigger_error("Fatal error", E_USER_ERROR);
+    }
 
 }
-
-
+function error_found(){
+    header("Location: error.php");
+}
+set_error_handler('error_found');
 session_start();
