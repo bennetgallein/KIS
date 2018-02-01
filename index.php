@@ -41,7 +41,7 @@ if (!(isset($_GET['method']))) {
     header("Location: index.php?method=login");
     die();
 }
-if (!($_GET['method'] == 'login' || $_GET['method'] == 'register')) {
+if (!($_GET['method'] == 'login' || $_GET['method'] == 'register') || $_GET['method'] == 'confirm') {
     header("Location: index.php?method=login");
     die();
 }
@@ -136,8 +136,46 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
     $db->prepareQuery("INSERT INTO balances (userid, balance) VALUES (?, ?)", array(
             $db->escape($id), $db->escape("0.00")
     ));
-    header("Location: index.php?method=login");
+
+    $token = $db->generateRandomString(5);
+
+    $to      = $email;
+    $subject = 'Confirmation Token';
+    $message = '
+    <div style="width: 68%; margin-left: 15%; font-size: 1.3em; margin-top: 5%; background: #288feb; padding: 1%; height: 70%; border-radius: 15px; color: white;">
+    <div>
+        <div style="height: 130px;">
+            <img src="assets/favicon.png" style="width: 128px; float:left; background-color: #FFFFFF; border-radius: 15px;">
+            <h2 style="text-align: center; width: calc(100% - 128px); float:left; font-size: 50px">Thank you for registering!</h2>
+        </div>
+        <p style="text-align: center"><br><br> Thank you for registering. In Order to access your Dashboard, you need to confirm your account. Paste the code below on the website nd continue.</p>
+    </div>
+    <div style="width: 100%; text-align: center; font-size: 1.7em; height: auto;">
+        <div style="width: 40%; float: left;  margin-left: 2%; padding: 1%; background-color: #4FA3EE">
+            Here is your registration code:<br>
+            ' . $token . '
+        </div>
+        <div style="width: 40%; float: right; margin-right: 2%; padding: 1%; background-color: #4FA3EE">
+            Or click on this link (maintenace): <br>
+            <a href="#" style="color: #FFF;">https://www.link.registration.com</a>
+        </div>
+    </div>
+</div>
+    ';
+    $headers = 'From: webmaster@example.com' . "\r\n" .
+        'Reply-To: webmaster@example.com' . "\r\n" .
+        'X-Mailer: PHP/' . phpversion();
+
+    mail($to, $subject, $message, $headers);
+
+    $db->prepareQuery("INSERT INTO vertification_tokens (useremail, token) VALUES (?, ?)", array(
+        $db->escape($email), $db->escape($token)
+    ));
+
+    header("Location: confirm.php");
 }
+
+
 ?>
 <!doctype html>
 <html lang="en">

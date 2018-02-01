@@ -1,5 +1,10 @@
 <html>
+<?php
 
+require 'php/database.php';
+$db = new DB();
+
+?>
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon.png" />
@@ -23,12 +28,29 @@
 
 <body>
 <div class="row-fluid">
+    <?php
+    if (isset($_POST['email']) && isset($_POST['token'])) {
+        $email = $db->getConnection()->escape_string($_POST['email']);
+        $token = $db->getConnection()->escape_string($_POST['token']);
+
+        $res = $db->simpleQuery("SELECT * FROM vertification_tokens WHERE sermail='" . $email . "' AND token='" . $token . "' LIMIT 1");
+        if ($res) {
+            if ($res->num_rows == 0) {
+                echo "Wrong confirmation key!";
+            } else {
+                $db->simpleQuery("UPDATE users SET vertified=1 WHERE email='" . $email . "'");
+            }
+        }
+    }
+    ?>
     <div class="col-md-4 col-md-offset-4">
         <form class="navbar-form navbar-left form-signin">
             <h3 class="form-signin-heading">Confirmation</h3>
             <hr class="colorgraph">
             <br>
-            <input type="text" value="" name="email" placeholder="Confirmation key" class="form-control" autofocus="" required/>
+            <input type="text" value="" name="email" placeholder="email" class="form-control" autofocus="" required/>
+            <br>
+            <input type="text" value="" name="token" maxlength="5" placeholder="Confirmation key" class="form-control" autofocus="" required/>
             <div style="margin-top: 15px"><a href="#">Resend email</a></div>
             <button type="submit" value="confirm" name="Submit" class="btn btn-lg btn-primary btn-block"/>Confirm!</button>
         </form>
