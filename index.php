@@ -75,6 +75,10 @@ if (isset($_GET['continue_login']) && isset($_GET['method'])) {
         var_dump($res);
         die();
     }
+    if ($data->vertified == '0') {
+        header("Location: confirm.php");
+        die();
+    }
     $arr = array(
         "realid" => $data->_id,
         "id" => $data->id,
@@ -141,7 +145,7 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
 
     $to      = $email;
     $subject = 'Confirmation Token';
-    $message = '
+    /*$message = '
     <div style="width: 68%; margin-left: 15%; font-size: 1.3em; margin-top: 5%; background: #288feb; padding: 1%; height: 70%; border-radius: 15px; color: white;">
     <div>
         <div style="height: 130px;">
@@ -161,8 +165,9 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
         </div>
     </div>
 </div>
-    ';
-    $headers = 'From: webmaster@example.com' . "\r\n" .
+    ';*/
+    $message = "TEST" . $token;
+    $headers = 'From: test@intranetproject.net' . "\r\n" .
         'Reply-To: webmaster@example.com' . "\r\n" .
         'X-Mailer: PHP/' . phpversion();
 
