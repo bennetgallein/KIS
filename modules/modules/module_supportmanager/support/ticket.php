@@ -40,7 +40,8 @@ if (property_exists($params, 'close')) {
         <div class="card">
             <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                 <h4 class="title"><i class="material-icons">question_answer</i>Ticket
-                    ID: <?= $row->id ?> - <?= $aaa->firstname . " " . $aaa->lastname . ": " . $row->title ?></h4>
+                    ID: <?= $row->id ?> - <?= $aaa->firstname . " " . $aaa->lastname . ": " . $row->title ?><button class="btn btn-default pull-right" type="submit" style="background-color: white; color: #000; margin-top: -5px">Take this ticket</button></h4>
+
             </div>
             <div class="card-content">
                 <div class="panel-group">

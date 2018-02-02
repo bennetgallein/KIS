@@ -35,6 +35,20 @@
       "link": "earnings.php",
       "permission": "3",
       "type": "nav"
+    },
+    {
+      "icon": "account_balance",
+      "name": "Invoice list",
+      "link": "invoicelist.php",
+      "permission": "1",
+      "type": "nav"
+    },
+    {
+      "icon": "account_balance",
+      "name": "Invoice",
+      "link": "invoice.php",
+      "permission": "1",
+      "type": "page"
     }
   ],
   "dashboards": [

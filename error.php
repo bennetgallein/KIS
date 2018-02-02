@@ -25,8 +25,8 @@
 <body>
 <div class="container" style="margin-top: 15%;">
     <h2>It seems like you requested a site that wasn't found or there has been an internal error.<br><br>Either way, if this
-        error persists you can contact us. <br>Email: <a href="mailto:support@fee-hosting.de">support@fee-hosting.de</a>
-        <br> Tweet us: <a href="https://twitter.com/FeeHostingcom">Twitter</a>.</h2>
+        error persists you can contact us. <br>Email: <a href="mailto:support@fee-hosting.de">support@fee-hosting.de</a>.
+<br> Tweet us: <a href="https://twitter.com/FeeHostingcom">Twitter</a>.</h2>
 </div>
 </body>
 
