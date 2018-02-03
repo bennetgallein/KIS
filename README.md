@@ -199,6 +199,8 @@ Here is a list of them:
 | --- | --- |
 | $db | this is the database variable |
 | $user | this is the current logged in user object |
+| $requestpath | The full request path |
+| $params | the get params, if there are some |
 
 Let's explain the $db and $user.
 

@@ -147,7 +147,7 @@ class DB {
 
 }
 function error_found(){
-    //header("Location: error.php");
+    @header("Location: error.php");
 }
-set_error_handler('error_found');
+//set_error_handler('error_found');
 session_start();

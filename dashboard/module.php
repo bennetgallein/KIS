@@ -44,6 +44,7 @@ if (!isset($_SESSION['user']) && isset($_COOKIE['identifier']) && isset($_COOKIE
 }
 $params = new stdClass();
 if (isset($_GET['params'])) {
+    $requestpath = $_SERVER['REQUEST_URI'];
     $aparam = explode("_", $_GET['params']);
     foreach ($aparam as $param) {
         $keyvalue = explode("|", $param);

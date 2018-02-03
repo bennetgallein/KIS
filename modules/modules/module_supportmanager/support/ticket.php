@@ -15,14 +15,22 @@ $aaa = $use->fetch_object();
 if (property_exists($params, 'awnser')) {
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if (isset($_POST['message']) && (trim($_POST['message']) != "")) {
-            echo "message: " . var_dump($_POST['message']);
             if ($row->userid == $user->getId()) {
                 $awns = 2;
             } else {
                 $awns = 1;
             }
-            $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, awnser) VALUES ('" . $row->id . "', '" . $db->getConnection()->escape_string($_POST['message']) . "', '" . $awns . "')");
+            $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, writername, awnser) VALUES ('" . $row->id . "', '" . $db->getConnection()->escape_string($_POST['message']) . "', '" . $db->getConnection()->escape_string($user->getName()) . "', " . $awns . "')");
         }
+    }
+}
+if (property_exists($params, 'take')) {
+    if ($row->status == 1 && $user->getPermissions() >= 2) {
+        $db->simpleQuery("UPDATE tickets SET status = 3 WHERE id='" . $id . "'");
+        $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, awnser) VALUES ('" . $row->id . "', '" . $user->getName() . "is now supporting this Ticket.', 3)");
+        header("Location: module.php?module=support/ticket.php&params=id|" . $id);
+    } else {
+        die("YOU DON'T HAVE PERMISSION!");
     }
 }
 if (property_exists($params, 'close')) {
@@ -40,20 +48,26 @@ if (property_exists($params, 'close')) {
         <div class="card">
             <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                 <h4 class="title"><i class="material-icons">question_answer</i>Ticket
-                    ID: <?= $row->id ?> - <?= $aaa->firstname . " " . $aaa->lastname . ": " . $row->title ?><button class="btn btn-default pull-right" type="submit" style="background-color: white; color: #000; margin-top: -5px">Take this ticket</button></h4>
-
+                    ID: <?php echo $row->id ?> - <?= $aaa->firstname . " " . $aaa->lastname . ": " . $row->title;
+                    if ($user->getPermissions() >= 2) {
+                        echo '<button class="btn btn-default pull-right" type="submit" style="background-color: white; color: #000; margin-top: -5px"><a href="' . $requestpath . '_take|1" style="color: black !important">Take this ticket</a></button>';
+                    }
+                    ?>
+                </h4>
             </div>
+
             <div class="card-content">
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <?php
-                            $res = $db->simpleQuery("SELECT * FROM tickets_messages WHERE ticketid=" . $db->getConnection()->escape_string($id));
+                            $res = $db->simpleQuery("SELECT * FROM tickets_messages WHERE ticketid=" . $db->getConnection()->escape_string($id) . " ORDER BY id");
                             while ($row1 = $res->fetch_object()) {
                                 if ($row1->awnser == '1'):?>
                                     <div class="panel-group col-md-10 pull-right">
                                         <div class="panel panel-default">
                                             <div class="panel-body" data-background-color="blue">
+                                                <small><?= $row1->writername . " on " . $row1->created_at?>:</small><br>
                                                 <?= $row1->message ?>
                                             </div>
                                         </div>
@@ -62,6 +76,7 @@ if (property_exists($params, 'close')) {
                                     <div class="panel-group col-md-10">
                                         <div class="panel panel-default">
                                             <div class="panel-body">
+                                                <small><?= $row1->writername . " on " . $row1->created_at?>:</small><br>
                                                 <?= $row1->message ?>
                                             </div>
                                         </div>
@@ -71,10 +86,11 @@ if (property_exists($params, 'close')) {
                                         <div class="panel panel-default">
                                             <div class="panel-body" data-background-color="red"
                                                  style="text-align: center;">
-                                                <?= $row1->message ?>
+                                                <hr><?= $row1->message ?>
                                             </div>
                                         </div>
                                     </div>
+
                                 <?php endif;
                             }
                             ?>
@@ -96,8 +112,8 @@ if (property_exists($params, 'close')) {
                                     ticket</a>
                             </button>
                         <?php endif; ?>
-                            <button class="btn btn-default pull-right" type="submit" data-background-color="blue">Submit<i
-                                        class="material-icons">send</i></button>
+                        <button class="btn btn-default pull-right" type="submit" data-background-color="blue">Submit<i
+                                    class="material-icons">send</i></button>
                     </div>
                 </form>
             </div>

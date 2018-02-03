@@ -31,7 +31,7 @@
     },
     {
       "link": "ticket.php",
-      "permission": "2",
+      "permission": "1",
       "type": "page"
     }
   ],

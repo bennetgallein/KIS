@@ -33,18 +33,20 @@ $db = new DB();
         $email = $db->getConnection()->escape_string($_POST['email']);
         $token = $db->getConnection()->escape_string($_POST['token']);
 
-        $res = $db->simpleQuery("SELECT * FROM vertification_tokens WHERE sermail='" . $email . "' AND token='" . $token . "' LIMIT 1");
+        $res = $db->simpleQuery("SELECT * FROM vertification_tokens WHERE usermail='" . $email . "' AND token='" . $token . "' LIMIT 1");
+        var_dump($res);
         if ($res) {
             if ($res->num_rows == 0) {
                 echo "Wrong confirmation key!";
             } else {
                 $db->simpleQuery("UPDATE users SET vertified=1 WHERE email='" . $email . "'");
+                header("Location: index.php");
             }
         }
     }
     ?>
     <div class="col-md-4 col-md-offset-4">
-        <form class="navbar-form navbar-left form-signin">
+        <form class="navbar-form navbar-left form-signin" method="post" action="confirm.php">
             <h3 class="form-signin-heading">Confirmation</h3>
             <hr class="colorgraph">
             <br>
