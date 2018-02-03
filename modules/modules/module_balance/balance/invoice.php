@@ -7,17 +7,21 @@
             <div class="card-content table-responsive">
                 <div>
                 <div class="pull-right col-md-3">
-                    <p>Address</p>
-                    <p>City, ZIP</p>
-                    <p>Phone??</p>
-                    <h5>Date</h5>
+                    <address>
+                        Date<br>
+                        Street, Number<br>
+                        City, ZIP<br>
+                        <abbr title="Phone">P:</abbr> (123) 456-7890
+                    </address>
                 </div>
                 <div class="pull-left">
-                    <h3>Billed to</h3>
-                    <p>Name/Company</p>
-                    <p>Address</p>
-                    <p>City, ZIP</p>
-                    <p>Phone??</p>
+                    <address>
+                        <h3><strong>Company</strong></h3><br>
+                        Street, Number<br>
+                        City, ZIP<br>
+                        <abbr title="Phone">P:</abbr> (123) 456-7890
+                    </address>
+
                 </div>
                 </div>
                 <table class="table">
