@@ -40,6 +40,7 @@ class Module {
     private $authors;
     private $baseperm;
     var $priority;
+    private $raw;
 
     private $path;
     private $includeables;
@@ -49,6 +50,7 @@ class Module {
     private $repository;
 
     public function __construct($json, $path) {
+        $this->raw = $json;
         $this->path = $path;
         $this->name = $json['name'];
         $this->version = $json['version'];
@@ -68,6 +70,10 @@ class Module {
             }
         }
         return false;
+    }
+
+    public function getRaw() {
+        return $this->raw;
     }
 
     public function getRepository() {
