@@ -34,7 +34,7 @@ if (property_exists($params, 'take')) {
     }
 }
 if (property_exists($params, 'close')) {
-    if ($row->userid == $user->getId()) {
+    if ($row->userid == $user->getId() || $user->getPermissions() >= 2) {
         $db->simpleQuery("UPDATE tickets SET status = 2 WHERE id='" . $id . "'");
         $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, awnser) VALUES ('" . $row->id . "', 'Ticket closed by customer', 3)");
         header("Location: module.php?module=support/ticket.php&params=id|" . $id);
