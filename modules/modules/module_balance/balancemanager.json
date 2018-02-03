@@ -48,7 +48,7 @@
       "name": "Invoice",
       "link": "invoice.php",
       "permission": "1",
-      "type": "page"
+      "type": "nav"
     }
   ],
   "dashboards": [
