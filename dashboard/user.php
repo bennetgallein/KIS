@@ -160,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                 <form action="user.php?update=1" method="post">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <p>Kundennummer: <?= $user->getId() ?></p>
+                                            <p>Your User ID: <?= $user->getId() ?></p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -198,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                     <div class="row">
                                         <div class="col-md-8">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Adress</label>
+                                                <label class="control-label">Address</label>
                                                 <input name="adress"
                                                        value="<?= (isset($data->adress) ? $data->adress : "") ?>"
                                                        type="text" class="form-control">

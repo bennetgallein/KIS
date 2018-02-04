@@ -21,11 +21,11 @@ foreach ($db->getModules() as $modd): ?>
 
                         foreach ($modd->getNavs() as $nav): ?>
                             <a class="btn btn-primary" data-toggle="collapse" href="#collapse<?= $id ?>"
-                               aria-expanded="false" aria-controls="collapse<?= $id ?>">Navbar<?= $id ?>
+                               aria-expanded="false" aria-controls="collapse<?= $id ?>">Navbar<?= $id ?> <span class="caret"></span>
                             </a>
                             <div class="collapse" id="collapse<?= $id ?>">
                                 <li class="list-group-item"><b>Navs:</b></li>
-                                <li class="list-group-item" style="margin-left: 15px;"><b>Icon: <?= $nav['icon'] ?></b>
+                                <li class="list-group-item" style="margin-left: 15px;"><b>Icon: <?= $nav['icon'] ?> </b>
                                 </li>
                                 <li class="list-group-item" style="margin-left: 15px;"><b>Name: <?= $nav['name'] ?></b>
                                 </li>
@@ -41,7 +41,7 @@ foreach ($db->getModules() as $modd): ?>
                         <?php
                         foreach ($modd->getDashboards() as $dashboard): ?>
                             <a class="btn btn-primary" data-toggle="collapse" href="#collapse<?= $id ?>"
-                               aria-expanded="false" aria-controls="collapse<?= $id ?>">Dashboard<?= $id ?>
+                               aria-expanded="false" aria-controls="collapse<?= $id ?>">Dashboard<?= $id ?> <span class="caret"></span>
                             </a>
                             <div class="collapse" id="collapse<?= $id ?>">
                                 <li class="list-group-item"><b>Dashboards: <?= "Dashboard" ?></b></li>
@@ -54,7 +54,7 @@ foreach ($db->getModules() as $modd): ?>
                         <br>
                         <?php foreach ($modd->getIncludeables() as $includeable): ?>
                             <a class="btn btn-primary" data-toggle="collapse" href="#collapse<?= $id ?>"
-                               aria-expanded="false" aria-controls="collapse<?= $id ?>">Includeable<?= $id ?>
+                               aria-expanded="false" aria-controls="collapse<?= $id ?>">Includeable<?= $id ?> <span class="caret"></span>
                             </a>
                             <div class="collapse" id="collapse<?= $id ?>">
                                 <li class="list-group-item">Includeables:</li>

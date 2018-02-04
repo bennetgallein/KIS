@@ -16,7 +16,7 @@
   ],
   "navs": [
     {
-      "icon": "account_balance",
+      "icon": "compare_arrows",
       "name": "Affiliate",
       "link": "overview.php",
       "permission": "1",

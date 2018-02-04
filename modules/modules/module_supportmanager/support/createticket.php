@@ -30,15 +30,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <div class="input-group col-md-12">
                         <input type="text" name="title" class="form-control" placeholder="Title">
                     </div>
-                    <label>Product:
-                        <select name="product">
-                            <option value="123">Webhosting</option>
-                            <option value="231">vServer</option>
-                            <option value="321">KVM</option>
-                            <option value="132">PLEXwas</option>
-                        </select>
-                    </label>
-
+                    <div class="dropdown">
+                        <button data-background-color="blue" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Product
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#">Webhosting</a></li>
+                            <li><a href="#">vServer</a></li>
+                            <li><a href="#">KVM</a></li>
+                            <li><a href="#">PLEXwas</a></li>
+                        </ul>
+                    </div>
                     <div class="input-group col-md-12">
                         <textarea type="text" name="message" class="form-control" placeholder="Ticket text" id="comment"
                                   rows="5"></textarea>
