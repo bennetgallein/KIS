@@ -1,9 +1,9 @@
 {
-  "name": "Balance Manager",
+  "name": "Affiliate System",
   "version": "0.1",
   "priority": "1",
   "baseperm": "1",
-  "basepath": "balance/",
+  "basepath": "affiliate/",
   "authors": [
     {
       "name": "Bennet Gallein",
@@ -16,37 +16,9 @@
   ],
   "navs": [
     {
-      "icon": "attach_money",
-      "name": "Balance",
-      "link": "manager.php",
-      "permission": "1",
-      "type": "nav"
-    },
-    {
-      "icon": "money_off",
-      "name": "Send Money",
-      "link": "balancemanager.php",
-      "permission": "3",
-      "type": "nav"
-    },
-    {
       "icon": "account_balance",
-      "name": "Earnings",
-      "link": "earnings.php",
-      "permission": "3",
-      "type": "nav"
-    },
-    {
-      "icon": "account_balance",
-      "name": "Invoice list",
-      "link": "invoicelist.php",
-      "permission": "1",
-      "type": "nav"
-    },
-    {
-      "icon": "account_balance",
-      "name": "Invoice",
-      "link": "invoice.php",
+      "name": "Affiliate",
+      "link": "overview.php",
       "permission": "1",
       "type": "nav"
     }
