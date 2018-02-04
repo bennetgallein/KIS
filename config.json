@@ -10,10 +10,10 @@
     "id_lenght": 100
   }],
   "database": [{
-    "host": "wp451.webpack.hosteurope.de",
-    "user": "db12836029-kis",
-    "password": "KUNDENIS",
-    "database": "db12836029-kis"
+    "host": "46.251.239.147",
+    "user": "kis",
+    "password": "kis",
+    "database": "kis"
   }],
   "footer": [{
     "Fee-Hosting.com": "https://fee-hosting.com",
