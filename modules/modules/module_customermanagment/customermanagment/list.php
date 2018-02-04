@@ -6,8 +6,7 @@
  * Date: 1/16/2018
  * Time: 9:45 PM
  */
-class Paginator
-{
+class Paginator {
 
     private $_conn;
     private $_limit;
@@ -15,8 +14,7 @@ class Paginator
     private $_query;
     private $_total;
 
-    public function __construct($conn, $query)
-    {
+    public function __construct($conn, $query) {
 
         $this->_conn = $conn;
         $this->_query = $query;
@@ -26,8 +24,7 @@ class Paginator
 
     }
 
-    public function getData($limit = 10, $page = 1)
-    {
+    public function getData($limit = 10, $page = 1) {
 
         $this->_limit = $limit;
         $this->_page = $page;
@@ -52,8 +49,7 @@ class Paginator
         return $result;
     }
 
-    public function createLinks($links, $list_class)
-    {
+    public function createLinks($links, $list_class) {
         if ($this->_limit == 'all') {
             return '';
         }
