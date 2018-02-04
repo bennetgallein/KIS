@@ -6,7 +6,8 @@
  * Date: 1/16/2018
  * Time: 9:45 PM
  */
-class Paginator {
+class Paginator
+{
 
     private $_conn;
     private $_limit;
@@ -14,7 +15,8 @@ class Paginator {
     private $_query;
     private $_total;
 
-    public function __construct($conn, $query) {
+    public function __construct($conn, $query)
+    {
 
         $this->_conn = $conn;
         $this->_query = $query;
@@ -24,7 +26,8 @@ class Paginator {
 
     }
 
-    public function getData($limit = 10, $page = 1) {
+    public function getData($limit = 10, $page = 1)
+    {
 
         $this->_limit = $limit;
         $this->_page = $page;
@@ -49,7 +52,8 @@ class Paginator {
         return $result;
     }
 
-    public function createLinks($links, $list_class) {
+    public function createLinks($links, $list_class)
+    {
         if ($this->_limit == 'all') {
             return '';
         }
@@ -102,7 +106,7 @@ $db->disconnect();
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header" data-background-color="<?= $db->getConfig()['color']?>">
+            <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                 <h4 class="title">User Overwiew</h4>
                 <p class="category">These are all the users currently registered in the System</p>
             </div>
@@ -122,19 +126,22 @@ $db->disconnect();
                     <tbody>
                     <?php for ($i = 0; $i < count($results->data); $i++) : ?>
                         <tr>
-                            <td><?= $results->data[$i]['_id']?></td>
-                            <td><a href="module.php?module=customermanagment/profile.php&params=user|<?= $results->data[$i]['id']?>"><?= $results->data[$i]['id'] ?></a></td>
+                            <td><?= $results->data[$i]['_id'] ?></td>
+                            <td>
+                                <a href="module.php?module=customermanagment/profile.php&params=user|<?= $results->data[$i]['id'] ?>"><?= $results->data[$i]['id'] ?></a>
+                            </td>
                             <td><?= $results->data[$i]['email'] ?></td>
                             <td><?= $results->data[$i]['permissions'] ?></td>
                             <td><?= $results->data[$i]['firstname'] ?></td>
                             <td><?= $results->data[$i]['lastname'] ?></td>
                             <td><?= $results->data[$i]['registered_at'] ?></td>
-                            <td><a><i class="material-icons small">edit</i>Edit</a></td>
                         </tr>
                     <?php endfor; ?>
                     </tbody>
                 </table>
-                <?php echo $Paginator->createLinks( $links, 'pagination pagination-sm' ); ?>
+                <div style="width: 50%; margin-left: 25%; text-align: center">
+                    <?php echo $Paginator->createLinks($links, 'pagination pagination-sm'); ?>
+                </div>
             </div>
         </div>
     </div>
