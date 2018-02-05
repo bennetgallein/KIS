@@ -29,10 +29,10 @@ if ($view == '4') {
 <div class="row">
     <div class="col-md-12">
         <div class="center-block">
-            <a class="btn" href="module.php?module=support/ticketoverview.php&params=view|1">View Open Tickets</a>
-            <a class="btn" href="module.php?module=support/ticketoverview.php&params=view|2">View Closed Tickets</a>
-            <a class="btn" href="module.php?module=support/ticketoverview.php&params=view|3">View Only Assigned Tickets</a>
-            <a class="btn" href="module.php?module=support/ticketoverview.php&params=view|4">View All Tickets</a>
+            <a class="btn" href="module.php?module=support/ticketoverview.php&params=view|1" style="background-color: #62ADF0">View Open Tickets</a>
+            <a class="btn" href="module.php?module=support/ticketoverview.php&params=view|2" style="background-color: #62ADF0">View Closed Tickets</a>
+            <a class="btn" href="module.php?module=support/ticketoverview.php&params=view|3" style="background-color: #62ADF0">View Only Assigned Tickets</a>
+            <a class="btn" href="module.php?module=support/ticketoverview.php&params=view|4" style="background-color: #62ADF0">View All Tickets</a>
         </div>
         <div class="card">
             <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
