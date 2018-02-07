@@ -33,25 +33,44 @@ class User {
     public function getId() {
         return $this->id;
     }
+
+    public function setEmail($x) {
+        $this->email = $x;
+    }
+
     public function getEmail() {
         return $this->email;
     }
+
+    public function setFirstname($x) {
+        $this->firstname = $x;
+    }
+
     public function getFirstname() {
         return $this->firstname;
     }
+
+    public function setLastname($x) {
+        $this->lastname = $x;
+    }
+
     public function getLastname() {
         return $this->lastname;
     }
+
     public function getPassword() {
         return $this->password;
     }
+
     public function getRealid() {
         return $this->realid;
     }
+
     public function getName() {
         return $this->firstname . " " . $this->lastname;
     }
+
     public function getPermissions() {
-      return $this->permissions;
+        return $this->permissions;
     }
 }

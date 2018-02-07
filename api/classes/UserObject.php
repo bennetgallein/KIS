@@ -1,4 +1,5 @@
 <?php
+
 namespace API;
 
 class UserObject {
@@ -9,48 +10,42 @@ class UserObject {
         $this->db = $db;
     }
 
-    public function getUserByID($id) {
-        $sth = $this->db->prepare('SELECT * FROM users WHERE id= :id LIMIT 1');
+    public function getUser($id) {
+        $sth = $this->db->prepare('SELECT _id, id, email, firstname, lastname, permissions, registered_at, vertified FROM users WHERE id= :id LIMIT 1');
         $sth->bindParam(':id', $id);
         $sth->execute();
+        $userclass = new \stdClass();
         if ($sth->rowCount() >= 1) {
             $results = $sth->fetchAll(\PDO::FETCH_ASSOC);
             $results = $results[0];
-            $array = array(
-                '_id' => $results['_id'],
-                'id' => $results['id'],
-                'email' => $results['email'],
-                'firstname' => $results['firstname'],
-                'lastname' => $results['lastname'],
-                'permissions' => $results['permissions'],
-                'registered_at' => $results['registered_at']
-            );
+            $address = $this->getAddress($results['id']);
+            foreach ($results as $key => $data) {
+                $userclass->$key = $data;
+            }
+            $userclass->address = $address;
         } else {
-            $array = array(
-                'error' => 'true',
-                'code' => '404',
-                'message' => 'User with that ID not found!'
-            );
+            $userclass->error = true;
+            $userclass->code = 404;
+            $userclass->message = 'User with that ID not found!';
         }
-        return $array;
+        return json_encode($userclass);
     }
 
     public function getUsers() {
-        $sth = $this->db->prepare('SELECT * FROM users');
+        $sth = $this->db->prepare('SELECT _id, id, email, firstname, lastname, permissions, registered_at, vertified FROM users');
         $sth->execute();
         $results = $sth->fetchAll(\PDO::FETCH_ASSOC);
+
         $array = array();
+
         foreach ($results as $result) {
-            $arr = array(
-                '_id' => $result['_id'],
-                'id' => $result['id'],
-                'email' => $result['email'],
-                'firstname' => $result['firstname'],
-                'lastname' => $result['lastname'],
-                'permissions' => $result['permissions'],
-                'registered_at' => $result['registered_at']
-            );
-            array_push($array, $arr);
+            $address = $this->getAddress($result['id']);
+            $user = new \stdClass();
+            foreach ($result as $key => $value) {
+                $user->$key = $value;
+            }
+            $user->address = $address;
+            array_push($array, $user);
         }
         return $array;
     }
@@ -58,23 +53,19 @@ class UserObject {
     public function getAddress($id) {
         $sth = $this->db->prepare('SELECT * FROM adresses WHERE userid = :id LIMIT 1');
         $sth->bindParam(':id', $id);
-        $res = $sth->execute();
+        $sth->execute();
+        $address = new \stdClass();
         if ($sth->rowCount() >= 1) {
             $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
-            $arr = array(
-                'address' => $result['adress'],
-                'company' => $result['company'],
-                'city' => $result['city'],
-                'country' => $result['country'],
-                'postalcode' => $result['postalcode']
-            );
+            foreach ($result[0] as $key => $value) {
+                $address->$key = utf8_encode($value);
+            }
         } else {
-            $arr = array(
-                'error' => true,
-                'code' => '404',
-                'message' => 'Error 404. User has no data set!'
-            );
+            $address->error = true;
+            $address->code = 404;
+            $address->message = 'Error 404. User has no data set!';
+
         }
-        return $arr;
+        return $address;
     }
 }

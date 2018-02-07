@@ -45,10 +45,10 @@ $app->get($basePath . '/users', function ($request, $response, $args) {
 $app->get($basePath . '/users/{id}', function ($request, $response, $args) {
     $user_id = $args['id'];
     $userclass = new UserObject($this->db);
-    $user = $userclass->getUserByID($user_id);
+    $user = $userclass->getUser($user_id);
 
-    $response->withHeader('Content-Type', 'application/json');
-    $response->write(json_encode($user, JSON_FORCE_OBJECT));
+    $response = $response->withHeader('Content-Type', 'application/json');
+    $response->write($user);
     return $response;
 });
 
@@ -57,8 +57,8 @@ $app->get($basePath . '/address/{id}', function ($request, $response, $args) {
     $userclass = new UserObject($this->db);
     $user = $userclass->getAddress($user_id);
 
-    $response->withHeader('Content-Type', 'application/json');
-    $response->write(json_encode($user, JSON_FORCE_OBJECT));
+    $response = $response->withHeader('Content-Type', 'application/json');
+    $response->write(json_encode($user));
     return $response;
 });
 
