@@ -5,7 +5,13 @@
         "zzantares/proxmoxve": "~3.0",
         "paypal/rest-api-sdk-php": "*",
         "planetteamspeak/ts3-php-framework": "^1.1",
-        "bennetgallein/trello": "@dev"
+        "bennetgallein/trello": "@dev",
+        "slim/slim": "^3.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "API\\": "api/classes/"
+        }
     },
     "authors": [
         {
