@@ -77,7 +77,7 @@ if (isset($_GET['continue_login']) && isset($_GET['method'])) {
         var_dump($res);
         die();
     }
-    if ($data->vertified == '0') {
+    if ($data->verified == '0') {
         header("Location: confirm.php");
         die();
     }

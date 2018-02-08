@@ -23,17 +23,6 @@
       "type": "nav"
     }
   ],
-  "dashboards": [
-    {
-      "link": "dashboard/include.php",
-      "permission": "1"
-    }
-  ],
-  "includeables": [
-    {
-      "name": "display_money",
-      "link": "incl/overview.php",
-      "permission": "2"
-    }
-  ]
+  "dashboards": [],
+  "includeables": []
 }
