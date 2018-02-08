@@ -39,7 +39,7 @@ $db = new DB();
             if ($res->num_rows == 0) {
                 echo "Wrong confirmation key!";
             } else {
-                $db->simpleQuery("UPDATE users SET vertified=1 WHERE email='" . $email . "'");
+                $db->simpleQuery("UPDATE users SET verified=1 WHERE email='" . $email . "'");
                 header("Location: index.php");
             }
         }

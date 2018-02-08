@@ -11,7 +11,7 @@ class UserObject {
     }
 
     public function getUser($id) {
-        $sth = $this->db->prepare('SELECT _id, id, email, firstname, lastname, permissions, registered_at, vertified FROM users WHERE id= :id LIMIT 1');
+        $sth = $this->db->prepare('SELECT _id, id, email, firstname, lastname, permissions, registered_at, verified FROM users WHERE id= :id LIMIT 1');
         $sth->bindParam(':id', $id);
         $sth->execute();
         $userclass = new \stdClass();
@@ -32,7 +32,7 @@ class UserObject {
     }
 
     public function getUsers() {
-        $sth = $this->db->prepare('SELECT _id, id, email, firstname, lastname, permissions, registered_at, vertified FROM users');
+        $sth = $this->db->prepare('SELECT _id, id, email, firstname, lastname, permissions, registered_at, verified FROM users');
         $sth->execute();
         $results = $sth->fetchAll(\PDO::FETCH_ASSOC);
 
