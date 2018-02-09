@@ -39,8 +39,8 @@ class DB {
     }
 
     public function connect() {
-        $this->connection = $db = new MySQLi($this->cfg["database"][0]["host"], $this->cfg['database'][0]['user'], $this->cfg['database'][0]['password'], $this->cfg['database'][0]['database']);
-        $this->connection->set_charset("utf8");
+        $this->connection = new MySQLi($this->cfg["database"][0]["host"], $this->cfg['database'][0]['user'], $this->cfg['database'][0]['password'], $this->cfg['database'][0]['database']);
+        $this->connection->set_charset("utf-8");
         //$this->simpleQuery("SET names UTF-8");
     }
 

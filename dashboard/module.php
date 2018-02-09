@@ -158,3 +158,6 @@ $amodule = $_GET['module'];
 </script>
 
 </html>
+<?php
+$db->disconnect();
+?>
