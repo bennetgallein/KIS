@@ -54,10 +54,10 @@ if (isset($_POST['amount'])) {
     $payment->setIntent('sale')
         ->setPayer($payer)
         ->setTransactions(array($transaction));
-    $productionsuccessurl = "http://shop.intranetproject.net/thankyou.php";
-    $productioncancelurl = "http://shop.intranetproject.net/maybe.php";
-    $redirectUrls->setReturnUrl("http://server/Intranet_GitHub/intranet_shop/thankyou.php")
-        ->setCancelUrl("http://server/Intranet_GitHub/intranet_shop/maybe.php");
+    $productionsuccessurl = "http://kis.intranetproject.net/thankyou.php";
+    $productioncancelurl = "http://kisp.intranetproject.net/maybe.php";
+    $redirectUrls->setReturnUrl("http://server/KIS/intranet_shop/thankyou.php")
+        ->setCancelUrl("http://server/KIS/intranet_shop/maybe.php");
     $payment->setRedirectUrls($redirectUrls);
     try {
         $payment->create($api);
