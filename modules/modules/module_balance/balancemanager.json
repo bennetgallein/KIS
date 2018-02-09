@@ -49,6 +49,12 @@
       "link": "add.php",
       "permission": "1",
       "type": "nav"
+    },
+    {
+      "name": "paypal",
+      "link": "paypal/paypal.php",
+      "permission": "1",
+      "type": "page"
     }
   ],
   "dashboards": [
