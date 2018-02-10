@@ -90,6 +90,20 @@ if (isset($params->claim)) {
                         ?>
                     </div>
                 </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-3">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Redeem a code</label>
+                            <input name="amount" value="" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" data-background-color="<?= $db->getConfig()['color'] ?>"
+                                class="btn btn-primary">Claim!
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
