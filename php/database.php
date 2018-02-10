@@ -51,8 +51,14 @@ class DB {
     public function disconnect() {
         $this->connection->close();
     }
-
+    public function check() {
+        if (!mysqli_ping($this->connection)) {
+            $this->disconnect();
+            $this->connect();
+        }
+    }
     public function prepareQuery($query, $params) {
+        $this->check();
         $prep = $this->connection->prepare($query);
         $types = str_repeat('s', count($params));
         $prep->bind_param($types, ...$params);
@@ -61,6 +67,7 @@ class DB {
     }
 
     public function simpleQuery($query) {
+        $this->check();
         $res = $this->connection->query($query);
         echo $this->connection->error;
         return $res;
