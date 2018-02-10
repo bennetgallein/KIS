@@ -38,9 +38,13 @@ class DB {
 
     }
 
+    public function __destruct() {
+        //$this->disconnect();
+    }
+
     public function connect() {
         $this->connection = new MySQLi($this->cfg["database"][0]["host"], $this->cfg['database'][0]['user'], $this->cfg['database'][0]['password'], $this->cfg['database'][0]['database']);
-        $this->connection->set_charset("utf-8");
+        $this->connection->set_charset("utf8");
         //$this->simpleQuery("SET names UTF-8");
     }
 
@@ -63,6 +67,7 @@ class DB {
         $types = str_repeat('s', count($params));
         $prep->bind_param($types, ...$params);
         $res = $prep->execute();
+        $this->disconnect();
         return $res;
     }
 
@@ -70,13 +75,15 @@ class DB {
         $this->connect();
         $res = $this->connection->query($query);
         echo $this->connection->error;
+        $this->disconnect();
         return $res;
     }
 
     public function escape($toEscape) {
         $this->connect();
-        return $this->connection->real_escape_string($toEscape);
+        $value = $this->connection->real_escape_string($toEscape);
         $this->disconnect();
+        return $value;
     }
 
     public function getConfig() {
