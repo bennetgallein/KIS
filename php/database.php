@@ -52,37 +52,22 @@ class DB {
         $this->connection->close();
     }
 
-    /*
-     *
-     * $params = array(
-        "i" => $number,
-        "s" => $string,
-        "d" => $double
-     * );
-     *
-     */
     public function prepareQuery($query, $params) {
-        $this->connect();
         $prep = $this->connection->prepare($query);
         $types = str_repeat('s', count($params));
         $prep->bind_param($types, ...$params);
         $res = $prep->execute();
-        $this->disconnect();
         return $res;
     }
 
     public function simpleQuery($query) {
-        $this->connect();
         $res = $this->connection->query($query);
         echo $this->connection->error;
-        $this->disconnect();
         return $res;
     }
 
     public function escape($toEscape) {
-        $this->connect();
         $value = $this->connection->real_escape_string($toEscape);
-        $this->disconnect();
         return $value;
     }
 

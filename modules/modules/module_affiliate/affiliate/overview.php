@@ -18,15 +18,14 @@ $nextlevel = $db->simpleQuery("SELECT * FROM affiliate_leveldata WHERE id=$nextl
 if ($nextlevel->num_rows == 0) {
     $userrequierd = $userused;
     $nextlevelid = $userlevel;
+    $percent = 100;
 } else {
     $nextlevel = $nextlevel->fetch_object();
     $userrequierd = $nextlevel->userrequired;
     $nextlevelid = $nextlevel->id;
     $amounttorecieve = $currentlevel->reward;
+    $percent = round(($userused % ($nextlevel->userrequired - $currentlevel->userrequired)) * (100 / ($nextlevel->userrequired - $currentlevel->userrequired)), 2);
 }
-//$percent = round((100 / ($userrequierd - $userused)) * $userused, 2);
-
-$percent = round(($userused % ($nextlevel->userrequired - $currentlevel->userrequired)) * (100 / ($nextlevel->userrequired - $currentlevel->userrequired)), 2);
 
 if ($userused >= $userrequierd) {
     $levelplusone = $nextlevelid;
@@ -36,14 +35,14 @@ if ($userused >= $userrequierd) {
 if ($userlevel - 1 == 0 || $userlevel - 1 == -1) {
     $userlevel = 2;
 }
-$userlevel -= 1;
-$amounttorecieve = $db->simpleQuery("SELECT * FROM affiliate_leveldata WHERE id=" . $userlevel);
+$amounttorecieve = $db->simpleQuery("SELECT * FROM affiliate_leveldata WHERE id=" . ($userlevel - 1));
 $amounttorecieve = $amounttorecieve->fetch_object();
 $amounttorecieve = $amounttorecieve->reward;
 if (isset($params->claim)) {
     if (!$data->claimed) {
         if (!$data->claimed && $data->userlevel >= 2) {
             // Transaktion machen.
+            echo "JA MAN, GELD!";
         }
     }
 }
