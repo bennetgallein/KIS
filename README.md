@@ -180,11 +180,10 @@ These are files that can be included into other modules.
 
 Here is an example on how this can be used:
 ````php
-$module = $db->moduleExists("Support Manager")
+$module = $db->getModuleByName("Support Manager");
 if (isset($module)) {
-    $module = $db->getModuleByName("Support Manager");
     if ($module->getIncludeable("profile_overview")['permission'] <= $user->getPermissions()) {
-        include(dirname(__FILE__) . "/../" . $module->getIncludeable("profile_overview")['link']);
+        $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("moneymethods")['link']);
     }
 }
 ````
