@@ -2,7 +2,7 @@
 $level = $db->simpleQuery("SELECT * FROM affiliate_levels WHERE userid='" . $user->getId() . "'");
 
 if ($level->num_rows == 0) {
-    $level = $db->simpleQuery("INSERT INTO affiliate_levels (userid, link) VALUES ('" . $user->getId() . "', '" . $db->getConfig()['url'] . "/module.php?module=affiliate/overview.php&params=from|')");
+    $level = $db->simpleQuery("INSERT INTO affiliate_levels (userid, link) VALUES ('" . $user->getId() . "', '" . $db->getConfig()['url'] . "/dashboard/module.php?module=affiliate/overview.php&params=redeem|')");
     $level = $db->simpleQuery("SELECT * FROM affiliate_levels WHERE userid='" . $user->getId() . "'");
 }
 $data = $level->fetch_object();
@@ -31,9 +31,6 @@ if ($userused >= $userrequierd) {
     $levelplusone = $nextlevelid;
     $newLevel = $db->simpleQuery("UPDATE affiliate_levels SET userlevel=" . $levelplusone . " WHERE userid='" . $user->getId() . "'");
 }
-if ($userlevel - 1 == 0 || $userlevel - 1 == -1) {
-    $userlevel = 2;
-}
 $amounttorecieve = $db->simpleQuery("SELECT * FROM affiliate_leveldata WHERE id=" . ($userlevel - 1));
 $amounttorecieve = $amounttorecieve->fetch_object();
 $amounttorecieve = $amounttorecieve->reward;
@@ -52,6 +49,44 @@ if (isset($params->claim)) {
                 }
             }
         }
+    }
+}
+if (isset($params->redeem)) {
+    if ($data->usedone != 1) {
+        if (isset($_POST['id'])) {
+            $toredeemfrom = $_POST['id'];
+        } else {
+            $toredeemfrom = $params->redeem;
+        }
+        if ($user->getId() != $toredeemfrom) {
+            $userid = $db->getConnection()->escape_string($toredeemfrom);
+            $query = $db->simpleQuery("SELECT * FROM affiliate_levels WHERE userid='" . $userid . "'");
+            if ($query->num_rows >= 1) {
+                $userobject = $query->fetch_object();
+                // currentuser +2€. userobject->id usersused +1
+                $module = $db->getModuleByName("Balance Manager");
+                if (isset($module)) {
+                    if ($module->getIncludeable("moneymethods")['permission'] <= $user->getPermissions()) {
+                        $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("moneymethods")['link']);
+                        $methods = new MoneyMethods();
+                        $amounttorecieve = 2;
+                        $message = ("You recieved " . $amounttorecieve . "&euro; from the Affiliate Program!");
+                        $methods->sendMoney($db, $message, $user->getId(), $amounttorecieve);
+                        $result = $db->simpleQuery("UPDATE affiliate_levels SET usedone=1 WHERE userid='" . $user->getId() . "'");
+                        $newusersused = $userobject->usersused + 1;
+                        $query = $db->simpleQuery("UPDATE affiliate_levels SET usersused=" . $newusersused . " WHERE userid='" . $userobject->userid . "'");
+                        $_SESSION['error'] = "Successfully redeemed code!";
+                    }
+                }
+
+            } else {
+                $_SESSION['error'] = "Unknown User ID!";
+            }
+        } else {
+            $_SESSION['error'] = "You cannot redeem your own code";
+        }
+    } else {
+        $_SESSION['error'] = "You already redeemed a code!";
     }
 }
 ?>
@@ -92,18 +127,26 @@ if (isset($params->claim)) {
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-md-4 col-md-offset-3">
-                        <div class="form-group label-floating">
-                            <label class="control-label">Redeem a code</label>
-                            <input name="amount" value="" type="text" class="form-control">
+                    <form action="module.php?module=affiliate/overview.php&params=redeem|true" method="post">
+                        <div class="col-md-4 col-md-offset-3">
+                            <div class="form-group label-floating">
+                                <label class="control-label">Redeem a code</label>
+                                <input name="id" value="" type="text" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <button type="submit" data-background-color="<?= $db->getConfig()['color'] ?>"
-                                class="btn btn-primary">Claim!
-                        </button>
-                    </div>
+                        <div class="col-md-2">
+                            <button type="submit" data-background-color="<?= $db->getConfig()['color'] ?>"
+                                    class="btn btn-primary">Claim!
+                            </button>
+                        </div>
+                    </form>
                 </div>
+                <?php
+                if (isset($_SESSION['error'])) {
+                    echo "<br>" . $_SESSION['error'];
+                    unset($_SESSION['error']);
+                }
+                ?>
             </div>
         </div>
     </div>
