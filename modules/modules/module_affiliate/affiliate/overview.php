@@ -30,7 +30,6 @@ if ($nextlevel->num_rows == 0) {
 if ($userused >= $userrequierd) {
     $levelplusone = $nextlevelid;
     $newLevel = $db->simpleQuery("UPDATE affiliate_levels SET userlevel=" . $levelplusone . " WHERE userid='" . $user->getId() . "'");
-    //$db->redirect("module.php?module=affiliate/overview.php");
 }
 if ($userlevel - 1 == 0 || $userlevel - 1 == -1) {
     $userlevel = 2;
@@ -42,7 +41,16 @@ if (isset($params->claim)) {
     if (!$data->claimed) {
         if (!$data->claimed && $data->userlevel >= 2) {
             // Transaktion machen.
-            echo "JA MAN, GELD!";
+            $module = $db->getModuleByName("Balance Manager");
+            if (isset($module)) {
+                if ($module->getIncludeable("moneymethods")['permission'] <= $user->getPermissions()) {
+                    $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("moneymethods")['link']);
+                    $methods = new MoneyMethods();
+                    $message = ("You recieved " . $amounttorecieve . "&euro; from the Affiliate Program!");
+                    $methods->sendMoney($db, $message, $user->getId(), $amounttorecieve);
+                    $result = $db->simpleQuery("UPDATE affiliate_levels SET claimed=1 WHERE userid='" . $user->getId() . "'");
+                }
+            }
         }
     }
 }
@@ -74,7 +82,8 @@ if (isset($params->claim)) {
                         if (!$data->claimed && $data->userlevel >= 2):
                             ?>
                             <button class="btn btn-default" data-background-color="<?= $db->getConfig()['color'] ?>">
-                                <a href="module.php?module=affiliate/overview.php&params=claim|true">Claim Reward (<?= $amounttorecieve ?>)</a>
+                                <a href="module.php?module=affiliate/overview.php&params=claim|true">Claim Reward
+                                    (<?= $amounttorecieve ?>)</a>
                             </button>
                         <?php
                         endif;

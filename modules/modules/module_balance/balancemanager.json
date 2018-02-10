@@ -73,6 +73,11 @@
       "name": "profile_transactions",
       "link": "incl/transactions.php",
       "permission": "2"
+    },
+    {
+      "name": "moneymethods",
+      "link": "incl/moneymethods.php",
+      "permission": "1"
     }
   ]
 }
