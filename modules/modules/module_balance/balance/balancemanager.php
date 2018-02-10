@@ -9,7 +9,7 @@ if (isset($_POST['userid']) && isset($_POST['amount']) && isset($_POST['message'
         if (!$res) {
             echo "FAILED!";
         }
-        $query = $db->simpleQuery("INSERT INTO notifications (userid, message) VALUES ('" . $db->getConnection()->escape_string($_POST['userid']) . "', '" . $_POST['amount'] . "€ were added to your account!')");
+        $query = $db->simpleQuery("INSERT INTO notifications (userid, message) VALUES ('" . $db->getConnection()->escape_string($_POST['userid']) . "', '" . $_POST['amount'] . "&euro; were added to your account!')");
         header("Location: module.php?module=balance/balancemanager.php");
     }
 }
