@@ -1,5 +1,5 @@
 <?php
-$result = $db->simpleQuery("SELECT * FROM balance_transactions WHERE userid='" . $user->getId() . "' AND positive=0 ORDER BY id DESC");
+$result = $db->simpleQuery("SELECT * FROM balance_transactions WHERE userid='" . $params->user . "' AND positive=0 ORDER BY id DESC");
 if ($result->num_rows == 0) {
     $null = true;
 }

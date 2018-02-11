@@ -1,6 +1,6 @@
 {
   "maintenace": true,
-  "lang": "de",
+  "lang": "en",
   "site_name": "KIS ",
   "version": "gold",
   "url": "http://server/KIS",
@@ -18,5 +18,11 @@
   "footer": [{
     "Fee-Hosting.com": "https://fee-hosting.com",
     "Support Email": "mailto:support@fee-hosting.com"
-  }]
+  }],
+  "contactdata": {
+    "address_1": "TestWeg 1",
+    "address_2": "Hamburg, 2210",
+    "phone": "12345",
+    "email": "support@intranetproject.net"
+  }
 }

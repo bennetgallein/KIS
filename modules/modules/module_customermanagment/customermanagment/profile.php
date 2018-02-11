@@ -106,4 +106,11 @@ if (isset($module)) {
         $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("profile_transactions")['link']);
     }
 }
+
+$module = $db->getModuleByName("Balance Manager");
+if (isset($module)) {
+    if ($module->getIncludeable("invoicelisting")['permission'] <= $user->getPermissions()) {
+        $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("invoicelisting")['link']);
+    }
+}
 ?>

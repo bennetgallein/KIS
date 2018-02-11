@@ -15,7 +15,7 @@ if (isset($_POST['userid']) && isset($_POST['amount']) && isset($_POST['message'
 }
 ?>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 col-md-offset-3">
         <div class="card">
             <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                 <h4 class="title">Add money</h4>
