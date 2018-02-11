@@ -6,18 +6,19 @@ if (isset($params->id)) {
         $row = $invoiceobj->fetch_object();
         $proceed = true;
     } else {
-        echo "No public Address set, set it on your profile!";
+        echo "This is not an Invoice!";
         die();
     }
 } else {
     echo "No ID provided!";
     die();
 }
-if ($row->userid != $user->getId() || $user->getPermissions() >= 2) {
+if (!($row->userid == $user->getId() || $user->getPermissions() >= 2)) {
     echo "This is not yours!";
     die();
 }
 $address = $db->simpleQuery("SELECT * FROM adresses WHERE userid='" . $user->getId() . "'");
+var_dump($user->getId());
 if ($address->num_rows == 0) {
     echo "No public Address set, set it on your profile!";
     die();
