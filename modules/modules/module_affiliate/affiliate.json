@@ -1,7 +1,7 @@
 {
   "name": "Affiliate System",
   "version": "0.1",
-  "priority": "1",
+  "priority": "990",
   "baseperm": "1",
   "basepath": "affiliate/",
   "authors": [

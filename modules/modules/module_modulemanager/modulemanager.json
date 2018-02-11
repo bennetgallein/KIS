@@ -1,7 +1,7 @@
 {
   "name": "Module Manager",
   "version": "0.1",
-  "priority": "4",
+  "priority": "1000",
   "baseperm": "3",
   "repository": "https://github.com/bennetgallein/module_modulemanager.git",
   "basepath": "modulemanager/",
