@@ -44,15 +44,8 @@
       "type": "nav"
     },
     {
-      "icon": "payment",
-      "name": "Add Balance",
-      "link": "add.php",
-      "permission": "1",
-      "type": "nav"
-    },
-    {
-      "name": "paypal",
-      "link": "paypal/paypal.php",
+      "name": "invoice",
+      "link": "invoice.php",
       "permission": "1",
       "type": "page"
     }
@@ -78,6 +71,11 @@
       "name": "moneymethods",
       "link": "incl/moneymethods.php",
       "permission": "1"
+    },
+    {
+      "name": "invoicelisting",
+      "link": "incl/invoices.php",
+      "permissions": "2"
     }
   ]
 }
