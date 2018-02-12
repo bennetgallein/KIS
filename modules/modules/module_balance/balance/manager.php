@@ -1,4 +1,5 @@
 <?php
+
 use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Api\Payer;
@@ -11,12 +12,29 @@ use PayPal\Api\ItemList;
 use PayPal\Api\Item;
 
 include("vendor/autoload.php");
-
+// canceled payment: module=balance/manager.php&token=x
+// success payment:  module=balance/manager.php&paymentId=x&token=x&PayerID=x
+if (isset($_GET['token']) && isset($_GET['paymentId']) && isset($_GET['PayerID'])) {
+    $pid = $db->getConnection()->escape_string($_GET['paymentId']);
+    $result1 = $db->simpleQuery("SELECT * FROM transactions_paypal WHERE payment_id='$pid' AND complete=0");
+    if ($result1->num_rows >= 1) {
+        $obj1 = $result1->fetch_object();
+        $result = $db->simpleQuery("UPDATE transactions_paypal SET complete=1 WHERE payment_id='$pid'");
+        if ($result) {
+            $_SESSION['error'] = "Payment completed! " . $obj1->amount . " were added to your account!";
+        } else {
+            echo mysqli_error($link);
+        }
+    }
+}
+if (isset($_GET['token']) && !isset($_GET['paymentId']) && !isset($_GET['PayerID'])) {
+    var_dump("Payment canceled");
+}
 if (isset($_POST['amount'])) {
     $api = new ApiContext(
         new OAuthTokenCredential(
-            'Abna9IF-w46mZQL5vE5lF32WI1UXW_A-uaTWWINk6sJdB8zthx4O53fjkMzP73JYzArRLw7iorOMN41p',
-            'EDf1zdSYGmIrUFg2U0WfsSyyLhZQ6PcorU_nXQ__6zgU_uIuWfJw_KrI_TRwL6kis7LWtgFJgWUtoVUF'
+            $db->getConfig()['paypal']['client'],
+            $db->getConfig()['paypal']['secret']
         )
     );
     $api->setConfig([
@@ -54,15 +72,18 @@ if (isset($_POST['amount'])) {
     $payment->setIntent('sale')
         ->setPayer($payer)
         ->setTransactions(array($transaction));
-    $productionsuccessurl = "http://kis.intranetproject.net/thankyou.php";
+    $productionsuccessurl = "http://kis.intranetproject.net/dashboard/module.php?module=balance/manager.php";
     $productioncancelurl = "http://kisp.intranetproject.net/maybe.php";
-    $redirectUrls->setReturnUrl("http://server/KIS/intranet_shop/thankyou.php")
-        ->setCancelUrl("http://server/KIS/intranet_shop/maybe.php");
+    $redirectUrls->setReturnUrl("http://server/KIS/dashboard/module.php?module=balance/manager.php")
+        ->setCancelUrl("http://server/KIS/dashboard/module.php?module=balance/manager.php");
     $payment->setRedirectUrls($redirectUrls);
     try {
         $payment->create($api);
         $hash = md5($payment->getId());
         $_SESSION['paypal_hash'] = $hash;
+
+        $result = $db->simpleQuery("INSERT INTO transactions_paypal (userid, payment_id, hash, amount, complete, cartid) VALUES ('" . $user->getId() . "', '" . $payment->getId() . "', '" . $hash . "'," . $_POST['amount'] . ", 0, 1)");
+
     } catch (PayPal\Exception\PayPalConnectionException $e) {
         echo '<pre>';
         print_r(json_decode($e->getData()));
@@ -87,7 +108,7 @@ if (!$query) {
                 <h4 class="title">Add balance</h4>
             </div>
             <div class="card-content">
-                <form action="module.php?module=balance/add.php" method="post">
+                <form action="module.php?module=balance/manager.php" method="post">
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
                             <div class="form-group label-floating">
@@ -107,11 +128,13 @@ if (!$query) {
         </div>
     </div>
 </div>
+<?php echo "<div class=row>" . (isset($_SESSION['error']) ? $_SESSION['error'] : "") . "</div>"; unset($_SESSION['error']); ?>
+
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header" data-background-color="<?= $db->getConfig()['color']?>">
+            <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                 <h4 class="title">Monthly transactions</h4>
                 <p class="category">These are your transactions of all time.</p>
             </div>
@@ -137,7 +160,8 @@ if (!$query) {
                                 <td><?= $row->text ?></td>
                                 <td><?= $row->createdate ?></td>
                             </tr>
-                        <?php endwhile; } ?>
+                        <?php endwhile;
+                    } ?>
                     </tbody>
                 </table>
             </div>
