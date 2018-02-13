@@ -6,7 +6,7 @@ $query = $db->simpleQuery("SELECT * FROM tickets WHERE userid='$params->user'");
         <div class="card">
             <div class="card-header" data-background-color="<?= $db->getConfig()['color']?>">
                 <h4 class="title">Support</h4>
-                <p class="category">Open and Closed Support Tickets</p>
+                <p class="category">Open and Closed Support Tickets (click on the title to get detailed information)</p>
             </div>
             <div class="card-content table-responsive">
                 <table class="table">
@@ -27,7 +27,7 @@ $query = $db->simpleQuery("SELECT * FROM tickets WHERE userid='$params->user'");
                     while ($row = $query->fetch_object()): ?>
                     <tr data-background-color="<?= $row->status ? "green" : "red" ?>">
                         <td><?= $row->id ?></td>
-                        <td><?= $row->title ?></td>
+                        <td><a href="module.php?module=support/ticket.php&params=id|<?= $row->id?>"><?= $row->title ?></a></td>
                         <td><?= $row->userid ?></td>
                         <td><?= $row->created_at ?></td>
                         <td><?= $row->updated_at ?></td>
