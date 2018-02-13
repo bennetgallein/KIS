@@ -28,7 +28,7 @@ if (isset($_GET['token']) && isset($_GET['paymentId']) && isset($_GET['PayerID']
     }
 }
 if (isset($_GET['token']) && !isset($_GET['paymentId']) && !isset($_GET['PayerID'])) {
-    var_dump("Payment canceled");
+    $_SESSION['error'] = "Payment canceled!";
 }
 if (isset($_POST['amount'])) {
     $api = new ApiContext(
