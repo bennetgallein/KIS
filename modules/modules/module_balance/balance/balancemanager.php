@@ -1,5 +1,9 @@
 <?php
 if (isset($_POST['userid']) && isset($_POST['amount']) && isset($_POST['message'])) {
+    $does = $db->simpleQuery("SELECT * FROM balances WHERE userid='" . $_POST['userid'] . "'");
+    if ($does->num_rows <= 0) {
+        $ins = $db->simpleQuery("INSERT INTO balances (userid, balance) VALUES ('" . $_POST['userid'] . "', 0)");
+    }
     $res = $db->simpleQuery("INSERT INTO balance_transactions (text, userid, price, positive, plusforcompany) VALUES ('" . $db->getConnection()->escape_string($_POST['message']) . "', '" . $db->getConnection()->escape_string($_POST['userid']) . "', " . $_POST['amount'] . ", 1, 2)");
     if ($res) {
         $query = $db->simpleQuery("SELECT * FROM balances WHERE userid='" . $db->getConnection()->escape_string($_POST['userid']) . "' LIMIT 1");
