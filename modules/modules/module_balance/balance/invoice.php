@@ -18,7 +18,6 @@ if (!($row->userid == $user->getId() || $user->getPermissions() >= 2)) {
     die();
 }
 $address = $db->simpleQuery("SELECT * FROM adresses WHERE userid='" . $user->getId() . "'");
-var_dump($user->getId());
 if ($address->num_rows == 0) {
     echo "No public Address set, set it on your profile!";
     die();

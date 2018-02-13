@@ -21,6 +21,9 @@ if (isset($_GET['token']) && isset($_GET['paymentId']) && isset($_GET['PayerID']
         $obj1 = $result1->fetch_object();
         $result = $db->simpleQuery("UPDATE transactions_paypal SET complete=1 WHERE payment_id='$pid'");
         if ($result) {
+            include(__DIR__ . "/incl/moneymethods.php");
+            $moneymethods = new MoneyMethods();
+            $moneymethods->sendMoney($db, "PayPal payment", $user->getId(), $obj1->amount);
             $_SESSION['error'] = "Payment completed! " . $obj1->amount . " were added to your account!";
         } else {
             echo mysqli_error($link);
@@ -96,7 +99,7 @@ if (isset($_POST['amount'])) {
     }
     $db->redirect($redirectUrl);
 }
-$query = $db->simpleQuery("SELECT * FROM balance_transactions WHERE userid='" . $user->getId() . "'");
+$query = $db->simpleQuery("SELECT * FROM balance_transactions WHERE userid='" . $user->getId() . "' ORDER BY createdate DESC");
 if (!$query) {
     die("MySQL ERROR! <a href='changelog.php'>Submit Error here!</a>");
 }
