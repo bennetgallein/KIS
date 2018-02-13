@@ -166,9 +166,6 @@ if (isset($_GET['a'])) {
                                     in the form below!</p>
                             </div>
                             <div class="card-content">
-                                <div style="overflow: auto; width: 100%; display: inline-block">
-                                    <?= $cardtag ?>
-                                </div>
                                 <form action="changelog.php?a=report" method="post">
                                     <input placeholder="Title" name="title" value="" type="text" class="form-control">
                                     <textarea type="text" name="bug" class="form-control"
@@ -186,6 +183,9 @@ if (isset($_GET['a'])) {
                                     </button>
                                     <div class="clearfix"></div>
                                 </form>
+                                <div style="overflow: auto; width: 100%; display: inline-block">
+                                    <?= $cardtag ?>
+                                </div>
                             </div>
                         </div>
                     </div>
