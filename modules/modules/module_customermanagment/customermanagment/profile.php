@@ -82,9 +82,11 @@ if (isset($params->delete)) {
 
                     </div>
                     <div class="row">
+                        <div class="col-md-4 pull-right">
                         <a class="btn btn-primary pull-right" data-background-color="red"
                            href="module.php?module=customermanagment/profile.php&params=user|<?= $user->getId() ?>_delete|1">Delete
                             Profile </a>
+                        </div>
                     </div>
                 </div>
             </div>
