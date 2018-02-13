@@ -30,17 +30,27 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <div class="input-group col-md-12">
                         <input type="text" name="title" class="form-control" placeholder="Title">
                     </div>
-                    <div class="dropdown">
-                        <button data-background-color="blue" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Product
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="#">Webhosting</a></li>
-                            <li><a href="#">vServer</a></li>
-                            <li><a href="#">KVM</a></li>
-                            <li><a href="#">PLEXwas</a></li>
-                        </ul>
+<!--                    <div class="dropdown">-->
+<!--                        <button data-background-color="blue" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+<!--                            Product-->
+<!--                            <span class="caret"></span>-->
+<!--                        </button>-->
+<!--                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+<!--                            <li><a href="#">Webhosting</a></li>-->
+<!--                            <li><a href="#">vServer</a></li>-->
+<!--                            <li><a href="#">KVM</a></li>-->
+<!--                            <li><a href="#">PLEXwas</a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+                    <div class="form-group col-md-3">
+                        <label for="sel1">Select list:</label>
+                        <select class="form-control" id="sel1">
+                            <option></option>
+                            <option>Webhosting</option>
+                            <option>vServer</option>
+                            <option>KVM</option>
+                            <option>PLEXwas</option>
+                        </select>
                     </div>
                     <div class="input-group col-md-12">
                         <textarea type="text" name="message" class="form-control" placeholder="Ticket text" id="comment"
