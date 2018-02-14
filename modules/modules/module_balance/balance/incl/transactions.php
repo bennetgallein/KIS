@@ -1,5 +1,5 @@
 <?php
-$query = $db->simpleQuery("SELECT * FROM balance_transactions WHERE userid='" . $params->user . "' AND createdate >= now() - INTERVAL 30 DAY");
+$query = $db->simpleQuery("SELECT * FROM balance_transactions WHERE userid='" . $params->user . "' ORDER BY createdate DESC");
 if (!$query) {
     die("MySQL ERROR! <a href='changelog.php'>Submit Error here!</a>");
 }
@@ -9,7 +9,7 @@ if (!$query) {
         <div class="card">
             <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                 <h4 class="title">Monthly transactions</h4>
-                <p class="category">These are your transactions in the last month.</p>
+                <p class="category">These are all of the users transactions</p>
             </div>
             <div class="card-content table-responsive">
                 <table class="table">

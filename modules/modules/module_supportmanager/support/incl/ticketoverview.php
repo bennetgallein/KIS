@@ -1,5 +1,5 @@
 <?php
-$query = $db->simpleQuery("SELECT * FROM tickets WHERE userid='$params->user'");
+$query = $db->simpleQuery("SELECT * FROM tickets WHERE userid='$params->user' ORDER BY created_at DESC");
 ?>
 <div class="row">
     <div class="col-md-12">
