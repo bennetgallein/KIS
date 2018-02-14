@@ -34,70 +34,76 @@ if (isset($_GET['token']) && !isset($_GET['paymentId']) && !isset($_GET['PayerID
     $_SESSION['error'] = "Payment canceled!";
 }
 if (isset($_POST['amount'])) {
-    $api = new ApiContext(
-        new OAuthTokenCredential(
-            $db->getConfig()['paypal']['client'],
-            $db->getConfig()['paypal']['secret']
-        )
-    );
-    $api->setConfig([
-        'mode' => 'sandbox',
-        'http.ConnectionTimeout' => 30,
-        'log.LogEnabled' => false,
-        'log.FileName' => 'log.txt',
-        'log.LogLevel' => 'FINE',
-        'validation.level' => 'log'
-    ]);
-    $itemlist = new ItemList();
-    $payer = new Payer();
-    $details = new Details();
-    $amounta = new Amount();
-    $transaction = new Transaction();
-    $payment = new Payment();
-    $redirectUrls = new RedirectUrls();
-    $payer->setPaymentMethod('paypal');
+    $amount = $_POST['amount'];
+    if (is_int($amount)) {
+        if ($amount > 0) {
 
-    $amount = 1;
-    $total = $_POST['amount'];
-    $cartids = "";
-    $items = array();
-    $item = new Item();
-    $item->setName("Fee-Hosting Balance")->setCurrency("EUR")->setQuantity("1")->setPrice("0" + $_POST['amount']);
-    array_push($items, $item);
-    $itemlist->setItems($items);
-    $details->setShipping('0.00')
-        ->setTax('0.00')
-        ->setSubtotal($total);
-    $amounta->setCurrency('EUR')
-        ->setTotal($total)
-        ->setDetails($details);
-    $transaction->setAmount($amounta)->setItemList($itemlist)->setDescription("Fee-Hosting Balance");
-    $payment->setIntent('sale')
-        ->setPayer($payer)
-        ->setTransactions(array($transaction));
-    $productionsuccessurl = "http://kis.intranetproject.net/dashboard/module.php?module=balance/manager.php";
-    $productioncancelurl = "http://kisp.intranetproject.net/maybe.php";
-    $redirectUrls->setReturnUrl("http://server/KIS/dashboard/module.php?module=balance/manager.php")
-        ->setCancelUrl("http://server/KIS/dashboard/module.php?module=balance/manager.php");
-    $payment->setRedirectUrls($redirectUrls);
-    try {
-        $payment->create($api);
-        $hash = md5($payment->getId());
-        $_SESSION['paypal_hash'] = $hash;
+            $api = new ApiContext(
+                new OAuthTokenCredential(
+                    $db->getConfig()['paypal']['client'],
+                    $db->getConfig()['paypal']['secret']
+                )
+            );
+            $api->setConfig([
+                'mode' => 'sandbox',
+                'http.ConnectionTimeout' => 30,
+                'log.LogEnabled' => false,
+                'log.FileName' => 'log.txt',
+                'log.LogLevel' => 'FINE',
+                'validation.level' => 'log'
+            ]);
+            $itemlist = new ItemList();
+            $payer = new Payer();
+            $details = new Details();
+            $amounta = new Amount();
+            $transaction = new Transaction();
+            $payment = new Payment();
+            $redirectUrls = new RedirectUrls();
+            $payer->setPaymentMethod('paypal');
 
-        $result = $db->simpleQuery("INSERT INTO transactions_paypal (userid, payment_id, hash, amount, complete, cartid) VALUES ('" . $user->getId() . "', '" . $payment->getId() . "', '" . $hash . "'," . $_POST['amount'] . ", 0, 1)");
+            $amount = 1;
+            $total = $_POST['amount'];
+            $cartids = "";
+            $items = array();
+            $item = new Item();
+            $item->setName("Fee-Hosting Balance")->setCurrency("EUR")->setQuantity("1")->setPrice("0" + $_POST['amount']);
+            array_push($items, $item);
+            $itemlist->setItems($items);
+            $details->setShipping('0.00')
+                ->setTax('0.00')
+                ->setSubtotal($total);
+            $amounta->setCurrency('EUR')
+                ->setTotal($total)
+                ->setDetails($details);
+            $transaction->setAmount($amounta)->setItemList($itemlist)->setDescription("Fee-Hosting Balance");
+            $payment->setIntent('sale')
+                ->setPayer($payer)
+                ->setTransactions(array($transaction));
+            $productionsuccessurl = "http://kis.intranetproject.net/dashboard/module.php?module=balance/manager.php";
+            $productioncancelurl = "http://kisp.intranetproject.net/maybe.php";
+            $redirectUrls->setReturnUrl("http://server/KIS/dashboard/module.php?module=balance/manager.php")
+                ->setCancelUrl("http://server/KIS/dashboard/module.php?module=balance/manager.php");
+            $payment->setRedirectUrls($redirectUrls);
+            try {
+                $payment->create($api);
+                $hash = md5($payment->getId());
+                $_SESSION['paypal_hash'] = $hash;
 
-    } catch (PayPal\Exception\PayPalConnectionException $e) {
-        echo '<pre>';
-        print_r(json_decode($e->getData()));
-        exit;
-    }
-    foreach ($payment->getLinks() as $link) {
-        if ($link->getRel() == 'approval_url') {
-            $redirectUrl = $link->getHref();
+                $result = $db->simpleQuery("INSERT INTO transactions_paypal (userid, payment_id, hash, amount, complete, cartid) VALUES ('" . $user->getId() . "', '" . $payment->getId() . "', '" . $hash . "'," . $_POST['amount'] . ", 0, 1)");
+
+            } catch (PayPal\Exception\PayPalConnectionException $e) {
+                echo '<pre>';
+                print_r(json_decode($e->getData()));
+                exit;
+            }
+            foreach ($payment->getLinks() as $link) {
+                if ($link->getRel() == 'approval_url') {
+                    $redirectUrl = $link->getHref();
+                }
+            }
+            $db->redirect($redirectUrl);
         }
     }
-    $db->redirect($redirectUrl);
 }
 $query = $db->simpleQuery("SELECT * FROM balance_transactions WHERE userid='" . $user->getId() . "' ORDER BY createdate DESC");
 if (!$query) {
@@ -109,6 +115,7 @@ if (!$query) {
         <div class="card">
             <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                 <h4 class="title">Add balance</h4>
+                <p>dezimal seperated by "." and thousand by ","!</p>
             </div>
             <div class="card-content">
                 <form action="module.php?module=balance/manager.php" method="post">
@@ -131,7 +138,8 @@ if (!$query) {
         </div>
     </div>
 </div>
-<?php echo "<div class=row>" . (isset($_SESSION['error']) ? $_SESSION['error'] : "") . "</div>"; unset($_SESSION['error']); ?>
+<?php echo "<div class=row>" . (isset($_SESSION['error']) ? $_SESSION['error'] : "") . "</div>";
+unset($_SESSION['error']); ?>
 
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <div class="row">
