@@ -17,16 +17,22 @@ if (property_exists($params, 'awnser')) {
         if (isset($_POST['message']) && (trim($_POST['message']) != "")) {
             if ($row->userid == $user->getId()) {
                 $awns = 2;
-            } else {
+                $continue = true;
+            } else if ($row->supporter == $user->getId()) {
                 $awns = 1;
+                $continue = true;
+            } else {
+                $continue = false;
             }
-            $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, writername, awnser) VALUES ('" . $row->id . "', '" . $db->getConnection()->escape_string($_POST['message']) . "', '" . $db->getConnection()->escape_string($user->getName()) . "', " . $awns . ")");
+            if ($continue) {
+                $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, writername, awnser) VALUES ('" . $row->id . "', '" . $db->getConnection()->escape_string($_POST['message']) . "', '" . $db->getConnection()->escape_string($user->getName()) . "', " . $awns . ")");
+            }
         }
     }
 }
 if (property_exists($params, 'take')) {
     if (($row->status == 1 || $row->status == 2) && $user->getPermissions() >= 2) {
-        $db->simpleQuery("UPDATE tickets SET status = 3 WHERE id='" . $id . "'");
+        $db->simpleQuery("UPDATE tickets SET status = 3, supporter = '" . $user->getId() . "' WHERE id='" . $id . "'");
         $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, awnser) VALUES ('" . $row->id . "', '" . $user->getName() . " is now supporting this Ticket.', 3)");
         header("Location: module.php?module=support/ticket.php&params=id|" . $id);
     } else {
@@ -67,7 +73,8 @@ if (property_exists($params, 'close')) {
                                     <div class="panel-group col-md-10 pull-right">
                                         <div class="panel panel-default">
                                             <div class="panel-body" data-background-color="blue">
-                                                <small><?= $row1->writername . " on " . $row1->created_at?>:</small><br>
+                                                <small><?= $row1->writername . " on " . $row1->created_at ?>:</small>
+                                                <br>
                                                 <?= $row1->message ?>
                                             </div>
                                         </div>
@@ -76,7 +83,8 @@ if (property_exists($params, 'close')) {
                                     <div class="panel-group col-md-10">
                                         <div class="panel panel-default">
                                             <div class="panel-body">
-                                                <small><?= $row1->writername . " on " . $row1->created_at?>:</small><br>
+                                                <small><?= $row1->writername . " on " . $row1->created_at ?>:</small>
+                                                <br>
                                                 <?= $row1->message ?>
                                             </div>
                                         </div>
