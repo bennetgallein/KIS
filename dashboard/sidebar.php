@@ -10,25 +10,36 @@ Tip 2: you can also add an image using data-image tag
         </a>
     </div>
     <div class="sidebar-wrapper">
+        <?php
+        $currentfile = basename($_SERVER["SCRIPT_FILENAME"]);
+        ?>
         <ul class="nav">
-            <li class="active">
-                <a href="index.php">
+            <?php
+            $link = "index.php";
+            $active = ($currentfile == $link) ? "active" : "";
+            ?>
+            <li class="<?= $active ?>">
+                <a href="<?= $link ?>">
                     <i class="material-icons">dashboard</i>
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li>
+            <?php
+            $link = "user.php";
+            $active = ($currentfile == $link) ? "active" : "";
+            ?>
+            <li class="<?= $active ?>">
                 <?php
-                    $module = $db->getModuleByName("Balance Manager");
-                    if (isset($module)) {
-                        if ($module->getIncludeable("display_money")['permission'] <= $user->getPermissions()) {
-                            include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("display_money")['link']);
-                            $money = getMoney($db, $user);
-                            $money = "<span class=\"badge\">" . $money . "€</span>";
-                        }
+                $module = $db->getModuleByName("Balance Manager");
+                if (isset($module)) {
+                    if ($module->getIncludeable("display_money")['permission'] <= $user->getPermissions()) {
+                        include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("display_money")['link']);
+                        $money = getMoney($db, $user);
+                        $money = "<span class=\"badge\">" . $money . "€</span>";
                     }
+                }
                 ?>
-                <a href="user.php">
+                <a href="<?= $link ?>">
                     <i class="material-icons">person</i>
                     <p>Profil <?= $money ?></p>
                 </a>
@@ -40,14 +51,24 @@ Tip 2: you can also add an image using data-image tag
                 foreach ($module->getNavs() as $navpoint) {
                     if ($navpoint['type'] == 'nav') {
                         if ($navpoint['permission'] <= $user->getPermissions()) {
-                            if ($hrset == false) { echo "<hr>"; }
+                            if ($hrset == false) {
+                                echo "<hr>";
+                            }
                             $hrset = true;
-                            echo '<li>
+                            $path = $module->getBasepath() . $navpoint['link'];
+                            if (isset($amodule)) {
+                                if ($path == $amodule) {
+                                    $active = "active";
+                                }
+                            }
+                            $active = isset($active) ? $active : "";
+                            echo '<li class="' . $active . '">
                                   <a href="module.php?module=' . $module->getBasepath() . $navpoint['link'] . '">
                                       <i class="material-icons">' . $navpoint['icon'] . '</i>
                                       <p>' . $navpoint['name'] . '</p>
                                   </a>
                               </li>';
+                            $active = "";
 
                         }
                     }
@@ -56,8 +77,12 @@ Tip 2: you can also add an image using data-image tag
             }
             unset($module);
             ?>
-            <li>
-                <a href="changelog.php">
+            <?php
+            $link = "changelog.php";
+            $active = ($currentfile == $link) ? "active" : "";
+            ?>
+            <li class="<?= $active ?>">
+                <a href="<?= $link ?>">
                     <i class="material-icons">add_circle</i>
                     <p>Changelog</p>
                 </a>
