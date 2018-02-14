@@ -23,6 +23,11 @@
       "type": "nav"
     }
   ],
-  "dashboards": [],
+  "dashboards": [
+    {
+      "link": "dashboard/include.php",
+      "permission": "1"
+    }
+  ],
   "includeables": []
 }
