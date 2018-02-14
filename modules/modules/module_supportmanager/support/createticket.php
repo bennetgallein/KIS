@@ -9,8 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $db->simpleQuery("INSERT INTO tickets (title, userid, product) VALUES ('" . $db->getConnection()->escape_string($_POST['title']) . "', '" . $db->getConnection()->escape_string($userid) . "', '" . $db->getConnection()->escape_string($_POST['product']) . "')");
         $res = $db->getConnection()->query("SELECT LAST_INSERT_ID()");
         $res = $res->fetch_assoc();
-        $db->prepareQuery("INSERT INTO tickets_messages (ticketid, message, awnser) VALUES (?, ?, 2)", array(
-                $db->escape($res['LAST_INSERT_ID()']), $db->escape($_POST['message']))
+        $db->prepareQuery("INSERT INTO tickets_messages (writername, ticketid, message, awnser) VALUES (?, ?, ?, 2)", array(
+                $user->getName(), $db->escape($res['LAST_INSERT_ID()']), $db->escape($_POST['message']))
         );
         $db->simpleQuery("INSERT INTO notifications (userid, message) VALUES ('" . $userid . "', 'Thank you for submitting your ticket with id:" . $res['LAST_INSERT_ID()'] . "')");
         echo "Your Ticket was submitted!";
@@ -34,10 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <label for="sel1">Select list:</label>
                         <select name="product" class="form-control" id="sel1">
                             <option></option>
-                            <option>Webhosting</option>
-                            <option>vServer</option>
-                            <option>KVM</option>
-                            <option>PLEXwas</option>
+                            <option value="1">Webhosting</option>
+                            <option value="2">vServer</option>
+                            <option value="3">KVM</option>
+                            <option value="4">PLEXwas</option>
                         </select>
                     </div>
                     <div class="input-group col-md-12">
