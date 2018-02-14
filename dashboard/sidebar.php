@@ -45,7 +45,7 @@ Tip 2: you can also add an image using data-image tag
                 </a>
             </li>
             <?php
-
+            unset($active);
             foreach ($db->getModules() as $module) {
                 $hrset = false;
                 foreach ($module->getNavs() as $navpoint) {
