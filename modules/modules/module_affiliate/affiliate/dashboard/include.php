@@ -16,8 +16,6 @@ $currentlevel = $db->simpleQuery("SELECT * FROM affiliate_leveldata WHERE id=$us
 $currentlevel = $currentlevel->fetch_object();
 $nextlevel = $db->simpleQuery("SELECT * FROM affiliate_leveldata WHERE id=$nextlevel");
 
-echo "currentanwerber: " . $userused;
-echo "nextlevel: " . $currentlevel->userrequired;
 ?>
 <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-6">
