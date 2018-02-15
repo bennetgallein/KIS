@@ -143,7 +143,6 @@ if (isset($params->redeem)) {
                 </div>
                 <?php
                 if (isset($_SESSION['error'])) {
-                    echo "<br>" . $_SESSION['error'];
                     unset($_SESSION['error']);
                 }
                 ?>
