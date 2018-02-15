@@ -10,10 +10,10 @@
     "id_lenght": 100
   }],
   "database": [{
-    "host": "46.251.239.147",
-    "user": "kis",
-    "password": "kis",
-    "database": "kis"
+    "host": "xxx",
+    "user": "xxx",
+    "password": "xxx",
+    "database": "xxx"
   }],
   "footer": [{
     "Fee-Hosting.com": "https://fee-hosting.com",
