@@ -8,7 +8,9 @@ This is the Documentation of the Framework we are using in our self-developed KI
 
 ## Related Projects
 We maintaince a list of other repositories to make this Framework work in the way we want it to:
+
 (Virtualizor API Wrapper)[https://github.com/bennetgallein/VirtualizorPHP]
+
 (Trello API Wrapper)[https://github.com/bennetgallein/Trello-API-PHP-Wrapper]
 
 ## Module System:
