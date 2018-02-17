@@ -48,6 +48,12 @@
       "link": "invoice.php",
       "permission": "1",
       "type": "page"
+    },
+    {
+      "name": "invoice",
+      "link": "checkout.php",
+      "permission": "1",
+      "type": "nav"
     }
   ],
   "dashboards": [
