@@ -6,6 +6,13 @@ grip README.md --export README.html
 ## Overview:
 This is the Documentation of the Framework we are using in our self-developed KIS.
 
+## Related Projects
+We maintaince a list of other repositories to make this Framework work in the way we want it to:
+
+[Virtualizor API Wrapper](https://github.com/bennetgallein/VirtualizorPHP)[![Build Status](https://travis-ci.org/bennetgallein/VirtualizorPHP.svg?branch=master)](https://travis-ci.org/bennetgallein/VirtualizorPHP)
+
+[Trello API Wrapper](https://github.com/bennetgallein/Trello-API-PHP-Wrapper)
+
 ## Module System:
 The Heart of our System is the Module System which enables you to install and develop modules that perfectly fit your needs.
 We offer basic documentation for ourselves, and for potential developers. Installing modules is pretty easy. Drop the Folder in the 
