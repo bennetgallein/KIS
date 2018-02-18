@@ -25,7 +25,7 @@ if (property_exists($params, 'awnser')) {
                 $continue = false;
             }
             if ($continue) {
-                $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, writername, awnser) VALUES ('" . $row->id . "', '" . $db->getConnection()->escape_string($_POST['message']) . "', '" . $db->getConnection()->escape_string($user->getName()) . "', " . $awns . ")");
+                $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, writername, awnser) VALUES ('" . $row->id . "', '" . $db->getConnection()->escape_string(($_POST['message'])) . "', '" . $db->getConnection()->escape_string($user->getName()) . "', " . $awns . ")");
             }
         }
     }
