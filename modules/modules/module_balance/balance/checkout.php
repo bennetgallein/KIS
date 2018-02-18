@@ -8,12 +8,8 @@
                 <div class="col-md-10">
                     <div class="card">
                         <div class="card-content">
-                            <div class="col-md-2">
-                                <img src="http://lorempixel.com/400/400/sports/1/"
-                                     class="img-responsive img-circle"
-                                     alt="Responsive image">
-                            </div>
-                            <div class="col-md-10">
+                            <div class="col-md-12">
+                                <h3>Product name</h3>
                                 <table class="table">
                                     <tr>
                                         <td>Category 1</td>
@@ -34,18 +30,17 @@
                                         <td>Info 4</td>
                                     </tr>
                                 </table>
+                                <div class="col-md-2 pull-right">
+                                    <h4><u>Price:</u></h4><h5><b>22.5$</b></h5>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <hr>
                     <div class="card">
                         <div class="card-content">
-                            <div class="col-md-2">
-                                <img src="http://lorempixel.com/400/400/sports/2/"
-                                     class="img-responsive img-circle"
-                                     alt="Responsive image">
-                            </div>
-                            <div class="col-md-10">
+                            <div class="col-md-12">
+                                <h3>Product name</h3>
                                 <table class="table">
                                     <tr>
                                         <td>Category 1</td>
@@ -66,6 +61,9 @@
                                         <td>Info 4</td>
                                     </tr>
                                 </table>
+                                <div class="col-md-2 pull-right">
+                                    <h4><u>Price:</u></h4><h5><b>22.5$</b></h5>
+                                </div>
                             </div>
                         </div>
                     </div>
