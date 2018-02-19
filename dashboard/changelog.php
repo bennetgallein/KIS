@@ -64,7 +64,7 @@ if (isset($_GET['a'])) {
         // list id: 5a6e3737021462be3b0f1fd0
         $card = new \Trello\Model\Card($client);
         $card->name = $_POST['title'];
-        $card->desc = $_POST['bug'];
+        $card->desc = $_POST['bug'] . " - " . $user->getName();
         $card->idList = "5a6f8dbfe41f1d8c9156b56e";
         $card->idLabels = "5a6f8dba9ae3d60b0c1a9319,5a6f8dba9ae3d60b0c1a931a";
         $card->pos = "top";
