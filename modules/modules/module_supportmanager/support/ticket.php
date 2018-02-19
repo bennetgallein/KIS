@@ -54,6 +54,40 @@ if (property_exists($params, 'close')) {
 $res = $db->simpleQuery("SELECT * FROM tickets WHERE id=" . $db->getConnection()->escape_string($id) . " LIMIT 1");
 $row = $res->fetch_object();
 ?>
+<style>
+    h2.no-background {
+        position: relative;
+        overflow: hidden;
+        margin-top: 10px;
+        text-align: center;
+        font-size: 1em;
+    }
+    h2.no-background span {
+        display: inline-block;
+        vertical-align: baseline;
+        zoom: 1;
+        *display: inline;
+        *vertical-align: auto;
+        position: relative;
+        padding: 0 20px;
+    }
+    h2.no-background span:before,
+    h2.no-background span:after {
+        content: '';
+        display: block;
+        width: 1000px;
+        position: absolute;
+        top: 0.73em;
+        border-top: 1px solid #dfdfdf;
+    }
+    h2.no-background span:before {
+        right: 100%;
+    }
+    h2.no-background span:after {
+        left: 100%;
+    }
+
+</style>
 <div class="row">
     <div class="col-md-12">
         <div class="card">
@@ -99,7 +133,7 @@ $row = $res->fetch_object();
                                         <div class="panel panel-default">
                                             <div class="panel-body" data-background-color="red"
                                                  style="text-align: center;">
-                                                <hr><?= $row1->message ?>
+                                                <h2 class="no-background"><span><?= $row1->message ?></span></h2>
                                             </div>
                                         </div>
                                     </div>
