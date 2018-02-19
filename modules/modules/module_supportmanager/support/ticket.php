@@ -26,6 +26,7 @@ if (property_exists($params, 'awnser')) {
             }
             if ($continue) {
                 $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, writername, awnser) VALUES ('" . $row->id . "', '" . $db->getConnection()->escape_string(($_POST['message'])) . "', '" . $db->getConnection()->escape_string($user->getName()) . "', " . $awns . ")");
+                $db->redirect("module.php?module=support/ticket.php&params=id|" . $id);
             }
         }
     }
@@ -33,8 +34,8 @@ if (property_exists($params, 'awnser')) {
 if (property_exists($params, 'take')) {
     if (($row->status == 1 || $row->status == 2) && $user->getPermissions() >= 2) {
         $db->simpleQuery("UPDATE tickets SET status = 3, supporter = '" . $user->getId() . "' WHERE id='" . $id . "'");
-        $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, awnser) VALUES ('" . $row->id . "', '" . $user->getName() . " is now supporting this Ticket.', 3)");
-        header("Location: module.php?module=support/ticket.php&params=id|" . $id);
+        $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, awnser) VALUES ('" . $row->id . "', '" . $user->getName() . " is now supporting this ticket.', 3)");
+        $db->redirect("module.php?module=support/ticket.php&params=id|" . $id);
     } else {
         die("YOU DON'T HAVE PERMISSION!");
     }
@@ -44,7 +45,7 @@ if (property_exists($params, 'close')) {
         if ($row->userid == $user->getId() || $user->getPermissions() >= 2) {
             $db->simpleQuery("UPDATE tickets SET status = 2 WHERE id='" . $id . "'");
             $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, awnser) VALUES ('" . $row->id . "', 'Ticket closed by " . $user->getName() . "', 3)");
-            header("Location: module.php?module=support/ticket.php&params=id|" . $id);
+            $db->redirect("module.php?module=support/ticket.php&params=id|" . $id);
         } else {
             die("YOU DON'T HAVE PERMISSION!");
         }
