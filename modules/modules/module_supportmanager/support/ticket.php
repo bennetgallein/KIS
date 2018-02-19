@@ -40,14 +40,18 @@ if (property_exists($params, 'take')) {
     }
 }
 if (property_exists($params, 'close')) {
-    if ($row->userid == $user->getId() || $user->getPermissions() >= 2) {
-        $db->simpleQuery("UPDATE tickets SET status = 2 WHERE id='" . $id . "'");
-        $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, awnser) VALUES ('" . $row->id . "', 'Ticket closed by customer', 3)");
-        header("Location: module.php?module=support/ticket.php&params=id|" . $id);
-    } else {
-        die("YOU DON'T HAVE PERMISSION!");
+    if ($row->status != 2) {
+        if ($row->userid == $user->getId() || $user->getPermissions() >= 2) {
+            $db->simpleQuery("UPDATE tickets SET status = 2 WHERE id='" . $id . "'");
+            $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, awnser) VALUES ('" . $row->id . "', 'Ticket closed by " . $user->getName() . "', 3)");
+            header("Location: module.php?module=support/ticket.php&params=id|" . $id);
+        } else {
+            die("YOU DON'T HAVE PERMISSION!");
+        }
     }
 }
+$res = $db->simpleQuery("SELECT * FROM tickets WHERE id=" . $db->getConnection()->escape_string($id) . " LIMIT 1");
+$row = $res->fetch_object();
 ?>
 <div class="row">
     <div class="col-md-12">
