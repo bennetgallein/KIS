@@ -5,13 +5,15 @@
  * Date: 1/16/2018
  * Time: 7:09 PM
  */
-if (!isset($_SESSION['user'])) {
-    header("Location ../index.php");
-}
+/*if (!isset($_SESSION['user'])) {*/
+header("Location ../index.php");
+/*}*/
 include("database.php");
-include("User.php");
-$db = new DB();
 
+//include("User.php");
+$db = new DB();
+$db->redirect("../index.php");
+/*
 $user = unserialize($_SESSION['user']);
 if (isset($_GET['method'])) {
     $method = $_GET['method'];
@@ -19,7 +21,7 @@ if (isset($_GET['method'])) {
     if ($method != "delete" && $method != "resetpw") {
         header("Location: ../dashboard/index.php");
     }
-    if (isset($_GET['confirmed'])) {
+    /*if (isset($_GET['confirmed'])) {
         if ($method == "delete") {
             $res = $db->simpleQuery("DELETE FROM users WHERE id='" . $user->getId() . "'");
             var_dump($res);
@@ -45,3 +47,4 @@ if (isset($_GET['method'])) {
 } else {
     header("Location: ../dashboard/index.php");
 }
+*/
