@@ -135,28 +135,66 @@ if (isset($_GET['a'])) {
                 if (isset($_SESSION['bug_reported'])) {
                     echo '<div class="card">
                         <div class="card-header" data-background-color="' . $db->getConfig()['color'] . '">
-                            <h4 class="title">Thank you!</h4>
-                            <p class="category">Thanks for helping making this a better place!</p>
+                            <h4 class="title">Danke!</h4>
+                            <p class="category">Danke, vielleicht beheben wir den Fehler wenn es einen gibt!</p>
                         </div>
                     </div>';
                     unset($_SESSION['bug_reported']);
                 }
 
                 ?>
-                <?php foreach ($db->getChangelog() as $change): ?>
-                    <div class="card">
-                        <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
-                            <h4 class="title"><?= $change['version'] ?></h4>
-                            <p class="category"><?= $change['description'] ?></p>
-                        </div>
-                        <div class="card-content">
-                            <div id="typography">
-                                <?= $change['message'] ?>
-
-                            </div>
+                <div class="card">
+                    <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
+                        <h4 class="title">Bevor du einen Fehler meldest!</h4>
+                        <p class="category">wichtige Informationen die du vorher gelesen haben solltest!</p>
+                    </div>
+                    <div class="card-content">
+                        <div id="typography">
+                            <p>Es gibt Sachen von denen Wissen wir. Auch gibt es Sachen von denen ihr nicht wissen könnt,
+                            dass sie nicht funktionieren sollen. Im folgenden nun mal ein paar Punkte die doch recht
+                                häufig gemeldet wurden:</p>
+                            <br>
+                            <br>
+                            <ul>
+                                <li>"Datum auf den Tickets ist falsch" - Wissen wir, ist eine Einstellung am Server,
+                                    muss nur mal
+                                    gemacht werden.
+                                </li>
+                                <br>
+                                <li>
+                                    "Cookies funktionen nicht" - Doch tun sie, aber nicht wenn viele Leute den gleichen
+                                    Account benutzten was beim Test-Account der Fall ist.
+                                </li>
+                                <br>
+                                <li>
+                                    "Ich bekomme keine Bestätigungsemail" - Sollte ziemlich selbsterklärend sein wenn
+                                    wir schon einen Test-Account zur Verfügung stellen. Wir WOLLEN NICHT das sich jemand
+                                    registriert weil wir womoglich noch gravierende Sicherheitslücken haben die es zu
+                                    schließen gilt.
+                                </li>
+                                <br>
+                                <li>
+                                    "Auf einigen Seiten funktionieren Knöpfe nicht und ich kann das Profil nicht
+                                    updaten" - Das ist die Beschränkung des Test-Accounts. Wenn jemand die E-mail
+                                    Adresse des Accounts ändert, kann sich niemand mehr einloggen, desswegen sind
+                                    Funktionen die den User-Account bearbeiten deaktiviert.
+                                </li>
+                                <br>
+                                <li>"PayPal funkioniert auch nicht" - Wir sind noch in der Testphase, desswegen wollen
+                                    wir nicht das ihr euer Geld aufladet und zudem ist die PayPal Integration auch noch
+                                    im Sandbox Modus, ich kann also damit Testen, aber nichts passiert wirklich.
+                                </li>
+                                <br>
+                                <li>"Style auf Handy oder Tablet ist hässlich" - Unser fokus liegt momentan auf dem Pc,
+                                    wir haben uns noch nicht um die optimierung für Smartphones gekümmert. Einfach hier
+                                    unten kurz melden und gut ist.
+                                </li>
+                                <br>
+                            </ul>
+                            <p>Sonst kann ich nur einmal schnell Danke sagen. Ich konnte nach kurzer Zeit schon ein paar gefährliche Sachen fixen, an die ich selbst nicht gedacht habe!</p>
                         </div>
                     </div>
-                <?php endforeach; ?>
+                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
