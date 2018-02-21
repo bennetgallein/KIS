@@ -50,53 +50,53 @@ if ($res) {
     $data = array();
     header("Location: ../index.php?method=login&error=internal");
 }
+if ($user->getEmail() != "test@test.de") {
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        if (isset($_GET['update'])) {
+            if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['repeatemail']) && isset($_POST['adress']) && isset($_POST['city']) && isset($_POST['country']) && isset($_POST['postalcode'])) {
+                $firstname = $_POST['firstname'];
+                $lastname = $_POST['lastname'];
+                $email = $_POST['email'];
+                $repemail = $_POST['repeatemail'];
+                $adress = $_POST['adress'];
+                $company = isset($_POST['company']) ? $_POST['company'] : "";
+                $city = $_POST['city'];
+                $country = $_POST['country'];
+                $postalcode = $_POST['postalcode'];
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (isset($_GET['update'])) {
-        if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['repeatemail']) && isset($_POST['adress']) && isset($_POST['city']) && isset($_POST['country']) && isset($_POST['postalcode'])) {
-            $firstname = $_POST['firstname'];
-            $lastname = $_POST['lastname'];
-            $email = $_POST['email'];
-            $repemail = $_POST['repeatemail'];
-            $adress = $_POST['adress'];
-            $company = isset($_POST['company']) ? $_POST['company'] : "";
-            $city = $_POST['city'];
-            $country = $_POST['country'];
-            $postalcode = $_POST['postalcode'];
-
-            if (!($email == $repemail)) {
-                header("Location: user.php?error=Email%20do%20not%20match");
-            }
-            if (isset($data->adress)) {
-                // update
-                $res = $db->prepareQuery("UPDATE adresses SET adress=?, company=?, city=?, country=?, postalcode=? WHERE userid='" . $user->getId() . "'", array($adress, $company, $city, $country, $postalcode));
-                header("Location: user.php?success=1");
-            } else {
-                $res = $db->prepareQuery("INSERT INTO adresses(userid, adress, company, city, country, postalcode) VALUES (?,?,?,?,?,?)", array($user->getId(), $adress, $company, $city, $country, $postalcode));
-                if (!$res) {
-                    header("Location: user.php?error=1");
+                if (!($email == $repemail)) {
+                    header("Location: user.php?error=Email%20do%20not%20match");
+                }
+                if (isset($data->adress)) {
+                    // update
+                    $res = $db->prepareQuery("UPDATE adresses SET adress=?, company=?, city=?, country=?, postalcode=? WHERE userid='" . $user->getId() . "'", array($adress, $company, $city, $country, $postalcode));
+                    header("Location: user.php?success=1");
+                } else {
+                    $res = $db->prepareQuery("INSERT INTO adresses(userid, adress, company, city, country, postalcode) VALUES (?,?,?,?,?,?)", array($user->getId(), $adress, $company, $city, $country, $postalcode));
+                    if (!$res) {
+                        header("Location: user.php?error=1");
+                        die();
+                    }
+                }
+                $res = $db->prepareQuery("UPDATE users SET firstname=?, lastname=?, email=? WHERE id='" . $user->getId() . "'", array($firstname, $lastname, $email));
+                if ($res) {
+                    $user->setFirstname($firstname);
+                    $user->setLastname($lastname);
+                    $user->setEmail($email);
+                    $_SESSION['user'] = serialize($user);
+                    header("Location: user.php?success=1");
+                    die();
+                } else {
+                    header("Location: user.php?error=2");
                     die();
                 }
+                $db->prepareQuery("INSERT INTO notifications (userid, message) VALUES (?, ?)", array(
+                    $db->escape($id), $db->escape("You updated your profile!")
+                ));
             }
-            $res = $db->prepareQuery("UPDATE users SET firstname=?, lastname=?, email=? WHERE id='" . $user->getId() . "'", array($firstname, $lastname, $email));
-            if ($res) {
-                $user->setFirstname($firstname);
-                $user->setLastname($lastname);
-                $user->setEmail($email);
-                $_SESSION['user'] = serialize($user);
-                header("Location: user.php?success=1");
-                die();
-            } else {
-                header("Location: user.php?error=2");
-                die();
-            }
-            $db->prepareQuery("INSERT INTO notifications (userid, message) VALUES (?, ?)", array(
-                $db->escape($id), $db->escape("You updated your profile!")
-            ));
         }
     }
 }
-
 ?>
 <html lang="en">
 
