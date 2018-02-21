@@ -114,11 +114,11 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
         header("Location: index.php");
         die();
     }
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $email = $_POST['email'];
-    $pw1 = $_POST['pw1'];
-    $pw2 = $_POST['pw2'];
+    $firstname = strip_tags($_POST['firstname']);
+    $lastname = stip_tags($_POST['lastname']);
+    $email = strip_tags($_POST['email']);
+    $pw1 = strip_tags($_POST['pw1']);
+    $pw2 = strip_tags($_POST['pw2']);
     if ($pw1 != $pw2) {
         header("Location: index.php?method=register&error=pwm");
         die();

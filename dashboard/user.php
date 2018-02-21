@@ -54,15 +54,15 @@ if ($user->getEmail() != "test@test.de") {
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if (isset($_GET['update'])) {
             if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['repeatemail']) && isset($_POST['adress']) && isset($_POST['city']) && isset($_POST['country']) && isset($_POST['postalcode'])) {
-                $firstname = $_POST['firstname'];
-                $lastname = $_POST['lastname'];
-                $email = $_POST['email'];
-                $repemail = $_POST['repeatemail'];
-                $adress = $_POST['adress'];
-                $company = isset($_POST['company']) ? $_POST['company'] : "";
-                $city = $_POST['city'];
-                $country = $_POST['country'];
-                $postalcode = $_POST['postalcode'];
+                $firstname = $db->getConnection()->escape(strip_tags($_POST['firstname']));
+                $lastname = $db->getConnection()->escape(strip_tags($_POST['lastname']));
+                $email = $db->getConnection()->escape(strip_tags($_POST['email']));
+                $repemail = $db->getConnection()->escape(strip_tags($_POST['repeatemail']));
+                $adress = $db->getConnection()->escape(strip_tags($_POST['adress']));
+                $company = $db->getConnection()->escape(strip_tags(isset($_POST['company']) ? $_POST['company'] : ""));
+                $city = $db->getConnection()->escape(strip_tags($_POST['city']));
+                $country = $db->getConnection()->escape(strip_tags($_POST['country']));
+                $postalcode = $db->getConnection()->escape(strip_tags($_POST['postalcode']));
 
                 if (!($email == $repemail)) {
                     header("Location: user.php?error=Email%20do%20not%20match");
