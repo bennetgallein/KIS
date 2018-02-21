@@ -115,7 +115,7 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
         die();
     }
     $firstname = strip_tags($_POST['firstname']);
-    $lastname = stip_tags($_POST['lastname']);
+    $lastname = strip_tags($_POST['lastname']);
     $email = strip_tags($_POST['email']);
     $pw1 = strip_tags($_POST['pw1']);
     $pw2 = strip_tags($_POST['pw2']);
