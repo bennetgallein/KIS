@@ -34,7 +34,6 @@ $db = new DB();
         $token = $db->getConnection()->escape_string($_POST['token']);
 
         $res = $db->simpleQuery("SELECT * FROM vertification_tokens WHERE usermail='" . $email . "' AND token='" . $token . "' LIMIT 1");
-        var_dump($res);
         if ($res) {
             if ($res->num_rows == 0) {
                 echo "Wrong confirmation key!";
