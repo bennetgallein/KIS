@@ -147,7 +147,7 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
 
     $to = $email;
     $subject = 'Confirmation Token';
-    /*$message = '
+    $text = '
     <div style="width: 68%; margin-left: 15%; font-size: 1.3em; margin-top: 5%; background: #288feb; padding: 1%; height: 70%; border-radius: 15px; color: white;">
     <div>
         <div style="height: 130px;">
@@ -161,17 +161,16 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
             Here is your registration code:<br>
             ' . $token . '
         </div>
-        <div style="width: 40%; float: right; margin-right: 2%; padding: 1%; background-color: #4FA3EE">
+        <!--<div style="width: 40%; float: right; margin-right: 2%; padding: 1%; background-color: #4FA3EE">
             Or click on this link (maintenace): <br>
             <a href="#" style="color: #FFF;">https://www.link.registration.com</a>
-        </div>
+        </div>-->
     </div>
 </div>
-    ';*/
+    ';
     $empfaenger = "bennet@intranetproject.net";
     $betreff = "Bug Report";
     $from = "From: KIS <test@intranetproject.net>";
-    $text = "TSET";
 
     mail($empfaenger, $betreff, $text, $from);
 
