@@ -6,7 +6,8 @@
  * Date: 1/16/2018
  * Time: 9:45 PM
  */
-class Paginator {
+class Paginator
+{
 
     private $_conn;
     private $_limit;
@@ -14,7 +15,8 @@ class Paginator {
     private $_query;
     private $_total;
 
-    public function __construct($conn, $query) {
+    public function __construct($conn, $query)
+    {
 
         $this->_conn = $conn;
         $this->_query = $query;
@@ -24,7 +26,8 @@ class Paginator {
 
     }
 
-    public function getData($limit = 10, $page = 1) {
+    public function getData($limit = 10, $page = 1)
+    {
 
         $this->_limit = $limit;
         $this->_page = $page;
@@ -49,7 +52,8 @@ class Paginator {
         return $result;
     }
 
-    public function createLinks($links, $list_class) {
+    public function createLinks($links, $list_class)
+    {
         if ($this->_limit == 'all') {
             return '';
         }
@@ -123,14 +127,15 @@ $db->disconnect();
                     <?php for ($i = 0; $i < count($results->data); $i++) : ?>
                         <tr>
                             <td><?= $results->data[$i]['_id'] ?></td>
-                            <td>
-                                <a href="module.php?module=customermanagment/profile.php&params=user|<?= $results->data[$i]['id'] ?>"><?= $results->data[$i]['id'] ?></a>
-                            </td>
+                            <td><?= $results->data[$i]['id'] ?></td>
                             <td><?= $results->data[$i]['email'] ?></td>
                             <td><?= $results->data[$i]['permissions'] ?></td>
                             <td><?= $results->data[$i]['firstname'] ?></td>
                             <td><?= $results->data[$i]['lastname'] ?></td>
                             <td><?= $results->data[$i]['registered_at'] ?></td>
+                            <td>
+                                <a href="module.php?module=customermanagment/profile.php&params=user|<?= $results->data[$i]['id'] ?>"><i class="material-icons">account_box</i></a>
+                            </td>
                         </tr>
                     <?php endfor; ?>
                     </tbody>

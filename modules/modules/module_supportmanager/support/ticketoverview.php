@@ -55,11 +55,15 @@ if ($view == '4') {
                     <?php while ($row = $query->fetch_object()): ?>
                         <tr <?= $color ?>>
                             <td><?= $row->id ?></td>
-                            <td><a href="module.php?module=support/ticket.php&params=id|<?= $row->id ?>"><?= $row->title ?></a></td>
+                            <td><?= $row->title ?></td>
                             <td><?= $row->userid ?></td>
                             <td><?= $row->status ?></td>
                             <td><?= $row->created_at ?></td>
                             <td><?= $row->updated_at ?></td>
+                            <td><a href="module.php?module=support/ticket.php&params=id|<?= $row->id ?>"><i
+                                            class="material-icons">open_in_new</i></a></td>
+                            <td><a href="module.php?module=support/ticket.php&params=id|<?= $row->id ?>_close|1"><i
+                                            class="material-icons">delete_forever</i></a></td>
                         </tr>
                     <?php endwhile; ?>
                     </tbody>

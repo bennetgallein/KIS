@@ -25,9 +25,11 @@ if ($result->num_rows == 0) {
                         while ($row = $result->fetch_object()):
                         ?>
                         <tr>
-                            <td><a href="module.php?module=balance/invoice.php&params=id|<?= $row->id ?>"><?= $row->id ?> (Click me)</a></td>
+                            <td><?= $row->id ?></a></td>
                             <td><?= $row->price?>€</td>
                             <td><?= $row->createdate ?></td>
+                            <td><a href="module.php?module=balance/invoice.php&params=id|<?= $row->id ?>"><i
+                                            class="material-icons">open_in_new</i></a></td>
                         </tr>
                         <?php
                         endwhile;
