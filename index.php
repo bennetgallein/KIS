@@ -110,44 +110,46 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
         header("Location: index.php?method=register&error=fill");
         die();
     }
-    if (!($_GET['method'] == "register")) {
-        header("Location: index.php");
-        die();
-    }
-    $firstname = strip_tags($_POST['firstname']);
-    $lastname = strip_tags($_POST['lastname']);
-    $email = strip_tags($_POST['email']);
-    $pw1 = strip_tags($_POST['pw1']);
-    $pw2 = strip_tags($_POST['pw2']);
-    if ($pw1 != $pw2) {
-        header("Location: index.php?method=register&error=pwm");
-        die();
-    }
-    $res = $db->simpleQuery("SELECT * FROM users WHERE email='" . $db->escape($email) . "' LIMIT 1");
-    if (!$res) {
-        header("Location: index.php?method=register&error=internal");
-        die();
-    }
-    if ($res->num_rows >= 1) {
-        header("Location: index.php?method=register&error=regi");
-        die();
-    }
-    $id = bin2hex((openssl_random_pseudo_bytes(23)));
-    $db->prepareQuery("INSERT INTO users (id, email, firstname, lastname, password) VALUES (?, ?, ?, ?, ?)", array(
-        $db->escape($id), $db->escape($email), $db->escape($firstname), $db->escape($lastname), $db->escape(password_hash($pw1, PASSWORD_DEFAULT))
-    ));
-    $db->prepareQuery("INSERT INTO notifications (userid, message) VALUES (?, ?)", array(
-        $db->escape($id), $db->escape("Welcome, " . $firstname . " " . $lastname . "!")
-    ));
-    $db->prepareQuery("INSERT INTO balances (userid, balance) VALUES (?, ?)", array(
-        $db->escape($id), $db->escape("0.00")
-    ));
+    if (trim($_POST['firstname']) && trim($_POST['lastname']) && trim($_POST['email']) && trim($_POST['pw1']) && trim($_POST['pw1'])) {
 
-    $token = $db->generateRandomString(5);
+        if (!($_GET['method'] == "register")) {
+            header("Location: index.php");
+            die();
+        }
+        $firstname = strip_tags($_POST['firstname']);
+        $lastname = strip_tags($_POST['lastname']);
+        $email = strip_tags($_POST['email']);
+        $pw1 = strip_tags($_POST['pw1']);
+        $pw2 = strip_tags($_POST['pw2']);
+        if ($pw1 != $pw2) {
+            header("Location: index.php?method=register&error=pwm");
+            die();
+        }
+        $res = $db->simpleQuery("SELECT * FROM users WHERE email='" . $db->escape($email) . "' LIMIT 1");
+        if (!$res) {
+            header("Location: index.php?method=register&error=internal");
+            die();
+        }
+        if ($res->num_rows >= 1) {
+            header("Location: index.php?method=register&error=regi");
+            die();
+        }
+        $id = bin2hex((openssl_random_pseudo_bytes(23)));
+        $db->prepareQuery("INSERT INTO users (id, email, firstname, lastname, password) VALUES (?, ?, ?, ?, ?)", array(
+            $db->escape($id), $db->escape($email), $db->escape($firstname), $db->escape($lastname), $db->escape(password_hash($pw1, PASSWORD_DEFAULT))
+        ));
+        $db->prepareQuery("INSERT INTO notifications (userid, message) VALUES (?, ?)", array(
+            $db->escape($id), $db->escape("Welcome, " . $firstname . " " . $lastname . "!")
+        ));
+        $db->prepareQuery("INSERT INTO balances (userid, balance) VALUES (?, ?)", array(
+            $db->escape($id), $db->escape("0.00")
+        ));
 
-    $to = $email;
-    $subject = 'Confirmation Token';
-    $text = '
+        $token = $db->generateRandomString(5);
+
+        $to = $email;
+        $subject = 'Confirmation Token';
+        $text = '
     <div style="width: 68%; margin-left: 15%; font-size: 1.3em; margin-top: 5%; background: #288feb; padding: 1%; height: 70%; border-radius: 15px; color: white;">
     <div>
         <div style="height: 130px;">
@@ -168,17 +170,21 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
     </div>
 </div>
     ';
-    $empfaenger = "bennet@intranetproject.net";
-    $betreff = "Bug Report";
-    $from = "From: KIS <test@intranetproject.net>";
+        $empfaenger = "bennet@intranetproject.net";
+        $betreff = "Bug Report";
+        $from = "From: KIS <test@intranetproject.net>";
 
-    mail($empfaenger, $betreff, $text, $from);
+        mail($empfaenger, $betreff, $text, $from);
 
-    $db->prepareQuery("INSERT INTO vertification_tokens (usermail, token) VALUES (?, ?)", array(
-        $db->escape($email), $db->escape($token)
-    ));
+        $db->prepareQuery("INSERT INTO vertification_tokens (usermail, token) VALUES (?, ?)", array(
+            $db->escape($email), $db->escape($token)
+        ));
 
-    header("Location: confirm.php");
+        header("Location: confirm.php");
+    } else {
+        header("Location: index.php?method=register&error=fill");
+        die();
+    }
 }
 
 
