@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (isset($_POST['title']) && isset($_POST['message']) && isset($_POST['product'])) {
+    if ((isset($_POST['title']) && trim($_POST['title'])) && (isset($_POST['message']) && trim($_POST['message']) ) && isset($_POST['product'])) {
 
         // insert and notification to user
         $userid = $user->getId();
