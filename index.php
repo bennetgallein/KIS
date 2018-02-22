@@ -163,10 +163,6 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
             Here is your registration code:<br>
             ' . $token . '
         </div>
-        <!--<div style="width: 40%; float: right; margin-right: 2%; padding: 1%; background-color: #4FA3EE">
-            Or click on this link (maintenace): <br>
-            <a href="#" style="color: #FFF;">https://www.link.registration.com</a>
-        </div>-->
     </div>
 </div>
     ';
@@ -263,6 +259,7 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
             <form action="index.php?method=register&continue_registration=true" method="post"
                   class="navbar-form navbar-left form-signin">
                 <h3 class="form-signin-heading"><?= $db->m(4) ?></h3>
+                <h2>Wir sind gerade noch am Testen, desswegen ist Registrieren vorerst deaktiviert!</h2>
                 <hr class="colorgraph">
                 <?php
                 if (isset($_GET['error'])) {
