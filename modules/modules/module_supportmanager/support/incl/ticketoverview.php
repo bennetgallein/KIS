@@ -4,7 +4,7 @@ $query = $db->simpleQuery("SELECT * FROM tickets WHERE userid='$params->user' OR
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header" data-background-color="<?= $db->getConfig()['color']?>">
+            <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                 <h4 class="title">Support</h4>
                 <p class="category">Open and Closed Support Tickets (click on the title to get detailed information)</p>
             </div>
@@ -24,15 +24,22 @@ $query = $db->simpleQuery("SELECT * FROM tickets WHERE userid='$params->user' OR
                     if ($query->num_rows == 0) {
                         echo "No Results found!";
                     } else {
-                    while ($row = $query->fetch_object()): ?>
-                    <tr data-background-color="<?= $row->status ? "green" : "red" ?>">
-                        <td><?= $row->id ?></td>
-                        <td><a href="module.php?module=support/ticket.php&params=id|<?= $row->id?>"><?= $row->title ?></a></td>
-                        <td><?= $row->userid ?></td>
-                        <td><?= $row->created_at ?></td>
-                        <td><?= $row->updated_at ?></td>
-                    </tr>
-                    <?php endwhile; }?>
+                        while ($row = $query->fetch_object()): ?>
+                            <tr data-background-color="<?= $row->status ? "green" : "red" ?>">
+                                <td><?= $row->id ?></td>
+                                <td>
+                                    <a href="module.php?module=support/ticket.php&params=id|<?= $row->id ?>"><?= $row->title ?></a>
+                                </td>
+                                <td><?= $row->userid ?></td>
+                                <td><?= $row->created_at ?></td>
+                                <td><?= $row->updated_at ?></td>
+                                <td><a href="module.php?module=support/ticket.php&params=id|<?= $row->id ?>"><i
+                                                class="material-icons">open_in_new</i></a></td>
+                                <td><a href="module.php?module=support/ticket.php&params=id|<?= $row->id ?>_close|1"><i
+                                                class="material-icons">delete_forever</i></a></td>
+                            </tr>
+                        <?php endwhile;
+                    } ?>
                     </tbody>
                 </table>
             </div>
