@@ -35,5 +35,13 @@
       "permission": "2"
     }
   ],
-  "includeables": []
+  "includeables": [],
+  "supports": [
+    {
+      "name": "bennetgallein/supportmanager"
+    },
+    {
+      "name": "bennetgallein/balance"
+    }
+  ]
 }
