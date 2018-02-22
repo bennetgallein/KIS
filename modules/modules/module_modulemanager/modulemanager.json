@@ -22,6 +22,11 @@
       "link": "manager.php",
       "permission": "3",
       "type": "nav"
+    },
+    {
+      "link": "install.php",
+      "permission": "3",
+      "type": "page"
     }
   ],
   "dashboards": [
