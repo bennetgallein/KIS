@@ -156,10 +156,6 @@ if (isset($_GET['a'])) {
                             <br>
                             <br>
                             <ul>
-                                <li>"Datum auf den Tickets ist falsch" - Wissen wir, ist eine Einstellung am Server,
-                                    muss nur mal
-                                    gemacht werden.
-                                </li>
                                 <br>
                                 <li>
                                     "Cookies funktionen nicht" - Doch tun sie, aber nicht wenn viele Leute den gleichen
