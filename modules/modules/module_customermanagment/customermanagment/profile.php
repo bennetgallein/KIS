@@ -5,7 +5,12 @@ if (!isset($params->user)) {
 
 $user1 = $db->simpleQuery("SELECT * FROM users WHERE id='" . $params->user . "'");
 if ($user1) {
-    $user1 = $user1->fetch_object();
+    if ($user1->num_rows >= 1) {
+        $user1 = $user1->fetch_object();
+    } else {
+        echo "<h3>No User with that ID found!</h3>";
+        die();
+    }
 }
 $address = $db->simpleQuery("SELECT * FROM adresses WHERE userid='" . $params->user . "'");
 if ($user) {
@@ -13,7 +18,7 @@ if ($user) {
 }
 if (isset($params->delete)) {
     $res = $db->simpleQuery("DELETE FROM users WHERE id='" . $params->user . "'");
-    header("Location: module.php?module=customermanagment/list.php");
+    $db->redirect("module.php?module=customermanagment/list.php");
     die();
 }
 ?>
@@ -84,7 +89,7 @@ if (isset($params->delete)) {
                     <div class="row">
                         <div class="col-md-4 pull-right">
                         <a class="btn btn-primary pull-right" data-background-color="red"
-                           href="module.php?module=customermanagment/profile.php&params=user|<?= $user->getId() ?>_delete|1">Delete
+                           href="module.php?module=customermanagment/profile.php&params=user|<?= $params->user ?>_delete|1">Delete
                             Profile </a>
                         </div>
                     </div>
