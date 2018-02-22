@@ -38,11 +38,9 @@ if (isset($_GET['action'])) {
     </div>
 </div>
     ';
-                    $empfaenger = "bennet@intranetproject.net";
-                    $betreff = "Bug Report";
-                    $from = "From: KIS <test@intranetproject.net>";
+                    $from = "From: KIS <confirm@bennetgallein.de>";
 
-                    mail($empfaenger, $betreff, $text, $from);
+                    mail($to, $subject, $text, $from);
                     header("Location: index.php");
                 }
             }
