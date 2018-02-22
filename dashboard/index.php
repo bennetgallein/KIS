@@ -1,8 +1,5 @@
 <?php
-/*
- * clientID: AYqL3LlsQuoOAj14xojHy-rlcYExCkO9oUUOWZu8TpjTjiD75aiGaBvS6R154qrvISPN3jTpOpb7WoSJ
- * secret: EIIlvkfgiROn3kYslXOT-VcuBmn_qk33ZF8VaSQNzEgKkGzmReQIKM0Hr0qzmffN35vglZC51-C4Ju7Q
- */
+
 include("../php/database.php");
 include(dirname(__FILE__) . "/../php/User.php");
 
@@ -93,9 +90,7 @@ if (isset($_GET['removenotification']) && isset($_GET['id'])) {
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">Dashboard </a>
-                    <div class="alert alert-warning">
-                        <span><b> Warning - </b> This is a pre-release version! If you discover ANY bugs, be sure to report them <a href="changelog.php">HERE</a>!</span>
-                    </div>
+
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -110,6 +105,9 @@ if (isset($_GET['removenotification']) && isset($_GET['id'])) {
             </div>
         </nav>
         <div class="content">
+            <div class="alert alert-warning">
+                <span><b> Warning - </b> This is a pre-release version! If you discover ANY bugs, be sure to report them <a href="changelog.php">HERE</a>!</span>
+            </div>
             <div class="container-fluid">
                 <?php
                 foreach ($db->getModules() as $module) {
