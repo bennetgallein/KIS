@@ -21,6 +21,12 @@
       "link": "manager.php",
       "permission": "3",
       "type": "nav"
+    },
+    {
+      "name": "Product",
+      "link": "product.php",
+      "permission": "2",
+      "type": "page"
     }
   ],
   "dashboards": [],
