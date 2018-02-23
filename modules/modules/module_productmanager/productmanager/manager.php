@@ -1,3 +1,12 @@
+<?php
+// need input fields for:
+
+// Name im System
+// Grundpreis
+// Aufpreis Bsp: (+1€ / pro 1gb ram) max 32gb.
+// Die verschiedenen Attribute müssen alle gespeichert werden.
+
+?>
 <div class="row">
     <div class="col-md-12">
         <div class="card">
