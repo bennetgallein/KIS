@@ -1,6 +1,21 @@
 <?php
+if ($params->update) {
+
+}
+
 $id = 0;
 foreach ($db->getModules() as $modd): ?>
+    <?php
+    // update composer:
+    echo "cd " . $modd->getPath() . "/" . $modd->getBasePath() . " && composer install";
+    /*WIP if ($modd->getName() == $params->update) {
+        shell_exec('wget https://raw.githubusercontent.com/composer/getcomposer.org/1b137f8bf6db3e79a38a5bc45324414a6b1f9df2/web/installer -O - -q | php -- --quiet');
+        //$output = shell_exec("cd " . $modd->getPath() . "/" . $modd->getBasePath() . " && composer install");
+        $output = shell_exec("cd " . $modd->getPath() . "/" . $modd->getBasePath() . " && composer update 2>&1");
+        //$output = shell_exec("ls -lart");
+        echo "<br>Output: " . var_dump($output) . "<br>";
+    }*/
+    ?>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -9,11 +24,19 @@ foreach ($db->getModules() as $modd): ?>
                 </div>
                 <div class="card-content">
                     <ul class="list-group">
+                        <a class="btn btn-primary"
+                           href="module.php?module=modulemanager/manager.php&params=update|<?= $modd->getName() ?>"
+                           aria-expanded="false">Update Composer<span
+                                    class="caret"></span>
+                        </a>
                         <li class="list-group-item"><b>Name: </b><?= $modd->getName() ?></li>
                         <li class="list-group-item"><b>Version: </b><?= $modd->getVersion() ?></li>
                         <li class="list-group-item"><b>Baseperm: </b><?= $modd->getBaseperm() ?></li>
                         <li class="list-group-item"><b>Supports:</b></li>
-                        <?php foreach ($modd->getRaw()['supports'] as $author): ?>
+                        <?php
+
+
+                        foreach ($modd->getRaw()['supports'] as $author): ?>
                             <li class="list-group-item" style="margin-left: 15px;">
                                 <b><?= $author['name'] ?></b></li>
                         <?php endforeach; ?>

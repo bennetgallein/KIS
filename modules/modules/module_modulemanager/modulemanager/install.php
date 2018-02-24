@@ -9,4 +9,4 @@ $string = explode("/", $string);
 
 $client = new \Github\Client();
 $readme = $client->api('repo')->contents()->readme('bennetgallein', 'PaladinsPHP', $client);
-var_dump($readme);
+echo base64_decode($readme['content']);
