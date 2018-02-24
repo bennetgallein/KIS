@@ -1,5 +1,10 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require "vendor/autoload.php";
+
 require 'php/database.php';
 $db = new DB();
 
@@ -147,9 +152,25 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
 
         $token = $db->generateRandomString(5);
 
-        $to = $email;
-        $subject = 'Confirmation Token';
-        $text = '
+        $mail = new PHPMailer(true);
+        try {
+            //Server settings
+            //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'wp12836029.mailout.server-he.de';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'wp12836029-confirmation';          // SMTP username
+            $mail->Password = 'Jannosch353';                      // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 25;                                    // TCP port to connect to
+
+            //Recipients
+            $mail->setFrom('confirm@intranetproject.net', 'KIS');
+            $mail->addAddress($email);               // Name is optional
+            $mail->addReplyTo('support@intranetproject.net', 'Information');
+
+
+            $text = '
     <div style="width: 68%; margin-left: 15%; font-size: 1.3em; margin-top: 5%; background: #288feb; padding: 1%; height: 70%; border-radius: 15px; color: white;">
     <div>
         <div style="height: 130px;">
@@ -161,16 +182,25 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
     <div style="width: 100%; text-align: center; font-size: 1.7em; height: auto;">
         <div style="width: 40%; float: left;  margin-left: 2%; padding: 1%; background-color: #4FA3EE">
             Here is your registration code:<br>
-            ' . $token . '
+            ' . $row->token . '
         </div>
+        <!--<div style="width: 40%; float: right; margin-right: 2%; padding: 1%; background-color: #4FA3EE">
+            Or click on this link (maintenace): <br>
+            <a href="#" style="color: #FFF;">https://www.link.registration.com</a>
+        </div>-->
     </div>
 </div>
     ';
-        $empfaenger = "bennet@intranetproject.net";
-        $betreff = "Bug Report";
-        $from = "From: KIS <test@intranetproject.net>";
+            //Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = 'Confirmation Token';
+            $mail->Body = $text;
 
-        mail($empfaenger, $betreff, $text, $from);
+            $mail->send();
+            echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+        }
 
         $db->prepareQuery("INSERT INTO vertification_tokens (usermail, token) VALUES (?, ?)", array(
             $db->escape($email), $db->escape($token)
