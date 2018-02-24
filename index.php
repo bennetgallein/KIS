@@ -182,7 +182,7 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
     <div style="width: 100%; text-align: center; font-size: 1.7em; height: auto;">
         <div style="width: 40%; float: left;  margin-left: 2%; padding: 1%; background-color: #4FA3EE">
             Here is your registration code:<br>
-            ' . $row->token . '
+            ' . $token . '
         </div>
         <!--<div style="width: 40%; float: right; margin-right: 2%; padding: 1%; background-color: #4FA3EE">
             Or click on this link (maintenace): <br>
