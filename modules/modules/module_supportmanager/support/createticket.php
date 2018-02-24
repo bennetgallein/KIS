@@ -1,18 +1,22 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    if ((isset($_POST['title']) && trim($_POST['title'])) && (isset($_POST['message']) && trim($_POST['message']) ) && isset($_POST['product'])) {
+    if ((isset($_POST['title']) && trim($_POST['title'])) && (isset($_POST['message']) && trim($_POST['message'])) && isset($_POST['product'])) {
+        if (strip_tags($_POST['message']) != "" && strip_tags($_POST['title']) != "") {
 
-        // insert and notification to user
-        $userid = $user->getId();
+            // insert and notification to user
+            $userid = $user->getId();
 
-        $db->simpleQuery("INSERT INTO tickets (title, userid, product) VALUES ('" . $db->getConnection()->escape_string(strip_tags($_POST['title'])) . "', '" . $db->getConnection()->escape_string($userid) . "', '" . $db->getConnection()->escape_string(strip_tags($_POST['product'])) . "')");
-        $res = $db->getConnection()->query("SELECT LAST_INSERT_ID()");
-        $res = $res->fetch_assoc();
-        $db->prepareQuery("INSERT INTO tickets_messages (writername, ticketid, message, awnser) VALUES (?, ?, ?, 2)", array(
-                $user->getName(), $db->escape($res['LAST_INSERT_ID()']), $db->escape(strip_tags($_POST['message'])))
-        );
-        $db->simpleQuery("INSERT INTO notifications (userid, message) VALUES ('" . $userid . "', 'Thank you for submitting your ticket with id:" . $res['LAST_INSERT_ID()'] . "')");
-        echo "Your Ticket was submitted!";
+            $db->simpleQuery("INSERT INTO tickets (title, userid, product) VALUES ('" . $db->getConnection()->escape_string(strip_tags($_POST['title'])) . "', '" . $db->getConnection()->escape_string($userid) . "', '" . $db->getConnection()->escape_string(strip_tags($_POST['product'])) . "')");
+            $res = $db->getConnection()->query("SELECT LAST_INSERT_ID()");
+            $res = $res->fetch_assoc();
+            $db->prepareQuery("INSERT INTO tickets_messages (writername, ticketid, message, awnser) VALUES (?, ?, ?, 2)", array(
+                    $user->getName(), $db->escape($res['LAST_INSERT_ID()']), $db->escape(strip_tags($_POST['message'])))
+            );
+            $db->simpleQuery("INSERT INTO notifications (userid, message) VALUES ('" . $userid . "', 'Thank you for submitting your ticket with id:" . $res['LAST_INSERT_ID()'] . "')");
+            echo "Your Ticket was submitted!";
+        } else {
+            echo "Please fill every field!";
+        }
     } else {
         echo "Please fill every field!";
     }
