@@ -1,6 +1,10 @@
 <html>
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require "vendor/autoload.php";
 require 'php/database.php';
 $db = new DB();
 
@@ -15,8 +19,24 @@ if (isset($_GET['action'])) {
                 if ($res->num_rows == 0) {
                     echo "No Confirmation tokens found for that account!";
                 } else {
-                    $to = $email;
-                    $subject = 'Confirmation Token';
+                    $mail  = new PHPMailer(true);
+                    try {
+                        //Server settings
+                        $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+                        $mail->isSMTP();                                      // Set mailer to use SMTP
+                        $mail->Host = 'wp12836029.mailout.server-he.de;wp12836029.mailout.server-he.de';  // Specify main and backup SMTP servers
+                        $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                        $mail->Username = 'wp12836029-confirmation';          // SMTP username
+                        $mail->Password = 'Jannosch353';                      // SMTP password
+                        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                        $mail->Port = 465;                                    // TCP port to connect to
+
+                        //Recipients
+                        $mail->setFrom('confirm@intranetproject.net', 'KIS');
+                        $mail->addAddress($email);               // Name is optional
+                        $mail->addReplyTo('support@intranetproject.net', 'Information');
+
+
                     $text = '
     <div style="width: 68%; margin-left: 15%; font-size: 1.3em; margin-top: 5%; background: #288feb; padding: 1%; height: 70%; border-radius: 15px; color: white;">
     <div>
@@ -38,10 +58,16 @@ if (isset($_GET['action'])) {
     </div>
 </div>
     ';
-                    $from = "From: KIS <confirm@bennetgallein.de>";
+                        //Content
+                        $mail->isHTML(true);                                  // Set email format to HTML
+                        $mail->Subject = 'Confirmation Token';
+                        $mail->Body    = $text;
 
-                    mail($to, $subject, $text, $from);
-                    header("Location: index.php");
+                        $mail->send();
+                        echo 'Message has been sent';
+                    } catch (Exception $e) {
+                        echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+                    }
                 }
             }
         }
