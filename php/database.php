@@ -6,6 +6,10 @@
  * Time: 4:09 PM
  */
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require "vendor/autoload.php";
 
 class DB {
 
@@ -51,12 +55,14 @@ class DB {
     public function disconnect() {
         $this->connection->close();
     }
+
     public function check() {
         if (!mysqli_ping($this->connection)) {
             $this->disconnect();
             $this->connect();
         }
     }
+
     public function prepareQuery($query, $params) {
         $this->check();
         $prep = $this->connection->prepare($query);
@@ -130,6 +136,38 @@ class DB {
                 $str = md5(uniqid('6A0vqpSfAkDq1Srbt82u', true));
             }
         return $str;
+    }
+
+    public function mail($to, $text) {
+        $mail = new PHPMailer(true);
+        try {
+            //Server settings
+            //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'wp12836029.mailout.server-he.de';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'wp12836029-confirmation';          // SMTP username
+            $mail->Password = 'Jannosch353';                      // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 25;                                    // TCP port to connect to
+
+            //Recipients
+            $mail->setFrom('confirm@intranetproject.net', 'KIS');
+            $mail->addAddress($to);               // Name is optional
+            $mail->addReplyTo('support@intranetproject.net', 'Information');
+
+
+            $text = $text;
+            //Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = 'Confirmation Token';
+            $mail->Body = $text;
+
+            $mail->send();
+            echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+        }
     }
 
     function generateRandomString($length = 10) {
