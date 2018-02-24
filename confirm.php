@@ -19,17 +19,18 @@ if (isset($_GET['action'])) {
                 if ($res->num_rows == 0) {
                     echo "No Confirmation tokens found for that account!";
                 } else {
+                    $row = $res->fetch_object();
                     $mail  = new PHPMailer(true);
                     try {
                         //Server settings
-                        $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+                        //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
                         $mail->isSMTP();                                      // Set mailer to use SMTP
-                        $mail->Host = 'wp12836029.mailout.server-he.de;wp12836029.mailout.server-he.de';  // Specify main and backup SMTP servers
+                        $mail->Host = 'wp12836029.mailout.server-he.de';  // Specify main and backup SMTP servers
                         $mail->SMTPAuth = true;                               // Enable SMTP authentication
                         $mail->Username = 'wp12836029-confirmation';          // SMTP username
                         $mail->Password = 'Jannosch353';                      // SMTP password
                         $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-                        $mail->Port = 465;                                    // TCP port to connect to
+                        $mail->Port = 25;                                    // TCP port to connect to
 
                         //Recipients
                         $mail->setFrom('confirm@intranetproject.net', 'KIS');
@@ -49,7 +50,7 @@ if (isset($_GET['action'])) {
     <div style="width: 100%; text-align: center; font-size: 1.7em; height: auto;">
         <div style="width: 40%; float: left;  margin-left: 2%; padding: 1%; background-color: #4FA3EE">
             Here is your registration code:<br>
-            ' . $token . '
+            ' . $row->token . '
         </div>
         <!--<div style="width: 40%; float: right; margin-right: 2%; padding: 1%; background-color: #4FA3EE">
             Or click on this link (maintenace): <br>
