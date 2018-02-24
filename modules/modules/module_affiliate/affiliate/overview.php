@@ -102,6 +102,8 @@ if (isset($params->redeem)) {
                         <h4>Your affiliate link is:</h4>
                         <p><a href="<?= $invitelink ?>"><?= htmlspecialchars($invitelink) ?></a></p><h4>Copy it and
                             invite your friends via it and get cool perks!</h4>
+                        <p>Or just give them this id: <?= $user->getId()?></p>
+                        <br>
                         <p>Progress for next level:</p>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped active" role="progressbar"
