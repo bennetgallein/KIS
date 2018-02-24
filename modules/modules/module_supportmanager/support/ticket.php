@@ -14,8 +14,12 @@ $use = $db->simpleQuery("SELECT * FROM users WHERE id='" . $db->getConnection()-
 $aaa = $use->fetch_object();
 
 $use = $db->simpleQuery("SELECT * FORM users WHERE id='" . $db->getConnection()->escape_string($row->supporter) . "'");
-$bbb = $use->fetch_object();
-
+if ($use->num_rows >= 1) {
+    $bbb = $use->fetch_object();
+    $nosup = false;
+} else {
+    $nosup = true;
+}
 if (property_exists($params, 'awnser')) {
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if (isset($_POST['message']) && (trim($_POST['message']) != "")) {
@@ -32,7 +36,9 @@ if (property_exists($params, 'awnser')) {
                 $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, writername, awnser) VALUES ('" . $row->id . "', '" . $db->getConnection()->escape_string((strip_tags($_POST['message']))) . "', '" . $db->getConnection()->escape_string($user->getName()) . "', " . $awns . ")");
 
                 $db->mail($aaa->email, 'Hey, <br> Your Ticket "' . $row->title . '" got updated! View it here: ' . $db->getConfig()['url'] . '/dashboard/module.php?module=support/ticket.php&params=id|' . $row->id . '<br><br><br>Best Regards, KIS Developer Team');
-                $db->mail($bbb->email, 'Hey, <br> Your Ticket "' . $row->title . '" got updated! View it here: ' . $db->getConfig()['url'] . '/dashboard/module.php?module=support/ticket.php&params=id|' . $row->id . '<br><br><br>Best Regards, KIS Developer Team');
+
+                if (!$nosup)
+                    $db->mail($bbb->email, 'Hey, <br> Your Ticket "' . $row->title . '" got updated! View it here: ' . $db->getConfig()['url'] . '/dashboard/module.php?module=support/ticket.php&params=id|' . $row->id . '<br><br><br>Best Regards, KIS Developer Team');
 
                 $db->redirect("module.php?module=support/ticket.php&params=id|" . $id);
             }
