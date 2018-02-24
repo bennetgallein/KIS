@@ -13,7 +13,7 @@ if (!($res->num_rows == 1)) {
 $use = $db->simpleQuery("SELECT * FROM users WHERE id='" . $db->getConnection()->escape_string($row->userid) . "'");
 $aaa = $use->fetch_object();
 
-$use = $db->simpleQuery("SELECT * FORM users WHERE id='" . $db->getConnection()->escape_string($row->supporter) . "'");
+$use = $db->simpleQuery("SELECT * FROM users WHERE id='" . $db->getConnection()->escape_string($row->supporter) . "'");
 if ($use->num_rows >= 1) {
     $bbb = $use->fetch_object();
     $nosup = false;
