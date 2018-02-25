@@ -154,26 +154,10 @@ if (isset($_GET['a'])) {
                             dass sie nicht funktionieren sollen. Im folgenden nun mal ein paar Punkte die doch recht
                                 häufig gemeldet wurden:</p>
                             <br>
-                            <br>
                             <ul>
-                                <br>
-                                <li>
-                                    "Cookies funktionen nicht" - Doch tun sie, aber nicht wenn viele Leute den gleichen
-                                    Account benutzten was beim Test-Account der Fall ist.
-                                </li>
-                                <br>
-                                <li>
-                                    "Ich bekomme keine Bestätigungsemail" - Sollte ziemlich selbsterklärend sein wenn
-                                    wir schon einen Test-Account zur Verfügung stellen. Wir WOLLEN NICHT das sich jemand
-                                    registriert weil wir womoglich noch gravierende Sicherheitslücken haben die es zu
-                                    schließen gilt.
-                                </li>
-                                <br>
                                 <li>
                                     "Auf einigen Seiten funktionieren Knöpfe nicht und ich kann das Profil nicht
-                                    updaten" - Das ist die Beschränkung des Test-Accounts. Wenn jemand die E-mail
-                                    Adresse des Accounts ändert, kann sich niemand mehr einloggen, desswegen sind
-                                    Funktionen die den User-Account bearbeiten deaktiviert.
+                                    updaten" - Dadurch das wir in der Entwicklungsphase sind, gibt es immer irgendetwas was garnicht funktionieren soll. Darum einfach lassen :)
                                 </li>
                                 <br>
                                 <li>"PayPal funkioniert auch nicht" - Wir sind noch in der Testphase, desswegen wollen
