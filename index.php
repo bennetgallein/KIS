@@ -73,13 +73,11 @@ if (isset($_GET['continue_login']) && isset($_GET['method'])) {
     }
     if ($res->num_rows == 0) {
         header("Location: index.php?method=login&error=wrong");
-        var_dump($res);
         die();
     }
     $data = $res->fetch_object();
     if (!password_verify($pw, $data->password)) {
         header("Location: index.php?method=login&error=wrong");
-        var_dump($res);
         die();
     }
     if ($data->verified == '0') {
