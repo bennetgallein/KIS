@@ -21,14 +21,17 @@
       "link": "manager.php",
       "permission": "3",
       "type": "nav"
-    },
-    {
-      "name": "Product",
-      "link": "product.php",
-      "permission": "2",
-      "type": "page"
     }
   ],
   "dashboards": [],
-  "includeables": []
+  "includeables": [],
+  "products": [
+    {
+      "name": "vserver",
+      "link": "products/vserver.php",
+      "active": true,
+      "_comment": "configurepage has an auto permission of 2",
+      "configurepage": "products/configurevserver.php"
+    }
+  ]
 }
