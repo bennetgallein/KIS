@@ -28,5 +28,10 @@
   "paypal": {
     "client": "Abna9IF-w46mZQL5vE5lF32WI1UXW_A-uaTWWINk6sJdB8zthx4O53fjkMzP73JYzArRLw7iorOMN41p",
     "secret": "EDf1zdSYGmIrUFg2U0WfsSyyLhZQ6PcorU_nXQ__6zgU_uIuWfJw_KrI_TRwL6kis7LWtgFJgWUtoVUF"
+  },
+  "virtualizor": {
+    "ip": "localhost",
+    "key": "key",
+    "pass": "pass"
   }
 }

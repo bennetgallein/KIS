@@ -1,0 +1,13 @@
+{
+    "name": "bennetgallein/productmanager",
+    "type": "project",
+    "require": {
+        "bennetgallein/virtualizor-php": "master-dev"
+    },
+    "authors": [
+        {
+            "name": "Bennet Gallein",
+            "email": "bennet@intranetproject.net"
+        }
+    ]
+}
