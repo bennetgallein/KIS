@@ -49,7 +49,7 @@ class DB {
     public function connect() {
         $this->connection = new MySQLi($this->cfg["database"][0]["host"], $this->cfg['database'][0]['user'], $this->cfg['database'][0]['password'], $this->cfg['database'][0]['database']);
         $this->connection->set_charset("utf8");
-        //$this->simpleQuery("SET names UTF-8");
+        //$this->simpleQuery("SET NAMES 'utf8'");
     }
 
     public function disconnect() {
@@ -138,8 +138,9 @@ class DB {
         return $str;
     }
 
-    public function mail($to, $text) {
+    public function mail($to, $subject, $text) {
         $mail = new PHPMailer(true);
+        $mail->CharSet = 'utf-8';
         try {
             //Server settings
             //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
@@ -159,8 +160,10 @@ class DB {
 
             $text = $text;
             //Content
-            $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->Subject = 'Confirmation Token';
+
+            $mail->isHTML(true);
+            $mail->setLanguage("de");// Set email format to HTML
+            $mail->Subject = $subject;
             $mail->Body = $text;
 
             $mail->send();
