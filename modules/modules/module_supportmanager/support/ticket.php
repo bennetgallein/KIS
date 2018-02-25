@@ -35,10 +35,10 @@ if (property_exists($params, 'awnser')) {
             if ($continue) {
                 $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, writername, awnser) VALUES ('" . $row->id . "', '" . $db->getConnection()->escape_string((strip_tags($_POST['message']))) . "', '" . $db->getConnection()->escape_string($user->getName()) . "', " . $awns . ")");
 
-                $db->mail($aaa->email, 'Hey, <br> Your Ticket "' . $row->title . '" got updated! View it here: ' . $db->getConfig()['url'] . '/dashboard/module.php?module=support/ticket.php&params=id|' . $row->id . '<br><br><br>Best Regards, KIS Developer Team');
+                $db->mail($aaa->email, "Ticket activity", 'Hey, <br> Your Ticket "' . $row->title . '" got updated! View it here: <a href="' . $db->getConfig()['url'] . '/dashboard/module.php?module=support/ticket.php&params=id|' . $row->id . '">Click me</a><br><br><br>Best Regards, KIS Developer Team');
 
                 if (!$nosup)
-                    $db->mail($bbb->email, 'Hey, <br> Your Ticket "' . $row->title . '" got updated! View it here: ' . $db->getConfig()['url'] . '/dashboard/module.php?module=support/ticket.php&params=id|' . $row->id . '<br><br><br>Best Regards, KIS Developer Team');
+                    $db->mail($bbb->email, "Ticket activity", 'Hey, <br> Your Ticket "' . $row->title . '" got updated! View it here: <a href="' . $db->getConfig()['url'] . '/dashboard/module.php?module=support/ticket.php&params=id|' . $row->id . '">Click me</a><br><br><br>Best Regards, KIS Developer Team');
 
                 $db->redirect("module.php?module=support/ticket.php&params=id|" . $id);
             }

@@ -155,7 +155,7 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
         $text = 'Hi, Thank you for registering. In Order to access your Dashboard, you need to confirm your account. Paste the code below on the website nd continue.
 <br><br>Here is your registration code:<br>
             ' . $token . '<br><br><br>Best Regards, KIS Developer Team';
-        $db->mail($email, $text);
+        $db->mail($email, 'Confirmation Token', $text);
 
         $db->prepareQuery("INSERT INTO vertification_tokens (usermail, token) VALUES (?, ?)", array(
             $db->escape($email), $db->escape($token)
