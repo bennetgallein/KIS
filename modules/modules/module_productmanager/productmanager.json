@@ -34,6 +34,12 @@
       "link": "products/configure_vserver.php",
       "permission": "1",
       "type": "page"
+    },
+    {
+      "name": "configure_ts3server",
+      "link": "products/configure_ts3server.php",
+      "permission": "1",
+      "type": "page"
     }
   ],
   "dashboards": [],
