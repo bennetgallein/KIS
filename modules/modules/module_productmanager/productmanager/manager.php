@@ -42,9 +42,7 @@ nextprice2='$post->nextprice2',
 nextprice3='$post->nextprice3', 
 nextprice4='$post->nextprice4' 
 WHERE nameinsystem='" . ($post->nameinsystem) . "'";
-                echo $sql . "<br>";
                 $result = $db->simpleQuery($sql);
-                var_dump($result);
                 if ($result) {
                     echo "Success!";
                 } else {
