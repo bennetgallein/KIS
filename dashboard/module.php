@@ -140,7 +140,7 @@ $amodule = $_GET['module'];
 <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="../assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
-<script src="../assets/js/chartist.min.js"></script>
+<!--<script src="../assets/js/chartist.min.js"></script>-->
 <!--  Dynamic Elements plugin -->
 <script src="../assets/js/arrive.min.js"></script>
 <!--  PerfectScrollbar Library -->
@@ -151,14 +151,6 @@ $amodule = $_GET['module'];
 <script src="../assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/js/demo.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
-
-    });
-</script>
 
 </html>
 <?php

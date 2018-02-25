@@ -1,0 +1,56 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "7f43fb2106dac1b079a08127f899d72e",
+    "packages": [
+        {
+            "name": "bennetgallein/virtualizor-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bennetgallein/VirtualizorPHP.git",
+                "reference": "12cd21af26b7d34ccb0aa85cbd93ef7061cac232"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bennetgallein/VirtualizorPHP/zipball/12cd21af26b7d34ccb0aa85cbd93ef7061cac232",
+                "reference": "12cd21af26b7d34ccb0aa85cbd93ef7061cac232",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Virtualizor\\": "api/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bennet Gallein",
+                    "email": "bennet@intranetproject.net"
+                }
+            ],
+            "description": "A Wrapper for the Virtualizor API",
+            "time": "2018-02-25 15:35:01"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "bennetgallein/virtualizor-php": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
