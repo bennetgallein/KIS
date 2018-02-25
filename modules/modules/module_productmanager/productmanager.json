@@ -21,17 +21,46 @@
       "link": "manager.php",
       "permission": "3",
       "type": "nav"
+    },
+    {
+      "icon": "list",
+      "name": "Buy",
+      "link": "productoverview.php",
+      "permission": "1",
+      "type": "nav"
+    },
+    {
+      "name": "configure_vserver",
+      "link": "products/configure_vserver.php",
+      "permission": "1",
+      "type": "page"
     }
   ],
   "dashboards": [],
   "includeables": [],
   "products": [
     {
-      "name": "vserver",
+      "name": "V-Server",
       "link": "products/vserver.php",
       "active": true,
       "_comment": "configurepage has an auto permission of 2",
-      "configurepage": "products/configurevserver.php"
+      "configurepage": "products/configure_vserver.php"
+    },
+    {
+      "name": "Root-Server",
+      "link": "products/rootserver.php",
+      "active": true
+    },
+    {
+      "name": "TS3-Server",
+      "link": "products/ts3server.php",
+      "active": true,
+      "configurepage": "products/configure_ts3server.php"
+    },
+    {
+      "name": "Webhosting",
+      "link": "products/webhosting.php",
+      "active": true
     }
   ]
 }
