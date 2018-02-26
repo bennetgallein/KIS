@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
-            <a href="#">
+            <a href="module.php?module=customermanagment/list.php">
                 <div class="card-header" data-background-color="grey">
                     <i class="material-icons">account_circle</i>
                 </div>
@@ -23,7 +23,7 @@
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
-            <a href="#">
+            <a href="module.php?module=customermanagment/list.php">
                 <div class="card-header" data-background-color="red">
                     <i class="material-icons">account_circle</i>
                 </div>
@@ -45,7 +45,7 @@
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
-            <a href="#">
+            <a href="module.php?module=customermanagment/list.php">
                 <div class="card-header" data-background-color="orange">
                     <i class="material-icons">account_circle</i>
                 </div>
@@ -67,7 +67,7 @@
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
-            <a href="#">
+            <a href="module.php?module=customermanagment/list.php">
                 <div class="card-header" data-background-color="green">
                     <i class="material-icons">account_circle</i>
                 </div>

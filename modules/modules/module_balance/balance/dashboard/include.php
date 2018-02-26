@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
-            <a href="#">
+            <a href="module.php?module=balance/manager.php">
                 <div class="card-header" data-background-color="red">
                     <i class="material-icons">attach_money</i>
                 </div>

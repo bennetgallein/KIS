@@ -20,7 +20,7 @@ $nextlevel = $db->simpleQuery("SELECT * FROM affiliate_leveldata WHERE id=$nextl
 <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
-            <a href="#">
+            <a href="module.php?module=affiliate/overview.php">
                 <div class="card-header" data-background-color="orange">
                     <i class="material-icons">account_circle</i>
                 </div>
