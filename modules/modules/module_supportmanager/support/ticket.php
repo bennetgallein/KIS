@@ -174,11 +174,10 @@ $row = $res->fetch_object();
                     </div>
                     <div class="col-md-12" style="background-color: #FFF;">
                         <?php if ($row->status != 2): ?>
-                            <button class="btn btn-default" data-background-color="red"><i
-                                        class="material-icons">close</i><a
-                                        href="module.php?module=support/ticket.php&params=id|<?= $id ?>_close|1">Close
-                                    ticket</a>
-                            </button>
+                            <a href="module.php?module=support/ticket.php&params=id|<?= $id ?>_close|1"
+                               class="btn btn-default" data-background-color="red"><i
+                                        class="material-icons">close</i>Close Ticket
+                            </a>
                         <?php endif; ?>
                         <button class="btn btn-default pull-right" type="submit" data-background-color="blue">Submit<i
                                     class="material-icons">send</i></button>
