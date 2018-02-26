@@ -66,6 +66,12 @@ if ($user->getEmail() != "test@test.de") {
 
                 if (!($email == $repemail)) {
                     header("Location: user.php?error=Email%20do%20not%20match");
+                    die();
+                }
+                $res = $db->simpleQuery("SELECT * FROM users WHERE email='" . $email . "'");
+                if ($res->num_rows >= 1 && $user->getEmail() != $email) {
+                    header("Location: user.php?error=Email%20already%20in%20system!");
+                    die();
                 }
                 if (isset($data->adress)) {
                     // update
