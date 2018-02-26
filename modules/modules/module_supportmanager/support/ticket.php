@@ -116,7 +116,7 @@ $row = $res->fetch_object();
                 <h4 class="title"><i class="material-icons">question_answer</i>Ticket
                     ID: <?php echo $row->id ?> - <?= $aaa->firstname . " " . $aaa->lastname . ": " . $row->title;
                     if ($user->getPermissions() >= 2) {
-                        echo '<button class="btn btn-default pull-right" type="submit" style="background-color: white; color: #000; margin-top: -5px"><a href="' . $requestpath . '_take|1" style="color: black !important">Take this ticket</a></button>';
+                        echo '<a href="' . $requestpath . '_take|1" class="btn btn-default pull-right" type="submit" style="background-color: white; color: #000; margin-top: -5px">Take this ticket</a>';
                     }
                     ?>
                 </h4>
