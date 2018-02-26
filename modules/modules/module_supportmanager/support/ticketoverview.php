@@ -49,16 +49,22 @@ if ($view == '4' || $view == '5') {
                         <th>ID</th>
                         <th>Title</th>
                         <th>userid</th>
+                        <th>Name</th>
                         <th>status</th>
                         <th>created on</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php while ($row = $query->fetch_object()): ?>
+                        <?php
+                        $resume = $db->simpleQuery("SELECT * FROM users WHERE id='" . $row->userid . "'");
+                        $res = $resume->fetch_object();
+                        ?>
                         <tr <?= $color ?>>
                             <td><?= $row->id ?></td>
                             <td><?= $row->title ?></td>
                             <td><?= $row->userid ?></td>
+                            <td><?= $res->firstname . " " . $res->lastname?></td>
                             <td><?= $row->status ?></td>
                             <td><?= $row->created_at ?></td>
                             <td><a href="module.php?module=support/ticket.php&params=id|<?= $row->id ?>"><i
