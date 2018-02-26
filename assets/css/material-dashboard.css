@@ -1028,7 +1028,7 @@ h2.title {
 .open>.navbar .navbar-nav>li>a.btn.btn-default.dropdown-toggle,
 .open>.navbar .navbar-nav>li>a.btn.btn-default.dropdown-toggle:focus,
 .open>.navbar .navbar-nav>li>a.btn.btn-default.dropdown-toggle:hover {
-    background-color: #999999;
+    background-color: #288feb;
     color: #FFFFFF;
 }
 
@@ -1200,7 +1200,7 @@ fieldset[disabled] .navbar .navbar-nav>li>a.btn.btn-default.active {
 .open>.navbar .navbar-nav>li>a.btn.btn-primary.dropdown-toggle,
 .open>.navbar .navbar-nav>li>a.btn.btn-primary.dropdown-toggle:focus,
 .open>.navbar .navbar-nav>li>a.btn.btn-primary.dropdown-toggle:hover {
-    background-color: #9c27b0;
+    background-color: #;
     color: #FFFFFF;
 }
 
@@ -1267,7 +1267,7 @@ fieldset[disabled] .navbar .navbar-nav>li>a.btn.btn-primary.active {
 .btn.btn-primary.btn-simple,
 .navbar .navbar-nav>li>a.btn.btn-primary.btn-simple {
     background-color: transparent;
-    color: #9c27b0;
+    color: #288feb;
     box-shadow: none;
 }
 
@@ -1278,7 +1278,7 @@ fieldset[disabled] .navbar .navbar-nav>li>a.btn.btn-primary.active {
 .navbar .navbar-nav>li>a.btn.btn-primary.btn-simple:focus,
 .navbar .navbar-nav>li>a.btn.btn-primary.btn-simple:active {
     background-color: transparent;
-    color: #9c27b0;
+    color: #288feb;
 }
 
 .btn.btn-info,
@@ -2317,7 +2317,7 @@ fieldset[disabled] .navbar .navbar-nav>li>a.btn.btn-rose.active {
 
 .btn-group.open>.dropdown-toggle.btn.btn-primary,
 .btn-group-vertical.open>.dropdown-toggle.btn.btn-primary {
-    background-color: #9c27b0;
+    background-color: #288feb;
 }
 
 .btn-group.open>.dropdown-toggle.btn.btn-success,
@@ -3965,7 +3965,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
     min-width: 30px;
     height: 30px;
     line-height: 30px;
-    color: #999999;
+    color: #288feb;
     font-weight: 400;
     font-size: 12px;
     text-transform: uppercase;
@@ -3976,12 +3976,12 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .pagination>li>a:focus,
 .pagination>li>span:hover,
 .pagination>li>span:focus {
-    color: #999999;
+    color: #288feb;
 }
 
 .pagination>.active>a,
 .pagination>.active>span {
-    color: #999999;
+    color: #288feb;
     text-align: center;
 }
 
