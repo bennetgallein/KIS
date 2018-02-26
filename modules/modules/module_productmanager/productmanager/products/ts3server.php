@@ -29,7 +29,7 @@
                                 <td>sofortige Einrichtung</td>
                             </tr>
                         </table>
-                        <button type="submit" class="btn" data-background-color="<?= $db->getConfig()['color'] ?>">Jetzt bestellen</button>
+                        <a href="module.php?module=<?= $module->getBasePath() . $product['configurepage'] ?>" class="btn" data-background-color="<?= $db->getConfig()['color'] ?>">Jetzt konfigurieren</a>
                     </div>
                 </div>
             </div>
