@@ -29,7 +29,7 @@ if (property_exists($params, 'awnser')) {
             } else if ($row->supporter == $user->getId()) {
                 $awns = 1;
                 $continue = true;
-                } else {
+            } else {
                 $continue = false;
             }
             if ($continue) {
@@ -50,7 +50,7 @@ if (property_exists($params, 'take')) {
         $db->simpleQuery("UPDATE tickets SET status = 3, supporter = '" . $user->getId() . "' WHERE id='" . $id . "'");
         $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, awnser) VALUES ('" . $row->id . "', '" . $user->getName() . " is now supporting this ticket.', 3)");
 
-        $db->mail($aaa->email, 'Hey, <br> Your Ticket "' . $row->title . '" got updated! View it here: ' . $db->getConfig()['url'] . '/dashboard/module.php?module=support/ticket.php&params=id|' . $row->id . '<br><br><br>Best Regards, KIS Developer Team');
+        $db->mail($aaa->email, "Ticket activity", 'Hey, <br> Your Ticket "' . $row->title . '" got updated! View it here: ' . $db->getConfig()['url'] . '/dashboard/module.php?module=support/ticket.php&params=id|' . $row->id . '<br><br><br>Best Regards, KIS Developer Team');
 
         $db->redirect("module.php?module=support/ticket.php&params=id|" . $id);
     } else {
@@ -60,7 +60,7 @@ if (property_exists($params, 'take')) {
 if (property_exists($params, 'close')) {
     if ($row->status != 2) {
         if ($row->userid == $user->getId() || $user->getPermissions() >= 2) {
-            $db->simpleQuery("UPDATE tickets SET status = 2 WHERE id='" . $id . "'");
+            $db->simpleQuery("UPDATE tickets SET status = 2, supporter = '' WHERE id='" . $id . "'");
             $db->simpleQuery("INSERT INTO tickets_messages (ticketid, message, awnser) VALUES ('" . $row->id . "', 'Ticket closed by " . $user->getName() . "', 3)");
             $db->redirect("module.php?module=support/ticket.php&params=id|" . $id);
         } else {
@@ -79,6 +79,7 @@ $row = $res->fetch_object();
         text-align: center;
         font-size: 1em;
     }
+
     h2.no-background span {
         display: inline-block;
         vertical-align: baseline;
@@ -88,6 +89,7 @@ $row = $res->fetch_object();
         position: relative;
         padding: 0 20px;
     }
+
     h2.no-background span:before,
     h2.no-background span:after {
         content: '';
@@ -97,9 +99,11 @@ $row = $res->fetch_object();
         top: 0.73em;
         border-top: 1px solid #dfdfdf;
     }
+
     h2.no-background span:before {
         right: 100%;
     }
+
     h2.no-background span:after {
         left: 100%;
     }
