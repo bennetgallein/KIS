@@ -21,9 +21,9 @@ $virt = new Virtualizor("ip", "key", "pass");
                     <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                         <h4 class="title text-center">Konfigurieren</h4>
                     </div>
-                    <div class="card-content">
-                        <div class="col-md-9">
-                            <form>
+                    <form action="module.php?module=productmanager/products/configure_vserver.php&params=base|1_confirm|0" method="post">
+                        <div class="card-content">
+                            <div class="col-md-9">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -64,7 +64,8 @@ $virt = new Virtualizor("ip", "key", "pass");
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="sel1"><?= $ram->base1 ?></label>
-                                            <select class="form-control calculate ramsel" id="<?= $ram->base1 ?>">
+                                            <select name="<?= $ram->base1 ?>" class="form-control calculate ramsel"
+                                                    id="<?= $ram->base1 ?>">
                                                 <option data-price="0"
                                                         value="<?= $ram->baseprice1 ?>"><?= $ram->baseprice1 ?>MB
                                                 </option>
@@ -90,7 +91,8 @@ $virt = new Virtualizor("ip", "key", "pass");
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="sel1"><?= $cpu->base2 ?></label>
-                                            <select class="form-control calculate cpusel" id="<?= $cpu->base2 ?>">
+                                            <select name="<?= $cpu->base2 ?>" class="form-control calculate cpusel"
+                                                    id="<?= $cpu->base2 ?>">
                                                 <option data-price="0"
                                                         value="<?= $cpu->baseprice2 ?>"><?= $cpu->baseprice2 ?> vCore
                                                 </option>
@@ -117,8 +119,10 @@ $virt = new Virtualizor("ip", "key", "pass");
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="sel1"><?= $ssd->base3 ?></label>
-                                            <select class="form-control calculate ssdsel" id="<?= $ssd->base3 ?>">
-                                                <option data-price="0" value="<?= $ssd->baseprice3 ?>"><?= $ssd->baseprice3 ?>GB
+                                            <select name="<?= $ssd->base3 ?>" class="form-control calculate ssdsel"
+                                                    id="<?= $ssd->base3 ?>">
+                                                <option data-price="0"
+                                                        value="<?= $ssd->baseprice3 ?>"><?= $ssd->baseprice3 ?>GB
                                                 </option>
                                                 <?php
                                                 while ($currentssd <= $limit) {
@@ -141,8 +145,10 @@ $virt = new Virtualizor("ip", "key", "pass");
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="sel1"><?= $ips->base4 ?></label>
-                                            <select class="form-control calculate ipsel" id="<?= $ips->base4 ?>">
-                                                <option data-price="0" value="<?= $ips->baseprice4 ?>"><?= $ips->baseprice4 ?>IPs
+                                            <select name="<?= $ips->base4 ?>" class="form-control calculate ipsel"
+                                                    id="<?= $ips->base4 ?>">
+                                                <option data-price="0"
+                                                        value="<?= $ips->baseprice4 ?>"><?= $ips->baseprice4 ?>IPs
                                                 </option>
                                                 <?php
                                                 while ($currentips <= $limit) {
@@ -160,59 +166,70 @@ $virt = new Virtualizor("ip", "key", "pass");
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="sel1">Betriebssystem</label>
-                                            <select class="form-control" id="os">
+                                            <select name="os" class="form-control" id="os">
                                                 <option>#</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card-content text-center">
-                                <table class="table" style="font-size: 0.9em;">
-                                    <tr>
-                                        <?php
-                                        $res = $db->simpleQuery("SELECT displayname, price FROM vserver WHERE id=" . $params->base);
-                                        $row = $res->fetch_object();
-                                        ?>
-                                        <td><?= $row->displayname ?></td>
-                                        <td><?= $row->price . "€"?></td>
-                                    </tr>
-                                    <tr>
-                                        <td id="ram">RAM: 512MB</td>
-                                        <td id="ramprice">0.00€</td>
-                                    </tr>
-                                    <tr>
-                                        <td id="vcores">vCores: 1 vCore</td>
-                                        <td id="vcoresprice">0.00€</td>
-                                    </tr>
-                                    <tr>
-                                        <td id="ssd">SSD-Speicher: 10GB</td>
-                                        <td id="ssdprice">0.00€</td>
-                                    </tr>
-                                    <tr>
-                                        <td id="ips">IPs: 1 IP</td>
-                                        <td id="ipsprice">0.00€</td>
-                                    </tr>
-                                    <tr class="info">
-                                        <td>Monatlich</td>
-                                        <td><?= $row->price . "€"?></td>
-                                    </tr>
-                                </table>
-                                <h3>Zu bezahlen:</h3>
-                                <h4><b>
-                                        <div id="item-price"><?= $row->price . "€"?></div>
-                                    </b></h4>
-                                <hr>
-                                <button type="submit" class="btn" data-background-color="blue">Checkout</button>
+
                             </div>
-                        </div>
-                    </div>
+                            <div class="col-md-3">
+                                <div class="card-content text-center">
+                                    <table class="table" style="font-size: 0.9em;">
+                                        <tr>
+                                            <?php
+                                            $res = $db->simpleQuery("SELECT displayname, price FROM vserver WHERE id=" . $params->base);
+                                            $row = $res->fetch_object();
+                                            ?>
+                                            <td><?= $row->displayname ?></td>
+                                            <td><?= $row->price . "€" ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td id="ram">RAM: 512MB</td>
+                                            <td id="ramprice">0.00€</td>
+                                        </tr>
+                                        <tr>
+                                            <td id="vcores">vCores: 1 vCore</td>
+                                            <td id="vcoresprice">0.00€</td>
+                                        </tr>
+                                        <tr>
+                                            <td id="ssd">SSD-Speicher: 10GB</td>
+                                            <td id="ssdprice">0.00€</td>
+                                        </tr>
+                                        <tr>
+                                            <td id="ips">IPs: 1 IP</td>
+                                            <td id="ipsprice">0.00€</td>
+                                        </tr>
+                                        <tr class="info">
+                                            <td>Monatlich</td>
+                                            <td><?= $row->price . "€" ?></td>
+                                        </tr>
+                                    </table>
+                                    <h3>Zu bezahlen:</h3>
+                                    <h4><b>
+                                            <div id="item-price"><?= $row->price . "€" ?></div>
+                                            <input id="hidden-item-price" name="total" type="hidden" value="<?= $row->price ?>">
+                                        </b></h4>
+                                    <hr>
+                                    <?php
+
+                                    $module = $db->getModuleByName("Balance Manager");
+                                    if (isset($module)) {
+                                        if ($module->getIncludeable("paybutton")['permission'] <= $user->getPermissions()) {
+                                            $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("paybutton")['link']);
+                                        }
+                                    }
+
+                                    ?>
+                                </div>
+                            </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -222,6 +239,7 @@ $virt = new Virtualizor("ip", "key", "pass");
     $(function () {
         $("select.calculate").on("change", calc);
         $("select.calculate").on("change", update);
+
         function calc() {
             var basePrice = <?= $row->price ?>;
             newPrice = basePrice;
@@ -233,8 +251,10 @@ $virt = new Virtualizor("ip", "key", "pass");
 
             newPrice = newPrice.toFixed(2);
             $("#item-price").html(newPrice + "€");
+            $("#hidden-item-price").val(newPrice);
 
         }
+
         function update() {
             $("select.ramsel option:selected").each(function (idx, el) {
                 $("#ramprice").html($(el).data('price') + "€");

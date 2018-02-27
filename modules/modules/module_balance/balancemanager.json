@@ -48,6 +48,12 @@
       "link": "invoice.php",
       "permission": "1",
       "type": "page"
+    },
+    {
+      "name": "checkout",
+      "link": "checkout.php",
+      "permission": "1",
+      "type": "page"
     }
   ],
   "dashboards": [
@@ -76,6 +82,11 @@
       "name": "invoicelisting",
       "link": "incl/invoices.php",
       "permissions": "2"
+    },
+    {
+      "name": "paybutton",
+      "link": "incl/paybutton.php",
+      "permissions": "1"
     }
   ]
 }
