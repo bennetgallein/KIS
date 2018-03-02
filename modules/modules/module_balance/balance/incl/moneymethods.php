@@ -15,4 +15,29 @@ class MoneyMethods {
             $query = $db->simpleQuery("INSERT INTO notifications (userid, message) VALUES ('" . $db->getConnection()->escape_string($userid) . "', '" . $db->getConnection()->escape_string($message) . "')");
         }
     }
+
+    public function getAmount($db, $userid) {
+        $res = $db->simpleQuery("SELECT * FROM balances WHERE userid='" . $db->getConnection()->escape_string($userid) . "'");
+        if ($res) {
+            $obj = $res->fetch_object();
+            return $obj->balance;
+        }
+    }
+
+    public function removeAmount($db, $message, $userid, $amount, $positive = 0, $plusforcompay = 1) {
+        $message = $db->getConnection()->escape_string($message);
+        $userid = $db->getConnection()->escape_string($message);
+        $query = "INSERT INTO balance_transactions (text, userid, price, positive, plusforcompany) VALUES ('$message', '$userid', $amount, $positive, $plusforcompay)";
+        $res = $db->simpleQuery($query);
+
+        $query = $db->simpleQuery("SELECT * FROM balances WHERE userid='" . $userid . "' LIMIT 1");
+        $obj = $query->fetch_object();
+        $new = $obj->balance - $amount;
+        $query = $db->simpleQuery("UPDATE balances SET balance=" . $new . " WHERE userid='" . $db->getConnection()->escape_string($userid) . "'");
+        if (!$query) {
+            echo "FAILED!";
+        }
+        $query = $db->simpleQuery("INSERT INTO notifications (userid, message) VALUES ('" . $userid . "', '" . $message . "')");
+
+    }
 }

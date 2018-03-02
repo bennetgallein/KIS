@@ -11,6 +11,25 @@ if (!isset($params->base)) {
 $virt = new Virtualizor("ip", "key", "pass");
 
 //$ostemplates = $virt->ostemplates()->setAct(\Virtualizor\Objects\OSTemplates::LISTOS)->exec();
+//var_dump($_POST);
+if ($params->confirm == "1") {
+    // Balance Manager einbinden.
+    // Überweisung tätigen
+    // product in Datenbank tun.
+    $module = $db->getModuleByName("Balance Manager");
+    if (isset($module)) {
+        if ($module->getIncludeable("moneymethods")['permission'] <= $user->getPermissions()) {
+
+            // Recalculate price with data provided in $_POST, check if user has the money, if yes, proceed. If not, cancel. Proceed = remove Money from Account, Add product to Database and create in Virtualizor!
+
+            $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("moneymethods")['link']);
+            $moneymethods = new MoneyMethods();
+            if ($moneymethods->getAmount($db, $user->getId()) >= $price) {
+
+            }
+        }
+    }
+} else
 
 ?>
 <div class="row">
@@ -21,7 +40,8 @@ $virt = new Virtualizor("ip", "key", "pass");
                     <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                         <h4 class="title text-center">Konfigurieren</h4>
                     </div>
-                    <form action="module.php?module=productmanager/products/configure_vserver.php&params=base|1_confirm|0" method="post">
+                    <form action="module.php?module=productmanager/products/configure_vserver.php&params=base|1_confirm|0"
+                          method="post">
                         <div class="card-content">
                             <div class="col-md-9">
                                 <div class="row">
@@ -209,28 +229,32 @@ $virt = new Virtualizor("ip", "key", "pass");
                                     <h3>Zu bezahlen:</h3>
                                     <h4><b>
                                             <div id="item-price"><?= $row->price . "€" ?></div>
-                                            <input id="hidden-item-price" name="total" type="hidden" value="<?= $row->price ?>">
+                                            <input id="hidden-item-price" name="total" type="hidden"
+                                                   value="<?= $row->price ?>">
                                         </b></h4>
                                     <hr>
+                                    <button type="submit" class="btn" data-background-color="blue">Checkout</button>
                                     <?php
-
-                                    $module = $db->getModuleByName("Balance Manager");
-                                    if (isset($module)) {
-                                        if ($module->getIncludeable("paybutton")['permission'] <= $user->getPermissions()) {
-                                            $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("paybutton")['link']);
-                                        }
-                                    }
 
                                     ?>
                                 </div>
                             </div>
                     </form>
                 </div>
+                <?php
+                $returnurl = 'module.php?module=productmanager/products/configure_vserver.php&params=base|1_confirm|1';
+                $module = $db->getModuleByName("Balance Manager");
+                if (isset($module)) {
+                    if ($module->getIncludeable("paybutton")['permission'] <= $user->getPermissions()) {
+                        $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("paybutton")['link']);
+                    }
+                } ?>
             </div>
         </div>
     </div>
 </div>
-</div>
+
+
 <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
