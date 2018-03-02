@@ -40,7 +40,7 @@
                 }
             ],
             "description": "A Wrapper for the Virtualizor API",
-            "time": "2018-02-25 15:35:01"
+            "time": "2018-02-25T15:35:01+00:00"
         }
     ],
     "packages-dev": [],
