@@ -11,21 +11,101 @@ if (!isset($params->base)) {
 $virt = new Virtualizor("ip", "key", "pass");
 
 //$ostemplates = $virt->ostemplates()->setAct(\Virtualizor\Objects\OSTemplates::LISTOS)->exec();
-//var_dump($_POST);
 if ($params->confirm == "1") {
-    // Balance Manager einbinden.
-    // Überweisung tätigen
-    // product in Datenbank tun.
     $module = $db->getModuleByName("Balance Manager");
     if (isset($module)) {
         if ($module->getIncludeable("moneymethods")['permission'] <= $user->getPermissions()) {
-
             // Recalculate price with data provided in $_POST, check if user has the money, if yes, proceed. If not, cancel. Proceed = remove Money from Account, Add product to Database and create in Virtualizor!
 
-            $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("moneymethods")['link']);
-            $moneymethods = new MoneyMethods();
-            if ($moneymethods->getAmount($db, $user->getId()) >= $price) {
+            // RAM, vCores, SSD-Speicher, IPs
+            // check if above is in post
+            if (isset($_POST['password']) && isset($_POST['hostname']) && isset($_POST['base']) && isset($_POST['RAM']) && isset($_POST['vCores']) && isset($_POST['SSD-Speicher']) && isset($_POST['IPs'])) {
+                $query = $db->simpleQuery("SELECT * FROM vserver WHERE id='" . $db->getConnection()->escape_string($_POST['base']) . "'");
+                if (!$query->num_rows == 0) {
+                    $query = $query->fetch_object();
 
+                    $price = $query->price;
+
+                    // RAM
+                    $ram = $_POST['RAM'];
+                    $limit = 32768;
+                    $counter = 0;
+                    $start = 0.50;
+                    $currentram = $query->basenext1;
+
+                    while ($currentram <= $limit) {
+                        if ($ram == $currentram) {
+                            $price += $start + ($query->nextprice1 * $counter);
+                            break;
+                        }
+                        $counter = $counter + 1;
+                        $currentram += $query->nextstep1;
+                    }
+
+                    // vCores
+                    $ram = $_POST['vCores'];
+                    $limit = 8;
+                    $counter = 0;
+                    $start = 1.25;
+                    $currentram = $query->basenext2;
+
+                    while ($currentram <= $limit) {
+                        if ($ram == $currentram) {
+                            $price += $start + ($query->nextprice2 * $counter);
+                            break;
+                        }
+                        $counter = $counter + 1;
+                        $currentram += $query->nextstep2;
+                    }
+
+                    // SSD-Speicher
+                    $ram = $_POST['SSD-Speicher'];
+                    $limit = 100;
+                    $counter = 0;
+                    $start = 0.5;
+                    $currentram = $query->basenext3;
+
+                    while ($currentram <= $limit) {
+                        if ($ram == $currentram) {
+                            $price += $start + ($query->nextprice3 * $counter);
+                            break;
+                        }
+                        $counter = $counter + 1;
+                        $currentram += $query->nextstep3;
+                    }
+
+                    // IPs
+                    $ram = $_POST['IPs'];
+                    $limit = 4;
+                    $counter = 0;
+                    $start = 2;
+                    $currentram = $query->basenext4;
+
+                    while ($currentram <= $limit) {
+                        if ($ram == $currentram) {
+                            $price += $start + ($query->nextprice4 * $counter);
+                            break;
+                        }
+                        $counter = $counter + 1;
+                        $currentram += $query->nextstep4;
+                    }
+
+                    //var_dump($price);
+
+                    $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("moneymethods")['link']);
+                    $moneymethods = new MoneyMethods();
+                    if ($moneymethods->getAmount($db, $user->getId()) >= $price) {
+                        // genug Geld, remove Money from Account, Add product to Database and create in Virtualizor!.
+                        $moneymethods->removeAmount($db, $query->displayname, $user->getId(), $price);
+                        echo "Purchase complete!";
+                    } else {
+                        echo "Nö, nicht genug Geld!";
+                    }
+                } else {
+                    echo "Base not found!";
+                }
+            } else {
+                echo "Not all post fields are filled!";
             }
         }
     }
@@ -42,6 +122,7 @@ if ($params->confirm == "1") {
                     </div>
                     <form action="module.php?module=productmanager/products/configure_vserver.php&params=base|1_confirm|0"
                           method="post">
+                        <input type="hidden" name="base" value="<?= $params->base ?>"
                         <div class="card-content">
                             <div class="col-md-9">
                                 <div class="row">
@@ -266,11 +347,9 @@ if ($params->confirm == "1") {
 
         function calc() {
             var basePrice = <?= $row->price ?>;
-            newPrice = basePrice;
+            var newPrice = basePrice;
             $("select.calculate option:selected").each(function (idx, el) {
-                console.log($(el).data('price'));
-                newPrice += parseInt($(el).data('price'));
-                console.log(newPrice);
+                newPrice += parseFloat($(el).data('price'));
             });
 
             newPrice = newPrice.toFixed(2);
