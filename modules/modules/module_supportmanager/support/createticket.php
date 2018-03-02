@@ -1,6 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if ((isset($_POST['title']) && trim($_POST['title'])) && (isset($_POST['message']) && trim($_POST['message'])) && isset($_POST['product'])) {
+        $_POST['message'] = nl2br($_POST['message']);
         if (strip_tags($_POST['message']) != "" && strip_tags($_POST['title']) != "") {
 
             // insert and notification to user
@@ -10,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $res = $db->getConnection()->query("SELECT LAST_INSERT_ID()");
             $res = $res->fetch_assoc();
             $db->prepareQuery("INSERT INTO tickets_messages (writername, ticketid, message, awnser) VALUES (?, ?, ?, 2)", array(
-                    $user->getName(), $db->escape($res['LAST_INSERT_ID()']), $db->escape(strip_tags($_POST['message'])))
+                    $user->getName(), $db->escape($res['LAST_INSERT_ID()']), $db->escape(strip_tags($_POST['message']), "<br>"))
             );
             $db->simpleQuery("INSERT INTO notifications (userid, message) VALUES ('" . $userid . "', 'Thank you for submitting your ticket with id:" . $res['LAST_INSERT_ID()'] . "')");
             echo "Your Ticket was submitted!";

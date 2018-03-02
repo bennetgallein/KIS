@@ -135,7 +135,7 @@ $row = $res->fetch_object();
                                             <div class="panel-body" data-background-color="blue">
                                                 <small><?= $row1->writername . " on " . $row1->created_at ?>:</small>
                                                 <br>
-                                                <?= $row1->message ?>
+                                                <?= str_replace("\r\n", "<br>", $row1->message) ?>
                                             </div>
                                         </div>
                                     </div>
@@ -145,7 +145,7 @@ $row = $res->fetch_object();
                                             <div class="panel-body">
                                                 <small><?= $row1->writername . " on " . $row1->created_at ?>:</small>
                                                 <br>
-                                                <?= $row1->message ?>
+                                                <?= str_replace('\r\n', "<br>", $row1->message) ?>
                                             </div>
                                         </div>
                                     </div>
