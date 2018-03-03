@@ -2,7 +2,6 @@
     "name": "bennetgallein/kis",
     "type": "project",
     "require": {
-        "planetteamspeak/ts3-php-framework": "^1.1",
         "bennetgallein/trello": "@dev",
         "slim/slim": "^3.9",
         "phpmailer/phpmailer": "^6.0"
