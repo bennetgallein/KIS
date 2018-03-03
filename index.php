@@ -105,7 +105,11 @@ if (isset($_GET['continue_login']) && isset($_GET['method'])) {
         setcookie("identifier", $identifier, time() + (3600 * 24 * 365), "/"); //1 Jahr Gültigkeit
         setcookie("securitytoken", $securitytoken, time() + (3600 * 24 * 365), "/"); //1 Jahr Gültigkeit
     }
-    header("Location: dashboard/index.php");
+    if (isset($_GET['return'])) {
+        header("Location:" . $_GET['return']);
+    } else {
+        //header("Location: dashboard/index.php");
+    }
     die();
 }
 if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
@@ -197,7 +201,7 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
 <?php if ($method == 'login'): ?>
     <div class="row-fluid">
         <div class="col-md-4 col-md-offset-4">
-            <form action="index.php?method=login&continue_login=true" method="post"
+            <form action="index.php?method=login&continue_login=true<?= isset($_GET['return']) ? "&return=" . $_GET['return'] : ""; ?>" method="post"
                   class="navbar-form navbar-left form-signin">
                 <h3 class="form-signin-heading"><?= $db->m(0) ?></h3>
                 <hr class="colorgraph">
