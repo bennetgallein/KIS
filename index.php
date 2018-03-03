@@ -108,7 +108,7 @@ if (isset($_GET['continue_login']) && isset($_GET['method'])) {
     if (isset($_GET['return'])) {
         header("Location:" . $_GET['return']);
     } else {
-        //header("Location: dashboard/index.php");
+        header("Location: dashboard/index.php");
     }
     die();
 }
