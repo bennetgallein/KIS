@@ -97,6 +97,8 @@ if ($params->confirm == "1") {
                     if ($moneymethods->getAmount($db, $user->getId()) >= $price) {
                         // genug Geld, remove Money from Account, Add product to Database and create in Virtualizor!.
                         $moneymethods->removeAmount($db, $query->displayname, $user->getId(), $price);
+                        // Add product to database.
+
                         echo "Purchase complete!";
                     } else {
                         echo "Nö, nicht genug Geld!";
