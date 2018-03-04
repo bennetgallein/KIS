@@ -53,7 +53,7 @@ class DB {
     }
 
     public function disconnect() {
-        $this->connection->close();
+        $this->getConnection()->close();
     }
 
     public function check() {
