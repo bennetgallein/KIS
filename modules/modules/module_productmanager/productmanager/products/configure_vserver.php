@@ -98,7 +98,8 @@ if ($params->confirm == "1") {
                         // genug Geld, remove Money from Account, Add product to Database and create in Virtualizor!.
                         $moneymethods->removeAmount($db, $query->displayname, $user->getId(), $price);
                         // Add product to database.
-
+                        // CREATE IN VIRTUALIZOR
+                        $db->simpleQuery("INSERT INTO product_vserver (userid, vpsid, expectedrenewal) VALUES ('" . $user->getId() . "', 123, now() + INTERVAL 30 DAY)");
                         echo "Purchase complete!";
                     } else {
                         echo "Nö, nicht genug Geld!";

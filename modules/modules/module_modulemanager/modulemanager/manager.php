@@ -2,19 +2,28 @@
 if ($params->update) {
 
 }
-
+$modulemanager = $db->getModuleByName("Module Manager");
 $id = 0;
 foreach ($db->getModules() as $modd): ?>
     <?php
     // update composer:
-    echo "cd " . $modd->getPath() . "/" . $modd->getBasePath() . " && composer install";
-    /*WIP if ($modd->getName() == $params->update) {
-        shell_exec('wget https://raw.githubusercontent.com/composer/getcomposer.org/1b137f8bf6db3e79a38a5bc45324414a6b1f9df2/web/installer -O - -q | php -- --quiet');
-        //$output = shell_exec("cd " . $modd->getPath() . "/" . $modd->getBasePath() . " && composer install");
-        $output = shell_exec("cd " . $modd->getPath() . "/" . $modd->getBasePath() . " && composer update 2>&1");
-        //$output = shell_exec("ls -lart");
-        echo "<br>Output: " . var_dump($output) . "<br>";
-    }*/
+    if ($modd->getName() == $params->update) {
+        shell_exec('');
+        echo $modd->getPath() . "/" . $modd->getBasePath();
+        $ar = array();
+        $arK = array();
+        //$output = exec("composer global update -d " . $modd->getPath() . "/" . $modd->getBasePath() . " 2>&1", $ar, $arK);
+        $output = system("su - pi <<! >/dev/null 2>&1
+Jannosch353
+composer global update -d " . $modd->getPath() . "/" . $modd->getBasePath() . " 2>&1
+!", $ar);
+        echo "<pre>";
+        foreach ($ar as $line) {
+            echo $output;
+            echo $line;
+        }
+        echo "</pre>";
+    }
     ?>
     <div class="row">
         <div class="col-md-12">
