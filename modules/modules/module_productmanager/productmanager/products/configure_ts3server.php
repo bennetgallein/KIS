@@ -17,7 +17,7 @@ if ($params->confirm == "1") {
                     $moneymethods->removeAmount($db, "TS3-Server", $user->getId(), $price);
                     // Add product to database.
                     // CREATE TS3SERVER!
-                    $db->simpleQuery("INSERT INTO product_ts3server (userid, tsid, slots) VALUES ('" . $user->getId() . "', 123, " . $slots . ")");
+                    $db->simpleQuery("INSERT INTO product_ts3server (userid, tsid, slots, expectedrenewal) VALUES ('" . $user->getId() . "', 123, " . $slots . ", now() + INTERVAL 30 DAY)");
                     echo "Purchase complete!";
                 } else {
                     echo "Nö, nicht genug Geld!";
