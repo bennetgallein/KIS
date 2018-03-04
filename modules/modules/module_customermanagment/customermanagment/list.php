@@ -116,45 +116,55 @@ $results = $Paginator->getData($limit, $page);
 ?>
 <div class="row">
     <div class="col-md-12">
-        <form action="module.php?module=customermanagment/list.php&params=method|search" method="post">
-            Search User<input type="text" name="userid">
-            <input type="submit">
-        </form>
+
         <div class="card">
             <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                 <h4 class="title">User Overwiew</h4>
                 <p class="category">These are all the users currently registered in the System</p>
             </div>
-            <div class="card-content table-responsive">
-                <table class="table">
-                    <thead class="text-primary">
-                    <tr>
-                        <th>_id</th>
-                        <th>id</th>
-                        <th>email</th>
-                        <th>permissions</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>registered_at</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php for ($i = 0; $i < count($results->data); $i++) : ?>
+            <div class="card-content">
+                <form action="module.php?module=customermanagment/list.php&params=method|search" method="post">
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search User"name="userid">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit" style="border-radius: 5px;">Go!</button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="text-primary">
                         <tr>
-                            <td><?= $results->data[$i]['_id'] ?></td>
-                            <td><?= $results->data[$i]['id'] ?></td>
-                            <td><?= $results->data[$i]['email'] ?></td>
-                            <td><?= $results->data[$i]['permissions'] ?></td>
-                            <td><?= $results->data[$i]['firstname'] ?></td>
-                            <td><?= $results->data[$i]['lastname'] ?></td>
-                            <td><?= $results->data[$i]['registered_at'] ?></td>
-                            <td>
-                                <a href="module.php?module=customermanagment/profile.php&params=user|<?= $results->data[$i]['id'] ?>"><i class="material-icons">account_box</i></a>
-                            </td>
+                            <th>_id</th>
+                            <th>id</th>
+                            <th>email</th>
+                            <th>permissions</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>registered_at</th>
                         </tr>
-                    <?php endfor; ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        <?php for ($i = 0; $i < count($results->data); $i++) : ?>
+                            <tr>
+                                <td><?= $results->data[$i]['_id'] ?></td>
+                                <td><?= $results->data[$i]['id'] ?></td>
+                                <td><?= $results->data[$i]['email'] ?></td>
+                                <td><?= $results->data[$i]['permissions'] ?></td>
+                                <td><?= $results->data[$i]['firstname'] ?></td>
+                                <td><?= $results->data[$i]['lastname'] ?></td>
+                                <td><?= $results->data[$i]['registered_at'] ?></td>
+                                <td>
+                                    <a href="module.php?module=customermanagment/profile.php&params=user|<?= $results->data[$i]['id'] ?>"><i
+                                                class="material-icons">account_box</i></a>
+                                </td>
+                            </tr>
+                        <?php endfor; ?>
+                        </tbody>
+                    </table>
+                </div>
                 <div style="width: 50%; margin-left: 25%; text-align: center">
                     <?php echo $Paginator->createLinks($links, 'pagination pagination-sm'); ?>
                 </div>
