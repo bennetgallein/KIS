@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f43fb2106dac1b079a08127f899d72e",
+    "content-hash": "894ccd0504bd182c34d4ea7f65fd7c3e",
     "packages": [
         {
             "name": "bennetgallein/virtualizor-php",
@@ -40,7 +40,57 @@
                 }
             ],
             "description": "A Wrapper for the Virtualizor API",
-            "time": "2018-02-25T15:35:01+00:00"
+            "time": "2018-02-25 15:35:01"
+        },
+        {
+            "name": "planetteamspeak/ts3-php-framework",
+            "version": "1.1.28",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/planetteamspeak/ts3phpframework.git",
+                "reference": "6af8373f26ddbc35a3fff2fc2aba2df2e307463f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/planetteamspeak/ts3phpframework/zipball/6af8373f26ddbc35a3fff2fc2aba2df2e307463f",
+                "reference": "6af8373f26ddbc35a3fff2fc2aba2df2e307463f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "libraries/TeamSpeak3/TeamSpeak3.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Sven 'ScP' Paulsen",
+                    "email": "scp@planetteamspeak.com"
+                }
+            ],
+            "description": "Modern use-at-will framework that provides individual components to manage TeamSpeak 3 Server instances",
+            "homepage": "https://www.planetteamspeak.com",
+            "keywords": [
+                "api",
+                "filetransfer",
+                "interface",
+                "management",
+                "query",
+                "server",
+                "teamspeak",
+                "ts3"
+            ],
+            "time": "2017-12-06T16:53:01+00:00"
         }
     ],
     "packages-dev": [],

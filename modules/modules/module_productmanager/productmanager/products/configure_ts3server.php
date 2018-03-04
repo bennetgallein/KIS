@@ -1,3 +1,18 @@
+<?php
+if ($params->confirm == "1") {
+    // confirm order and continue ->
+    if (isset($_POST['slots'])) {
+        if (is_numeric($_POST['slots'])) {
+            $slots = $_POST['slots'];
+            if ($slots >= 10 && $slots <= 350) {
+                $price = 0.15;
+                $price = $slots * $price;
+                echo $price;
+            }
+        }
+    }
+}
+?>
 <style>
     .slidecontainer {
         width: 100%;
@@ -43,32 +58,33 @@
                         <h4 class="title text-center">Konfigurieren</h4>
                     </div>
                     <div class="card-content">
-                        <div class="col-md-9">
-                            <h3><b>Infos:</b></h3>
-                            <table class="table">
-                                <tr>
-                                    <td>Filetransfer:</td>
-                                    <td>Free</td>
-                                </tr>
-                                <tr>
-                                    <td>Setup:</td>
-                                    <td>Sofort</td>
-                                </tr>
-                                <tr>
-                                    <td>Anbindung:</td>
-                                    <td>bis zu 1Gbit</td>
-                                </tr>
-                                <tr>
-                                    <td>inklusive</td>
-                                    <td> DDos Protection</td>
-                                </tr>
-                                <tr>
-                                    <td>Unlimited</td>
-                                    <td>Traffic</td>
-                                </tr>
+                        <form action="module.php?module=productmanager/products/configure_ts3server.php&params=confirm|0" method="post">
+                            <div class="col-md-9">
+                                <h3><b>Infos:</b></h3>
+                                <table class="table">
+                                    <tr>
+                                        <td>Filetransfer:</td>
+                                        <td>Free</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Setup:</td>
+                                        <td>Sofort</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Anbindung:</td>
+                                        <td>bis zu 1Gbit</td>
+                                    </tr>
+                                    <tr>
+                                        <td>inklusive</td>
+                                        <td> DDos Protection</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Unlimited</td>
+                                        <td>Traffic</td>
+                                    </tr>
 
-                            </table>
-                            <form>
+                                </table>
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -83,41 +99,52 @@
                                     <div class="col-md-12">
                                         <div class="slidecontainer">
                                             <label for="myRange">Slots:</label>
-                                            <input type="range" min="10" max="350" value="10" step="1" class="slider" id="myRange">
+                                            <input type="range" name="slots" min="10" max="350" value="10" step="1"
+                                                   class="slider" id="myRange">
                                             <p>Current slots: <span id="demo"></span></p>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card-content text-center">
-                                <table class="table" style="font-size: 0.9em;">
-                                    <tr>
-                                        <td>Name</td>
-                                        <td>Price</td>
-                                    </tr>
-                                    <tr>
-                                        <td id="server">TS³-Server</td>
-                                        <td id="serverprice">0.00€</td>
-                                    </tr>
-                                    <tr>
-                                        <td id="slots">Slots: 10</td>
-                                        <td id="slotsprice">0.00€</td>
-                                    </tr>
-                                    <tr class="info">
-                                        <td>Monatlich</td>
-                                        <td>price</td>
-                                    </tr>
-                                </table>
-                                <h3>Zu bezahlen:</h3>
-                                <h4><b>
-                                        <div id="item-price">price</div>
-                                    </b></h4>
-                                <hr>
-                                <button type="submit" class="btn" data-background-color="blue">Checkout</button>
+
                             </div>
-                        </div>
+                            <div class="col-md-3">
+                                <div class="card-content text-center">
+                                    <table class="table" style="font-size: 0.9em;">
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Price</td>
+                                        </tr>
+                                        <tr>
+                                            <td id="server">TS³-Server</td>
+                                            <td id="serverprice">0.00€</td>
+                                        </tr>
+                                        <tr>
+                                            <td id="slots">Slots: 10</td>
+                                            <td id="slotsprice"><?= number_format(10 * 0.15, 2) ?>€</td>
+                                        </tr>
+                                        <tr class="info">
+                                            <td>Monatlich</td>
+                                            <td id="monthlyprice">price</td>
+                                        </tr>
+                                    </table>
+                                    <h3>Zu bezahlen:</h3>
+                                    <h4><b>
+                                            <div id="item-price"><?= number_format(10 * 0.15, 2) ?>€</div>
+                                        </b></h4>
+                                    <hr>
+                                    <button type="submit" class="btn" data-background-color="blue">Checkout</button>
+
+                                </div>
+                            </div>
+                        </form>
+                        <?php
+                        $returnurl = 'module.php?module=productmanager/products/configure_ts3server.php&params=confirm|1';
+                        $module = $db->getModuleByName("Balance Manager");
+                        if (isset($module)) {
+                            if ($module->getIncludeable("paybutton")['permission'] <= $user->getPermissions()) {
+                                $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("paybutton")['link']);
+                            }
+                        } ?>
                     </div>
                 </div>
             </div>
@@ -134,10 +161,16 @@
     var output = document.getElementById("demo");
     output.innerHTML = slider.value;
 
-    slider.oninput = function() {
+    var price = 0.15;
+
+    slider.oninput = function () {
         output.innerHTML = this.value;
         //$("myRange").val(this.value);
         $("input[type=range]").val(slider.value);
-        console.log(slider.value);
+        var newPrice = (this.value * price).toFixed(2);
+        document.getElementById("slots").innerText = this.value + " Slots";
+        document.getElementById("slotsprice").innerHTML = newPrice + "€";
+        document.getElementById("monthlyprice").innerHTML = newPrice + "€";
+        document.getElementById("item-price").innerHTML = newPrice + "€";
     }
 </script>
