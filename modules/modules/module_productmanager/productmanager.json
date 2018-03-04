@@ -17,6 +17,13 @@
   "navs": [
     {
       "icon": "list",
+      "name": "My Products",
+      "link": "myproducts.php",
+      "permission": "1",
+      "type": "nav"
+    },
+    {
+      "icon": "list",
       "name": "Product manager",
       "link": "manager.php",
       "permission": "3",

@@ -8,6 +8,20 @@ if ($params->confirm == "1") {
                 $price = 0.15;
                 $price = $slots * $price;
                 echo $price;
+
+                $module = $db->getModuleByName("Balance Manager");
+                $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("moneymethods")['link']);
+                $moneymethods = new MoneyMethods();
+                if ($moneymethods->getAmount($db, $user->getId()) >= $price) {
+                    // genug Geld, remove Money from Account, Add product to Database and create in Virtualizor!.
+                    $moneymethods->removeAmount($db, $query->displayname, $user->getId(), $price);
+                    // Add product to database.
+                    // CREATE IN VIRTUALIZOR
+                    $db->simpleQuery("INSERT INTO product_ts3server (userid, tsid, slots) VALUES ('" . $user->getId() . "', 123, " . $slots . ")");
+                    echo "Purchase complete!";
+                } else {
+                    echo "Nö, nicht genug Geld!";
+                }
             }
         }
     }
