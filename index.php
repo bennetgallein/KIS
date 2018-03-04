@@ -201,7 +201,8 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
 <?php if ($method == 'login'): ?>
     <div class="row-fluid">
         <div class="col-md-4 col-md-offset-4">
-            <form action="index.php?method=login&continue_login=true<?= isset($_GET['return']) ? "&return=" . $_GET['return'] : ""; ?>" method="post"
+            <form action="index.php?method=login&continue_login=true<?= isset($_GET['return']) ? "&return=" . $_GET['return'] : ""; ?>"
+                  method="post"
                   class="navbar-form navbar-left form-signin">
                 <h3 class="form-signin-heading"><?= $db->m(0) ?></h3>
                 <hr class="colorgraph">
@@ -246,7 +247,6 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
             <form action="index.php?method=register&continue_registration=true" method="post"
                   class="navbar-form navbar-left form-signin">
                 <h3 class="form-signin-heading"><?= $db->m(4) ?></h3>
-                <h2>Wir sind gerade noch am Testen, desswegen ist Registrieren vorerst deaktiviert!</h2>
                 <hr class="colorgraph">
                 <?php
                 if (isset($_GET['error'])) {
