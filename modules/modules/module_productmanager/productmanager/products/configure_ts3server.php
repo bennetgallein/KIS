@@ -13,10 +13,10 @@ if ($params->confirm == "1") {
                 $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("moneymethods")['link']);
                 $moneymethods = new MoneyMethods();
                 if ($moneymethods->getAmount($db, $user->getId()) >= $price) {
-                    // genug Geld, remove Money from Account, Add product to Database and create in Virtualizor!.
-                    $moneymethods->removeAmount($db, $query->displayname, $user->getId(), $price);
+                    // genug Geld, remove Money from Account, Add product to Database and create TS3 Server
+                    $moneymethods->removeAmount($db, "TS3-Server", $user->getId(), $price);
                     // Add product to database.
-                    // CREATE IN VIRTUALIZOR
+                    // CREATE TS3SERVER!
                     $db->simpleQuery("INSERT INTO product_ts3server (userid, tsid, slots) VALUES ('" . $user->getId() . "', 123, " . $slots . ")");
                     echo "Purchase complete!";
                 } else {
