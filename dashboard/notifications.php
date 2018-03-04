@@ -30,7 +30,8 @@ $res = $db->simpleQuery("SELECT * FROM notifications WHERE userid='" . $user->ge
             echo '<li class="lidrop"><a>No new notifications!</a></li>';
 
         while ($row = $res->fetch_object()) {
-            echo '<li><a href="index.php?removenotification=1&id=' . $row->id . '">' . $row->message . ' <i class="material-icons" style="cursor: pointer">highlight_off</i></a></li>';
+            $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+            echo '<li><a href="index.php?removenotification=1&id=' . $row->id . '&return=' . $actual_link . '">' . $row->message . ' <i class="material-icons" style="cursor: pointer">highlight_off</i></a></li>';
         }
 
         ?>

@@ -49,7 +49,11 @@ if (isset($_GET['removenotification']) && isset($_GET['id'])) {
     if ($res->num_rows >= 1) {
         $sql = "UPDATE notifications SET isread=1 WHERE userid='" . $db->getConnection()->escape_string($user->getId()) . "' AND id =" . $idi;
         $res = $db->simpleQuery($sql);
-        header("Location: index.php");
+        if (isset($_GET['return'])) {
+            header("Location: " . $_GET['return']);
+        } else {
+            header("Location: index.php");
+        }
         die();
     }
 }
@@ -107,7 +111,8 @@ if (isset($_GET['removenotification']) && isset($_GET['id'])) {
         </nav>
         <div class="content">
             <div class="alert alert-warning">
-                <span><b> Warning - </b> This is a pre-release version! If you discover ANY bugs, be sure to report them <a href="changelog.php">HERE</a>!</span>
+                <span><b> Warning - </b> This is a pre-release version! If you discover ANY bugs, be sure to report them <a
+                            href="changelog.php">HERE</a>!</span>
             </div>
             <div class="container-fluid">
                 <?php
