@@ -96,15 +96,30 @@ $limit = (isset($_GET['limit'])) ? $_GET['limit'] : 25;
 $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
 $links = (isset($_GET['links'])) ? $_GET['links'] : 7;
 
+if (isset($params->method)) {
+    if ($params->method == "search" && isset($_POST['userid'])) {
+        $res = $db->simpleQuery("SELECT _id FROM users WHERE id='" . $db->getConnection()->escape_string($_POST['userid']) . "'");
+        if ($res->num_rows >= 1) {
+            $db->redirect("module.php?module=customermanagment/profile.php&params=user|" . $_POST['userid']);
+            die();
+        } else {
+            echo "User not found!";
+        }
+    }
+}
+
 $query = "SELECT _id, id, email, permissions, firstname, lastname, registered_at FROM users";
 
 $db->connect();
 $Paginator = new Paginator($db->getConnection(), $query);
 $results = $Paginator->getData($limit, $page);
-$db->disconnect();
 ?>
 <div class="row">
     <div class="col-md-12">
+        <form action="module.php?module=customermanagment/list.php&params=method|search" method="post">
+            Search User<input type="text" name="userid">
+            <input type="submit">
+        </form>
         <div class="card">
             <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
                 <h4 class="title">User Overwiew</h4>
