@@ -9,8 +9,6 @@
             <div class="card-content">
                 <p class="category">Active Products</p>
                 <?php
-                //$sql = "SELECT v.*, t.* FROM product_ts3server AS t JOIN product_vserver AS v ON t.userid = v.userid WHERE t.userid='" . $user->getId() ."'";
-                //$res = $db->simpleQuery("SELECT * FROM product_ts3server t, product_vserver v WHERE t.active =1 AND v.active=1 AND t.userid='" . $user->getId() . "' AND v.userid='" . $user->getId() . "'");
                 $ts3 = $db->simpleQuery("SELECT id FROM product_ts3server WHERE active=1 AND userid='" . $user->getId() . "'");
                 $vserver = $db->simpleQuery("SELECT id FROM product_vserver WHERE active=1 AND userid='" . $user->getId() . "'");
                 $products = $ts3->num_rows;
