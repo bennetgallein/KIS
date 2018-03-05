@@ -55,7 +55,13 @@
       "permission": "1"
     }
   ],
-  "includeables": [],
+  "includeables": [
+    {
+      "name": "profile_overview",
+      "link": "incl/overview.php",
+      "permission": "2"
+    }
+  ],
   "products": [
     {
       "name": "V-Server",

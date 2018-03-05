@@ -88,9 +88,9 @@ if (isset($params->delete)) {
                     </div>
                     <div class="row">
                         <div class="col-md-4 pull-right">
-                        <a class="btn btn-primary pull-right" data-background-color="red"
-                           href="module.php?module=customermanagment/profile.php&params=user|<?= $params->user ?>_delete|1">Delete
-                            Profile </a>
+                            <a class="btn btn-primary pull-right" data-background-color="red"
+                               href="module.php?module=customermanagment/profile.php&params=user|<?= $params->user ?>_delete|1">Delete
+                                Profile </a>
                         </div>
                     </div>
                 </div>
@@ -100,6 +100,13 @@ if (isset($params->delete)) {
 <?php
 
 $module = $db->getModuleByName("Support Manager");
+if (isset($module)) {
+    if ($module->getIncludeable("profile_overview")['permission'] <= $user->getPermissions()) {
+        $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("profile_overview")['link']);
+    }
+}
+
+$module = $db->getModuleByName("Product Manager");
 if (isset($module)) {
     if ($module->getIncludeable("profile_overview")['permission'] <= $user->getPermissions()) {
         $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("profile_overview")['link']);
