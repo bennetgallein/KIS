@@ -16,6 +16,8 @@ class DB {
     private $cfg;
     private $connection;
 
+    private $version = "boron";
+
     private $lang;
     private $modules;
     private $changelog;
@@ -45,7 +47,9 @@ class DB {
     public function __destruct() {
         //$this->disconnect();
     }
-
+    public function getVersion() {
+        return $this->version;
+    }
     public function connect() {
         $this->connection = new MySQLi($this->cfg["database"][0]["host"], $this->cfg['database'][0]['user'], $this->cfg['database'][0]['password'], $this->cfg['database'][0]['database']);
         $this->connection->set_charset("utf8");
