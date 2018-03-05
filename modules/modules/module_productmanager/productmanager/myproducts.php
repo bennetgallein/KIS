@@ -25,8 +25,8 @@ if ($params->list == "all") {
                     <tr>
                         <th>ID</th>
                         <th>Server ID</th>
-                        <th>Status</th>
                         <th>Bought on</th>
+                        <th>Status</th>
                         <th>Expected Renewal</th>
                     </tr>
                     </thead>
@@ -35,8 +35,8 @@ if ($params->list == "all") {
                     <tr>
                         <td><?= $row->id ?></td>
                         <td><?= $row->vpsid?></td>
-                        <td>running</td>
                         <td><?= $row->orderedon?></td>
+                        <td><?= $row->active == 1 ? "active" : "inactive"?></td>
                         <td><?= $row->expectedrenewal?></td>
                     </tr>
                     <?php endwhile; ?>
@@ -60,6 +60,7 @@ if ($params->list == "all") {
                             <th>Server ID</th>
                             <th>Slots</th>
                             <th>Bought on</th>
+                            <th>active</th>
                             <th>Expected Renewal</th>
                         </tr>
                         </thead>
@@ -70,6 +71,7 @@ if ($params->list == "all") {
                                 <td><?= $row->tsid?></td>
                                 <td><?= $row->slots ?></td>
                                 <td><?= $row->orderedon?></td>
+                                <td><?= $row->active == 1 ? "active" : "inactive"?></td>
                                 <td><?= $row->expectedrenewal?></td>
                             </tr>
                         <?php endwhile; ?>
