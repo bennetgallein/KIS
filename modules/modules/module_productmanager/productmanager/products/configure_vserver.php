@@ -112,12 +112,25 @@ if ($params->confirm == "1") {
             }
         }
     }
-} else
+} else if ($params->confirm == "0") {
+    foreach ($_POST as $key => $post) {
+        echo $key . ": " . $post . "<br>";
+    }
+}
 
 ?>
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="row">
+            <?php
+            $returnurl = 'module.php?module=productmanager/products/configure_vserver.php&params=base|1_confirm|1';
+            $cancelurl = 'module.php?module=productmanager/products/configure_vserver.php&params=base|1';
+            $module = $db->getModuleByName("Balance Manager");
+            if (isset($module)) {
+                if ($module->getIncludeable("paybutton")['permission'] <= $user->getPermissions()) {
+                    $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("paybutton")['link']);
+                }
+            } ?>
             <div class="col-md-10 col-md-offset-1">
                 <div class="card">
                     <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
@@ -329,14 +342,7 @@ if ($params->confirm == "1") {
                         </form>
                     </div>
                 </div>
-                <?php
-                $returnurl = 'module.php?module=productmanager/products/configure_vserver.php&params=base|1_confirm|1';
-                $module = $db->getModuleByName("Balance Manager");
-                if (isset($module)) {
-                    if ($module->getIncludeable("paybutton")['permission'] <= $user->getPermissions()) {
-                        $re = include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("paybutton")['link']);
-                    }
-                } ?>
+
             </div>
         </div>
     </div>
