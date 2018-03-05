@@ -49,7 +49,12 @@
       "type": "page"
     }
   ],
-  "dashboards": [],
+  "dashboards": [
+    {
+      "link": "dashboard/include.php",
+      "permission": "1"
+    }
+  ],
   "includeables": [],
   "products": [
     {
