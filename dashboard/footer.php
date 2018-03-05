@@ -6,7 +6,7 @@
                 foreach ($db->getFooter()[0] as $name => $link) {
                     echo '<li><a href="' . $link . '">' . $name . '</a></li>';
                 }
-                echo '<li><p>version: ' . $db->getConfig()['version'] . '</p></li>';
+                echo '<li><p>version: ' . $db->getVersion() . '</p></li>';
 
                 ?>
             </ul>
