@@ -8,9 +8,6 @@
                 }
                 echo '<li><p>version: ' . $db->getConfig()['version'] . '</p></li>';
 
-                if (isset($params)) {
-                    echo "<li><a href='info.php?module=$aamod'>Module Information</a>";
-                }
                 ?>
             </ul>
         </nav>
