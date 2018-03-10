@@ -28,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 exit();
             }
             echo "<p>==============================================</p>";
-            $db->select_db($config["database"][0]["database"]);
             echo "<p>==============================================</p>";
             echo "Creating table 'users'";
             $sql = "CREATE TABLE IF NOT EXISTS `users` (
