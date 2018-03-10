@@ -1,0 +1,37 @@
+{
+  "maintenace": false,
+  "lang": "en",
+  "site_name": "KIS ",
+  "version": "gold",
+  "url": "https://kis.intranetproject.net/demo",
+  "color": "blue",
+  "_comment": "#288feb",
+  "user": [{
+    "id_lenght": 100
+  }],
+  "database": [{
+    "host": "46.251.239.147",
+    "user": "kis",
+    "password": "kis",
+    "database": "kis"
+  }],
+  "footer": [{
+    "Intranetproject": "https://intranetproject.net",
+    "Support Email": "mailto:bennet@intranetproject.net"
+  }],
+  "contactdata": {
+    "address_1": "TestWeg 1",
+    "address_2": "Hamburg, 2210",
+    "phone": "12345",
+    "email": "support@intranetproject.net"
+  },
+  "paypal": {
+    "client": "Abna9IF-w46mZQL5vE5lF32WI1UXW_A-uaTWWINk6sJdB8zthx4O53fjkMzP73JYzArRLw7iorOMN41p",
+    "secret": "EDf1zdSYGmIrUFg2U0WfsSyyLhZQ6PcorU_nXQ__6zgU_uIuWfJw_KrI_TRwL6kis7LWtgFJgWUtoVUF"
+  },
+  "virtualizor": {
+    "ip": "localhost",
+    "key": "key",
+    "pass": "pass"
+  }
+}
