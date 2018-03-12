@@ -2,8 +2,8 @@
   "maintenace": true,
   "lang": "en",
   "site_name": "KIS ",
-  "version": "gold",
   "url": "http://server/KIS",
+  "modules": "modules/modules/",
   "color": "blue",
   "_comment": "#288feb",
   "user": [{
@@ -11,13 +11,13 @@
   }],
   "database": [{
     "host": "xxx",
-    "user": "xxx",
+    "user": "xx",
     "password": "xxx",
     "database": "xxx"
   }],
   "footer": [{
-    "Fee-Hosting.com": "https://fee-hosting.com",
-    "Support Email": "mailto:support@fee-hosting.com"
+    "Fee-Hosting.com": "https://intranetproject.net",
+    "Support Email": "mailto:support@intranetproject.net"
   }],
   "contactdata": {
     "address_1": "TestWeg 1",
@@ -26,8 +26,8 @@
     "email": "support@intranetproject.net"
   },
   "paypal": {
-    "client": "Abna9IF-w46mZQL5vE5lF32WI1UXW_A-uaTWWINk6sJdB8zthx4O53fjkMzP73JYzArRLw7iorOMN41p",
-    "secret": "EDf1zdSYGmIrUFg2U0WfsSyyLhZQ6PcorU_nXQ__6zgU_uIuWfJw_KrI_TRwL6kis7LWtgFJgWUtoVUF"
+    "client": "xxx",
+    "secret": "xxx"
   },
   "virtualizor": {
     "ip": "localhost",

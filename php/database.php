@@ -32,7 +32,7 @@ class DB {
         $this->lang = json_decode($json, true);
 
         include(dirname(__FILE__) . '/../modules/modules_loader.php');
-        $module_loader = new ModuleLoader();
+        $module_loader = new ModuleLoader($this->cfg);
         $this->modules = ($module_loader->getModules());
         usort($this->modules, array("Module", "cmp"));
 
