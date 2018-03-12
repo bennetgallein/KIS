@@ -10,11 +10,11 @@ class ModuleLoader {
 
     private $modules;
 
-    public function __construct() {
+    public function __construct($cfg) {
 
         $this->modules = array();
 
-        $dir = dirname(__FILE__) . "/modules/module_*/*.json";
+        $dir = dirname(__FILE__) . "/../" . $cfg['modules'] . "module_*/*.json";
 
         foreach (glob($dir) as $file) {
             //echo "filename: $file : filetype: " . filetype($file) . "<br />";
