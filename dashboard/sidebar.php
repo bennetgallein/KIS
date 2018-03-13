@@ -31,7 +31,7 @@ Tip 2: you can also add an image using data-image tag
             <li class="<?= $active ?>">
                 <?php
                 $module = $db->getModuleByName("Balance Manager");
-                if (isset($module)) {
+                if ($module) {
                     if ($module->getIncludeable("display_money")['permission'] <= $user->getPermissions()) {
                         include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("display_money")['link']);
                         $money = getMoney($db, $user);
