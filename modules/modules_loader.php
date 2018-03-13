@@ -47,6 +47,7 @@ class Module {
     private $dashboard;
     private $basepath;
     private $repository;
+    private $active;
 
     public function __construct($json, $path) {
         $this->raw = $json;
@@ -60,6 +61,7 @@ class Module {
         $this->baseperm = $json['baseperm'];
         $this->priority = $json['priority'];
         $this->basepath = $json['basepath'];
+        $this->active = $json['active'];
     }
 
     public function getIncludeable($name) {
@@ -69,6 +71,10 @@ class Module {
             }
         }
         return false;
+    }
+
+    public function isActive() {
+        return $this->active;
     }
 
     public function getRaw() {

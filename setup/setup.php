@@ -8,6 +8,11 @@ if (file_exists(dirname(__FILE__) . "/../config.json")) {
         ?>
         <form action="setup.php" method="post">
             <input type="text" name="license" placeholder="License Key" />
+            <br>
+            <br>
+            <input type="text" name="email" placeholder="Admin email" />
+            <input type="password" name="password" placeholder="Admin Password" />
+            <input type="password" name="password2" placeholder="confirm Admin Password" />
             <input type="submit"/>
         </form>
         <?php
@@ -16,9 +21,17 @@ if (file_exists(dirname(__FILE__) . "/../config.json")) {
     endif;
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['license'])) {
+    if (isset($_POST['license']) && !empty($_POST['license']) && isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['password']) && !empty($_POST['password']) && isset($_POST['password2']) && !empty($_POST['password2'])) {
         $config = $db->getConfig();
         $db = new MySQLi($db->getConfig()["database"][0]["host"], $db->getConfig()['database'][0]['user'], $db->getConfig()['database'][0]['password']);
+
+        if ($_POST['password'] != $_POST['password2']) {
+            echo "Passwords don't match!";
+            exit();
+        }
+
+        $email = $db->real_escape_string($_POST['email']);
+        $password = $db->real_escape_string($_POST['password']);
 
         $red = "#FF0000";
         $green = "#2fbc2f";
@@ -39,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo "<p style='color: " . $green . "'>Successfully create Database.</p>";
             } else {
                 echo "<p style='color: " . $red . "'>Failed to create Database!</p>";
-                var_dump($res);
                 exit();
             }
             echo "<p>==============================================</p>";
@@ -63,7 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo "<p style='color: " . $green . "'>Successfully create table 'users'.</p>";
             } else {
                 echo "<p style='color: " . $red . "'>Failed to create table 'users'!</p>";
-                var_dump($res);
             }
             echo "<p>==============================================</p>";
             echo "<p>==============================================</p>";
@@ -81,7 +92,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo "<p style='color: " . $green . "'>Successfully create table 'securitytokens'.</p>";
             } else {
                 echo "<p style='color: " . $red . "'>Failed to create table 'securitytokens'!</p>";
-                var_dump($res);
             }
             echo "<p>==============================================</p>";
             echo "<p>==============================================</p>";
@@ -98,7 +108,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo "<p style='color: " . $green . "'>Successfully create table 'vertification_tokens'.</p>";
             } else {
                 echo "<p style='color: " . $red . "'>Failed to create table 'vertification_tokens'!</p>";
-                var_dump($res);
             }
             echo "<p>==============================================</p>";
             echo "<p>==============================================</p>";
@@ -116,15 +125,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo "<p style='color: " . $green . "'>Successfully create table 'notifications'.</p>";
             } else {
                 echo "<p style='color: " . $red . "'>Failed to create table 'notifications'!</p>";
-                var_dump($res);
             }
             echo "<p>==============================================</p>";
-
-
-
+            echo "<p>==============================================</p>";
+            echo "<p>==============================================</p>";
+            echo "Creating Admin account";
+            $sql = "INSERT INTO users (email, password) VALUES ('" . $email . "', '" . password_hash($password, PASSWORD_DEFAULT) . "')";
+            $res = $db->query($sql);
+            $sql = "select LAST_INSERT_ID()";
+            $lastid = $db->query($sql);
+            $lastidob = $lastid->fetch_assoc();
+            $id = $lastidob['LAST_INSERT_ID()'];
+            $sql = "UPDATE users SET id='K-" . $id . "' WHERE email='" . $email . "'";
+            $res2 = $db->query($sql);
+            if ($res && $res2) {
+                echo "<p style='color: " . $green . "'>Successfully created admin account.</p>";
+            } else {
+                echo "<p style='color: " . $red . "'>Failed to create admin account!</p>";
+            }
+            echo "<p>==============================================</p>";
+            echo "<b>Setup complete. You might want to login now.<a href='../'>LOGIN</a></b>";
         } else {
             echo "<p style='color: " . $red . "'>License is invalid! Discard all changes and returns to main Website!</p>";
         }
+    } else {
+        echo "Please fill every field!";
     }
 }
 function httpGet($url) {
