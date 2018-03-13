@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c3f4005edc1c9bf1fba5688d29b3acd5",
+    "content-hash": "ca6e8a5f3f8ed4d7a277e4b1df2250f4",
     "packages": [
         {
             "name": "bennetgallein/trello",
@@ -52,7 +52,7 @@
                 "trello",
                 "trello api wrapper"
             ],
-            "time": "2018-01-29 11:09:03"
+            "time": "2018-01-29T11:09:03+00:00"
         },
         {
             "name": "container-interop/container-interop",
@@ -416,6 +416,56 @@
                 "router"
             ],
             "time": "2017-11-26T19:13:09+00:00"
+        },
+        {
+            "name": "teqneers/php-stream-wrapper-for-git",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/teqneers/PHP-Stream-Wrapper-for-Git.git",
+                "reference": "715eea710fd95d58f4afc9bdcb607c0c314dc11e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/teqneers/PHP-Stream-Wrapper-for-Git/zipball/715eea710fd95d58f4afc9bdcb607c0c314dc11e",
+                "reference": "715eea710fd95d58f4afc9bdcb607c0c314dc11e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "knplabs/gaufrette": "~0.2",
+                "phpunit/phpunit": "~4.8"
+            },
+            "suggest": {
+                "knplabs/gaufrette": "to use the Gaufrette adapter"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "TQ": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stefan Gehrig",
+                    "email": "gehrig@teqneers.de",
+                    "homepage": "http://opensource.teqneers.de/"
+                }
+            ],
+            "description": "Git Stream Wrapper for PHP",
+            "homepage": "https://github.com/teqneers/PHP-Stream-Wrapper-for-Git",
+            "keywords": [
+                "git",
+                "stream-wrapper",
+                "streamwrapper"
+            ],
+            "time": "2015-11-26T15:23:29+00:00"
         }
     ],
     "packages-dev": [],
