@@ -77,6 +77,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo "<p style='color: " . $red . "'>Failed to create table 'users'!</p>";
             }
             echo "<p>==============================================</p>";
+            $db->select_db($config['database'][0]['database']);
+            echo "<p>==============================================</p>";
+            echo "Creating table 'adresses'";
+            $sql = "CREATE TABLE IF NOT EXISTS`adresses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userid` tinytext COLLATE latin1_german2_ci,
+  `adress` tinytext COLLATE latin1_german2_ci,
+  `company` tinytext COLLATE latin1_german2_ci,
+  `city` tinytext COLLATE latin1_german2_ci,
+  `country` tinytext COLLATE latin1_german2_ci,
+  `postalcode` tinytext COLLATE latin1_german2_ci,
+  PRIMARY KEY (id)
+);";
+            $res = $db->query($sql);
+            if ($res) {
+                echo "<p style='color: " . $green . "'>Successfully create table 'adresses'.</p>";
+            } else {
+                echo "<p style='color: " . $red . "'>Failed to create table 'adresses'!</p>";
+            }
+            echo "<p>==============================================</p>";
             echo "<p>==============================================</p>";
             echo "Creating table 'securitytokens'";
             $sql = "CREATE TABLE IF NOT EXISTS `securitytokens` (
@@ -130,7 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "<p>==============================================</p>";
             echo "<p>==============================================</p>";
             echo "Creating Admin account";
-            $sql = "INSERT INTO users (email, password) VALUES ('" . $email . "', '" . password_hash($password, PASSWORD_DEFAULT) . "')";
+            $sql = "INSERT INTO users (email, password, permissions, verified) VALUES ('" . $email . "', '" . password_hash($password, PASSWORD_DEFAULT) . "', 3, 1)";
             $res = $db->query($sql);
             $sql = "select LAST_INSERT_ID()";
             $lastid = $db->query($sql);
