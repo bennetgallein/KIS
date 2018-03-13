@@ -16,9 +16,10 @@ class ModuleLoader {
 
         $dir = dirname(__FILE__) . "/../" . $cfg['modules'] . "module_*/*.json";
         foreach (glob($dir) as $file) {
-            //echo "filename: $file : filetype: " . filetype($file) . "<br />";
-            $this->createModuleByJSON($file);
-
+            if ($file && basename($file) != "composer.json") {
+                //echo "filename: $file : filetype: " . filetype($file) . "<br />";
+                $this->createModuleByJSON($file);
+            }
         }
     }
 
