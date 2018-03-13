@@ -15,7 +15,6 @@ class ModuleLoader {
         $this->modules = array();
 
         $dir = dirname(__FILE__) . "/../" . $cfg['modules'] . "module_*/*.json";
-
         foreach (glob($dir) as $file) {
             //echo "filename: $file : filetype: " . filetype($file) . "<br />";
             $this->createModuleByJSON($file);
