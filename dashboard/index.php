@@ -117,13 +117,15 @@ if (isset($_GET['removenotification']) && isset($_GET['id'])) {
             <div class="container-fluid">
                 <?php
                 foreach ($db->getModules() as $module) {
-                    if ($module->getBaseperm() <= $user->getPermissions()) {
-                        echo "<div class='row'><p class='navbar-brand'>";
-                        echo $module->getName();
-                        echo "</p></div>";
-                        foreach ($module->getDashboards() as $board) {
-                            if ($board['permission'] <= $user->getPermissions()) {
-                                include($module->getPath() . "/" . $module->getBasepath() . $board['link']);
+                    if ($module->isActive()) {
+                        if ($module->getBaseperm() <= $user->getPermissions()) {
+                            echo "<div class='row'><p class='navbar-brand'>";
+                            echo $module->getName();
+                            echo "</p></div>";
+                            foreach ($module->getDashboards() as $board) {
+                                if ($board['permission'] <= $user->getPermissions()) {
+                                    include($module->getPath() . "/" . $module->getBasepath() . $board['link']);
+                                }
                             }
                         }
                     }
