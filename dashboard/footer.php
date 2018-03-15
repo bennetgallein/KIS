@@ -6,8 +6,10 @@
                 foreach ($db->getFooter()[0] as $name => $link) {
                     echo '<li><a href="' . $link . '">' . $name . '</a></li>';
                 }
+                if (isset($moddd) && $user->getPermissions() >= 2) {
+                    echo '<li><a href="module.php?module=modulemanager/manager.php&params=module|' . $moddd->getName() . '">Module Information</a></li>';
+                }
                 echo '<li><p>version: ' . $db->getVersion() . '</p></li>';
-
                 ?>
             </ul>
         </nav>

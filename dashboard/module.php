@@ -113,6 +113,7 @@ $amodule = $_GET['module'];
                 $r = false;
                 foreach ($db->getModules() as $module) {
                     if ($module->isActive()) {
+                        $moddd = $module;
                         foreach ($module->getNavs() as $dashboard) {
                             if ($module->getBasepath() . $dashboard['link'] == $amodule) {
                                 $aamod = $module->getName();
