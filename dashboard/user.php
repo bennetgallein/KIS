@@ -167,7 +167,7 @@ if ($user->getEmail() != "test@test.de") {
                                 <form action="user.php?update=1" method="post">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <p>Y<?= $db->m("profile_userid") . $user->getId() ?></p>
+                                            <p><?= $db->m("profile_userid") . " " . $user->getId() ?></p>
                                         </div>
                                     </div>
                                     <div class="row">
