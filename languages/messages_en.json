@@ -1,10 +1,10 @@
-{
-  "0": "Log In",
-  "1": "E-mail",
-  "2": "Password",
-  "3": "Keep me signed in",
-  "4": "Register",
-  "5": "First name",
-  "6": "Last name",
-  "7": "Repeat password"
-}
+[
+    "Log In",
+    "E-mail",
+    "Password",
+    "Keep me signed in",
+    "Register",
+    "First name",
+    "Last name",
+    "Repeat password"
+]
