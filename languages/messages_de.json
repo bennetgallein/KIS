@@ -1,10 +1,10 @@
-[
-    "Anmelden",
-    "E-Mail",
-    "Passwort",
-    "Engeloggt bleiben",
-    "Registrieren",
-    "Vorname",
-    "Nachname",
-    "Passwort wiederholen"
-]
+{
+    "login_header": "Anmelden",
+    "login_email": "E-Mail",
+    "login_password": "Passwort",
+    "login_stay": "Engeloggt bleiben",
+    "login_button": "Registrieren",
+    "login_firstname": "Vorname",
+    "login_lastname": "Nachname",
+    "login_repeat": "Passwort wiederholen"
+}
