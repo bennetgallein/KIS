@@ -1,10 +1,10 @@
-[
-    "Log In",
-    "E-mail",
-    "Password",
-    "Keep me signed in",
-    "Register",
-    "First name",
-    "Last name",
-    "Repeat password"
-]
+{
+    "login_header": "Log In",
+    "login_email": "E-mail",
+    "login_password": "Password",
+    "login_stay": "Keep me signed in",
+    "login_button": "Register",
+    "login_firstname": "First name",
+    "login_lastname": "Last name",
+    "login_repeat": "Repeat password"
+}
