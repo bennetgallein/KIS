@@ -135,12 +135,12 @@ if ($user->getEmail() != "test@test.de") {
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse">
-                        <span class="sr-only">Toggle navigation</span>
+                        <span class="sr-only"><?= $db->m("dash_togglenav") ?></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"> Profile </a>
+                    <a class="navbar-brand" href="#"><?= $db->m("profile_title") ?></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -160,27 +160,27 @@ if ($user->getEmail() != "test@test.de") {
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
-                                <h4 class="title">Edit Profile</h4>
-                                <p class="category">Complete your profile</p>
+                                <h4 class="title"><?= $db->m("profile_edit_profile") ?></h4>
+                                <p class="category"><?= $db->m("profile_edit_complete") ?></p>
                             </div>
                             <div class="card-content">
                                 <form action="user.php?update=1" method="post">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <p>Your User ID: <?= $user->getId() ?></p>
+                                            <p>Y<?= $db->m("profile_userid") . $user->getId() ?></p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">First Name</label>
+                                                <label class="control-label"><?= $db->m("profile_edit_firstname")?></label>
                                                 <input name="firstname" value="<?= $user->getFirstname() ?>" type="text"
                                                        class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Last Name</label>
+                                                <label class="control-label"><?= $db->m("profile_edit_lastname")?></label>
                                                 <input name="lastname" value="<?= $user->getLastname() ?>" type="text"
                                                        class="form-control">
                                             </div>
@@ -189,14 +189,14 @@ if ($user->getEmail() != "test@test.de") {
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Email address</label>
+                                                <label class="control-label"><?= $db->m("profile_edit_email") ?></label>
                                                 <input name="email" value="<?= $user->getEmail() ?>" type="email"
                                                        class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Confirm Email address</label>
+                                                <label class="control-label"><?= $db->m("profile_edit_confirmemail") ?></label>
                                                 <input name="repeatemail" value="<?= $user->getEmail() ?>" type="email"
                                                        class="form-control">
                                             </div>
@@ -205,7 +205,7 @@ if ($user->getEmail() != "test@test.de") {
                                     <div class="row">
                                         <div class="col-md-8">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Address</label>
+                                                <label class="control-label"><?= $db->m("profile_edit_addresss") ?></label>
                                                 <input name="adress"
                                                        value="<?= (isset($data->adress) ? $data->adress : "") ?>"
                                                        type="text" class="form-control">
@@ -213,7 +213,7 @@ if ($user->getEmail() != "test@test.de") {
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Company</label>
+                                                <label class="control-label"><?= $db->m("profile_edit_company") ?></label>
                                                 <input name="company"
                                                        value="<?= isset($data->company) ? $data->company : "" ?>"
                                                        type="text" class="form-control">
@@ -223,7 +223,7 @@ if ($user->getEmail() != "test@test.de") {
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">City</label>
+                                                <label class="control-label"><?= $db->m("profile_edit_city") ?></label>
                                                 <input name="city"
                                                        value="<?= isset($data->city) ? $data->city : "" ?>"
                                                        type="text" class="form-control">
@@ -231,7 +231,7 @@ if ($user->getEmail() != "test@test.de") {
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Country</label>
+                                                <label class="control-label"><?= $db->m("profile_edit_country") ?></label>
                                                 <input name="country"
                                                        value="<?= isset($data->country) ? $data->country : "" ?>"
                                                        type="text" class="form-control">
@@ -239,7 +239,7 @@ if ($user->getEmail() != "test@test.de") {
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Postal Code</label>
+                                                <label class="control-label"><?= $db->m("profile_edit_postalcode") ?></label>
                                                 <input name="postalcode"
                                                        value="<?= isset($data->postalcode) ? $data->postalcode : "" ?>"
                                                        type="text" class="form-control">
@@ -247,7 +247,7 @@ if ($user->getEmail() != "test@test.de") {
                                         </div>
                                     </div>
                                     <button type="submit" data-background-color="<?= $db->getConfig()['color'] ?>"
-                                            class="btn btn-primary pull-right">Update Profile
+                                            class="btn btn-primary pull-right"><?= $db->m("profile_edit_submit")?>
                                     </button>
                                     <div class="clearfix"></div>
                                 </form>
@@ -259,32 +259,32 @@ if ($user->getEmail() != "test@test.de") {
                 if (isset($_GET['confirm'])):
                     $toConfirm = $_GET['confirm'];
                     if ($toConfirm == "delete"): ?>
-                        <a href="../php/userbtn.php?method=delete&confirmed=1">Confirm account deletion</a>
+                        <a href="../php/userbtn.php?method=delete&confirmed=1"><?= $db->m("profile_delete_confirm") ?></a>
                     <?php elseif ($toConfirm == "resetpw"): ?>
-                        <a href="../php/userbtn.php?method=resetpw&confirmed=1">Confirm account deletion</a>
+                        <a href="../php/userbtn.php?method=resetpw&confirmed=1"><?= $db->m("profile_reset_confirm") ?></a>
                     <?php endif; endif; ?>
 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="red">
-                                <h4 class="title">Danger Zone</h4>
-                                <p class="category">The stuff you have to confirm twice.</p>
+                                <h4 class="title"><?= $db->m("profile_danger_title") ?></h4>
+                                <p class="category"><?= $db->m("profile_danger_desc") ?></p>
                             </div>
                             <div class="card-content">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <a data-background-color="<?= $db->getConfig()['color'] ?>"
                                            class="btn btn-primary pull-left col-md-5" href="../php/userbtn.php">
-                                            Reset Password<br>
-                                            <small>This will send you a randomly generated password to your email.
+                                            <?= $db->m("profile_danger_title") ?><br>
+                                            <small><?= $db->m("profile_danger_password_desc") ?>
                                             </small>
                                         </a>
                                         <a data-background-color="<?= $db->getConfig()['color'] ?>"
                                            class="btn btn-primary pull-right col-md-5"
                                            href="../php/userbtn.php?method=delete">
-                                            Delete Account<br>
-                                            <small>This will permanently delete your account!</small>
+                                            <?= $db->m("profile_danger_delete_title")?><br>
+                                            <small><?= $db->m("profile_danger_delete_desc") ?></small>
                                         </a>
                                     </div>
                                 </div>

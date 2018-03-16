@@ -143,61 +143,28 @@ if (isset($_GET['a'])) {
                 }
 
                 ?>
-                <div class="card">
-                    <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
-                        <h4 class="title">Bevor du einen Fehler meldest!</h4>
-                        <p class="category">wichtige Informationen die du vorher gelesen haben solltest!</p>
-                    </div>
-                    <div class="card-content">
-                        <div id="typography">
-                            <p>Es gibt Sachen von denen Wissen wir. Auch gibt es Sachen von denen ihr nicht wissen könnt,
-                            dass sie nicht funktionieren sollen. Im folgenden nun mal ein paar Punkte die doch recht
-                                häufig gemeldet wurden:</p>
-                            <br>
-                            <ul>
-                                <li>
-                                    "Auf einigen Seiten funktionieren Knöpfe nicht und ich kann das Profil nicht
-                                    updaten" - Dadurch das wir in der Entwicklungsphase sind, gibt es immer irgendetwas was garnicht funktionieren soll. Darum einfach lassen :)
-                                </li>
-                                <br>
-                                <li>"PayPal funkioniert auch nicht" - Wir sind noch in der Testphase, desswegen wollen
-                                    wir nicht das ihr euer Geld aufladet und zudem ist die PayPal Integration auch noch
-                                    im Sandbox Modus, ich kann also damit Testen, aber nichts passiert wirklich.
-                                </li>
-                                <br>
-                                <li>"Style auf Handy oder Tablet ist hässlich" - Unser fokus liegt momentan auf dem Pc,
-                                    wir haben uns noch nicht um die optimierung für Smartphones gekümmert. Einfach hier
-                                    unten kurz melden und gut ist.
-                                </li>
-                                <br>
-                            </ul>
-                            <p>Sonst kann ich nur einmal schnell Danke sagen. Ich konnte nach kurzer Zeit schon ein paar gefährliche Sachen fixen, an die ich selbst nicht gedacht habe!</p>
-                        </div>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
-                                <h4 class="title">Report Bug</h4>
-                                <p class="category">If you found a bug and it's not in this List, be sure to report it
-                                    in the form below!</p>
+                                <h4 class="title"><?= $db->m("changelog_report_title") ?></h4>
+                                <p class="category"><?= $db->m("changelog_report_desc") ?></p>
                             </div>
                             <div class="card-content">
                                 <form action="changelog.php?a=report" method="post">
                                     <input placeholder="Title" name="title" value="" type="text" class="form-control">
                                     <textarea type="text" name="bug" class="form-control"
-                                              placeholder="Please describe the bug and how we can reproduce it!"
+                                              placeholder="<?= $db->m("changelog_report_textarea") ?>"
                                               id="comment" rows="5"></textarea>
                                     <div class="form-check pull-left" style="padding-bottom: 15px; font-size: 1.6em;">
                                         <input class="form-check-input" name="important" type="checkbox" value=""
                                                id="defaultCheck1">
                                         <label class="form-check-label" for="defaultCheck1">
-                                            Is this important (security, not spelling mistakes)?
+                                            <?= $db->m("changelog_report_importance") ?>
                                         </label>
                                     </div>
                                     <button type="submit" data-background-color="<?= $db->getConfig()['color'] ?>"
-                                            class="btn btn-primary pull-right">Report Bug
+                                            class="btn btn-primary pull-right"><?= $db->m("changelog_report_submit") ?>
                                     </button>
                                     <div class="clearfix"></div>
                                 </form>

@@ -41,7 +41,7 @@ Tip 2: you can also add an image using data-image tag
                 ?>
                 <a href="<?= $link ?>">
                     <i class="material-icons">person</i>
-                    <p>Profil <?= isset($money) ? $money : ""?></p>
+                    <p><?= $db->m("sidebar_profile")?> <?= isset($money) ? $money : ""?></p>
                 </a>
             </li>
             <?php
@@ -85,13 +85,13 @@ Tip 2: you can also add an image using data-image tag
             <li class="<?= $active ?>">
                 <a href="<?= $link ?>">
                     <i class="material-icons">add_circle</i>
-                    <p>Changelog</p>
+                    <p><?= $db->m("sidebar_changelog") ?></p>
                 </a>
             </li>
             <li>
                 <a href="../php/logout.php">
                     <i class="material-icons">power_settings_new</i>
-                    <p>Logout</p>
+                    <p><?= $db->m("sidebar_logout") ?></p>
                 </a>
             </li>
         </ul>

@@ -19,7 +19,7 @@ $res = $db->simpleQuery("SELECT * FROM notifications WHERE userid='" . $user->ge
         if ($res->num_rows > 0):
             ?>
             <span class="notification"><?= $res->num_rows ?></span>
-            <p class="hidden-lg hidden-md">Notifications</p>
+            <p class="hidden-lg hidden-md"><?= $db->m("notifications_title") ?></p>
         <?php
         endif;
         ?>
@@ -27,7 +27,7 @@ $res = $db->simpleQuery("SELECT * FROM notifications WHERE userid='" . $user->ge
     <ul class="dropdown-menu">
         <?php
         if ($res->num_rows == 0)
-            echo '<li class="lidrop"><a>No new notifications!</a></li>';
+            echo '<li class="lidrop"><a>' . $db->m("notifications_nonew") . '</a></li>';
 
         while ($row = $res->fetch_object()) {
             $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";

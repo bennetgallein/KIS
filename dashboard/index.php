@@ -89,7 +89,7 @@ if (isset($_GET['removenotification']) && isset($_GET['id'])) {
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse">
-                        <span class="sr-only">Toggle navigation</span>
+                        <span class="sr-only"><?= $db->m("dash_togglenav")?></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -111,8 +111,7 @@ if (isset($_GET['removenotification']) && isset($_GET['id'])) {
         </nav>
         <div class="content">
             <div class="alert alert-warning">
-                <span><b> Warning - </b> This is a pre-release version! If you discover ANY bugs, be sure to report them <a
-                            href="changelog.php">HERE</a>!</span>
+                <span><?= $db->m("dash_warning") ?></span>
             </div>
             <div class="container-fluid">
                 <?php
