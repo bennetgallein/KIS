@@ -89,7 +89,7 @@ $amodule = $_GET['module'];
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse">
-                        <span class="sr-only">Toggle navigation</span>
+                        <span class="sr-only"><?= $db->m("dash_togglenav") ?></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
