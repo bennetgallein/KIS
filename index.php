@@ -204,7 +204,7 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
             <form action="index.php?method=login&continue_login=true<?= isset($_GET['return']) ? "&return=" . $_GET['return'] : ""; ?>"
                   method="post"
                   class="navbar-form navbar-left form-signin">
-                <h3 class="form-signin-heading"><?= $db->m(0) ?></h3>
+                <h3 class="form-signin-heading"><?= $db->m("login_header") ?></h3>
                 <hr class="colorgraph">
                 <?php
                 if (isset($_GET['error'])) {
@@ -225,19 +225,19 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
                 }
                 ?>
                 <br>
-                <input type="text" value="" name="email" placeholder="<?= $db->m(1) ?>" class="form-control"
+                <input type="text" value="" name="email" placeholder="<?= $db->m("login_email") ?>" class="form-control"
                        autofocus=""
                        required/>
-                <input type="password" value="" name="pw" placeholder="<?= $db->m(2) ?>" class="form-control" required/>
+                <input type="password" value="" name="pw" placeholder="<?= $db->m("login_password") ?>" class="form-control" required/>
                 <div class="form-check pull-left" style="padding-bottom: 15px; font-size: 1.6em;">
                     <input class="form-check-input" name="stay" type="checkbox" value="" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
-                        <?= $db->m(3) ?>
+                        <?= $db->m("login_stay") ?>
                     </label>
                 </div>
                 <button type="submit" value="login" name="Submit" class="btn btn-lg btn-primary btn-block"/>
-                <?= $db->m(0) ?></button>
-                <a href="index.php?method=register"><?= $db->m(4) ?></a>
+                <?= $db->m("login_header") ?></button>
+                <a href="index.php?method=register"><?= $db->m("login_button") ?></a>
             </form>
         </div>
     </div>
@@ -246,7 +246,7 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
         <div class="col-md-4 col-md-offset-4">
             <form action="index.php?method=register&continue_registration=true" method="post"
                   class="navbar-form navbar-left form-signin">
-                <h3 class="form-signin-heading"><?= $db->m(4) ?></h3>
+                <h3 class="form-signin-heading"><?= $db->m("login_button") ?></h3>
                 <hr class="colorgraph">
                 <?php
                 if (isset($_GET['error'])) {
@@ -273,23 +273,23 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
                 }
                 ?>
                 <br>
-                <input type="text" value="" name="firstname" placeholder="<?= $db->m(5) ?>" class="form-control"
+                <input type="text" value="" name="firstname" placeholder="<?= $db->m("login_firstname") ?>" class="form-control"
                        required/>
-                <input type="text" value="" name="lastname" placeholder="<?= $db->m(6) ?>" class="form-control"
+                <input type="text" value="" name="lastname" placeholder="<?= $db->m("login_lastname") ?>" class="form-control"
                        required/>
                 <br>
-                <input type="text" value="" name="email" placeholder="<?= $db->m(1) ?>" align="left"
+                <input type="text" value="" name="email" placeholder="<?= $db->m("login_email") ?>" align="left"
                        class="form-control"
                        required/>
                 <br>
-                <input type="password" value="" name="pw1" placeholder="<?= $db->m(2) ?>" class="form-control"
+                <input type="password" value="" name="pw1" placeholder="<?= $db->m("login_password") ?>" class="form-control"
                        required/>
-                <input type="password" value="" name="pw2" placeholder="<?= $db->m(7) ?>" class="form-control"
+                <input type="password" value="" name="pw2" placeholder="<?= $db->m("login_repeat") ?>" class="form-control"
                        required/>
                 <br>
-                <input type="submit" value="<?= $db->m(4) ?>" class="btn btn-primary"/>
+                <input type="submit" value="<?= $db->m("login_button") ?>" class="btn btn-primary"/>
                 <br>
-                <a href="index.php?method=login"><?= $db->m(0) ?></a>
+                <a href="index.php?method=login"><?= $db->m("login_header") ?></a>
             </form>
         </div>
     </div>
@@ -308,12 +308,6 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
 <!-- Material Dashboard javascript methods -->
 <script src="assets/js/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="assets/js/demo.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
-    });
-</script>
+
 
 </html>
