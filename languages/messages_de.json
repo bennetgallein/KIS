@@ -1,10 +1,10 @@
-{
-  "0": "Anmelden",
-  "1": "E-Mail",
-  "2": "Passwort",
-  "3": "Eingeloggt bleiben",
-  "4": "Registrieren",
-  "5": "Vorname",
-  "6": "Nachname",
-  "7": "Passwort wiederholen"
-}
+[
+    "Anmelden",
+    "E-Mail",
+    "Passwort",
+    "Engeloggt bleiben",
+    "Registrieren",
+    "Vorname",
+    "Nachname",
+    "Passwort wiederholen"
+]
