@@ -49,20 +49,33 @@ class Module {
     private $basepath;
     private $repository;
     private $active;
+    private $languagefiles;
+    private $lang;
 
     public function __construct($json, $path) {
-        $this->raw = $json;
-        $this->path = $path;
-        $this->name = $json['name'];
-        $this->version = $json['version'];
-        $this->authors = $json['authors'];
-        $this->navs = isset($json['navs']) ? $json['navs'] : null;
-        $this->dashboard = isset($json['dashboards']) ? $json['dashboards'] : null;
-        $this->includeables = isset($json['includeables']) ? $json['includeables'] : null;
-        $this->baseperm = $json['baseperm'];
-        $this->priority = $json['priority'];
-        $this->basepath = $json['basepath'];
         $this->active = $json['active'];
+        if ($this->isActive()) {
+            $this->raw = $json;
+            $this->path = $path;
+            $this->name = $json['name'];
+            $this->version = $json['version'];
+            $this->authors = $json['authors'];
+            $this->navs = isset($json['navs']) ? $json['navs'] : null;
+            $this->dashboard = isset($json['dashboards']) ? $json['dashboards'] : null;
+            $this->includeables = isset($json['includeables']) ? $json['includeables'] : null;
+            $this->baseperm = $json['baseperm'];
+            $this->priority = $json['priority'];
+            $this->basepath = $json['basepath'];
+            $this->languagefiles = $json['languagefiles'];
+
+            $lang_file = $this->getPath() . "/" . $this->getBasepath() . $this->languagefiles . "messages_de.json";
+            $json = file_get_contents($lang_file);
+            $this->lang = json_decode($json, true);
+        }
+    }
+
+    public function getMessage($index) {
+        return $this->lang[$index];
     }
 
     public function getIncludeable($name) {

@@ -31,11 +31,13 @@ Tip 2: you can also add an image using data-image tag
             <li class="<?= $active ?>">
                 <?php
                 $module = $db->getModuleByName("Balance Manager");
-                if ($module->isActive()) {
-                    if ($module->getIncludeable("display_money")['permission'] <= $user->getPermissions()) {
-                        include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("display_money")['link']);
-                        $money = getMoney($db, $user);
-                        $money = "<span class=\"badge\">" . $money . "€</span>";
+                if ($module != false) {
+                    if ($module->isActive()) {
+                        if ($module->getIncludeable("display_money")['permission'] <= $user->getPermissions()) {
+                            include($module->getPath() . "/" . $module->getBasepath() . $module->getIncludeable("display_money")['link']);
+                            $money = getMoney($db, $user);
+                            $money = "<span class=\"badge\">" . $money . "€</span>";
+                        }
                     }
                 }
                 ?>
