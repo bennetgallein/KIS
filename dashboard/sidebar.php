@@ -68,7 +68,7 @@ Tip 2: you can also add an image using data-image tag
                                 echo '<li class="' . $active . '">
                                       <a href="module.php?module=' . $module->getBasepath() . $navpoint['link'] . '">
                                           <i class="material-icons">' . $navpoint['icon'] . '</i>
-                                          <p>' . $navpoint['name'] . '</p>
+                                          <p>' . $module->getMessage($navpoint['name']) . '</p>
                                       </a>
                                   </li>';
                                 $active = "";

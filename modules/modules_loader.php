@@ -68,7 +68,7 @@ class Module {
             $this->basepath = $json['basepath'];
             $this->languagefiles = $json['languagefiles'];
 
-            $lang_file = $this->getPath() . "/" . $this->getBasepath() . $this->languagefiles . "messages_en.json";
+            $lang_file = $this->getPath() . "/" . $this->getBasepath() . $this->languagefiles . "messages_" . $json['language'] . ".json";
             $json = file_get_contents($lang_file);
             $this->lang = json_decode($json, true);
         }
