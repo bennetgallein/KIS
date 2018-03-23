@@ -116,142 +116,96 @@ if ($user->getEmail() != "test@test.de") {
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta name="viewport" content="width=device-width"/>
     <!-- Bootstrap core CSS     -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
-    <!--  Material Dashboard CSS    -->
-    <link href="../assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet"/>
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="../assets/css/demo.css" rel="stylesheet"/>
-    <!--     Fonts and icons     -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet'
-          type='text/css'>
+    <link href="../bower_components/momentum/css/momentum.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.css">
 </head>
 
 <body>
-<div class="wrapper">
+<div id="wrapper" class="">
     <?php include('sidebar.php'); ?>
-    <div class="main-panel">
-        <nav class="navbar navbar-transparent navbar-absolute">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse">
-                        <span class="sr-only"><?= $db->m("dash_togglenav") ?></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#"><?= $db->m("profile_title") ?></a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <?php include "notifications.php" ?>
-                        <li>
-                            <a href="user.php">
-                                <i class="material-icons">person</i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="mdi mdi-star"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">one</a>
+                            <a class="dropdown-item" href="#">two</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">three</a>
+                        </div>
+                    </li>
+
+                </ul>
+                <a href="#" class="ml-3"><i class="mdi mdi-bell mdi-light mdi-24px"></i></a>
+                <a href="html/profile.html" class="ml-3"><i class="mdi mdi-account mdi-light mdi-24px"></i></a>
             </div>
         </nav>
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
-                                <h4 class="title"><?= $db->m("profile_edit_profile") ?></h4>
-                                <p class="category"><?= $db->m("profile_edit_complete") ?></p>
-                            </div>
-                            <div class="card-content">
+        <div class="website-content pb-4">
+            <div class="inner pl-3 pb-3 pr-3">
+                <div class="row col-md-12 mb-3">
+                    <div class="card col-md-12">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $db->m("profile_edit_profile") ?></h5>
+                            <p>
+                                <?= $db->m("profile_edit_complete") ?>
+                            </p>
+                            <p class="card-text">
                                 <form action="user.php?update=1" method="post">
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <p><?= $db->m("profile_userid") . " " . $user->getId() ?></p>
+                                        <div class="form-group col-md-6">
+                                            <label for="fName"><?= $db->m("profile_edit_firstname")?></label>
+                                            <input type="text" class="form-control" id="fName" value="<?= $user->getFirstname() ?>">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="lName"><?= $db->m("profile_edit_lastname")?></label>
+                                            <input type="text" class="form-control" id="lName" value="<?= $user->getLastname() ?>">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label"><?= $db->m("profile_edit_firstname")?></label>
-                                                <input name="firstname" value="<?= $user->getFirstname() ?>" type="text"
-                                                       class="form-control">
-                                            </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="email"><?= $db->m("profile_edit_email") ?></label>
+                                            <input type="email" class="form-control" id="email" value="<?= $user->getEmail() ?>">
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label"><?= $db->m("profile_edit_lastname")?></label>
-                                                <input name="lastname" value="<?= $user->getLastname() ?>" type="text"
-                                                       class="form-control">
-                                            </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="conf"><?= $db->m("profile_edit_confirmemail") ?></label>
+                                            <input type="email" class="form-control" id="conf" value="<?= $user->getEmail() ?>">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label"><?= $db->m("profile_edit_email") ?></label>
-                                                <input name="email" value="<?= $user->getEmail() ?>" type="email"
-                                                       class="form-control">
-                                            </div>
+                                        <div class="form-group col-md-8">
+                                            <label for="address"><?= $db->m("profile_edit_addresss") ?></label>
+                                            <input type="text" class="form-control" id="address" value="<?= (isset($data->adress) ? $data->adress : "") ?>">
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label"><?= $db->m("profile_edit_confirmemail") ?></label>
-                                                <input name="repeatemail" value="<?= $user->getEmail() ?>" type="email"
-                                                       class="form-control">
-                                            </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="comp"><?= $db->m("profile_edit_company") ?></label>
+                                            <input type="text" class="form-control" id="comp" value="<?= isset($data->company) ? $data->company : "" ?>">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-8">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label"><?= $db->m("profile_edit_addresss") ?></label>
-                                                <input name="adress"
-                                                       value="<?= (isset($data->adress) ? $data->adress : "") ?>"
-                                                       type="text" class="form-control">
-                                            </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="city"><?= $db->m("profile_edit_city") ?></label>
+                                            <input type="text" class="form-control" id="city" value="<?= isset($data->city) ? $data->city : "" ?>">
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label"><?= $db->m("profile_edit_company") ?></label>
-                                                <input name="company"
-                                                       value="<?= isset($data->company) ? $data->company : "" ?>"
-                                                       type="text" class="form-control">
-                                            </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="country"><?= $db->m("profile_edit_country") ?></label>
+                                            <input type="text" class="form-control" id="country" value="<?= isset($data->country) ? $data->country : "" ?>">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="postcode"><?= $db->m("profile_edit_postalcode") ?></label>
+                                            <input type="text" class="form-control" id="postcode" value="<?= isset($data->postalcode) ? $data->postalcode : "" ?>">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label"><?= $db->m("profile_edit_city") ?></label>
-                                                <input name="city"
-                                                       value="<?= isset($data->city) ? $data->city : "" ?>"
-                                                       type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label"><?= $db->m("profile_edit_country") ?></label>
-                                                <input name="country"
-                                                       value="<?= isset($data->country) ? $data->country : "" ?>"
-                                                       type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label"><?= $db->m("profile_edit_postalcode") ?></label>
-                                                <input name="postalcode"
-                                                       value="<?= isset($data->postalcode) ? $data->postalcode : "" ?>"
-                                                       type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button type="submit" data-background-color="<?= $db->getConfig()['color'] ?>"
-                                            class="btn btn-primary pull-right"><?= $db->m("profile_edit_submit")?>
-                                    </button>
-                                    <div class="clearfix"></div>
+                                    <button type="submit" class="btn btn-primary col-md-2 float-right"><?= $db->m("profile_edit_submit")?></button>
                                 </form>
-                            </div>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -263,56 +217,27 @@ if ($user->getEmail() != "test@test.de") {
                     <?php elseif ($toConfirm == "resetpw"): ?>
                         <a href="../php/userbtn.php?method=resetpw&confirmed=1"><?= $db->m("profile_reset_confirm") ?></a>
                     <?php endif; endif; ?>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header" data-background-color="red">
-                                <h4 class="title"><?= $db->m("profile_danger_title") ?></h4>
-                                <p class="category"><?= $db->m("profile_danger_desc") ?></p>
-                            </div>
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <a data-background-color="<?= $db->getConfig()['color'] ?>"
-                                           class="btn btn-primary pull-left col-md-5" href="../php/userbtn.php">
-                                            <?= $db->m("profile_danger_title") ?><br>
-                                            <small><?= $db->m("profile_danger_password_desc") ?>
-                                            </small>
-                                        </a>
-                                        <a data-background-color="<?= $db->getConfig()['color'] ?>"
-                                           class="btn btn-primary pull-right col-md-5"
-                                           href="../php/userbtn.php?method=delete">
-                                            <?= $db->m("profile_danger_delete_title")?><br>
-                                            <small><?= $db->m("profile_danger_delete_desc") ?></small>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="row col-md-12">
+                    <div class="card col-md-12">
+                        <div class="card-body">
+                            <h5 class="card-title bg-danger text-center text-white pt-3 pr-3 pb-3 pl-3">DANGER ZONE</h5>
+                            <p class="card-text">
+                                <a href="../php/userbtn.php" class="btn btn-info col-md-4 offset-md-1"><?= $db->m("profile_danger_title") ?><br><small><?= $db->m("profile_danger_password_desc") ?></small></a>
+                                <a href="../php/userbtn.php?method=resetpw&confirmed=1" class="btn btn-info col-md-4 offset-md-2"><?= $db->m("profile_danger_delete_title")?><br><small><?= $db->m("profile_danger_delete_desc") ?></small></a>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <?php include("footer.php"); ?>
         </div>
-    </div>
 </div>
 </body>
-<!--   Core JS Files   -->
-<script src="../assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
-<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="../assets/js/material.min.js" type="text/javascript"></script>
-<!--  Charts Plugin -->
-<script src="../assets/js/chartist.min.js"></script>
-<!--  Dynamic Elements plugin -->
-<script src="../assets/js/arrive.min.js"></script>
-<!--  PerfectScrollbar Library -->
-<script src="../assets/js/perfect-scrollbar.jquery.min.js"></script>
-<!--  Notifications Plugin    -->
-<script src="../assets/js/bootstrap-notify.js"></script>
-<!-- Material Dashboard javascript methods -->
-<script src="../assets/js/material-dashboard.js?v=1.2.0"></script>
-<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="../assets/js/demo.js"></script>
+<!-- Bootstrap JavaScript & jQuery -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="../bower_components/momentum/js/morris.js"></script>
+<script src="../bower_components/momentum/js/momentum.js" type="text/javascript"></script>
 
 </html>
