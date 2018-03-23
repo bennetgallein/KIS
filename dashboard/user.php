@@ -141,7 +141,7 @@ if ($user->getEmail() != "test@test.de") {
         </nav>
         <br>
         <div class="inner pl-3 pb-3 pr-3">
-            <div class="row col-md-12 mb-3">
+            <div class="row col-md-12 mb-3 topcard">
                 <div class="card col-md-12">
                     <div class="card-body">
                         <h5 class="card-title"><?= $db->m("profile_edit_profile") ?></h5>
