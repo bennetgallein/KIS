@@ -89,47 +89,26 @@ if (isset($_GET['a'])) {
     <title><?= $db->getConfig()['site_name'] ?></title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta name="viewport" content="width=device-width"/>
-    <!-- Bootstrap core CSS     -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
-    <!--  Material Dashboard CSS    -->
-    <link href="../assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet"/>
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="../assets/css/demo.css" rel="stylesheet"/>
-    <!--     Fonts and icons     -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet'
-          type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.css">
+    <link rel="stylesheet" href="../bower_components/momentum/css/momentum.css">
 </head>
 
 <body>
-<div class="wrapper">
+<div id="wrapper">
     <?php include('sidebar.php'); ?>
-    <div class="main-panel">
-        <nav class="navbar navbar-transparent navbar-absolute">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Changelog </a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <?php include "notifications.php" ?>
-                        <li>
-                            <a href="user.php">
-                                <i class="material-icons">person</i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+    <div class="website-content pb-4">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="width: 100%;">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="mdi mdi-star"></i><?= $db->m("sidebar_changelog") ?></a>
+                    </li>
+                </ul>
+                <?php include("notifications.php") ?>
             </div>
         </nav>
-        <div class="content">
-            <div class="container-fluid">
+        <br>
                 <?php
 
                 if (isset($_SESSION['bug_reported'])) {
@@ -143,69 +122,41 @@ if (isset($_GET['a'])) {
                 }
 
                 ?>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header" data-background-color="<?= $db->getConfig()['color'] ?>">
-                                <h4 class="title"><?= $db->m("changelog_report_title") ?></h4>
-                                <p class="category"><?= $db->m("changelog_report_desc") ?></p>
-                            </div>
-                            <div class="card-content">
-                                <form action="changelog.php?a=report" method="post">
-                                    <input placeholder="Title" name="title" value="" type="text" class="form-control">
-                                    <textarea type="text" name="bug" class="form-control"
-                                              placeholder="<?= $db->m("changelog_report_textarea") ?>"
-                                              id="comment" rows="5"></textarea>
-                                    <div class="form-check pull-left" style="padding-bottom: 15px; font-size: 1.6em;">
-                                        <input class="form-check-input" name="important" type="checkbox" value=""
-                                               id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            <?= $db->m("changelog_report_importance") ?>
-                                        </label>
-                                    </div>
-                                    <button type="submit" data-background-color="<?= $db->getConfig()['color'] ?>"
-                                            class="btn btn-primary pull-right"><?= $db->m("changelog_report_submit") ?>
-                                    </button>
-                                    <div class="clearfix"></div>
-                                </form>
-                                <div style="overflow: auto; width: 100%; display: inline-block">
+                <div class="inner pl-3 pb-3 pr-3">
+                    <div class="row col-md-12 mb-3 topcard">
+                        <div class="card col-md-12">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= $db->m("changelog_report_title")?></h5>
+                                <small><?= $db->m("changelog_report_desc") ?></small>
+                                <p class="card-text">
+                                    <form action="changelog.php?a=report" method="post">
+                                        <div class="form-group">
+                                            <input type="text" name="title" class="form-control" id="bugTitle" placeholder="<?= $db->m("changelog_report_bugtitle")?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="bug" id="bugText" rows="3" placeholder="<?= $db->m("changelog_report_textarea")?>"></textarea>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-check col-md-8">
+                                                <input name="important" class="form-check-input" type="checkbox" value="" id="importantCheck">
+                                                <label class="form-check-label" for="importantCheck"><?= $db->m("changelog_report_importance") ?></label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="submit" class="btn btn-primary float-right" value="<?= $db->m("changelog_report_submit") ?>" />
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div style="overflow: auto; width: 100%; display: inline-block">
                                     <?= $cardtag ?>
-                                </div>
+                                    </div>
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <script src="https://p.trellocdn.com/embed.min.js"></script>
-            </div>
             <?php include("footer.php"); ?>
         </div>
     </div>
-</div>
 </body>
-<!--   Core JS Files   -->
-<script src="../assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
-<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="../assets/js/material.min.js" type="text/javascript"></script>
-<!--  Charts Plugin -->
-<script src="../assets/js/chartist.min.js"></script>
-<!--  Dynamic Elements plugin -->
-<script src="../assets/js/arrive.min.js"></script>
-<!--  PerfectScrollbar Library -->
-<script src="../assets/js/perfect-scrollbar.jquery.min.js"></script>
-<!--  Notifications Plugin    -->
-<script src="../assets/js/bootstrap-notify.js"></script>
-<!-- Material Dashboard javascript methods -->
-<script src="../assets/js/material-dashboard.js?v=1.2.0"></script>
-<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="../assets/js/demo.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
-
-    });
-</script>
-
 </html>
