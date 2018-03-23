@@ -1,0 +1,13 @@
+html {
+    min-height: 100%;
+    height: auto;
+}
+
+body {
+    min-height: 100%;
+}
+
+nav {
+    width: calc(100% - 250px);
+    float: right;
+}

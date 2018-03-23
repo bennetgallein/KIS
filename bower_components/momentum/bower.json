@@ -1,21 +1,17 @@
 {
-  "name": "KIS",
-  "homepage": "https://kis.intranetproject.net",
+  "name": "momentum",
+  "homepage": "https://github.com/Tobi2K/momentum",
   "authors": [
     "bennetgallein <bennet@intranetproject.net>"
   ],
-  "description": "Kunden Informations System",
+  "description": "An Admin Framework",
   "main": "",
   "license": "MIT",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
     "tests"
-  ],
-  "dependencies": {
-    "momentum": "*"
-  }
+  ]
 }
