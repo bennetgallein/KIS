@@ -13,7 +13,6 @@
     "sidebar_changelog": "Changelog",
     "sidebar_logout": "Logout",
     "changelog_report_title": "Report Bug",
-    "changelog_report_bugtitle": "Bug",
     "changelog_report_desc": "If you found a bug and it's not in the list, be sure to report it in the form below!",
     "changelog_report_textarea": "Please describe the bug and how we can reproduce it!",
     "changelog_report_importance": "Is this important (security, not spelling mistakes)?",
@@ -41,5 +40,6 @@
     "profile_danger_password_title": "Reset Password",
     "profile_danger_password_desc": "This will send you a randomly generated password to your email.",
     "profile_danger_delete_title": "Delete Account",
-    "profile_danger_delete_desc": "This will permanently delete your account!"
+    "profile_danger_delete_desc": "This will permanently delete your account!",
+    "changelog_report_bugtitle": "Bug"
 }
