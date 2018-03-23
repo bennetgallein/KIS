@@ -230,6 +230,7 @@ if ($user->getEmail() != "test@test.de") {
                     </div>
                 </div>
             </div>
+            <?php include("footer.php") ?>
         </div>
 </div>
 </body>
