@@ -35,7 +35,7 @@
                 unset($active);
                 foreach ($db->getModules() as $module) {
                     if ($module->isActive()) {
-                        echo '<a class="collapseable-nav" data-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapseExample">Module<i class="mdi mdi-plus"></i></a>
+                        echo '<a class="collapseable-nav" data-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapseExample">' . $module->getName() . '<i class="mdi mdi-plus"></i></a>
                         <div class="collapse" id="collapse">
                             <ul class="collapsible">
                         ';
