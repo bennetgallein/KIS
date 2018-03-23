@@ -25,10 +25,6 @@ nav {
     margin-top: 56px !important;
 }
 
-.nav-link {
-    color: white !important;
-}
-
 .nocaretdrop::after {
     display: none !important;
 }
