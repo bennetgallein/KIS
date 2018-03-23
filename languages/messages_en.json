@@ -13,6 +13,7 @@
     "sidebar_changelog": "Changelog",
     "sidebar_logout": "Logout",
     "changelog_report_title": "Report Bug",
+    "changelog_report_bugtitle": "Bug",
     "changelog_report_desc": "If you found a bug and it's not in the list, be sure to report it in the form below!",
     "changelog_report_textarea": "Please describe the bug and how we can reproduce it!",
     "changelog_report_importance": "Is this important (security, not spelling mistakes)?",

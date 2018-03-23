@@ -126,8 +126,6 @@ if ($user->getEmail() != "test@test.de") {
 <body>
 <div id="wrapper" class="">
     <?php include('sidebar.php'); ?>
-
-
     <div class="website-content pb-4">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="width: 100%;">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
