@@ -14,7 +14,10 @@ html {
     display: inline-block;
 }
 
-body, .wrapper, .website-content, nav {
+body,
+.wrapper,
+.website-content,
+nav {
     position: relative;
 }
 
@@ -22,6 +25,14 @@ body, .wrapper, .website-content, nav {
     margin-top: 56px !important;
 }
 
-.nav-item * {
+.nav-link {
     color: white !important;
+}
+
+.nocaretdrop::after {
+    display: none !important;
+}
+
+a#notification.nocaretdrop::after {
+    display: none;
 }
