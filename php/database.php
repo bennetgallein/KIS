@@ -129,6 +129,14 @@ class DB {
         return $this->modules;
     }
 
+    public function checkCSRFToken($token) {
+        if ($_SESSION['csrftoken'] == $token) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function getModuleByName($name) {
         foreach ($this->getModules() as $module) {
             if ($name == $module->getName()) {

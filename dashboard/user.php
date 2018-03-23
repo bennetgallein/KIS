@@ -58,7 +58,7 @@ if (isset($_GET['changelang'])) {
 if ($user->getEmail() != "test@test.de") {
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if (isset($_GET['update'])) {
-            if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['repeatemail']) && isset($_POST['adress']) && isset($_POST['city']) && isset($_POST['country']) && isset($_POST['postalcode'])) {
+            if (isset($_POST['csrftoken']) && isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['repeatemail']) && isset($_POST['adress']) && isset($_POST['city']) && isset($_POST['country']) && isset($_POST['postalcode'])) {
                 $firstname = $db->getConnection()->escape_string(strip_tags($_POST['firstname']));
                 $lastname = $db->getConnection()->escape_string(strip_tags($_POST['lastname']));
                 $email = $db->getConnection()->escape_string(strip_tags($_POST['email']));
@@ -69,6 +69,10 @@ if ($user->getEmail() != "test@test.de") {
                 $country = $db->getConnection()->escape_string(strip_tags($_POST['country']));
                 $postalcode = $db->getConnection()->escape_string(strip_tags($_POST['postalcode']));
 
+                if (!$db->checkCSRFToken($_POST['csrftoken'])) {
+                    echo "CSRF Token do not match!";
+                    die();
+                }
                 if (!($email == $repemail)) {
                     header("Location: user.php?error=Email%20do%20not%20match");
                     die();
@@ -151,8 +155,9 @@ if ($user->getEmail() != "test@test.de") {
                             <?= $db->m("profile_edit_complete") ?>!
                         </small>
                         <p class="card-text">
-                        <form action="user.php?update=1" method="post">
+                        <form action="user.php?update=1&token=<?= $_SESSION['csrftoken'] ?>" method="post">
                             <div class="row">
+                            <input type="hidden" name="csrftoken" value="<?= $_SESSION['csrftoken'] ?>" />
                                 <div class="form-group col-md-6">
                                     <label for="fName"><?= $db->m("profile_edit_firstname") ?></label>
                                     <input type="text" name="firstname" class="form-control" id="fName"
