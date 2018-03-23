@@ -51,6 +51,10 @@ if ($res) {
     $data = array();
     header("Location: ../index.php?method=login&error=internal");
 }
+if (isset($_GET['changelang'])) {
+    setcookie('lang', $_GET['changelang']);
+    header("Location: user.php");
+}
 if ($user->getEmail() != "test@test.de") {
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if (isset($_GET['update'])) {
@@ -215,7 +219,27 @@ if ($user->getEmail() != "test@test.de") {
                     <a href="../php/userbtn.php?method=delete&confirmed=1"><?= $db->m("profile_delete_confirm") ?></a>
                 <?php elseif ($toConfirm == "resetpw"): ?>
                     <a href="../php/userbtn.php?method=resetpw&confirmed=1"><?= $db->m("profile_reset_confirm") ?></a>
-                <?php endif; endif; ?>
+                <?php endif; 
+            endif; 
+            ?>
+            <div class="row col-md-12">
+                <div class="card col-md-12">
+                    <div class="card-body">
+                        <p class="card-text">
+                        <div class="dropdown">
+                            <a class="dropdown-toggle nocaretdrop" href="#" role="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-bell mdi-light mdi-24px"></i>Hello</a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notification" style="right: 0; left: auto;">
+                                <?php
+                                foreach ($db->getSupportedLangs() as $key => $lang) {
+                                    echo "<a class='dropdown-item' href='user.php?changelang=" . $lang . "'>" . $key . "</a>";
+                                }?>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             <div class="row col-md-12">
                 <div class="card col-md-12">
                     <div class="card-body">

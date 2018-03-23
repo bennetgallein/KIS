@@ -22,12 +22,20 @@ class DB {
     private $modules;
     private $changelog;
 
+    private $langs = array("Deutsch" => "de", "English" => "en");
+
     public function __construct() {
+
         $json_file = dirname(__FILE__) . "/../config.json";
         $json = file_get_contents($json_file);
         $this->cfg = json_decode($json, true);
 
-        $lang_file = dirname(__FILE__) . "/../languages/messages_" . $this->cfg['lang'] . ".json";
+        
+        if (isset($_COOKIE['lang']) && array_search($_COOKIE['lang'], $this->langs) != false) {
+            $lang_file = dirname(__FILE__) . "/../languages/messages_" . $_COOKIE['lang'] . ".json"; 
+        } else {
+            $lang_file = dirname(__FILE__) . "/../languages/messages_" . $this->cfg['lang'] . ".json";
+        }
         $json = file_get_contents($lang_file);
         $this->lang = json_decode($json, true);
 
@@ -124,7 +132,9 @@ class DB {
     public function getConnection() {
         return $this->connection;
     }
-
+    public function getSupportedLangs() {
+        return $this->langs;
+    }
     public function random_string() {
         if (function_exists('random_bytes')) {
             $bytes = random_bytes(16);
