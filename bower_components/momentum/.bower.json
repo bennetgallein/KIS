@@ -14,13 +14,14 @@
     "test",
     "tests"
   ],
-  "_release": "b78c992724",
+  "_release": "cc8d5ce5ce",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "b78c992724b95683305658215b18e41c1eb337fa"
+    "commit": "cc8d5ce5ce5aa2691f7537fc80fee588e76982b1"
   },
   "_source": "https://github.com/Tobi2k/momentum.git",
   "_target": "*",
-  "_originalSource": "momentum"
+  "_originalSource": "momentum",
+  "_direct": true
 }

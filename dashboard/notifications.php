@@ -2,38 +2,20 @@
 
 $res = $db->simpleQuery("SELECT * FROM notifications WHERE userid='" . $user->getId() . "' AND isread = 0 ORDER BY inserted DESC");
 ?>
-<style>
-    .dropdown-menu li a:hover, .dropdown-menu li a:focus, .dropdown-menu li a:active {
-        background-color: #288FEB !important;
-    }
-    .dropdown-menu .lidrop a:hover, .dropdown-menu .lidrop a:focus, .dropdown-menu .lidrop a:active {
-        background-color: #FFFFFF !important;
-        color: #000 !important;
-        box-shadow: none !important;
-    }
-</style>
-<li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <i class="material-icons">notifications</i>
-        <?php
-        if ($res->num_rows > 0):
-            ?>
-            <span class="notification"><?= $res->num_rows ?></span>
-            <p class="hidden-lg hidden-md"><?= $db->m("notifications_title") ?></p>
-        <?php
-        endif;
-        ?>
-    </a>
-    <ul class="dropdown-menu">
-        <?php
-        if ($res->num_rows == 0)
-            echo '<li class="lidrop"><a>' . $db->m("notifications_nonew") . '</a></li>';
+<div class="dropdown">
+    <a class="dropdown-toggle nocaretdrop" href="#" role="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-bell mdi-light mdi-24px"></i><span class="badge badge-danger" style="margin-left: -10px;"><?= $res->num_rows > 0 ? $res->num_rows : ""?></span></a>
 
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notification" style="right: 0; left: auto;">
+
+        <?php
+        if ($res->num_rows == 0) {
+            echo "<a class='dropdown-item' href='#'>" . $db->m("notifications_nonew") . "</a>";
+        }
         while ($row = $res->fetch_object()) {
             $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-            echo '<li><a href="index.php?removenotification=1&id=' . $row->id . '&return=' . $actual_link . '">' . $row->message . ' <i class="material-icons" style="cursor: pointer">highlight_off</i></a></li>';
+            echo '<a class="dropdown-item" href="index.php?removenotification=1&id=' . $row->id . '&return=' . $actual_link . '">' . $row->message . '</a>';
         }
-
         ?>
-    </ul>
-</li>
+    </div>
+</div>
+<a href="user.php" class="ml-3"><i class="mdi mdi-account mdi-light mdi-24px"></i></a>
