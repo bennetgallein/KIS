@@ -100,6 +100,7 @@ if ($user->getEmail() != "test@test.de") {
                 $db->prepareQuery("INSERT INTO notifications (userid, message) VALUES (?, ?)", array(
                     $db->escape($id), $db->escape("You updated your profile!")
                 ));
+            } else {
             }
         }
     }
@@ -162,45 +163,45 @@ if ($user->getEmail() != "test@test.de") {
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="fName"><?= $db->m("profile_edit_firstname")?></label>
-                                            <input type="text" class="form-control" id="fName" value="<?= $user->getFirstname() ?>">
+                                            <input type="text" name="firstname" class="form-control" id="fName" value="<?= $user->getFirstname() ?>">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="lName"><?= $db->m("profile_edit_lastname")?></label>
-                                            <input type="text" class="form-control" id="lName" value="<?= $user->getLastname() ?>">
+                                            <input type="text" name="lastname" class="form-control" id="lName" value="<?= $user->getLastname() ?>">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="email"><?= $db->m("profile_edit_email") ?></label>
-                                            <input type="email" class="form-control" id="email" value="<?= $user->getEmail() ?>">
+                                            <input type="email" name="email" class="form-control" id="email" value="<?= $user->getEmail() ?>">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="conf"><?= $db->m("profile_edit_confirmemail") ?></label>
-                                            <input type="email" class="form-control" id="conf" value="<?= $user->getEmail() ?>">
+                                            <input type="email" name="repeatemail" class="form-control" id="conf" value="<?= $user->getEmail() ?>">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-8">
                                             <label for="address"><?= $db->m("profile_edit_addresss") ?></label>
-                                            <input type="text" class="form-control" id="address" value="<?= (isset($data->adress) ? $data->adress : "") ?>">
+                                            <input type="text" name="adress" class="form-control" id="address" value="<?= (isset($data->adress) ? $data->adress : "") ?>">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="comp"><?= $db->m("profile_edit_company") ?></label>
-                                            <input type="text" class="form-control" id="comp" value="<?= isset($data->company) ? $data->company : "" ?>">
+                                            <input type="text" name="company" class="form-control" id="comp" value="<?= isset($data->company) ? $data->company : "" ?>">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-4">
                                             <label for="city"><?= $db->m("profile_edit_city") ?></label>
-                                            <input type="text" class="form-control" id="city" value="<?= isset($data->city) ? $data->city : "" ?>">
+                                            <input type="text" name="city" class="form-control" id="city" value="<?= isset($data->city) ? $data->city : "" ?>">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="country"><?= $db->m("profile_edit_country") ?></label>
-                                            <input type="text" class="form-control" id="country" value="<?= isset($data->country) ? $data->country : "" ?>">
+                                            <input type="text" name="country" class="form-control" id="country" value="<?= isset($data->country) ? $data->country : "" ?>">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="postcode"><?= $db->m("profile_edit_postalcode") ?></label>
-                                            <input type="text" class="form-control" id="postcode" value="<?= isset($data->postalcode) ? $data->postalcode : "" ?>">
+                                            <input type="text" name="postalcode" class="form-control" id="postcode" value="<?= isset($data->postalcode) ? $data->postalcode : "" ?>">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary col-md-2 float-right"><?= $db->m("profile_edit_submit")?></button>
