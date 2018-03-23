@@ -118,112 +118,139 @@ if ($user->getEmail() != "test@test.de") {
     <meta name="viewport" content="width=device-width"/>
     <!-- Bootstrap core CSS     -->
     <link href="../bower_components/momentum/css/momentum.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.css">
 </head>
 
 <body>
 <div id="wrapper" class="">
     <?php include('sidebar.php'); ?>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+
+
+    <div class="website-content pb-4">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="width: 100%;">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="mdi mdi-star"></i><?= $db->m("sidebar_profile")?></a>
+                        <a class="nav-link" href="#"><i class="mdi mdi-star"></i><?= $db->m("sidebar_profile") ?></a>
                     </li>
                 </ul>
                 <?= include("notifications.php") ?>
             </div>
         </nav>
-        <div class="website-content pb-4">
-            <div class="inner pl-3 pb-3 pr-3">
-                <div class="row col-md-12 mb-3">
-                    <div class="card col-md-12">
-                        <div class="card-body">
-                            <h5 class="card-title"><?= $db->m("profile_edit_profile") ?></h5>
-                            <p>
-                                <?= $db->m("profile_edit_complete") ?>
-                            </p>
-                            <p class="card-text">
-                                <form action="user.php?update=1" method="post">
-                                    <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label for="fName"><?= $db->m("profile_edit_firstname")?></label>
-                                            <input type="text" name="firstname" class="form-control" id="fName" value="<?= $user->getFirstname() ?>">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="lName"><?= $db->m("profile_edit_lastname")?></label>
-                                            <input type="text" name="lastname" class="form-control" id="lName" value="<?= $user->getLastname() ?>">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label for="email"><?= $db->m("profile_edit_email") ?></label>
-                                            <input type="email" name="email" class="form-control" id="email" value="<?= $user->getEmail() ?>">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="conf"><?= $db->m("profile_edit_confirmemail") ?></label>
-                                            <input type="email" name="repeatemail" class="form-control" id="conf" value="<?= $user->getEmail() ?>">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-md-8">
-                                            <label for="address"><?= $db->m("profile_edit_addresss") ?></label>
-                                            <input type="text" name="adress" class="form-control" id="address" value="<?= (isset($data->adress) ? $data->adress : "") ?>">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="comp"><?= $db->m("profile_edit_company") ?></label>
-                                            <input type="text" name="company" class="form-control" id="comp" value="<?= isset($data->company) ? $data->company : "" ?>">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-md-4">
-                                            <label for="city"><?= $db->m("profile_edit_city") ?></label>
-                                            <input type="text" name="city" class="form-control" id="city" value="<?= isset($data->city) ? $data->city : "" ?>">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="country"><?= $db->m("profile_edit_country") ?></label>
-                                            <input type="text" name="country" class="form-control" id="country" value="<?= isset($data->country) ? $data->country : "" ?>">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="postcode"><?= $db->m("profile_edit_postalcode") ?></label>
-                                            <input type="text" name="postalcode" class="form-control" id="postcode" value="<?= isset($data->postalcode) ? $data->postalcode : "" ?>">
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary col-md-2 float-right"><?= $db->m("profile_edit_submit")?></button>
-                                </form>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <?php
-                if (isset($_GET['confirm'])):
-                    $toConfirm = $_GET['confirm'];
-                    if ($toConfirm == "delete"): ?>
-                        <a href="../php/userbtn.php?method=delete&confirmed=1"><?= $db->m("profile_delete_confirm") ?></a>
-                    <?php elseif ($toConfirm == "resetpw"): ?>
-                        <a href="../php/userbtn.php?method=resetpw&confirmed=1"><?= $db->m("profile_reset_confirm") ?></a>
-                    <?php endif; endif; ?>
-                <div class="row col-md-12">
-                    <div class="card col-md-12">
-                        <div class="card-body">
-                            <h5 class="card-title bg-danger text-center text-white pt-3 pr-3 pb-3 pl-3">DANGER ZONE</h5>
-                            <p class="card-text">
-                                <a href="../php/userbtn.php" class="btn btn-info col-md-4 offset-md-1"><?= $db->m("profile_danger_title") ?><br><small><?= $db->m("profile_danger_password_desc") ?></small></a>
-                                <a href="../php/userbtn.php?method=resetpw&confirmed=1" class="btn btn-info col-md-4 offset-md-2"><?= $db->m("profile_danger_delete_title")?><br><small><?= $db->m("profile_danger_delete_desc") ?></small></a>
-                            </p>
-                        </div>
+        <br>
+        <div class="inner pl-3 pb-3 pr-3">
+            <div class="row col-md-12 mb-3">
+                <div class="card col-md-12">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $db->m("profile_edit_profile") ?></h5>
+                        <p>
+                            <?= $db->m("profile_edit_complete") ?>
+                        </p>
+                        <p class="card-text">
+                        <form action="user.php?update=1" method="post">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="fName"><?= $db->m("profile_edit_firstname") ?></label>
+                                    <input type="text" name="firstname" class="form-control" id="fName"
+                                           value="<?= $user->getFirstname() ?>">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="lName"><?= $db->m("profile_edit_lastname") ?></label>
+                                    <input type="text" name="lastname" class="form-control" id="lName"
+                                           value="<?= $user->getLastname() ?>">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="email"><?= $db->m("profile_edit_email") ?></label>
+                                    <input type="email" name="email" class="form-control" id="email"
+                                           value="<?= $user->getEmail() ?>">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="conf"><?= $db->m("profile_edit_confirmemail") ?></label>
+                                    <input type="email" name="repeatemail" class="form-control" id="conf"
+                                           value="<?= $user->getEmail() ?>">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-8">
+                                    <label for="address"><?= $db->m("profile_edit_addresss") ?></label>
+                                    <input type="text" name="adress" class="form-control" id="address"
+                                           value="<?= (isset($data->adress) ? $data->adress : "") ?>">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="comp"><?= $db->m("profile_edit_company") ?></label>
+                                    <input type="text" name="company" class="form-control" id="comp"
+                                           value="<?= isset($data->company) ? $data->company : "" ?>">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="city"><?= $db->m("profile_edit_city") ?></label>
+                                    <input type="text" name="city" class="form-control" id="city"
+                                           value="<?= isset($data->city) ? $data->city : "" ?>">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="country"><?= $db->m("profile_edit_country") ?></label>
+                                    <input type="text" name="country" class="form-control" id="country"
+                                           value="<?= isset($data->country) ? $data->country : "" ?>">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="postcode"><?= $db->m("profile_edit_postalcode") ?></label>
+                                    <input type="text" name="postalcode" class="form-control" id="postcode"
+                                           value="<?= isset($data->postalcode) ? $data->postalcode : "" ?>">
+                                </div>
+                            </div>
+                            <button type="submit"
+                                    class="btn btn-primary col-md-2 float-right"><?= $db->m("profile_edit_submit") ?></button>
+                        </form>
+                        </p>
                     </div>
                 </div>
             </div>
-            <?php include("footer.php") ?>
+            <?php
+            if (isset($_GET['confirm'])):
+                $toConfirm = $_GET['confirm'];
+                if ($toConfirm == "delete"): ?>
+                    <a href="../php/userbtn.php?method=delete&confirmed=1"><?= $db->m("profile_delete_confirm") ?></a>
+                <?php elseif ($toConfirm == "resetpw"): ?>
+                    <a href="../php/userbtn.php?method=resetpw&confirmed=1"><?= $db->m("profile_reset_confirm") ?></a>
+                <?php endif; endif; ?>
+            <div class="row col-md-12">
+                <div class="card col-md-12">
+                    <div class="card-body">
+                        <h5 class="card-title bg-danger text-center text-white pt-3 pr-3 pb-3 pl-3">DANGER ZONE</h5>
+                        <p class="card-text">
+                            <a href="../php/userbtn.php"
+                               class="btn btn-info col-md-4 offset-md-1"><?= $db->m("profile_danger_title") ?><br>
+                                <small><?= $db->m("profile_danger_password_desc") ?></small>
+                            </a>
+                            <a href="../php/userbtn.php?method=resetpw&confirmed=1"
+                               class="btn btn-info col-md-4 offset-md-2"><?= $db->m("profile_danger_delete_title") ?>
+                                <br>
+                                <small><?= $db->m("profile_danger_delete_desc") ?></small>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
+        <?php include("footer.php") ?>
+    </div>
 </div>
 </body>
 <!-- Bootstrap JavaScript & jQuery -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="../bower_components/momentum/js/morris.js"></script>
 <script src="../bower_components/momentum/js/momentum.js" type="text/javascript"></script>
