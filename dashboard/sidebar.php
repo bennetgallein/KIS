@@ -13,7 +13,7 @@
             $link = "index.php";
             $active = ($currentfile == $link) ? "active" : "";
             ?>
-                    <a class="mdi mdi-home" href="#">Dashboard</a>
+                    <a class="mdi mdi-home" href="index.php">Dashboard</a>
             </li>
             <?php
             $module = $db->getModuleByName("Balance Manager");
@@ -28,7 +28,7 @@
             }
             ?>
             <li>
-                <a class="mdi mdi-person"><?= $db->m("sidebar_profile")?> <?= isset($money) ? $money : ""?></a>
+                <a href="user.php" class="mdi mdi-account-settings"><?= $db->m("sidebar_profile")?> <?= isset($money) ? $money : ""?></a>
             </li>
             <li>
                 <?php
@@ -52,7 +52,7 @@
                                     echo '<li class="' . $active . '">
                                           <a href="module.php?module=' . $module->getBasepath() . $navpoint['link'] . '">
 
-                                              <p class="<mdi mdi-' . $navpoint['icon'] . '">' . $module->getMessage($navpoint['name']) . '</p>
+                                              <p class="mdi mdi-' . $navpoint['icon'] . '">' . $module->getMessage($navpoint['name']) . '</p>
                                           </a>
                                       </li>';
                                     $active = "";
@@ -71,10 +71,10 @@
             $active = ($currentfile == $link) ? "active" : "";
             ?>
             <li class="<?= $active ?>">
-                <a href="<?= $link ?>"><?= $db->m("sidebar_changelog")?></a>
+                <a class="mdi mdi-settings" href="<?= $link ?>"><?= $db->m("sidebar_changelog")?></a>
             </li>
             <li>
-                <a href="../php/logout.php"><?= $db->m("sidebar_logout")?></a>
+                <a class="mdi mdi-logout" href="../php/logout.php"><?= $db->m("sidebar_logout")?></a>
             </li>
     </ul>
 </div>
