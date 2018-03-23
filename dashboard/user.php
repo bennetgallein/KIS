@@ -136,7 +136,7 @@ if ($user->getEmail() != "test@test.de") {
                         <a class="nav-link" href="#"><i class="mdi mdi-star"></i><?= $db->m("sidebar_profile") ?></a>
                     </li>
                 </ul>
-                <?= include("notifications.php") ?>
+                <?php include("notifications.php") ?>
             </div>
         </nav>
         <br>
@@ -145,9 +145,9 @@ if ($user->getEmail() != "test@test.de") {
                 <div class="card col-md-12">
                     <div class="card-body">
                         <h5 class="card-title"><?= $db->m("profile_edit_profile") ?></h5>
-                        <p>
-                            <?= $db->m("profile_edit_complete") ?>
-                        </p>
+                        <small>
+                            <?= $db->m("profile_edit_complete") ?>!
+                        </small>
                         <p class="card-text">
                         <form action="user.php?update=1" method="post">
                             <div class="row">
