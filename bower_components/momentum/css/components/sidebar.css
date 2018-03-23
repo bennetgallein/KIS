@@ -91,3 +91,7 @@
 .collapsible li a {
     font-size: 0.7em;
 }
+
+.sidebaractive {
+    text-decoration: underline !important;
+}

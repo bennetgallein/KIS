@@ -9,9 +9,9 @@
         $currentfile = basename($_SERVER["SCRIPT_FILENAME"]);
         ?>
             <li>
-                <?php
+            <?php
             $link = "index.php";
-            $active = ($currentfile == $link) ? "active" : "";
+            $active = ($currentfile == $link) ? "sidebaractive" : "";
             ?>
                     <a class="mdi mdi-home" href="index.php">Dashboard</a>
             </li>
@@ -27,8 +27,12 @@
                 }
             }
             ?>
+            <?php
+            $link = "user.php";
+            $active = ($currentfile == $link) ? "sidebaractive" : "";
+            ?>
             <li>
-                <a href="user.php" class="mdi mdi-account-settings"><?= $db->m("sidebar_profile")?> <?= isset($money) ? $money : ""?></a>
+                <a href="user.php" class="mdi mdi-account-settings <?= $active ?>"><?= $db->m("sidebar_profile")?> <?= isset($money) ? $money : ""?></a>
             </li>
             <li>
                 <?php
@@ -45,7 +49,7 @@
                                     $path = $module->getBasepath() . $navpoint['link'];
                                     if (isset($amodule)) {
                                         if ($path == $amodule) {
-                                            $active = "active";
+                                            $active = "sidebaractive";
                                         }
                                     }
                                     $active = isset($active) ? $active : "";
@@ -68,7 +72,7 @@
             </li>
             <?php
             $link = "changelog.php";
-            $active = ($currentfile == $link) ? "active" : "";
+            $active = ($currentfile == $link) ? "sidebaractive" : "";
             ?>
             <li class="<?= $active ?>">
                 <a class="mdi mdi-settings" href="<?= $link ?>"><?= $db->m("sidebar_changelog")?></a>
