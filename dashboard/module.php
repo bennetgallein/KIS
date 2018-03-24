@@ -9,35 +9,7 @@ include(dirname(__FILE__) . "/../php/User.php");
 $db = new DB();
 
 if (!isset($_SESSION['user']) && isset($_COOKIE['identifier']) && isset($_COOKIE['securitytoken'])) {
-    $identifier = $_COOKIE['identifier'];
-    $securitytoken = $_COOKIE['securitytoken'];
-    $sql = "SELECT * FROM securitytokens WHERE identifier = '$identifier'";
-    $result = $db->simpleQuery($sql);
-    $row = $result->fetch_object();
-    if (md5($securitytoken) !== $row->securitytoken) {
-        die(' Ein vermutlich gestohlener Security Token wurde identifiziert');
-    } else {
-        $neuer_securitytoken = $db->random_string();
-        $sql = "UPDATE securitytokens SET securitytoken = '" . md5($neuer_securitytoken) . "', created_at=NOW() WHERE identifier ='" . $identifier . "'";
-        $result = $db->simpleQuery($sql);
-        setcookie("identifier", $identifier, time() + (3600 * 24 * 365), "/"); //1 Jahr Gültigkeit
-        setcookie("securitytoken", $neuer_securitytoken, time() + (3600 * 24 * 365), "/"); //1 Jahr Gültigkeit
-        $res = $db->simpleQuery("SELECT * FROM users WHERE id='$row->user_id'");
-        $data = $res->fetch_object();
-        $arr = array(
-            "realid" => $data->_id,
-            "id" => $data->id,
-            "email" => $data->email,
-            "firstname" => $data->firstname,
-            "lastname" => $data->lastname,
-            "password" => $data->password,
-            "permissions" => $data->permissions
-        );
-
-        $user = new User($arr);
-        //set cookies & proceed login
-        $_SESSION['user'] = serialize($user);
-    }
+    header("Location: ../index.php");
 } else if (!isset($_SESSION['user'])) {
     $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     header("Location: ../index.php?method=login&return=" . $actual_link);

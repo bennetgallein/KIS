@@ -36,6 +36,10 @@ if (!isset($_SESSION['user']) && isset($_COOKIE['identifier']) && isset($_COOKIE
         );
         include(dirname(__FILE__) . "/php/User.php");
         $user = new User($arr);
+
+        $token = $db->random_string();
+        $_SESSION['csrftoken'] = $token;
+
         $_SESSION['user'] = serialize($user);
         header("Location: dashboard/index.php");
     }
@@ -98,6 +102,9 @@ if (isset($_GET['continue_login']) && isset($_GET['method'])) {
     include("php/User.php");
     $user = new User($arr);
     //set cookies & proceed login
+    $token = $db->random_string();
+    $_SESSION['csrftoken'] = $token;
+    
     $_SESSION['user'] = serialize($user);
     if (isset($_POST['stay'])) {
         $identifier = $db->random_string();

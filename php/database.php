@@ -30,18 +30,16 @@ class DB {
         $json = file_get_contents($json_file);
         $this->cfg = json_decode($json, true);
 
-        if (!isset($_GET['token'])) {
+        if (!isset($_GET['token']) && isset($_SESSION['csrftoken'])) {
             $url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
             $query = parse_url($url, PHP_URL_QUERY);
-            $token = $this->random_string();
+            $token = $_SESSION['csrftoken'];
             if ($query) {
                 $url .= '&token=' . $token;
             } else {
                 $url .= '?token=' . $token;
             }
-            $_SESSION['csrftoken'] = $token;
             header("Location: " . $url);
-            exit();
         }
         
         if (isset($_COOKIE['lang']) && array_search($_COOKIE['lang'], $this->langs) != false) {
@@ -130,7 +128,7 @@ class DB {
     }
 
     public function checkCSRFToken($token) {
-        if ($_SESSION['csrftoken'] == $token) {
+        if ($_SESSION['csrftoken'] === $token) {
             return true;
         } else {
             return false;
