@@ -62,7 +62,13 @@ class DB {
         $this->connect();
 
     }
-
+    public function integrateCustomBootstrap() {
+        if (isset($_COOKIE['custombootstrap']) && $this->getConfig()['customstyle']) {
+            echo '<link rel="stylesheet" href="' . $_COOKIE['custombootstrap'] . '">';
+        } else {
+            setcookie('custombootstrap', '');
+        }
+    }
     public function __destruct() {
         //$this->disconnect();
     }

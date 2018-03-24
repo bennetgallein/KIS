@@ -89,6 +89,10 @@ if ($user->getEmail() != "test@test.de") {
         }
     }
 }
+if (isset($_GET['design']) && $db->getConfig()['customstyle']) {
+    setcookie('custombootstrap', $_GET['design']);
+    header("Location: user.php");
+}
 ?>
 <html lang="en">
 
@@ -105,6 +109,9 @@ if ($user->getEmail() != "test@test.de") {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.css">
+    <?php
+    $db->integrateCustomBootstrap();
+    ?>
 </head>
 
 <body>
@@ -238,6 +245,32 @@ if ($user->getEmail() != "test@test.de") {
                     </div>
                 </div>
             </div>
+            <?php if ($db->getConfig()['customstyle']): ?>
+            <div class="row col-md-12">
+                <div class="card col-md-12">
+                    <div class="card-body">
+                        <p class="card-text">
+                        <div class="dropdown">
+                            <?php
+                            
+                            $ch = curl_init();
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                            curl_setopt($ch, CURLOPT_URL, 'https://bootswatch.com/api/4.json');
+                            $result = curl_exec($ch);
+                            curl_close($ch);
+
+                            $styles = json_decode($result);
+                            foreach ($styles->themes as $style) {
+                                echo "<img width='30%' src='" . $style->thumbnail . "'>";
+                                echo "Set design: <a href='user.php?token=" . $_SESSION['csrftoken'] . "&design=" . urlencode($style->cssCdn) . "'>" . $style->name . "</a><br>";
+                            }
+                            ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <?php endif; ?>
         </div>
         <?php include("footer.php") ?>
     </div>
