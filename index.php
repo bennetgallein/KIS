@@ -56,7 +56,9 @@ $method = $_GET['method'];
 
 if (isset($_GET['continue_login']) && isset($_GET['method'])) {
     if (!(isset($_POST['email']) && isset($_POST['pw']))) {
-        header("Location: index.php?method=login&error=fill");
+        //header("Location: index.php?method=login&error=fill");
+        echo "email: " . $_POST['email'] . "<br>";
+        echo "pw: " . $_POST['pw'];
         die();
     }
     if (!($_GET['method'] == "login")) {
@@ -201,7 +203,7 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
 <?php if ($method == 'login'): ?>
     <div class="row-fluid">
         <div class="col-md-4 col-md-offset-4">
-            <form action="index.php?method=login&continue_login=true<?= isset($_GET['return']) ? "&return=" . $_GET['return'] : ""; ?>"
+            <form action="index.php?method=login&continue_login=true&token=<?= $_SESSION['csrftoken']?><?= isset($_GET['return']) ? "&return=" . $_GET['return'] : ""; ?>"
                   method="post"
                   class="navbar-form navbar-left form-signin">
                 <h3 class="form-signin-heading"><?= $db->m("login_header") ?></h3>
@@ -244,7 +246,7 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
 <?php elseif ($method == 'register'): ?>
     <div class="row-fluid">
         <div class="col-md-4 col-md-offset-4">
-            <form action="index.php?method=register&continue_registration=true" method="post"
+            <form action="index.php?method=register&continue_registration=true<?= "&token=" . $_SESSION['csrftoken'] ?>" method="post"
                   class="navbar-form navbar-left form-signin">
                 <h3 class="form-signin-heading"><?= $db->m("login_button") ?></h3>
                 <hr class="colorgraph">
