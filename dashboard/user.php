@@ -232,9 +232,9 @@ if ($user->getEmail() != "test@test.de") {
                     <div class="card-body">
                         <p class="card-text">
                         <div class="dropdown">
-                            <a class="dropdown-toggle nocaretdrop" href="#" role="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-bell mdi-light mdi-24px"></i>Hello</a>
+                            <a class="dropdown-toggle nocaretdrop btn btn-primary" href="#" role="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-bell mdi-light mdi-24px"></i>Hello</a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notification" style="right: 0; left: auto;">
+                            <div class="dropdown-menu" aria-labelledby="notification">
                                 <?php
                                 foreach ($db->getSupportedLangs() as $key => $lang) {
                                     echo "<a class='dropdown-item' href='user.php?changelang=" . $lang . "'>" . $key . "</a>";
@@ -245,7 +245,7 @@ if ($user->getEmail() != "test@test.de") {
                 </div>
             </div>
 
-            <div class="row col-md-12">
+            <div class="row col-md-12 mt-3">
                 <div class="card col-md-12">
                     <div class="card-body">
                         <h5 class="card-title bg-danger text-center text-white pt-3 pr-3 pb-3 pl-3">DANGER ZONE</h5>
