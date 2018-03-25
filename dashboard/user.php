@@ -91,8 +91,8 @@ if ($user->getEmail() != "test@test.de") {
 }
 if (isset($_GET['design'])) {
     error_log("setting custom design");
-    setcookie('custombootstrap', $_GET['design']);
-    //header("Location: user.php");
+    setcookie('custombootstrap', $_GET['design'], time()+60*60*24*30, "/");
+    header("Location: user.php");
 }
 ?>
 <html lang="en">
