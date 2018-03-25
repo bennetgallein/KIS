@@ -89,9 +89,10 @@ if ($user->getEmail() != "test@test.de") {
         }
     }
 }
-if (isset($_GET['design']) && $db->getConfig()['customstyle']) {
+if (isset($_GET['design'])) {
+    error_log("setting custom design");
     setcookie('custombootstrap', $_GET['design']);
-    header("Location: user.php");
+    //header("Location: user.php");
 }
 ?>
 <html lang="en">
@@ -266,7 +267,7 @@ if (isset($_GET['design']) && $db->getConfig()['customstyle']) {
                             $x = 0;
                             foreach ($styles->themes as $style) {
                                 echo "<div class='col-md-4 mt-3'>";
-                                echo "<a href='user.php?token=" . $_SESSION['csrftoken'] . "&design=" . urlencode($style->cssCdn) . "'>";
+                                echo "<a href='user.php?token=" . $_SESSION['csrftoken'] . "&design=" . ($style->cssCdn) . "'>";
                                 echo "<img style='padding-right: 0; padding-left: 0;' class='col-md-10 offset-md-1 border border-dark' src='" . $style->thumbnail . "'>";
                                 echo "</a><br>";
                                 echo "</div>";
