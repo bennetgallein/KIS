@@ -246,11 +246,13 @@ if (isset($_GET['design']) && $db->getConfig()['customstyle']) {
                 </div>
             </div>
             <?php if ($db->getConfig()['customstyle']): ?>
-            <div class="row col-md-12">
+            <div class="row col-md-12 mt-3">
                 <div class="card col-md-12">
                     <div class="card-body">
+                        <h5 class="card-title">Custom Styling</h5>
                         <p class="card-text">
-                        <div class="dropdown">
+                            To activate a style please click on the corresponding image.
+                            <div class='row'>
                             <?php
                             
                             $ch = curl_init();
@@ -261,11 +263,16 @@ if (isset($_GET['design']) && $db->getConfig()['customstyle']) {
                             curl_close($ch);
 
                             $styles = json_decode($result);
+                            $x = 0;
                             foreach ($styles->themes as $style) {
-                                echo "<img width='30%' src='" . $style->thumbnail . "'>";
-                                echo "Set design: <a href='user.php?token=" . $_SESSION['csrftoken'] . "&design=" . urlencode($style->cssCdn) . "'>" . $style->name . "</a><br>";
+                                echo "<div class='col-md-4 mt-3'>";
+                                echo "<a href='user.php?token=" . $_SESSION['csrftoken'] . "&design=" . urlencode($style->cssCdn) . "'>";
+                                echo "<img style='padding-right: 0; padding-left: 0;' class='col-md-10 offset-md-1 border border-dark' src='" . $style->thumbnail . "'>";
+                                echo "</a><br>";
+                                echo "</div>";
                             }
                             ?>
+                        </div>
                         </p>
                     </div>
                 </div>
