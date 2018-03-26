@@ -64,6 +64,9 @@ if (isset($_GET['a'])) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.css">
     <link rel="stylesheet" href="../bower_components/momentum/css/momentum.css">
+    <?php
+    $db->integrateCustomBootstrap();
+    ?>
 </head>
 
 <body>
