@@ -234,7 +234,7 @@ if (isset($_GET['design'])) {
                         <h5 class="card-title bg-danger text-center text-white pt-3 pr-3 pb-3 pl-3">DANGER ZONE</h5>
                         <p class="card-text">
                             <a href="../php/userbtn.php"
-                               class="btn btn-info col-md-4 offset-md-1"><?= $db->m("profile_danger_title") ?><br>
+                               class="btn btn-info col-md-4 offset-md-1"><?= $db->m("profile_danger_password_title") ?><br>
                                 <small><?= $db->m("profile_danger_password_desc") ?></small>
                             </a>
                             <a href="../php/userbtn.php?method=resetpw&confirmed=1"
