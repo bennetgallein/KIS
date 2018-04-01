@@ -41,5 +41,7 @@
     "profile_danger_password_desc": "Ein neues Passwort wird an dich via E-Mail gesendet.",
     "profile_danger_delete_title": "Profil löschen",
     "profile_danger_delete_desc": "Dein Profil wird permanent aus unserer Datenbank entfernt!",
-    "changelog_report_bugtitle": "Bug"
+    "changelog_report_bugtitle": "Bug",
+    "profile_custom_style_title": "Eigenes Design",
+    "profile_custom_style_desc": "Um ein Design zu aktivieren klicke bitte auf das zugehörige Bild."
 }
