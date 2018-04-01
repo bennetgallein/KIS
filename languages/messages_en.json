@@ -41,5 +41,7 @@
     "profile_danger_password_desc": "This will send you a randomly generated password to your email.",
     "profile_danger_delete_title": "Delete Account",
     "profile_danger_delete_desc": "This will permanently delete your account!",
-    "changelog_report_bugtitle": "Bug"
+    "changelog_report_bugtitle": "Bug",
+    "profile_custom_style_title": "Custom Style",
+    "profile_custom_style_desc": "To activate a style please click on the corresponding image."
 }

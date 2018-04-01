@@ -207,8 +207,8 @@ if (isset($_GET['design'])) {
                     <a href="../php/userbtn.php?method=delete&confirmed=1"><?= $db->m("profile_delete_confirm") ?></a>
                 <?php elseif ($toConfirm == "resetpw"): ?>
                     <a href="../php/userbtn.php?method=resetpw&confirmed=1"><?= $db->m("profile_reset_confirm") ?></a>
-                <?php endif; 
-            endif; 
+                <?php endif;
+            endif;
             ?>
             <div class="row col-md-12">
                 <div class="card col-md-12">
@@ -234,7 +234,7 @@ if (isset($_GET['design'])) {
                         <h5 class="card-title bg-danger text-center text-white pt-3 pr-3 pb-3 pl-3">DANGER ZONE</h5>
                         <p class="card-text">
                             <a href="../php/userbtn.php"
-                               class="btn btn-info col-md-4 offset-md-1"><?= $db->m("profile_danger_title") ?><br>
+                               class="btn btn-info col-md-4 offset-md-1"><?= $db->m("profile_danger_password_title") ?><br>
                                 <small><?= $db->m("profile_danger_password_desc") ?></small>
                             </a>
                             <a href="../php/userbtn.php?method=resetpw&confirmed=1"
@@ -250,12 +250,12 @@ if (isset($_GET['design'])) {
             <div class="row col-md-12 mt-3">
                 <div class="card col-md-12">
                     <div class="card-body">
-                        <h5 class="card-title">Custom Styling</h5>
+                        <h5 class="card-title"><?= $db->m("profile_custom_style_title") ?></h5>
                         <p class="card-text">
-                            To activate a style please click on the corresponding image.
+                            <?= $db->m("profile_custom_style_desc") ?>
                             <div class='row'>
                             <?php
-                            
+
                             $ch = curl_init();
                             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
                             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
