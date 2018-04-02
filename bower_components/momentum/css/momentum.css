@@ -9,6 +9,7 @@ Hihi
 @import "components/basics.css";
 @import "components/sidebar.css";
 @import "components/topnav.css";
+@import "components/mobile.css";
 html {
     min-height: 100%;
     display: inline-block;

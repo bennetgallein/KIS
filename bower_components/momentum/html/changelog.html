@@ -7,6 +7,7 @@
     <meta name="keywords" content="HTML,CSS,JavaScript">
     <meta name="author" content="Intranetproject">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=0.41, maximum-scale=1" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.css">
     <link rel="stylesheet" href="../css/momentum.css">
@@ -14,10 +15,86 @@
 
 <body>
     <div id="wrapper" class="">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#" style="text-decoration: none;">
+                        <i class="mdi mdi-star"></i>Momentum
+                    </a>
+                </li>
+                <li>
+                    <a class="mdi mdi-home" href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a class="collapseable-nav" data-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapseExample">Module<i class="mdi mdi-plus"></i></a>
+                    <div class="collapse" id="collapse">
+                        <ul class="collapsible">
+                            <li>
+                                <a href="#">this and that</a>
+                            </li>
+                            <li>
+                                <a href="#">this and that</a>
+                            </li>
+                            <li>
+                                <a href="#">this and that</a>
+                            </li>
+                            <li>
+                                <a href="#">this and that</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="collapseable-nav" data-toggle="collapse" href="#secondcollapse" role="button" aria-expanded="false" aria-controls="collapseExample">Module<i class="mdi mdi-plus"></i></a>
+                    <div class="collapse" id="secondcollapse">
+                        <ul class="collapsible">
+                            <li>
+                                <a href="#">this and that</a>
+                            </li>
+                            <li>
+                                <a href="#">this and that</a>
+                            </li>
+                            <li>
+                                <a href="#">this and that</a>
+                            </li>
+                            <li>
+                                <a href="#">this and that</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">Settings or smth</a>
+                </li>
+            </ul>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="mdi mdi-star"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">one</a>
+                            <a class="dropdown-item" href="#">two</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">three</a>
+                        </div>
+                    </li>
 
+                </ul>
+                <a href="#" class="ml-3"><i class="mdi mdi-bell mdi-light mdi-24px"></i></a>
+                <a href="html/profile.html" class="ml-3"><i class="mdi mdi-account mdi-light mdi-24px"></i></a>
+            </div>
+        </nav>
         <div class="website-content pb-4">
             <div class="inner pl-3 pb-3 pr-3">
-                <div class="row col-md-12 mb-3">
+                <div class="row col-md-12 mb-3 col-12">
                     <div class="card col-md-12">
                         <div class="card-body">
                             <h5 class="card-title">Report a bug</h5>
