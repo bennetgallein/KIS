@@ -95,3 +95,9 @@
 .sidebaractive {
     text-decoration: underline !important;
 }
+
+@media (max-width: 700px) {
+    #sidebar-wrapper {
+        display: none !important;
+    }
+}

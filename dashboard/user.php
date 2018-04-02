@@ -90,8 +90,12 @@ if ($user->getEmail() != "test@test.de") {
     }
 }
 if (isset($_GET['design'])) {
-    error_log("setting custom design");
-    setcookie('custombootstrap', $_GET['design'], time()+60*60*24*30, "/");
+    if ($_GET['design'] == "none") {
+        setcookie('custombootstrap', "", time()+60*60*24*30, "/");
+    } else {
+        error_log("setting custom design");
+        setcookie('custombootstrap', $_GET['design'], time()+60*60*24*30, "/");
+    }
     header("Location: user.php");
 }
 ?>
@@ -251,6 +255,7 @@ if (isset($_GET['design'])) {
                 <div class="card col-md-12">
                     <div class="card-body">
                         <h5 class="card-title"><?= $db->m("profile_custom_style_title") ?></h5>
+                        <a href="user.php?token=<?= $_SESSION['csrftoken'] ?>&design=none">Default</a>
                         <p class="card-text">
                             <?= $db->m("profile_custom_style_desc") ?>
                             <div class='row'>
