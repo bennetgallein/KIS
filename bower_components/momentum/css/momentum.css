@@ -37,3 +37,16 @@ a#notification.nocaretdrop::after {
 .onlyshowmobile {
     display: none;
 }
+
+.progress {
+    height: 50px;
+    width: 100%;
+    color: #FFF;
+    text-align: center;
+}
+
+.progress p {
+    line-height: 50px;
+    width: 100%;
+    font-size: 1.5em !important;
+}
