@@ -35,6 +35,7 @@ class DB {
         if (isset($_SERVER['Customer-Token'])) {
             $json_file = dirname(__FILE__) . "/../../KIS_data/" . $_SERVER['Customer-Token'] . "/config.json";
             $json = file_get_contents($json_file);
+            
             if (!$json) {
                 die("Customer not found!");
             }

@@ -6,8 +6,10 @@ use PHPMailer\PHPMailer\Exception;
 require "vendor/autoload.php";
 
 require 'php/database.php';
-$db = new DB();
+require 'php/Notification.php';
 
+$db = new DB();
+$notification = new Notification($db);
 
 if (!isset($_SESSION['user']) && isset($_COOKIE['identifier']) && isset($_COOKIE['securitytoken'])) {
     $identifier = $_COOKIE['identifier'];
@@ -154,9 +156,11 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
         $db->prepareQuery("INSERT INTO users (id, email, firstname, lastname, password) VALUES (?, ?, ?, ?, ?)", array(
             $db->escape($id), $db->escape($email), $db->escape($firstname), $db->escape($lastname), $db->escape(password_hash($pw1, PASSWORD_DEFAULT))
         ));
-        $db->prepareQuery("INSERT INTO notifications (userid, message) VALUES (?, ?)", array(
+        /*$db->prepareQuery("INSERT INTO notifications (userid, message) VALUES (?, ?)", array(
             $db->escape($id), $db->escape("Welcome, " . $firstname . " " . $lastname . "!")
-        ));
+        ));*/
+        $notification->addNotification($id, "Welcome, " . $firstname . " " . $lastname . "!");
+
         $db->prepareQuery("INSERT INTO balances (userid, balance) VALUES (?, ?)", array(
             $db->escape($id), $db->escape("0.00")
         ));
