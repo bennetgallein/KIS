@@ -16,4 +16,10 @@
         padding-left: 0 !important;
         width: 100% !important;
     }
+    .dontshowmobile {
+        display: none;
+    }
+    .onlyshowmobile {
+        display: initial !important;
+    }
 }
