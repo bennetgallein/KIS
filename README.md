@@ -4,13 +4,14 @@ Managment of KIS Instances:
 ```
 /var/www
     /framework
-    /<kunde-1>
-        /<modules>
-        /<customstyle>
-    /<kunde-2>
-        /<modules>
-        /<customstyle>
-    ...   
+    /kis_data
+        /<kunde-1>
+            /<modules>
+            /<customstyle>
+        /<kunde-2>
+            /<modules>
+            /<customstyle>
+        ...   
 ```
 Then a Reverse Proxy: https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/ from kunde.kis.intranetproject.net to kis.intranetproject.net/kunde
 So in the KIS the content for the correct kunde get loaded and returned to the user.
