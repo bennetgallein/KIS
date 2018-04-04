@@ -22,13 +22,27 @@ class DB {
     private $modules;
     private $changelog;
 
+    private $host = "intranetproject.net";
+    private $user = "kis";
+    private $password = "kis";
+
     private $langs = array("Deutsch" => "de", "English" => "en");
 
     public function __construct() {
+        
+        $_SERVER['Customer-Token'] = "demo";
 
-        $json_file = dirname(__FILE__) . "/../config.json";
-        $json = file_get_contents($json_file);
-        $this->cfg = json_decode($json, true);
+        if (isset($_SERVER['Customer-Token'])) {
+            $json_file = dirname(__FILE__) . "/../../KIS_data/" . $_SERVER['Customer-Token'] . "/config.json";
+            $json = file_get_contents($json_file);
+            if (!$json) {
+                die("Customer not found!");
+            }
+            $this->cfg = json_decode($json, true);
+    
+        } else {
+            die("Not customer token");
+        }
 
         if (!isset($_GET['token']) && isset($_SESSION['csrftoken'])) {
             $url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -76,7 +90,7 @@ class DB {
         return $this->version;
     }
     public function connect() {
-        $this->connection = new MySQLi($this->cfg["database"][0]["host"], $this->cfg['database'][0]['user'], $this->cfg['database'][0]['password'], $this->cfg['database'][0]['database']);
+        $this->connection = new MySQLi($this->host, $this->user, $this->password, $this->cfg['database'][0]['database']);
         $this->connection->set_charset("utf8");
         //$this->simpleQuery("SET NAMES 'utf8'");
     }
