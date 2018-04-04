@@ -1,6 +1,5 @@
 <?php
-
-$res = $db->simpleQuery("SELECT * FROM notifications WHERE userid='" . $user->getId() . "' AND isread = 0 ORDER BY inserted DESC");
+$res = $notifications->getNotifications($user->getId());
 ?>
 <div class="dropdown">
     <a class="dropdown-toggle nocaretdrop" href="#" role="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-bell mdi-light mdi-24px"></i><span class="badge badge-danger" style="margin-left: -10px;"><?= $res->num_rows > 0 ? $res->num_rows : ""?></span></a>

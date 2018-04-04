@@ -48,3 +48,23 @@ We maintaince a list of other repositories to make this Framework work in the wa
 
 - [Trello API Wrapper](https://github.com/bennetgallein/Trello-API-PHP-Wrapper)
 
+## Notification Handler
+We offer a class that helps with Notification handling.
+```php
+<?php
+
+include("/php/database.php");
+$db = new DB();
+
+include("/php/Notification.php");
+$notification = new Notification($db);
+
+// Add Notification
+$notification->addNotification($userid, $text);
+
+// Get All Notifications
+$notification->getNotification();
+
+// Remove Notification
+$notification->removeNotification($user, $id);
+```

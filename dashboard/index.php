@@ -1,9 +1,11 @@
 <?php
 
 include("../php/database.php");
+include("../php/Notification.php");
 include(dirname(__FILE__) . "/../php/User.php");
 
 $db = new DB();
+$notifications = new Notification($db);
 
 if (!isset($_SESSION['user']) && isset($_COOKIE['identifier']) && isset($_COOKIE['securitytoken'])) {
     header("Location: ../index.php");
@@ -17,18 +19,7 @@ $user = unserialize($user, array("allowed_classes" => true));
 
 if (isset($_GET['removenotification']) && isset($_GET['id'])) {
     $idi = $_GET['id'];
-    $sql = "SELECT * FROM notifications WHERE userid='" . $db->getConnection()->escape_string($user->getId()) . "' AND id =" . $idi . " LIMIT 1";
-    $res = $db->simpleQuery($sql);
-    if ($res->num_rows >= 1) {
-        $sql = "UPDATE notifications SET isread=1 WHERE userid='" . $db->getConnection()->escape_string($user->getId()) . "' AND id =" . $idi;
-        $res = $db->simpleQuery($sql);
-        if (isset($_GET['return'])) {
-            header("Location: " . $_GET['return']);
-        } else {
-            header("Location: index.php");
-        }
-        die();
-    }
+    $notifications->removeNotification($user->getId(), $idi);
 }
 
 ?>
