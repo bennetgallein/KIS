@@ -1,8 +1,10 @@
 <?php
 include("../php/database.php");
 include(dirname(__FILE__) . "/../php/User.php");
+include("../php/Notification.php");
 
 $db = new DB();
+$notifications = new Notification($db);
 
 if (!isset($_SESSION['user']) && isset($_COOKIE['identifier']) && isset($_COOKIE['securitytoken'])) {
     header("Location: ../index.php");

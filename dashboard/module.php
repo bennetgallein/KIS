@@ -4,10 +4,11 @@ if (!isset($_GET['module'])) {
     die();
 }
 include("../php/database.php");
+include("../php/Notification.php");
 include(dirname(__FILE__) . "/../php/User.php");
 
 $db = new DB();
-
+$notifications = new Notification($db);
 if (!isset($_SESSION['user']) && isset($_COOKIE['identifier']) && isset($_COOKIE['securitytoken'])) {
     header("Location: ../index.php");
 } else if (!isset($_SESSION['user'])) {
@@ -41,46 +42,31 @@ $amodule = $_GET['module'];
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta name="viewport" content="width=device-width"/>
     <!-- Bootstrap core CSS     -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
-    <!--  Material Dashboard CSS    -->
-    <link href="../assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet"/>
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="../assets/css/demo.css" rel="stylesheet"/>
-    <!--     Fonts and icons     -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet'
-          type='text/css'>
-    <link href="../assets/css/404.css" rel="stylesheet">
+    <link href="../bower_components/momentum/css/momentum.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.css">
+    <?php
+    $db->integrateCustomBootstrap();
+    ?>
 </head>
 
 <body>
-<div class="wrapper">
+<div id="wrapper">
     <?php include('sidebar.php'); ?>
-    <div class="main-panel">
-        <nav class="navbar navbar-transparent navbar-absolute">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse">
-                        <span class="sr-only"><?= $db->m("dash_togglenav") ?></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <?php include "notifications.php" ?>
-                        <li>
-                            <a href="user.php">
-                                <i class="material-icons">person</i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+    
+    <div class="website-content pb4">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="width: 100%;">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="mdi mdi-star"></i><?= $db->m("sidebar_profile") ?></a>
+                    </li>
+                </ul>
+                <?php include("notifications.php") ?>
             </div>
         </nav>
-        <div class="content">
-            <div class="container-fluid">
+        <div >
                 <?php
                 $r = false;
                 foreach ($db->getModules() as $module) {
@@ -105,28 +91,24 @@ $amodule = $_GET['module'];
                     echo '<div class="notfound"><div class="notfoundtext">404 not found!</div></div>';
                 }
                 ?>
-            </div>
             <?php include("footer.php"); ?>
         </div>
     </div>
 </div>
 </body>
-<!--   Core JS Files   -->
-<script src="../assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
-<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="../assets/js/material.min.js" type="text/javascript"></script>
-<!--  Charts Plugin -->
-<!--<script src="../assets/js/chartist.min.js"></script>-->
-<!--  Dynamic Elements plugin -->
-<script src="../assets/js/arrive.min.js"></script>
-<!--  PerfectScrollbar Library -->
-<script src="../assets/js/perfect-scrollbar.jquery.min.js"></script>
-<!--  Notifications Plugin    -->
-<script src="../assets/js/bootstrap-notify.js"></script>
-<!-- Material Dashboard javascript methods -->
-<script src="../assets/js/material-dashboard.js?v=1.2.0"></script>
-<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="../assets/js/demo.js"></script>
+<!-- Bootstrap JavaScript & jQuery -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="../bower_components/momentum/js/morris.js"></script>
+<script src="../bower_components/momentum/js/momentum.js" type="text/javascript"></script>
 
 </html>
 <?php
