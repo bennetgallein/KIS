@@ -33,3 +33,7 @@ nav {
 a#notification.nocaretdrop::after {
     display: none;
 }
+
+.onlyshowmobile {
+    display: none;
+}
