@@ -1,6 +1,6 @@
 # Documentation:
 
-Managment of KIS Instances:
+Managment of KIS instances:
 ```
 /var/www
     /framework
