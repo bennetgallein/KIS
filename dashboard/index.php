@@ -46,7 +46,7 @@ if (isset($_GET['removenotification']) && isset($_GET['id'])) {
 <body>
 <div id="wrapper">
     <?php include('sidebar.php'); ?>
-    <div class="website-content pb4">
+    <div class="website-content pb-4">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="width: 100%;">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
@@ -58,11 +58,13 @@ if (isset($_GET['removenotification']) && isset($_GET['id'])) {
             </div>
         </nav>
         <br>
-        <div class="progress bg-warning">
-            <p>This is still work in progress. If you find bugs, report them please <a href="html/changelog.html">here</a>.</p>
-        </div>
-        <br>
         <div class="inner pl-3 pb-3 pr-3">
+            <div class="row topcard col-md-12">
+                <div class="progress bg-warning mt-3" style="height: 50px;">
+                    <p>This is still work in progress. If you find bugs, report them please <a href="html/changelog.html">here</a>.</p>
+                </div>
+            </div>
+
                 <?php
                 foreach ($db->getModules() as $module) {
                     if ($module->isActive()) {
