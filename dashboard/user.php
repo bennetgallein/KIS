@@ -122,7 +122,7 @@ if (isset($_GET['design'])) {
 </head>
 
 <body>
-<div id="wrapper" class="">
+<div id="wrapper">
     <?php include('sidebar.php'); ?>
     <div class="website-content pb-4">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="width: 100%;">
