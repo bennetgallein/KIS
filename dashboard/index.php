@@ -64,7 +64,7 @@ if (isset($_GET['removenotification']) && isset($_GET['id'])) {
                     <p>This is still work in progress. If you find bugs, report them please <a href="html/changelog.html">here</a>.</p>
                 </div>
             </div>
-
+                <div class="row">
                 <?php
                 foreach ($db->getModules() as $module) {
                     if ($module->isActive()) {
@@ -78,6 +78,7 @@ if (isset($_GET['removenotification']) && isset($_GET['id'])) {
                     }
                 }
                 ?>
+                </div>
             <?php include("footer.php"); ?>
         </div>
     </div>
