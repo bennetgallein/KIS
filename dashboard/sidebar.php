@@ -39,8 +39,8 @@
                 unset($active);
                 foreach ($db->getModules() as $module) {
                     if ($module->isActive()) {
-                        echo '<a class="collapseable-nav" data-toggle="collapse" href="#collapse" role="button" aria-expanded="false" aria-controls="collapseExample">' . $module->getName() . '<i class="mdi mdi-plus"></i></a>
-                        <div class="collapse" id="collapse">
+                        echo '<li><a class="collapseable-nav" data-toggle="collapse" href="#collapse' . $module->getName() . '" role="button" aria-expanded="false" aria-controls="collapseExample">' . $module->getName() . '<i class="mdi mdi-plus"></i></a>
+                        <div class="collapse" id="collapse' . $module->getName() . '">
                             <ul class="collapsible">
                         ';
                         foreach ($module->getNavs() as $navpoint) {
@@ -55,7 +55,6 @@
                                     $active = isset($active) ? $active : "";
                                     echo '<li class="' . $active . '">
                                           <a href="module.php?module=' . $module->getBasepath() . $navpoint['link'] . '">
-
                                               <p class="mdi mdi-' . $navpoint['icon'] . '">' . $module->getMessage($navpoint['name']) . '</p>
                                           </a>
                                       </li>';
