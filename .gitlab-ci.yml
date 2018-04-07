@@ -12,4 +12,4 @@ deploy_production:
   script:
     - ssh -p22 root@intranetproject.net "mkdir /var/www/framework"
   only:
-    - production
+    - deploy
