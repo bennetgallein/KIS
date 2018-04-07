@@ -9,6 +9,6 @@ deploy_production:
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     - ssh-add <(echo "$PRODUCTION_PRIVATE_KEY")
   script:
-    - ssh -p22 root@intranetproject.net "mkdir /var/www/framework"
+    - ssh -p22 root@intranetproject.net "cd /var/www/framework && git pull"
   only:
     - master
