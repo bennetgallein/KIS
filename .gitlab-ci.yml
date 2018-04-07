@@ -10,6 +10,6 @@ deploy_production:
     - ssh-add <(echo "$PRODUCTION_PRIVATE_KEY")
     - ssh-add <(echo "$PRODUCTION_GITHUB_KEY")
   script:
-    - ssh -p22 root@intranetproject.net "cd /var/www/framework && git pull"
+    - ssh -p22 root@intranetproject.net "git@github.com:bennetgallein/KIS.git"
   only:
     - master
