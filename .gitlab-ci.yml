@@ -10,6 +10,7 @@ deploy_production:
     - ssh-add <(echo "$PRODUCTION_PRIVATE_KEY")
     - ssh-add <(echo "$PRODUCTION_GITHUB_KEY")
   script:
-    - ssh root@intranetproject.net "eval $(ssh-agent -s) && ssh-add <(echo '$PRODUCTION_GITHUB_KEY') && cd /var/www && git clone git@github.com:bennetgallein/KIS.git"
+    - ssh root@intranetproject.net "eval $(ssh-agent -s) && ssh-add <(echo '$PRODUCTION_GITHUB_KEY')"
+    - ssh root@intranetproject.net "cd /var/www && git clone git@github.com:bennetgallein/KIS.git"
   only:
     - master
