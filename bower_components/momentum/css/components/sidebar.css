@@ -20,6 +20,7 @@
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);
+    border-right: #D6D6D6 1px solid;
 }
 
 #sidebar-wrapper .sidebar-nav .sidebar-brand {
