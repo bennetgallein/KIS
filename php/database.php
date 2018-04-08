@@ -24,7 +24,7 @@ class DB {
 
     private $host = "intranetproject.net";
     private $user = "kis";
-    private $password = "kis";
+    private $password = "nichtkis";
 
     private $langs = array("Deutsch" => "de", "English" => "en");
 
