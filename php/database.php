@@ -78,11 +78,79 @@ class DB {
 
     }
     public function integrateCustomBootstrap() {
-        if (isset($_COOKIE['custombootstrap']) && $this->getConfig()['customstyle']) {
-            echo '<link rel="stylesheet" href="' . $_COOKIE['custombootstrap'] . '">';
-        } else {
-            setcookie('custombootstrap', '');
-        }
+        
+            switch($_COOKIE['custombootstrap']) {
+                case "Cerulean":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/cerulean/bootstrap.min.css";
+                    break;
+                case "Cosmo":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/cosmo/bootstrap.min.css";
+                    break;
+                case "Cyborg":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/cyborg/bootstrap.min.css";
+                    break;
+                case "Darkly":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/darkly/bootstrap.min.css";
+                    break;
+                case "Flatly":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css";
+                    break;
+                case "Journal":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/journal/bootstrap.min.css";
+                    break;
+                case "Litera":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/litera/bootstrap.min.css";
+                    break;
+                case "Lumen":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/lumen/bootstrap.min.css";
+                    break;
+                case "Lux":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/lux/bootstrap.min.css";
+                    break;
+                case "Materia":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/materia/bootstrap.min.css";
+                    break;
+                case "Minty":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/minty/bootstrap.min.css";
+                    break;
+                case "Pulse":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/pulse/bootstrap.min.css";
+                    break;
+                case "Sandstone":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/sandstone/bootstrap.min.css";
+                    break;
+                case "Simplex":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/simplex/bootstrap.min.css";
+                    break;
+                case "Sketchy":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/sketchy/bootstrap.min.css";
+                    break;
+                case "Slate":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/slate/bootstrap.min.css";
+                    break;
+                case "Solar":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/solar/bootstrap.min.css";
+                    break;
+                case "Spacelab":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/spacelab/bootstrap.min.css";
+                    break;
+                case "Superhero":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/superhero/bootstrap.min.css";
+                    break;
+                case "United":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/united/bootstrap.min.css";
+                    break;
+                case "Yeti":
+                    $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/yeti/bootstrap.min.css";
+                    break;
+                default: 
+                    $link = "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css";
+
+            }
+            echo '<link rel="stylesheet" href="' . $link . '">';
+        /*if ($this->getConfig()['customstyle'] == false) {
+              setcookie('custombootstrap', '');
+        }*/
     }
     public function __destruct() {
         //$this->disconnect();

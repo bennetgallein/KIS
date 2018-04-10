@@ -113,12 +113,11 @@ if (isset($_GET['design'])) {
     <meta name="viewport" content="width=device-width"/>
     <!-- Bootstrap core CSS     -->
     <link href="../bower_components/momentum/css/momentum.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.css">
     <?php
     $db->integrateCustomBootstrap();
     ?>
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.css">
+    
 </head>
 
 <body>
@@ -274,7 +273,7 @@ if (isset($_GET['design'])) {
                             $x = 0;
                             foreach ($styles->themes as $style) {
                                 echo "<div class='col-md-4 mt-3'>";
-                                echo "<a href='user.php?token=" . $_SESSION['csrftoken'] . "&design=" . ($style->cssCdn) . "'>";
+                                echo "<a href='user.php?token=" . $_SESSION['csrftoken'] . "&design=" . ($style->name) . "'>";
                                 echo "<img style='padding-right: 0; padding-left: 0;' class='col-md-10 offset-md-1 border border-dark' src='" . $style->thumbnail . "'>";
                                 echo "</a><br>";
                                 echo "</div>";

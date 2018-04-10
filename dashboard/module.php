@@ -43,12 +43,11 @@ $amodule = $_GET['module'];
     <meta name="viewport" content="width=device-width"/>
     <!-- Bootstrap core CSS     -->
     <link href="../bower_components/momentum/css/momentum.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.css">
     <?php
     $db->integrateCustomBootstrap();
     ?>
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.css">
+    
 </head>
 
 <body>
