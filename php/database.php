@@ -29,7 +29,7 @@ class DB {
     private $langs = array("Deutsch" => "de", "English" => "en");
 
     public function __construct() {
-        $_SERVER['Customer-Token'] = "demo";
+        $_SERVER['instance'] = "demo";
 
         if (isset($_SERVER['instance'])) {
             $json_file = dirname(__FILE__) . "/../../KIS_data/" . $_SERVER['instance'] . "/config.json";
