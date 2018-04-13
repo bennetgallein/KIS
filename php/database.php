@@ -29,11 +29,10 @@ class DB {
     private $langs = array("Deutsch" => "de", "English" => "en");
 
     public function __construct() {
-        
         $_SERVER['Customer-Token'] = "demo";
 
-        if (isset($_SERVER['Customer-Token'])) {
-            $json_file = dirname(__FILE__) . "/../../KIS_data/" . $_SERVER['Customer-Token'] . "/config.json";
+        if (isset($_SERVER['instance'])) {
+            $json_file = dirname(__FILE__) . "/../../KIS_data/" . $_SERVER['instance'] . "/config.json";
             $json = file_get_contents($json_file);
             
             if (!$json) {
