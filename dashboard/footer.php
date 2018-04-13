@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer class="footer mt-3 border-top pt-3">
     <div class="container-fluid row">
         <nav class="float-left text-dark col-md-6">
             <ul class="nav">
