@@ -30,6 +30,7 @@ class DB {
 
     public function __construct() {
         $_SERVER['instance'] = "demo";
+        // daily commit, i'm pissed af
 
         if (isset($_SERVER['instance'])) {
             $json_file = dirname(__FILE__) . "/../../KIS_data/" . $_SERVER['instance'] . "/config.json";
