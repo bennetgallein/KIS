@@ -55,71 +55,69 @@ if (isset($_GET['removenotification']) && isset($_GET['id'])) {
                 <?php include("notifications.php") ?>
             </div>
         </nav>
-        <div class="website-content pb-4">
-            <div class="inner pl-3 pb-3 pr-3">
-                <div class="row col-md-12 mb-3">
-                    <div class="card col-md-12">
-                        <div class="card-body">
-                            <h5 class="card-title">Tweak your settings</h5>
-                            <p class="card-text">
-                                <form>
-                                    <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label for="Name">Interface Name (Top Left)</label>
-                                            <input type="text" class="form-control" id="Name" placeholder="">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="lName">Last Name</label>
-                                            <input type="text" class="form-control" id="lName" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label for="semail">Support email address</label>
-                                            <input type="email" class="form-control" id="semail" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="input-group mb-3 col-md-6">
-                                            <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <input type="checkbox">
-                                                </div>
-                                            </div>
-                                            <input type="text" class="form-control" value="Activate Bootswatch Styles" readonly>
-                                        </div>
-                                        <div class="input-group mb-3 col-md-6">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <input type="checkbox">
-                                                </div>
-                                            </div>
-                                            <input type="text" class="form-control" value="Activate Custom CSS" readonly>
+        <div class="inner pl-3 pb-3 pr-3">
+            <div class="row col-md-12 mb-3">
+                <div class="card col-md-12 mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Tweak your settings</h5>
+                        <p class="card-text">
+                        <form>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="Name">Interface Name (Top Left)</label>
+                                    <input type="text" class="form-control" id="Name" placeholder="">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="lName">Last Name</label>
+                                    <input type="text" class="form-control" id="lName" placeholder="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="semail">Support email address</label>
+                                    <input type="email" class="form-control" id="semail" placeholder="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-group mb-3 col-md-6">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <input type="checkbox">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group col-md-4">
-                                            <label for="text1">Text</label>
-                                            <input type="text" class="form-control" id="text1" placeholder="">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="text2">Text</label>
-                                            <input type="text" class="form-control" id="text2" placeholder="">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="text3">Text</label>
-                                            <input type="text" class="form-control" id="text3" placeholder="">
+                                    <input type="text" class="form-control" value="Activate Bootswatch Styles" readonly>
+                                </div>
+                                <div class="input-group mb-3 col-md-6">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <input type="checkbox">
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-primary col-md-2 float-right">Update Settings</button>
-                                </form>
-                            </p>
-                        </div>
+                                    <input type="text" class="form-control" value="Activate Custom CSS" readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="text1">Text</label>
+                                    <input type="text" class="form-control" id="text1" placeholder="">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="text2">Text</label>
+                                    <input type="text" class="form-control" id="text2" placeholder="">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="text3">Text</label>
+                                    <input type="text" class="form-control" id="text3" placeholder="">
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary col-md-2 float-right">Update Settings</button>
+                        </form>
+                        </p>
                     </div>
                 </div>
-            </div> 
-            <?php include("footer.php"); ?>
+            </div>
         </div>
+        <?php include("footer.php"); ?>
     </div>
 </div>
 </body>

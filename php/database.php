@@ -79,8 +79,8 @@ class DB {
     }
     public function integrateCustomBootstrap() {
         if (!isset($_COOKIE['custombootstrap'])) {
-            return;
-        }
+            $link = "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css";
+        } else {
             switch($_COOKIE['custombootstrap']) {
                 case "Cerulean":
                     $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/cerulean/bootstrap.min.css";
@@ -145,14 +145,12 @@ class DB {
                 case "Yeti":
                     $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/yeti/bootstrap.min.css";
                     break;
-                default: 
+                default:
                     $link = "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css";
 
             }
-            echo '<link rel="stylesheet" href="' . $link . '">';
-        /*if ($this->getConfig()['customstyle'] == false) {
-              setcookie('custombootstrap', '');
-        }*/
+        }
+        echo '<link rel="stylesheet" href="' . $link . '">';
     }
     public function __destruct() {
         //$this->disconnect();
