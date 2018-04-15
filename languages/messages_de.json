@@ -10,6 +10,7 @@
     "dash_togglenav": "Navigationsleise ein/ausblenden",
     "dash_warning": "\n <b> Achtung - </b> Das ist keine Release-Version! Bitte Fehler umbedingt <a href='changelog.php'>hier</a> melden!",
     "sidebar_profile": "Profil",
+    "sidebar_admin": "Admin",
     "sidebar_changelog": "Änderungsblog",
     "sidebar_logout": "Abmelden",
     "changelog_report_title": "Fehler melden",

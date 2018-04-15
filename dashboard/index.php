@@ -39,9 +39,6 @@ if (isset($_GET['removenotification']) && isset($_GET['id'])) {
     $db->integrateCustomBootstrap();
     ?>
     <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.css">
-    <?php
-    $db->integrateCustomBootstrap();
-    ?>
 </head>
 
 <body>

@@ -10,6 +10,7 @@
     "dash_togglenav": "Toggle Navigation",
     "dash_warning": "<b> Warning - </b> This is a pre-release version! If you discover ANY bugs, be sure to report them <a href='changelog.php'>HERE</a>!",
     "sidebar_profile": "Profile",
+    "sidebar_admin": "Admin",
     "sidebar_changelog": "Changelog",
     "sidebar_logout": "Logout",
     "changelog_report_title": "Report Bug",

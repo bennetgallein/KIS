@@ -1,11 +1,6 @@
 ErrorDocument 500 error.php
 
 RewriteEngine On
-
-#RewriteRule (.*)/(.*)?$ $2 [E=instance:$1]
-#Header add instance "expr=%{ENV:instance}"
-
-
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule api/v1/(.*)$ api/v1.php [QSA,L]

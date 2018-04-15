@@ -17,8 +17,7 @@ html {
 
 body,
 .wrapper,
-.website-content,
-nav {
+.website-content {
     position: relative;
 }
 

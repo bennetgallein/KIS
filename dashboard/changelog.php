@@ -61,13 +61,11 @@ if (isset($_GET['a'])) {
     <title><?= $db->getConfig()['site_name'] ?></title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta name="viewport" content="width=device-width"/>
-    <?php
-    $db->integrateCustomBootstrap();
-    ?> <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.css">
-    <link rel="stylesheet" href="../bower_components/momentum/css/momentum.css">
+    <link href="../bower_components/momentum/css/momentum.css" rel="stylesheet"/>
     <?php
     $db->integrateCustomBootstrap();
     ?>
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.css">
 </head>
 
 <body>

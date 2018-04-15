@@ -78,7 +78,9 @@ class DB {
 
     }
     public function integrateCustomBootstrap() {
-        
+        if (!isset($_COOKIE['custombootstrap'])) {
+            return;
+        }
             switch($_COOKIE['custombootstrap']) {
                 case "Cerulean":
                     $link = "https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/cerulean/bootstrap.min.css";
