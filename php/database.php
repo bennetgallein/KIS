@@ -15,6 +15,7 @@ class DB {
 
     private $cfg;
     private $connection;
+    private $cname;
 
     private $version = "boron";
 
@@ -29,18 +30,26 @@ class DB {
     private $langs = array("Deutsch" => "de", "English" => "en");
 
     public function __construct() {
-        $_SERVER['instance'] = "demo";
-        // daily commit, i'm pissed af
+        $this->cname = $_SERVER['HTTP_HOST'];
+
+        $json = json_decode(file_get_contents(dirname(__FILE__) . "/../c.json"));
+        var_dump($json);
+        foreach ($json as $link => $customer) {
+            if ($this->cname == $link) {
+                $_SERVER['instance'] = $customer;
+            }
+        }
+        // load the instance;
 
         if (isset($_SERVER['instance'])) {
             $json_file = dirname(__FILE__) . "/../../KIS_data/" . $_SERVER['instance'] . "/config.json";
             $json = file_get_contents($json_file);
-            
+
             if (!$json) {
                 die("Customer not found!");
             }
             $this->cfg = json_decode($json, true);
-    
+
         } else {
             die("Not customer token");
         }
@@ -56,9 +65,9 @@ class DB {
             }
             header("Location: " . $url);
         }
-        
+
         if (isset($_COOKIE['lang']) && array_search($_COOKIE['lang'], $this->langs) != false) {
-            $lang_file = dirname(__FILE__) . "/../languages/messages_" . $_COOKIE['lang'] . ".json"; 
+            $lang_file = dirname(__FILE__) . "/../languages/messages_" . $_COOKIE['lang'] . ".json";
         } else {
             $lang_file = dirname(__FILE__) . "/../languages/messages_" . $this->cfg['lang'] . ".json";
         }

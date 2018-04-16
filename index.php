@@ -106,7 +106,7 @@ if (isset($_GET['continue_login']) && isset($_GET['method'])) {
     //set cookies & proceed login
     $token = $db->random_string();
     $_SESSION['csrftoken'] = $token;
-    
+
     $_SESSION['user'] = serialize($user);
     if (isset($_POST['stay'])) {
         $identifier = $db->random_string();
