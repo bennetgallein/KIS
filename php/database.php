@@ -33,7 +33,6 @@ class DB {
         $this->cname = $_SERVER['HTTP_HOST'];
 
         $json = json_decode(file_get_contents(dirname(__FILE__) . "/../c.json"));
-        var_dump($json);
         foreach ($json as $link => $customer) {
             if ($this->cname == $link) {
                 $_SERVER['instance'] = $customer;
