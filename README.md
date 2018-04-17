@@ -16,13 +16,7 @@ Test
             /<customstyle>
         ...   
 ```
-Then a Reverse Proxy: https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/ from kunde.kis.intranetproject.net to kis.intranetproject.net/kunde
-So in the KIS the content for the correct kunde get loaded and returned to the user.
-
-The Main framework is only one folder but also gets pulled by a gitlab runner. commit to github -> webhook to gitlab -> execute runner -> pull repo
-
-Modules get updated by running a gitlab-runner script that loops through customers modules folder and matches the name to then pull it.
-
+oh fuck
 Table of contents:
  - Overview
  - Related Projects
