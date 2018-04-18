@@ -17,7 +17,7 @@ class DB {
     private $connection;
     private $cname;
 
-    private $version = "boron";
+    private $version = "barium";
 
     private $lang;
     private $modules;
