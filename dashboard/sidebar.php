@@ -35,12 +35,14 @@
                 <a href="user.php" class="mdi mdi-account-settings <?= $active ?>"><?= $db->m("sidebar_profile")?> <?= isset($money) ? $money : ""?></a>
             </li>
             <?php
-            $link = "admin.php";
-            $active = ($currentfile == $link) ? "sidebaractive" : "";
-            ?>
-            <li>
-                <a href="admin.php" class="mdi mdi-account-settings <?= $active ?>"><?= $db->m("sidebar_admin")?></a>
-            </li>
+            if ($user->getPermissions() >= 3):
+                $link = "admin.php";
+                $active = ($currentfile == $link) ? "sidebaractive" : "";
+                ?>
+                <li>
+                    <a href="admin.php" class="mdi mdi-account-settings <?= $active ?>"><?= $db->m("sidebar_admin")?></a>
+                </li>
+            <?php endif; ?>
             <li>
                 <?php
                 unset($active);
