@@ -68,12 +68,6 @@ if (isset($_GET['removenotification']) && isset($_GET['id'])) {
                                     <input type="text" class="form-control" id="Name" placeholder="">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="lName">Last Name</label>
-                                    <input type="text" class="form-control" id="lName" placeholder="">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
                                     <label for="semail">Support email address</label>
                                     <input type="email" class="form-control" id="semail" placeholder="">
                                 </div>
