@@ -109,6 +109,100 @@ if (isset($_GET['removenotification']) && isset($_GET['id'])) {
                         </p>
                     </div>
                 </div>
+                <div class="card col-md-12 mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Tweak your modules</h5>
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                                                aria-expanded="true" aria-controls="collapseOne">
+                                            Module #1
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                     data-parent="#accordion">
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="Name">Name</label>
+                                                    <input type="text" class="form-control" id="Name" placeholder="">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="Text">Text</label>
+                                                    <input type="text" class="form-control" id="Text" placeholder="">
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-primary col-md-2 float-right mb-3">Update Settings</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                data-target="#collapseTwo" aria-expanded="false"
+                                                aria-controls="collapseTwo">
+                                            Module #2
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                     data-parent="#accordion">
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="Name">Name</label>
+                                                    <input type="text" class="form-control" id="Name" placeholder="">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="Text">Text</label>
+                                                    <input type="text" class="form-control" id="Text" placeholder="">
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-primary col-md-2 float-right mb-3">Update Settings</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                data-target="#collapseThree" aria-expanded="false"
+                                                aria-controls="collapseThree">
+                                            Module #3
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                     data-parent="#accordion">
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="Name">Name</label>
+                                                    <input type="text" class="form-control" id="Name" placeholder="">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="Text">Text</label>
+                                                    <input type="text" class="form-control" id="Text" placeholder="">
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-primary col-md-2 float-right mb-3">Update Settings</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <?php include("footer.php"); ?>
