@@ -1,5 +1,6 @@
 {
     "kis.fee-hosting.com": "feehosting",
     "server": "demo",
+    "localhost": "demo",
     "kisdemo.intranetproject.net": "demo"
 }
