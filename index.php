@@ -167,7 +167,7 @@ if (isset($_GET['continue_registration']) && isset($_GET['method'])) {
 
         $token = $db->generateRandomString(5);
 
-        $text = 'Hi, Thank you for registering. In Order to access your Dashboard, you need to confirm your account. Paste the code below on the website nd continue.
+        $text = 'Hi, Thank you for registering. In Order to access your Dashboard, you need to confirm your account. Paste the code below on the website and continue.
 <br><br>Here is your registration code:<br>
             ' . $token . '<br><br><br>Best Regards, KIS Developer Team';
         $db->mail($email, 'Confirmation Token', $text);
