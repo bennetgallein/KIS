@@ -49,3 +49,24 @@ a#notification.nocaretdrop::after {
     width: 100%;
     font-size: 1.5em !important;
 }
+
+@media only screen and (max-width: 700px) {
+
+    .progress p {
+        font-size: 1.2em !important;
+        line-height: 30px !important;
+    }
+    .topcard {
+        display: block !important;
+        overflow: auto !important;
+    }
+    .progress {
+        height: 60% !important;
+    }
+    .row {
+        margin-left: 0 !important;
+    }
+    .smaller {
+        font-size: 60%;
+    }
+}

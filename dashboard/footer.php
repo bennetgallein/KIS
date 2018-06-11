@@ -1,6 +1,6 @@
 <footer class="footer mt-3 border-top pt-3">
     <div class="container-fluid row">
-        <nav class="float-left text-dark col-md-6">
+        <nav class="float-left text-dark col-md-6 small">
             <ul class="nav">
                 <?php
                 foreach ($db->getFooter()[0] as $name => $link) {
@@ -13,7 +13,7 @@
                 ?>
             </ul>
         </nav>
-        <p class="copyright float-right col-md-6 text-right">
+        <p class="copyright float-right col-md-6 text-right smaller">
             &copy;<?= "2017-" . date('Y') ?>
             <a href="https://www.intranetproject.net">Intranetproject</a>, made with <span style="color: red;"><i class="mdi mdi-heart"></i></span> and passion
         </p>
