@@ -2,5 +2,6 @@
     "kis.fee-hosting.com": "feehosting",
     "server": "demo",
     "localhost": "demo",
-    "kisdemo.intranetproject.net": "demo"
+    "kisdemo.intranetproject.net": "demo",
+    "192.168.1.119": "demo"
 }
