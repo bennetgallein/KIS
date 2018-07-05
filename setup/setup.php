@@ -36,10 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $red = "#FF0000";
         $green = "#2fbc2f";
 
-        $response = httpGet("https://kis.intranetproject.net/checklicense.php?license=" . $_POST['license']);
-        $response = json_decode($response);
+        //$response = httpGet("https://kis.intranetproject.net/checklicense.php?license=" . $_POST['license']);
+        //$response = json_decode($response);
 
-        if ($response->valid == true) {
+        //if ($response->valid == true) {
             echo "<p style='color: " . $green . "'>License is valid! Continue setup</p>";
             echo "<p>==============================================</p>";
             echo "<p>Starting creation of Database</p>";
@@ -165,9 +165,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             echo "<p>==============================================</p>";
             echo "<b>Setup complete. You might want to login now.<a href='../'>LOGIN</a></b>";
-        } else {
-            echo "<p style='color: " . $red . "'>License is invalid! Discard all changes and returns to main Website!</p>";
-        }
+        //} else {
+        //    echo "<p style='color: " . $red . "'>License is invalid! Discard all changes and returns to main Website!</p>";
+        //}
     } else {
         echo "Please fill every field!";
     }

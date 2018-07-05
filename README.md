@@ -1,24 +1,9 @@
 # Documentation:
 
-Managment of KIS instances:
 
-Test
-
-```
-/var/www
-    /framework
-    /kis_data
-        /<kunde-1>
-            /<modules>
-            /<customstyle>
-        /<kunde-2>
-            /<modules>
-            /<customstyle>
-        ...   
-```
-oh fuck
 Table of contents:
  - Overview
+ - Installation
  - Related Projects
 
 
@@ -30,6 +15,23 @@ grip README.md --export README.html
 Our Admin Template is managed with bower, so you can update it by running `bower-update-all`
 ## Overview:
 This is the Documentation of the Framework we are using in our self-developed KIS.
+
+## Installation
+If you want to install the KIS follow these steps:
+
+1. clone the Repo:
+`git clone https://github.com/bennetgallein/KIS.git`
+2. rename the `config.json.example` to `config.json` an edit at least the `database` section.
+3. The `modules` attribute is the basepath of the modules folder where all the modules are located. Changed the accordingly
+4. The `url` is the Basepath of the KIS. Here enter the full path where the KIS folder is located.
+5. Visit the URL `{kis_base_bath}/setup/setup.php` and enter any license. License checking has been disabled with this update.
+6. After that the KIS should be available over the URL you installed it to.
+
+### installing modules
+1. simple navigate to the folder where the `m̀odules` attribute points to in the config.
+2. then clone any modules you like with: `git clone https://github.com/IntranetProject/module_xxx`
+
+If any errors appear, please open an issue and don't contact me privat!
 
 ## Services in use
 We use a lot of free services to manage all kind of stuff.
